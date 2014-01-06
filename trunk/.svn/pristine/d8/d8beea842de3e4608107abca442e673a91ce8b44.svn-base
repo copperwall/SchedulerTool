@@ -1,0 +1,48 @@
+<html>
+<head>
+<title>
+Minutes of Right Corner Team Meeting, 4 November 2013
+</title>
+</head>
+<body bgcolor=white>
+<p align=center>
+<font size=+2>
+<strong>Minutes of Right Corner Team Meeting
+<br>
+2:00 - 4:00 PM, 4 November 2013</strong>
+</font>
+</p>
+<br>
+<br>
+<strong>Present: All</strong>
+<br>
+<br>
+<strong>Absent: None</strong>
+<br>
+<br>
+<strong>Excused: None</strong>
+<br>
+<br>
+<br>
+<strong>***MEETING NOTES***</strong>
+<br>
+>Need to assign someone to schedule fairness <br>
+   - Average <br>
+   - Outliers <br>
+   - Golf score? Gain points <br>
+>Global Constraints for Schedule <br>
+   - Times classes cannot be <br>
+   - Course overlap (courses that cannot overlap) <br>
+      - NO 400 LEVEL CLASSES CAN OVERLAP <br>
+   - Course proximity <br>
+      - Teacher proximity <br>
+      - Lecture/Lab proximity <br>
+<br> <br>
+>Unfill main view schedule <br>
+>Need some specific settings added <br>
+>Need step by step scenario set up <br>
+>Condense Basic Schedule Generation and Advanced into just Schedule Generation <br>
+>Need error examples (time conflicts, course conflicts, etc) <br>
+>Need to allow the admin to prioritize scheulde constraints <br>
+</body>
+</html>

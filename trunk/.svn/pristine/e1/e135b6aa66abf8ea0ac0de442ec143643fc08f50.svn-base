@@ -1,0 +1,36 @@
+<center><h1>Minutes of the Team Right Corner Meeting <br></h1>
+<h2>03.50 - 04.00 PM, 04 October 2013</h2></center>
+<br>
+<br>
+<br>
+Present: All<br>
+<br>
+Absent: None<br>
+<br>
+Excused: None<br>
+<br>
+<br>
+Discussed the columns that were needed and not needed. <br> <br>
+The following should be <strong>ignored</strong>: <br>
+<ul>
+<li> Location capacity </li>
+<li> Enrollment capacity </li>
+<li> Class number </li>
+<li> Equipment in classrooms </li>
+</ul>
+<br>
+The following should be <strong>included</strong>: <br>
+<ul>
+<li> Prefix (CPE/CSC) </li>
+<li> Units (make toggleable) </li>
+<li> Work Time Units (WTU) </li>
+<li> Planned enrollment </li> <!-- not sure about this one, someone please check and correct this -->
+</ul>
+<br>
+Misc:<br>
+There are seven defined day patterns<br>
+2 styles of scheduling<br>
+<ol>
+<li> Starting from last year's schedule - same number of sections as last year, regeneration from existing schedule </li>
+<li> From scratch </li>
+</ol>

@@ -1,0 +1,101 @@
+<h4>1.5.7 Feature Comparison Matrix</h4>
+<table border="1">
+<tr>
+<th></th>
+<th>Accessed from anywhere</th>
+<th>Direct on-screen schedule editing</th>
+<th>Drag and drop interface</th>
+<th>PDF, XLS, or HTML export of schedule</th>
+<th>Facility view - shows shifts by location</th>
+<th>Automatic schedule generation</th>
+<th>Daily shift view</th>
+<th>Staff availability constraints and preferences</th>
+<th>Algorithm allows for customizable running time restraints</th>
+<th>Alerts when a time, location, or preference conflict arises</th>
+<th>Staff and Locations are easily added, removed and customized</th>
+</tr>
+<tr>
+<th>FindMyShift Online Roster</th>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>no</td>
+<td>no</td>
+<td>no</td>
+<td>no</td>
+<td>no</td>
+<td>no</td>
+</tr>
+<tr>
+<th>OptaPlanner</th>
+<td>no</td>
+<td>no</td>
+<td>no</td>
+<td>no</td>
+<td>no</td>
+<td>yes</td>
+<td>no</td>
+<td>no</td>
+<td>yes</td>
+<td>no</td>
+<td>no</td>
+</tr>
+<tr>
+<th>RoboRoster</th>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>?</td>
+<td>no</td>
+<td>no</td>
+<td>yes</td>
+<td>yes</td>
+<td>no</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr>
+<th>RosterBooster</th>
+<td>yes</td>           
+<td>yes</td>           
+<td>yes</td>           
+<td>no</td>            
+<td>no</td>            
+<td>yes</td>           
+<td>yes</td>           
+<td>yes</td>           
+<td>yes</td>           
+<td>yes</td>           
+<td>not sure</td>
+</tr>
+<tr>
+<th>Mimosa</th>
+<td>no</td>
+<td>yes</td>
+<td>no</td>
+<td>yes</td>
+<td>no</td>
+<td>yes</td>
+<td>no</td>
+<td>yes</td>
+<td>no</td>
+<td>no</td>
+<td>yes</td>
+</tr>
+<tr>
+<th>Lantiv</th>
+<td>yes</td>
+<td>yes</td>
+<td>yes</td>
+<td>no</td>
+<td>no</td>
+<td>no</td>
+<td>yes</td>
+<td>no</td>
+<td>yes</td>
+<td>no</td>
+<td>yes</td>
+</tr>
+</table>

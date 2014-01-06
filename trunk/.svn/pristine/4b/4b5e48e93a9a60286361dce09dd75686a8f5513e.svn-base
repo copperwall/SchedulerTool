@@ -1,0 +1,58 @@
+<table align=center border=1 cellpadding=4>
+  <tr>
+      <td valign=top><strong>Component</strong>
+      <td valign=top><strong>Inspector</strong>
+      <td valign=top><strong>Date</strong>
+      <td valign=top><strong>Status</strong>
+      <td valign=top><strong>Remarks</strong>
+   </tr>
+   <tr>
+      <td valign=top>2.2.3H1</td>
+      <td valign=top>CAK</td>
+      <td valign=top>20Nov13</td>
+      <td valign=top>DONE</td>
+      <td valign=top>&nbsp;</td>
+   </tr>
+   <tr>
+      <td valign=top>2.2.2P1</td>
+      <td valign=top>CAK</td>
+      <td valign=top>20Nov13</td>
+      <td valign=top>FIX</td>
+      <td valign=top>Managing databases should be <b>Databases</b>, and bolded, and not in quotes. Change page to screen and a different word for appears</td>
+   </tr>
+   <tr>
+      <td valign=top>2.2.2I1</td>
+      <td valign=top>CAK</td>
+      <td valign=top>20Nov13</td>
+      <td valign=top>FIX</td>
+      <td valign=top>Change wording in the caption. I don't like "would be"</td>
+   </tr>
+   <tr>
+      <td valign=top>2.2.2P2</td>
+      <td valign=top>CAK</td>
+      <td valign=top>20Nov13</td>
+      <td valign=top>FIX</td>
+      <td valign=top>Random bolding</td>
+   </tr>
+   <tr>
+      <td valign=top>2.2.2I2</td>
+      <td valign=top>CAK</td>
+      <td valign=top>20Nov13</td>
+      <td valign=top>FIX</td>
+      <td valign=top>Captions should not tell user how the user got there. </td>
+   </tr>
+   <tr>
+      <td valign=top>2.2.2P3</td>
+      <td valign=top>CAK</td>
+      <td valign=top>20Nov13</td>
+      <td valign=top>FIX</td>
+      <td valign=top>Change "would need" wording.</td>
+   </tr>
+   <tr>
+      <td valign=top>2.2.2I3</td>
+      <td valign=top>CAK</td>
+      <td valign=top>20Nov13</td>
+      <td valign=top>FIX</td>
+      <td valign=top>There is no paragraph explaining this picture.</td>
+   </tr>
+</table>
