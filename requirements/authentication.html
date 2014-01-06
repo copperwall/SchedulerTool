@@ -1,0 +1,18 @@
+<h4>2.7.1 User Authentication</h4>
+<p>When a user clicks the login item on the initial screen, the authentication popup seen in Figure 2.2-1 is displayed.</p>
+<div>
+    <a href="images/web_authentication.png"><img src="images/web_authentication.png" width="500px" /></a>
+    <p class="caption">Figure 2.2-1: The Authentication Popup</p>
+</div>
+<p>The authentication popup is fairly straightforward. It contains a form with two fields: 'Username' and 'Password'.<br />
+    These fields are to be filled with the user's Cal Poly authentication credentials; 'Username' is the user's Cal Poly user id, and 'Password' is the user's Cal Poly Portal password.<br />
+    At the bottom of the form is a 'Submit' button.<br />
+    When the user clicks this button, his/her entered credentials are authenticated against Cal Poly's Active Directory.<br />
+    <ol class="inner_list">If the authentication is <b>successful</b>:
+        <li>the user's type (Student/Instructor) is determined based on flags in the database.</li>
+        <li>based on the user's type, the interface changes. Details on these changes can be found in the "Main View" sections of this document.</li>
+    </ol>
+    <ol class="inner_list">If the authentication is <b>unsuccessful</b>:
+        <li>the user is notified of the authentication failure in the auth popup and is allowed to try again.</li>
+    </ol>
+</p>
