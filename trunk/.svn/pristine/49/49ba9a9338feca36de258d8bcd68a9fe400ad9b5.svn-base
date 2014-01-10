@@ -1,2 +1,0 @@
-<h4>2 Functional Requirements</h4>
-<p>The primary functionality of the scheduling system is viewing and generating department schedules. All types of users may view current and past schedules, but schedule generation is performed only by administrators. Students are able to set votes and instructors are able to set preferences, both of which figure into the schedule generation.</p>

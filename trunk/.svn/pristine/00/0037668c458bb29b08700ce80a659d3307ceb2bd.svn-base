@@ -1,6 +1,0 @@
-<h3>2.2 Managing the Database</h3>
-<p>The administrator manages the database by launching the administrator program and clicking an item under the <b>Databases</b> dropdown towards the top of the screen. The administrator accesses and edits the instructor, course, and location databases through the items in the dropdown. See <a href="images/desk_admin_view_empty.png">Figure 2.1.1-1.</a></p>
-
-<p>When the administrator clicks the <b>Instructors</b> button, the instructor editing page appears. <a href='admin_manage_database_instructors.html'>(2.2.1)</a><br />
-When the administrator clicks the <b>Courses</b> button, the course editing page appears. <a href='admin_manage_database_courses.html'>(2.2.2)</a><br />
-When the administrator clicks the <b>Locations</b> button, the location editing page appears. <a href='admin_manage_database_locations.html'>(2.2.3)</a><br /></p>
