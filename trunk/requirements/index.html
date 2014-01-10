@@ -1,0 +1,118 @@
+<html>
+<head>
+    <title>Requirements Specification</title>
+    <link type="text/css" rel="stylesheet" href="../static/base.css" />
+    <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.1.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("li a").click(function () {
+                $("#content").load(($(this).data("link")));
+                $(window).trigger('resize');
+            });
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <div class="left_header" align="left">
+            <p style="font-size: 18px;"><b>TRC: The <em>Scheduler</em> Project</b></p>
+        </div>
+        <div class="right_header" align="right">
+            <nav>
+                <p>
+                    <a href="../">Home</a>
+                    <a href="../administration/">Administration</a>
+                    <a href="#" class="active">Requirements</a>
+                    <a href="../specification/">Specifications</a>
+                </p>
+            </nav>
+        </div>
+    </header>
+    <div style="clear:both;"></div>
+    <section>
+        <nav id="tableOfContents">
+            <h3>Requirements Specification<br /><i>25 October 2013</i></h3>
+            <h4>Contents</h4>
+            <ol class="multiNumberedList" id="mainList">
+                <li><a data-link='introduction.html'>Introduction</a></li>
+                <ol class="multiNumberedList">
+                    <li><a data-link='problem_statement.html'>Problem Statement</a></li>
+                    <li><a data-link='system_personnel.html'>System Personnel</a></li>
+                    <li><a data-link='operational_setting.html'>Operational Setting</a></li>
+                    <li><a data-link='impacts.html'>Impacts</a></li>
+                    <li><a data-link='related.html'>Related Systems</a></li>
+                    <ol class="multiNumberedList">
+                        <li><a data-link='related_findmyshift.html'>FindMyShift Online Roster</a></li>
+                        <li><a data-link='related_optaplanner.html'>OptaPlanner</a></li>
+                        <li><a data-link='related_roboroster.html'>RoboRoster</a></li>
+                        <li><a data-link='related_rosterbooster.html'>RosterBooster</a></li>
+                        <li><a data-link='related_mimosa.html'>Mimosa</a></li>
+                        <li><a data-link='related_lantiv.html'>Lantiv</a></li>
+                        <li><a data-link='related_matrix.html'>Feature Comparison Matrix</a></li>
+                    </ol>
+                </ol>
+                <li><a data-link='functional_requirements.html'>Functional Requirements</a></li>
+                <ol class="multiNumberedList">
+                    <li><a data-link='ui_overview.html'>User Interface Overview</a></li><!-- 2.1 -->
+                    <ol class='multiNumberedList'>
+                        <li><a data-link='main_view_admin.html'>Admin Main View</a></li><!-- 2.1.1 -->
+                        <li><a data-link='main_view_instructor.html'>Instructor Main View</a></li><!-- 2.1.2 -->
+                        <li><a data-link='main_view_student.html'>Student Main View</a></li><!-- 2.1.3 -->
+                    </ol>
+                    <li><a data-link='admin_manage_database.html'>Database Management</a></li><!-- 2.2 -->
+                    <ol class='multiNumberedList'>
+                        <li><a data-link='admin_manage_database_instructors.html'>Instructors</a></li><!-- 2.2.1 -->
+                        <li><a data-link='admin_manage_database_courses.html'>Courses</a></li><!-- 2.2.2 -->
+                        <li><a data-link='admin_manage_database_locations.html'>Locations</a></li><!-- 2.2.3 -->
+                    </ol>
+                    <li><a data-link='basic_schedule_generation.html'>Basic Schedule Generation</a></li><!-- 2.3 -->
+                    <li><a data-link='advanced_schedule_generation.html'>Advanced Schedule Generation</a></li><!-- 2.4 -->
+                    <ol class='multiNumberedList'>
+                        <li><a data-link='admin_settings_general.html'>General Settings</a></li> <!-- 2.4.1 -->
+                        <li><a data-link='admin_settings_instructor_prefs.html'>Editing Instructor Preferences</a></li> <!-- 2.4.2 -->
+                        <li><a data-link='admin_settings_available_courses.html'>Setting Available Courses/Number of Sections</a></li> <!-- 2.4.3 -->
+                    </ol>
+                    <li><a data-link='analytics.html'>Schedule Analytics</a></li><!-- 2.5 -->
+                    <li><a data-link='admin_publish_schedule.html'>Publishing a Schedule</a></li><!-- 2.6 -->
+                    <li>Instructor/Student Input</li><!-- 2.7 -->
+                    <ol class='multiNumberedList'>
+                        <li><a data-link='authentication.html'>User Authentication</a></li><!-- 2.7.1 -->
+                        <li><a data-link='instructor_preferences.html'>Instructor Preferences</a></li><!-- 2.7.2 -->
+                        <li><a data-link='student_voting.html'>Student Voting</a></li><!-- 2.7.3 -->
+                    </ol>
+               </ol>
+                    <li>Non-Functional Requirements</li><!-- 3 -->
+                    <ol class='multiNumberedList'>
+                     <li><a data-link='performance.html'>System Performance</a></li> <!-- 3.1 -->
+                     <li><a data-link='qualitative.html'>Qualitative System Characteristics</a></li> <!-- 3.2 -->
+					</ol>
+					<li><a data-link='model_summary.html'>System Performance</a></li>
+            </ol>
+        </nav>
+        <article>
+            <div id="toggleSwitch" onclick="toggleNav()">||</div>
+            <div id="content"></div>
+        </article>
+    </section>
+    <script>
+        $(document).ready(function (){
+            // Load content dynamically
+            $('#content').load('introduction.html');
+            $(window).trigger('resize');
+        });
+        $(window).resize(function() {
+            if ($("#tableOfContents").is(":hidden")) {
+                $('#content').width($(window).width() - 43);
+            }
+            else {
+                $('#content').width($(window).width() - 393);
+            }
+            $('section').height($(window).height() - 60);
+        });
+        function toggleNav() {
+            $('#tableOfContents').toggle();
+            $(window).trigger('resize');
+        }
+    </script>
+</body>
+</html>

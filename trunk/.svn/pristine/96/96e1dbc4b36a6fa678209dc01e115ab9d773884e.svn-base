@@ -1,0 +1,22 @@
+<table align=center border=1 cellpadding=4>
+  <tr>
+      <td valign=top><strong>Component</strong>
+      <td valign=top><strong>Inspector</strong>
+      <td valign=top><strong>Date</strong>
+      <td valign=top><strong>Status</strong>
+      <td valign=top><strong>Remarks</strong>
+   </tr>
+      <tr>
+      <td valign=top>2.4</td>
+      <td valign=top>SJS</td>
+      <td valign=top>20Nov27</td>
+      <td valign=top>FIX</td>
+      <td valign=top>Show concrete examples for different types of generated schedules</td>
+   <tr>
+      <td valign=top>2.4P2</td>
+      <td valign=top>CAK/SJS/ANK</td>
+      <td valign=top>11Dec13</td>
+      <td valign=top>FIXED</td>
+      <td valign=top>"There the" is awkward.</td>
+   </tr>
+</table>

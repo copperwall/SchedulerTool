@@ -1,0 +1,9 @@
+<h4>2.1 User Interface Overview</h4>
+<p>When the public user initially invokes the Scheduling tool, the screen appears as shown in Figure 2.1-1.</p>
+<div>
+    <a href="images/web_public_view_initial.png"><img src="images/web_public_view_initial.png" width="500px" /></a>
+    <p class="caption">Figure 2.1-1: The Initial Screen (what an unauthenticated user sees) with no schedule generated.</p>
+</div>
+<p>When a user selects a term from the term dropdown menu, the current term changes, which reflects in the schedule shown in the body. The body contains the generated schedule for the currently selected term. If a schedule has not yet been generated for the selected term, a centered message describing this fact appears instead. The default selected term is the current term.<br />
+When a user clicks the login button, a small box pops up asking for credentials. This interface is further detailed in section <a href='authentication.html'>2.7.1 (User Authentication)</a><br />
+</p>

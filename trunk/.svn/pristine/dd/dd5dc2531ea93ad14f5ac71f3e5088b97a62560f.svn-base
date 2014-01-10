@@ -1,0 +1,34 @@
+<h3> 2.1.1 Admin Main View</h3>
+<div>
+    <a href="images/desk_admin_view_empty.png"><img src="images/desk_admin_view_empty.png" width="550px" /></a>
+    <p class='caption'>Figure 2.1.1-1: The default view the admin sees upon instantiating the scheduling program.</p>
+</div>
+<p>
+After opening the scheduling application, the admin sees a view similar to the student view. However, the schedule initially shown to the admin does not have to be one released to the public and students; the schedule can be in progress for a future term. Unique to the admin view, there are menu items to manage schedules, databases, administrative settings, view analytics, publish the schedule, and generate a schedule. The admin can generate possible schedules based on instructors' preferences and admin settings by clicking on the <b>Generate</b> button in the top right corner. Schedules deemed as complete can be published by the administrator. 
+</p>
+
+<p>After clicking <b>New Schedule</b>, the dialog shown in Figure 2.1.1-2 appears.</p>
+
+<div>
+    <a href="images/desk_schedules_choose_new_schedule.png"><img src="images/desk_schedules_choose_new_schedule.png" width="550px" /></a>
+    <p class='caption'>Figure 2.1.1-2: New schedule dialog, initially.</p>
+</div>
+<p>The administrator sees this dialog shown in Figure 2.1.1-2 with no name filled out.
+</p>
+<br>
+<div>
+    <a href="images/desk_schedules_choose_new_schedule_filled.png"><img src="images/desk_schedules_choose_new_schedule_filled.png" width="550px" /></a>
+    <p class='caption'>Figure 2.1.1-3: New schedule dialog filled out.</p>
+</div>
+<p>The administrator determines an appropriate name for their new schedule, such as Winter_2014_3 or Winter_2014_No_Staley. When published, this schedule name is public to anyone to view. After clicking <b>Create</b>, the dialog closes and the frame shows a new schedule with no data. Clicking <b>Cancel</b> closes the dialog, and no new schedule is shown.</p>
+<br>
+
+<p>After clicking on <b>Load existing</b> from the <b>Schedules</b> dropdown, the dialog shown in Figure 2.1.1-4 appears.</p>
+<div>
+   <a href='images/desk_schedules_choose_existing'><img src='images/desk_schedules_choose_existing.png' width="550px"/></a>
+   <p class='caption'>Figure 2.1.1-4: The selection window for existing schedules saved for the current term.</p>
+</div>
+
+<p>
+In order to create new schedules or view existing schedules, the admin clicks the <b>Schedules</b> menu in the upper left of the page. The <b>Schedules</b> menu reveals a drop down menu with options <b>New</b> and <b>Existing Schedule</b>. Selecting <b>New</b> saves the current schedule if one exists, and creates a new blank schedule. Selecting <b>Existing Schedules</b> displays a pop-up of all saved schedules for the current term. The saved schedules are listed in term order and automatically named by a concatenation of term name and number of the schedule in the current term. By clicking the <b>Load</b> button, the selected existing schedule is loaded onto the main view. Clicking the <b>Cancel</b> button cancels the operation and returns to the main view.
+</p>

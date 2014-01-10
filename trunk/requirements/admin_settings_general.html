@@ -1,0 +1,34 @@
+<h4>2.4.1 General Settings</h4>
+
+<div>
+    <a href="images/desk_admin_view_too_early.png"><img src="images/desk_admin_view_too_early.png" width="500px" /></a>
+    <p class="caption">Figure 2.4.1-1: This screen shows a schedule with a class that is too early</p>
+</div>
+
+<p>In the above schedule (Figure 2.4.1-1) CSC 141 is set to earlier than the administrator wants. The administrator changes the start time of the whole schedule in their admin settings.</p>
+
+<div>
+    <a href="images/desk_general_settings_empty.png"><img src="images/desk_general_settings_empty.png" width="500px" /></a>
+    <p class="caption">Figure 2.4.1-2: This screen shows the default settings for the administrator</p>
+</div>
+
+<p>When the admin clicks the <b>General Settings</b> button under the <b>Settings</b> menu, the system shows the General Settings dialog (Figure 2.4.1-2). On the general settings page, the administrator sets the allowed starting time and ending time via the two sliders on the left. Due to university restrictions the start time slider starts at 7:00AM and the end time slider ends at 10:00PM. This allows the administrator to create an earlier or later schedule.</p>
+
+<div>
+    <a href="images/desk_admin_view_dept_meeting.png"><img src="images/desk_admin_view_dept_meeting.png" width="500px" /></a>
+    <p class="caption">Figure 2.4.1-3: This screen shows a schedule with a class that conflicts with the department meeting.</p>
+</div>
+
+<p>For the too early schedule (Figure 2.4.1-1), the admin just moves the start time slider to a later start time, so now the class starts later as in the picture above (Figure 2.4.1-3). But now there's another problem! CSC 141 is scheduled during the department meeting time. To set times that classes cannot be scheduled, the admin simply clicks in the time table on the right of the General Settings screen (Figure 2.4.1-2). A red box appears in the time slot clicked by the user indicating that this time is blocked. Now the user regenerates the schedule and the course is at a different time.</p>
+
+<div>
+    <a href="images/desk_admin_view_conflict.png"><img src="images/desk_admin_view_conflict.png" width="500px" /></a>
+    <p class="caption">Figure 2.4.1-4: This screen shows a schedule with two classes that shouldn't be at the same time.</p>
+</div>
+
+<p>The General Settings page (Figure 2.4.1-2) shows current constraints in the list on the left. Initially, the screen displays that no constraints have been added. To add a constraint, the administrator inputs into the text box under the list. They add specific course numbers that never overlap such as 305 and 309 in a comma-separated list. In the above schedule (Figure 2.4.1-4), two classes appear at the same time, CPE 305 and CPE 309. If the admin does not want these two classes taught at the same time, they go to their settings, enter the text "305, 309" into the text box on the bottom left, and press the <b>Add Constraint</b> button. With this constraint in place, the system does not schedule these two classes at the same time.</p>
+<div>
+    <a href="images/desk_general_settings.png"><img src="images/desk_general_settings.png" width="500px" /></a>
+    <p class="caption">Figure 2.4.1-5: This screen shows the settings filled out</p>
+</div>
+<p>This screen (Figure 2.4.1-5) shows an example of the settings screen filled out with all the above mentioned changes. The start time has been changed to 8AM and the end time has been changed to 9PM. Classes are not to be scheduled on the Monday/Friday time pattern nor the Monday/Tuesday/Wednesday/Friday time pattern. Some constraints have been added, and 1-2PM slots have been blocked off due to Computer Science department meetings on Monday, Wednesday, and Fridays.</p>

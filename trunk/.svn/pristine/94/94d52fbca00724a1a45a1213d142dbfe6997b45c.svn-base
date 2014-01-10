@@ -1,0 +1,18 @@
+<h4>2.7.3 Student View</h4>
+<p>When a user clicks the Voting button toward the top of the page, the following page appears.</p>
+<p>Depending on whether the voting window is open or closed, this page either allows students to vote on classes they would like to take for a particular term or allows students to view their vote. Each vote has a course and department drop-down. After making their selections, students submit their votes via the <b>Submit</b> button. Once a student clicks either the <b>Submit</b> or <b>Cancel</b> button, the scheduler application returns to its main view.</p>
+<div>
+    <a href="images/web_student_voting_voting_open.png"><img src="images/web_student_voting_voting_open.png" width="500px" /></a>
+    <p class="caption">Figure 2.6.3-1 Voting while the voting window is open. Note notice of when voting window closes.</p>
+</div>
+<p>The <b>Add another vote</b> button under the set of votes allows the student to add more class votes.<br />
+The student initially sees only one vote option. After he clicks the <b>Add another vote</b> button, another vote option appears.</p>
+<div>
+    <a href="images/web_student_voting_voting_open (2).png"><img src="images/web_student_voting_voting_open (2).png" width="500px" /></a>
+    <p class="caption">Figure 2.6.3-2 Adding another vote.</p>
+</div>
+<p>If the voting window is closed for the particular term, students will be able to see their votes.</p>
+<div>
+    <a href="images/web_student_voting_voting_closed (2).png"><img src="images/web_student_voting_voting_closed (2).png" width="500px" /></a>
+    <p class="caption">Figure 2.6.3-3 Viewing votes after the voting window has closed.</p>
+</div>
