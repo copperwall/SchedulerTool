@@ -1,4 +1,3 @@
 # Scheduler Tool
-# Jarred Stelfox
-# Chase Kragenbrink
-# Katie Keim
+
+A tool that automatically generates teacher schedules based on user defined constraints.
