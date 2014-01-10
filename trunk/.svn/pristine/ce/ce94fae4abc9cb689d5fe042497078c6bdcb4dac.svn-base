@@ -1,7 +1,0 @@
-<h4>2.1.2 Instructor Main View</h4>
-<p>After the instructor authenticates, a <b>Manage Preferences</b> menu item appears in the menu below the login bar.</p>
-<div>
-    <a href="images/web_instructor_view.png"><img src="images/web_instructor_view.png" width="500px" /></a>
-    <p class="caption">Figure 2.1.2-1 Instructor initial view of the schedule.</p>
-</div>
-<p>The settings button opens a dialog that allows an instructor to edit their availability and course preferences. The schedule is the same one the unauthenticated user sees.</p>
