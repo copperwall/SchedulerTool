@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<children><Pane layoutX="7.0" prefHeight="400.0" prefWidth="600.0">
+<children><MenuBar layoutX="-6.0" layoutY="29.0" prefHeight="29.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml">
+  <menus>
+    <Menu mnemonicParsing="false" text="Schedules">
+<items><MenuItem mnemonicParsing="false" text="New" /><MenuItem mnemonicParsing="false" text="Load Exisiting" />
+</items>
+    </Menu>
+    <Menu mnemonicParsing="false" text="Databases">
+<items><MenuItem mnemonicParsing="false" text="Instructors" /><MenuItem mnemonicParsing="false" text="Courses" /><MenuItem mnemonicParsing="false" text="Locations" />
+</items>
+    </Menu>
+    <Menu mnemonicParsing="false" text="Settings">
+<items><MenuItem mnemonicParsing="false" text="General" /><MenuItem mnemonicParsing="false" text="Instructor Preferences" /><MenuItem mnemonicParsing="false" text="Available Corse" />
+</items>
+    </Menu><Menu mnemonicParsing="false" text="Analytics" /><Menu mnemonicParsing="false" text="Publish" /><Menu mnemonicParsing="false" text="Generate" />
+  </menus>
+</MenuBar><ScrollPane layoutX="1.0" layoutY="57.0" prefHeight="345.0" prefWidth="592.0" xmlns:fx="http://javafx.com/fxml">
+  <content>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
+<children><GridPane gridLinesVisible="true" layoutX="14.0" layoutY="14.0" prefHeight="312.0" prefWidth="561.0" xmlns:fx="http://javafx.com/fxml">
+  <columnConstraints>
+<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" />
+<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" />
+<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" />
+<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" />
+<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" />
+<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" />
+<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" />
+<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" />
+<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" />
+<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" />
+<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" />
+  </rowConstraints>
+</GridPane>
+</children></AnchorPane>
+  </content>
+</ScrollPane><Pane layoutX="-6.0" prefHeight="29.0" prefWidth="600.0">
+<children><ComboBox layoutX="225.0" layoutY="1.0" prefWidth="150.0" promptText="Change term" xmlns:fx="http://javafx.com/fxml" /><Label layoutX="13.0" layoutY="6.0" prefHeight="16.0" prefWidth="70.0" text="Scheduler" /><Label layoutX="480.0" layoutY="6.0" text="ADMINISTRATOR" />
+</children></Pane>
+</children></Pane>
+</children></AnchorPane>
