@@ -6,17 +6,17 @@ package models.admin.generation;
  * @author Alex Kavanaugh
  *
  */
-public class AdminAvailableCoursesModel {
+public class AdminAvailableCourses {
     
     public void saveSections() {
-        System.out.println("In AdminAvailableCoursesModel:saveSections()");
+        System.out.println("In AdminAvailableCourses:saveSections()");
     }
     
     public void loadFromTerm(String term) {
-        System.out.println("In AdminAvailableCoursesModel:loadFromTerm()");
+        System.out.println("In AdminAvailableCourses:loadFromTerm()");
     }
     
     public void loadSuggested() {
-        System.out.println("In AdminAvailableCoursesModel:loadSuggested()");
+        System.out.println("In AdminAvailableCourses:loadSuggested()");
     }
 }

@@ -6,13 +6,13 @@ package models.admin.analytics;
  * @author Alex Kavanaugh
  *
  */
-public class AdminAnalyticsModel {
+public class AdminAnalytics {
     
     public void calculate_overall() {
-        System.out.println("In AdminAnalyticsModel:calculate_overall()");
+        System.out.println("In AdminAnalytics:calculate_overall()");
     }
     
     public void calculate_individual(String username) {
-        System.out.println("In AdminAnalyticsModel:calculate_individual()");
+        System.out.println("In AdminAnalytics:calculate_individual()");
     }
 }
