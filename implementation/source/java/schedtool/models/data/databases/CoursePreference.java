@@ -1,4 +1,4 @@
-package data.databases;
+package models.data.databases;
 
 public class CoursePreference {
    public Course course;

@@ -1,4 +1,4 @@
-package data.databases;
+package models.data.databases;
 
 /**
  * This class holds all the information for a course, including

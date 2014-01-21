@@ -29,7 +29,8 @@ public class AdminAnalyticsController {
     void initialize() {
         System.out.println("AdminAnalyticsController initialized.");
         this.model.calculate_overall();
-        this.model.calculate_individual("Test String");
+        //TODO
+        this.model.calculate_individual("Test string");
     }
 
 }

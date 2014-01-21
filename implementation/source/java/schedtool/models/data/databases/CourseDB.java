@@ -6,7 +6,7 @@ package models.data;
  * @author Alex Kavanaugh
  *
  */
-public class CourseDBModel {
+public class CourseDB {
     
     public void save_changes() {
         System.out.println("In CourseDBModel:save_changes()");
