@@ -20,6 +20,7 @@ public class AdminFrameController {
     private AnchorPane adminAnalytics;
     private AnchorPane adminAvailableCourses;
     private AnchorPane locationDB;
+    private AnchorPane coursesDBView;
 
     @FXML
     private ResourceBundle resources;
@@ -104,6 +105,17 @@ public class AdminFrameController {
 
     @FXML
     void loadCoursesDBView(ActionEvent event) {
+        List<Node> children = topPane.getChildren();
+        children.remove(2);
+                
+         try {
+        	coursesDBView = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/data/databases/CourseDBView.fxml"));
+            children.add((Node) coursesDBView);
+         } 
+         catch (Exception exc)
+         {
+             exc.printStackTrace();
+         }
     }
 
     @FXML
