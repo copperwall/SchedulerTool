@@ -11,7 +11,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 /* Import Models */
-import models.data.*;
 import models.data.databases.CourseDB;
 
 public class CourseDBController {
