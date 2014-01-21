@@ -21,6 +21,7 @@ public class AdminFrameController {
     private AnchorPane adminAvailableCourses;
     private AnchorPane locationDB;
     private AnchorPane coursesDBView;
+    private AnchorPane instructorsDB;
 
     @FXML
     private ResourceBundle resources;
@@ -124,6 +125,15 @@ public class AdminFrameController {
 
     @FXML
     void loadInstructorsDBView(ActionEvent event) {
+        List<Node> children = topPane.getChildren();
+        children.remove(2);
+        
+        try {
+        	instructorsDB = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/data/databases/InstructorDBView.fxml"));
+            children.add((Node)instructorsDB);
+        } catch(Exception exc) {
+            exc.printStackTrace();
+        }
     }
 
     @FXML
@@ -132,7 +142,7 @@ public class AdminFrameController {
         children.remove(2);
         
         try {
-            locationDB = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/data/locationDB.fxml"));
+            locationDB = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/data/databases/locationDB.fxml"));
             children.add((Node)locationDB);
         } catch(Exception exc) {
             exc.printStackTrace();
