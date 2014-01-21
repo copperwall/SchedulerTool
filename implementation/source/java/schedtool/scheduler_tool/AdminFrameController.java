@@ -16,6 +16,7 @@ import javafx.scene.layout.VBox;
 
 public class AdminFrameController {
     private AnchorPane adminGeneralSettings;
+    private AnchorPane adminMainTable;
     private AnchorPane adminAnalytics;
     private AnchorPane adminAvailableCourses;
     private AnchorPane locationDB;
@@ -85,6 +86,17 @@ public class AdminFrameController {
 
     @FXML
     void loadAdminMainView(MouseEvent event) {
+        List<Node> children = topPane.getChildren();
+        children.remove(2);
+                
+         try {
+        	adminMainTable = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/admin/generation/AdminMainTable.fxml"));
+            children.add((Node) adminMainTable);
+         } 
+         catch (Exception exc)
+         {
+             exc.printStackTrace();
+         }
     }
 
     @FXML
