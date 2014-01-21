@@ -47,7 +47,6 @@ public class CourseDBAddController {
 
     @FXML
     void submit(ActionEvent event) {
-      System.out.println("Course added!");
     }
 
     @FXML
