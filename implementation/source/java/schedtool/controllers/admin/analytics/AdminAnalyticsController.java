@@ -16,7 +16,7 @@ import models.admin.analytics.*;
  *
  */
 public class AdminAnalyticsController {
-    private AdminAnalytics model = new AdminAnaltics();
+    private AdminAnalytics model = new AdminAnalytics();
 
     @FXML
     private ResourceBundle resources;
@@ -29,7 +29,8 @@ public class AdminAnalyticsController {
     void initialize() {
         System.out.println("AdminAnalyticsController initialized.");
         this.model.calculate_overall();
-        this.model.calculate_individual();
+        //TODO
+        this.model.calculate_individual("Test string");
     }
 
 }
