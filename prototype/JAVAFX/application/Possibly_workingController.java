@@ -41,7 +41,20 @@ public class Possibly_workingController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
-    
+   @FXML
+   private void loadGeneralSettings(ActionEvent event) {
+      List<Node> children = topPane.getChildren();
+      children.remove(2);
+              
+       try {
+          generalsettings = (AnchorPane) FXMLLoader.load(getClass().getResource("general_settings.fxml"));
+          children.add((Node)generalsettings);
+       } 
+       catch (IOException exc)
+       {
+       }
+   }
+    @FXML
    private void loadGeneralSettings(ActionEvent event) {
       List<Node> children = topPane.getChildren();
       children.remove(2);
