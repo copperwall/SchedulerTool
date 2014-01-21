@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox fx:id="topPane" prefHeight="540.0" prefWidth="750.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="AdminFrameController">
+<VBox fx:id="topPane" prefHeight="540.0" prefWidth="750.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="scheduler_tool.AdminFrameController">
   <children>
     <Pane prefHeight="30.0" prefWidth="600.0">
       <children>
