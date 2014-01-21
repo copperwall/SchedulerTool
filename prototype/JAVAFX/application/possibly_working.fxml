@@ -46,141 +46,18 @@
         <Menu mnemonicParsing="false" text="Generate" />
       </menus>
     </MenuBar>
-    <StackPane fx:id="contentPane" prefHeight="480.0" prefWidth="750.0">
+    <Pane prefHeight="480.0" prefWidth="750.0" visible="true">
       <children>
-        <Pane prefHeight="200.0" prefWidth="200.0" visible="false">
-          <children>
-            <TableView layoutX="0.0" layoutY="0.0" prefHeight="480.0" prefWidth="750.0">
-              <columnResizePolicy>
-                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" fx:id="x2" />
-              </columnResizePolicy>
-              <columns>
-                <TableColumn prefWidth="75.0" text="C1" />
-                <TableColumn prefWidth="75.0" text="C2" />
-              </columns>
-            </TableView>
-          </children>
-        </Pane>
-        <Pane prefHeight="480.0" prefWidth="750.0" visible="false">
-          <children>
-            <Pane layoutX="6.0" layoutY="7.0" prefHeight="463.0" prefWidth="359.0">
-              <children>
-                <TableView layoutX="8.0" layoutY="141.0" prefHeight="159.0" prefWidth="333.0">
-                  <columns>
-                    <TableColumn minWidth="333.0" prefWidth="333.0" resizable="false" text="Constraint" />
-                  </columns>
-                </TableView>
-                <Label layoutX="17.0" layoutY="106.0" text="Current Constraints" />
-                <Label layoutX="13.0" layoutY="78.0" text="End time:" />
-                <Label layoutX="14.0" layoutY="46.0" text="Start time:" />
-                <Slider layoutX="104.0" layoutY="79.0" />
-                <Label layoutX="14.0" layoutY="14.0" prefHeight="15.310546875" prefWidth="140.0" text="General Settings" />
-                <Slider layoutX="104.0" layoutY="48.0" />
-                <Label layoutX="13.0048828125" layoutY="310.5" text="Add constraint:" />
-                <Label layoutX="27.1337890625" layoutY="335.5" text="Ex: &quot;305, 309&quot; - 305 and 309 should not overlap" />
-                <Label layoutX="27.1337890625" layoutY="359.5" text="Ex: &quot;5XX&quot; - 500-level courses should not overlap" />
-                <Label layoutX="27.1337890625" layoutY="383.5" text="Ex: &quot;3{6,7,8}X&quot; - 360s, 370s, 390s should not overlap" />
-                <TextField layoutX="13.0" layoutY="408.0" prefHeight="25.0" prefWidth="200.0" />
-                <Button layoutX="228.5166015625" layoutY="408.0" mnemonicParsing="false" text="Add constraint" />
-              </children>
-            </Pane>
-            <Pane layoutX="388.0" layoutY="7.0" prefHeight="472.0" prefWidth="350.0">
-              <children>
-                <Pane layoutX="17.0" layoutY="341.0" prefHeight="106.0" prefWidth="317.0">
-                  <children>
-                    <CheckBox layoutX="14.0" layoutY="41.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="62.0" text="MWF" />
-                    <CheckBox layoutX="94.0" layoutY="41.0" mnemonicParsing="false" text="TH" />
-                    <Label layoutX="14.0048828125" layoutY="14.0" text="Available Time Patterns" />
-                    <CheckBox layoutX="137.7099609375" layoutY="41.0" mnemonicParsing="false" text="MW" />
-                    <CheckBox layoutX="217.7890625" layoutY="41.0" mnemonicParsing="false" text="WF" />
-                    <CheckBox layoutX="14.2939453125" layoutY="75.0" mnemonicParsing="false" text="WF" />
-                    <CheckBox layoutX="93.595703125" layoutY="75.0" mnemonicParsing="false" text="MTWH" />
-                    <CheckBox layoutX="181.578125" layoutY="75.0" mnemonicParsing="false" text="MTWF" />
-                  </children>
-                </Pane>
-                <Label layoutX="30.0048828125" layoutY="25.5" text="Blocked Out Times" />
-                <TableView layoutX="29.0" layoutY="66.0" prefHeight="286.0" prefWidth="310.0">
-                  <columns>
-                    <TableColumn prefWidth="75.0" text="Time" />
-                    <TableColumn minWidth="0.0" prefWidth="51.0" text="Mon." />
-                    <TableColumn minWidth="0.0" prefWidth="42.0" text="Tues." />
-                    <TableColumn prefWidth="53.0" text="Wed." />
-                    <TableColumn minWidth="0.0" prefWidth="46.0" text="Thurs." />
-                    <TableColumn minWidth="0.0" prefWidth="42.0" text="Fri." />
-                  </columns>
-                </TableView>
-              </children>
-            </Pane>
-          </children>
-        </Pane>
-        <Pane prefHeight="200.0" prefWidth="200.0" visible="true">
-          <children>
-            <BorderPane layoutX="0.0" layoutY="0.0" prefHeight="480.0" prefWidth="750.0">
-              <bottom>
-                <GridPane>
-                  <children>
-                    <HBox alignment="CENTER_RIGHT" prefHeight="0.0" prefWidth="200.0" GridPane.columnIndex="1">
-                      <children>
-                        <Button mnemonicParsing="false" onAction="#addInstructor" text="Add" />
-                        <Button mnemonicParsing="false" onAction="#editInstructor" text="Edit">
-                          <HBox.margin>
-                            <Insets left="5.0" />
-                          </HBox.margin>
-                        </Button>
-                        <Button mnemonicParsing="false" onAction="#deleteInstructor" text="Delete">
-                          <HBox.margin>
-                            <Insets left="5.0" />
-                          </HBox.margin>
-                        </Button>
-                        <Button mnemonicParsing="false" onAction="#cancelChanges" text="Cancel">
-                          <HBox.margin>
-                            <Insets left="5.0" />
-                          </HBox.margin>
-                        </Button>
-                      </children>
-                    </HBox>
-                    <Button mnemonicParsing="false" text="Save" />
-                  </children>
-                  <columnConstraints>
-                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  </columnConstraints>
-                  <padding>
-                    <Insets bottom="20.0" />
-                  </padding>
-                  <rowConstraints>
-                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  </rowConstraints>
-                  <BorderPane.margin>
-                    <Insets left="10.0" right="10.0" top="10.0" />
-                  </BorderPane.margin>
-                </GridPane>
-              </bottom>
-              <center>
-                <TableView columnResizePolicy="$x2" prefHeight="200.0" prefWidth="200.0">
-                  <columns>
-                    <TableColumn editable="false" prefWidth="75.0" text="Name" />
-                    <TableColumn editable="false" minWidth="0.0" prefWidth="106.0" text="Cal Poly User ID" />
-                    <TableColumn editable="false" minWidth="0.0" prefWidth="71.0" text="WTU" />
-                    <TableColumn editable="false" minWidth="0.0" text="Active" />
-                  </columns>
-                  <BorderPane.margin>
-                    <Insets left="10.0" right="10.0" />
-                  </BorderPane.margin>
-                </TableView>
-              </center>
-              <top>
-                <Label font="$x1" graphicTextGap="4.0" text="Manage Instructors">
-                  <BorderPane.margin>
-                    <Insets bottom="10.0" left="10.0" top="5.0" />
-                  </BorderPane.margin>
-                </Label>
-              </top>
-            </BorderPane>
-          </children>
-        </Pane>
-        <Pane prefHeight="200.0" prefWidth="200.0" />
+        <TableView layoutX="0.0" layoutY="0.0" prefHeight="480.0" prefWidth="750.0">
+          <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+          </columnResizePolicy>
+          <columns>
+            <TableColumn prefWidth="75.0" text="C1" />
+            <TableColumn prefWidth="75.0" text="C2" />
+          </columns>
+        </TableView>
       </children>
-    </StackPane>
+    </Pane>
   </children>
 </VBox>
