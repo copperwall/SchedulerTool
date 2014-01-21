@@ -11,7 +11,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import models.data.databases.Instructor;
 import models.data.databases.InstructorDB;
@@ -23,6 +23,12 @@ import models.data.databases.InstructorDB;
  */
 public class InstructorDBEditController implements Initializable {
 
+     @FXML
+    private CheckBox active;
+
+    @FXML
+    private TextField wtu;
+    
     private InstructorDB instructorDB;
     /**
      * Initializes the controller class.
