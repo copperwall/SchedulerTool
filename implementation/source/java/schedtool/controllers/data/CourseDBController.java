@@ -1,16 +1,22 @@
+package controllers.data;
+
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+
+/* Import Models */
+import models.data.*;
 
 public class CourseDBController {
+    CourseDBModel model = new CourseDBModel();
 
     @FXML
     private ResourceBundle resources;
 
     @FXML
     private URL location;
-
 
     @FXML
     void addCourse(ActionEvent event) {
@@ -52,12 +58,12 @@ public class CourseDBController {
 
     @FXML
     void saveChanges(ActionEvent event) {
+        this.model.save_changes();
     }
 
     @FXML
     void initialize() {
-
-
+        System.out.println("CourseDBController initialized.");
     }
 
 }
