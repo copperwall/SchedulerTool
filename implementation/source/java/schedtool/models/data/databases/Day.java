@@ -1,4 +1,4 @@
-package data.databases;
+package models.data.databases;
 
 import java.util.Collection;
 import java.lang.Boolean;

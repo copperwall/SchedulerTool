@@ -1,4 +1,4 @@
-package models.data;
+package models.data.databases;
 
 /**
  * Save data for the course db view.
