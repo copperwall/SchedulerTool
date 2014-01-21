@@ -2,7 +2,7 @@ package controllers.data.databases;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ResourceBundle;
+import java.util.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
+import models.data.databases.*;
 
 public class InstructorDBController {
 
@@ -30,7 +31,7 @@ public class InstructorDBController {
     private Button editButton;
 
     @FXML
-    private TableView<?> instructorTable;
+    private TableView<Instructor> instructorTable;
 
     @FXML
     private Button addButton;
@@ -38,7 +39,10 @@ public class InstructorDBController {
     @FXML
     private Button saveButton;
     
-
+    private List<Instructor> workingInstructorSet;
+    
+    private InstructorDB instructorDB;
+    
     @FXML
     void addInstructor(ActionEvent event) {
         try {
@@ -70,12 +74,20 @@ public class InstructorDBController {
 
     @FXML
     void deleteInstructor(ActionEvent event) {
-
+        Instructor selected = instructorTable.getSelectionModel().getSelectedItem();
+        
+        instructorDB.deleteInstructor(selected);
     }
 
     @FXML
     void cancelChanges(ActionEvent event) {
-
+        
+    }
+    
+    @FXML
+    void save(ActionEvent event) {
+        // save to file
+        instructorDB.save();
     }
 
     @FXML
@@ -87,5 +99,6 @@ public class InstructorDBController {
         assert addButton != null : "fx:id=\"addButton\" was not injected: check your FXML file 'InstructorDB.fxml'.";
         assert saveButton != null : "fx:id=\"saveButton\" was not injected: check your FXML file 'InstructorDB.fxml'.";
 
+        instructorDB = new InstructorDB();
     }
 }

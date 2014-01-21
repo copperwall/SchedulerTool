@@ -13,6 +13,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import models.data.databases.Instructor;
+import models.data.databases.InstructorDB;
 
 /**
  * FXML Controller class
@@ -21,17 +23,18 @@ import javafx.stage.Stage;
  */
 public class InstructorDBAddController implements Initializable {
 
+    private InstructorDB instructorDB;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        instructorDB = new InstructorDB();
     }    
 
     @FXML
     private void submit(ActionEvent event) {
-        // insert add instructor code
+        instructorDB.addInstructor(new Instructor());
     }
 
     @FXML

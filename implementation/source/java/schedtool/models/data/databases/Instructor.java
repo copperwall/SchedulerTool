@@ -1,14 +1,13 @@
 package models.data.databases;
 
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 /**
  * An Instructor has a first and last name, their work time units, 
  * their time preferences, their class preferences, if they're active, 
  * and if their preferences are locked by the administrator.
  */
-public abstract class Instructor extends User {
+public class Instructor extends User {
    private int workTimeUnits;
    private Collection<Day> timePrefs;
    public List<CoursePreference> coursePrefs;
@@ -22,7 +21,10 @@ public abstract class Instructor extends User {
    /*@
       ensures \result.containsAll(coursePrefs);
     @*/
-   public abstract List<CoursePreference> getAllClassPrefs();
+   public List<CoursePreference> getAllClassPrefs() {
+       System.out.println("Instructor.getAllClassPrefs()");
+       return new ArrayList<CoursePreference>();
+   }
    
    /**
     * Gets the preference for one course.
@@ -31,7 +33,10 @@ public abstract class Instructor extends User {
    /*@
       // not implemented yet
     @*/
-   public abstract int getOneClassPref(Course course);
+   public int getOneClassPref(Course course) {
+       System.out.println("Instructor.getOneClassPref()");
+       return 0;
+   }
    
    /**
     * Sets all course preferences to the given integer preference
@@ -39,7 +44,9 @@ public abstract class Instructor extends User {
    /*@
       requires pref == -1 || pref >= 1 && pref <= 5;
     @*/
-   public abstract void setAllClassPrefs(int pref);
+   public void setAllClassPrefs(int pref) {
+       System.out.println("Instructor.setAllClassPrefs()");
+   }
    
    /**
     * Sets one course's preference
@@ -47,5 +54,7 @@ public abstract class Instructor extends User {
    /*@
      ensures this.getOneClassPref(course) == prefNum;
     @*/
-   public abstract void setOneClassPref(Course course, int prefNum);
+   public void setOneClassPref(Course course, int prefNum) {
+       System.out.println("Instructor.setOneClassPref()");
+   }
 }

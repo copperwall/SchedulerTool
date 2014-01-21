@@ -6,7 +6,7 @@ import java.util.Collection;
  * Holds the instructor information for all instructors
  */
 
-public abstract class InstructorDB{
+public class InstructorDB{
    public Collection<Instructor> instructors;
    
    /**
@@ -17,7 +17,10 @@ public abstract class InstructorDB{
       requires username != null && username.length() > 2;
       ensures \result.username.equals(username);
     @*/
-   public abstract Instructor getInstructor(String username);
+   public Instructor getInstructor(String username) {
+       System.out.println("InstructorDB.getInstructor");
+       return new Instructor();
+   }
 
    /**
     * Adds the given instructor to the database.
@@ -29,7 +32,9 @@ public abstract class InstructorDB{
      // Ensures that none of the old entries are touched and that instructors
      // contains the newly added instructor
     @*/
-   public abstract void addInstructor(Instructor instructor);
+   public void addInstructor(Instructor instructor) {
+       System.out.println("InstructorDB.addInstructor");
+   }
    
    /**
     * Changes the properties of the instructor whose name matches the one in
@@ -44,7 +49,9 @@ public abstract class InstructorDB{
        \old(instructors).contains(i) || i.equals(instructor)) &&
        instructors.contains(instructor);
     @*/
-   public abstract void editInstructor(Instructor instructor);
+   public void editInstructor(Instructor instructor) {
+       System.out.println("InstructorDB.editInstructor");
+   }
    
    /**
     * Deletes the instructor whose name matches that of the given instructor
@@ -54,5 +61,11 @@ public abstract class InstructorDB{
       // the list of courses
       ensures !instructors.contains(instructor);
     @*/
-   public abstract void deleteInstructor(Instructor instructor);
+   public void deleteInstructor(Instructor instructor) {
+       System.out.println("InstructorDB.deleteInstructor");
+   }
+   
+   public void save() {
+       System.out.println("InstructorDB.save");
+   }
 }
