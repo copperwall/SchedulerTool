@@ -142,7 +142,7 @@ public class AdminFrameController {
         children.remove(2);
         
         try {
-            locationDB = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/data/databases/locationDB.fxml"));
+            locationDB = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/data/databases/LocationDBView.fxml"));
             children.add((Node)locationDB);
         } catch(Exception exc) {
             exc.printStackTrace();
