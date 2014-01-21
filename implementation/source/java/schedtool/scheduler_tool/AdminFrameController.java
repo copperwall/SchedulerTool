@@ -18,6 +18,7 @@ public class AdminFrameController {
     private AnchorPane adminGeneralSettings;
     private AnchorPane adminAnalytics;
     private AnchorPane adminAvailableCourses;
+    private AnchorPane locationDB;
 
     @FXML
     private ResourceBundle resources;
@@ -104,6 +105,15 @@ public class AdminFrameController {
 
     @FXML
     void loadLocationsDBView(ActionEvent event) {
+        List<Node> children = topPane.getChildren();
+        children.remove(2);
+        
+        try {
+            locationDB = (AnchorPane) FXMLLoader.load(getClass().getResource('../views/data/locationDB.fxml'));
+            children.add((Node)locationDB);
+        } catch(Exception exc) {
+            exc.printStackTrace();
+        }
     }
 
     @FXML
