@@ -6,12 +6,12 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox fx:id="topPane" prefHeight="540.0" prefWidth="750.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="Possibly_workingController">
+<VBox fx:id="topPane" prefHeight="540.0" prefWidth="750.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="AdminFrameController">
   <children>
     <Pane prefHeight="30.0" prefWidth="600.0">
       <children>
         <ComboBox layoutX="300.0" layoutY="5.0" prefWidth="150.0" promptText="Change term" />
-        <Label layoutX="13.0" layoutY="6.0" prefHeight="18.84375" prefWidth="147.0" text="Scheduler">
+        <Label layoutX="13.0" layoutY="6.0" onMouseClicked="#loadAdminMainView" prefHeight="18.84375" prefWidth="147.0" text="Scheduler">
           <font>
             <Font size="16.0" fx:id="x1" />
           </font>
@@ -23,27 +23,27 @@
       <menus>
         <Menu mnemonicParsing="false" text="Schedules">
           <items>
-            <MenuItem mnemonicParsing="false" text="New" />
-            <MenuItem mnemonicParsing="false" text="Load Exisiting" />
+            <MenuItem mnemonicParsing="false" onAction="#loadNewScheduleView" text="New" />
+            <MenuItem mnemonicParsing="false" onAction="#loadExistingScheduleView" text="Load Exisiting" />
           </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Databases">
           <items>
-            <MenuItem mnemonicParsing="false" text="Instructors" />
-            <MenuItem mnemonicParsing="false" text="Courses" />
-            <MenuItem mnemonicParsing="false" text="Locations" />
+            <MenuItem mnemonicParsing="false" onAction="#loadInstructorsDBView" text="Instructors" />
+            <MenuItem mnemonicParsing="false" onAction="#loadCoursesDBView" text="Courses" />
+            <MenuItem mnemonicParsing="false" onAction="#loadLocationsDBView" text="Locations" />
           </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Settings">
           <items>
-            <MenuItem mnemonicParsing="false" text="General" />
-            <MenuItem mnemonicParsing="false" text="Instructor Preferences" />
-            <MenuItem mnemonicParsing="false" text="Available Corse" />
+            <MenuItem mnemonicParsing="false" onAction="#loadAdminGeneralSettingsView" text="General" />
+            <MenuItem mnemonicParsing="false" onAction="#loadAdminInstructorPreferencesView" text="Instructor Preferences" />
+            <MenuItem mnemonicParsing="false" onAction="#loadAdminAvailableCoursesView" text="Available Corse" />
           </items>
         </Menu>
-        <Menu mnemonicParsing="false" text="Analytics" />
-        <Menu mnemonicParsing="false" text="Publish" />
-        <Menu mnemonicParsing="false" text="Generate" />
+        <Menu mnemonicParsing="false" onAction="#loadAdminAnalyticsView" text="Analytics" />
+        <Menu mnemonicParsing="false" onAction="#loadAdminPublishView" text="Publish" />
+        <Menu mnemonicParsing="false" onAction="#loadAdminGenerateView" text="Generate" />
       </menus>
     </MenuBar>
     <Pane prefHeight="480.0" prefWidth="750.0" visible="true">

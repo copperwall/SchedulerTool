@@ -1,15 +1,16 @@
 package scheduler_tool;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 
-public class Main extends Application {
+public class DesktopMain extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            BorderPane root = new BorderPane();
+            VBox root = (VBox) FXMLLoader.load(getClass().getResource("AdminFrameView.fxml"));
             Scene scene = new Scene(root,750,540);
             scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
             primaryStage.setScene(scene);
