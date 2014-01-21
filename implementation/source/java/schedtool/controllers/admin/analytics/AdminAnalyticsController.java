@@ -16,7 +16,7 @@ import models.admin.analytics.*;
  *
  */
 public class AdminAnalyticsController {
-    private AdminAnalyticsModel model = new AdminAnalticsModel();
+    private AdminAnalytics model = new AdminAnaltics();
 
     @FXML
     private ResourceBundle resources;

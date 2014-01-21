@@ -11,7 +11,7 @@ import models.admin.generation.*;
 
 
 public class AdminAvailableCoursesController {
-    private AdminAvailableCoursesModel model = new AdminAvailableCoursesModel();
+    private AdminAvailableCourses model = new AdminAvailableCourses();
 
     @FXML
     private ResourceBundle resources;
