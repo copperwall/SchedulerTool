@@ -38,7 +38,7 @@
           <items>
             <MenuItem mnemonicParsing="false" onAction="#loadAdminGeneralSettingsView" text="General" />
             <MenuItem mnemonicParsing="false" onAction="#loadAdminInstructorPreferencesView" text="Instructor Preferences" />
-            <MenuItem mnemonicParsing="false" onAction="#loadAdminAvailableCoursesView" text="Available Corse" />
+            <MenuItem mnemonicParsing="false" onAction="#loadAdminAvailableCoursesView" text="Available Courses" />
           </items>
         </Menu>
         <Menu mnemonicParsing="false" onAction="#loadAdminAnalyticsView" text="Analytics" />

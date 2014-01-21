@@ -35,10 +35,10 @@ public class AdminFrameController {
         children.remove(2);
                 
          try {
-             adminAnalytics = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/admin/generation/AdminAnalyticsView.fxml"));
+             adminAnalytics = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/admin/analytics/AdminAnalyticsView.fxml"));
             children.add((Node) adminAnalytics);
          } 
-         catch (IOException exc)
+         catch (Exception exc)
          {
              exc.printStackTrace();
          }
@@ -53,7 +53,7 @@ public class AdminFrameController {
              adminAvailableCourses = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/admin/generation/AdminAvailableCoursesView.fxml"));
             children.add((Node) adminAvailableCourses);
          } 
-         catch (IOException exc)
+         catch (Exception exc)
          {
              exc.printStackTrace();
          }
@@ -68,7 +68,7 @@ public class AdminFrameController {
             adminGeneralSettings = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/admin/generation/AdminGeneralSettingsView.fxml"));
             children.add((Node) adminGeneralSettings);
          } 
-         catch (IOException exc)
+         catch (Exception exc)
          {
              exc.printStackTrace();
          }

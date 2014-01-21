@@ -8,7 +8,7 @@
 <?import javafx.scene.text.*?>
 <?scenebuilder-stylesheet ../../../../../../../prototype/JAVAFX/application/application.css?>
 
-<AnchorPane prefHeight="480.0" prefWidth="750.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="AdminAnalyticsController">
+<AnchorPane prefHeight="480.0" prefWidth="750.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="controllers.admin.analytics.AdminAnalyticsController">
   <children>
     <BorderPane prefHeight="242.0" prefWidth="220.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <center>
