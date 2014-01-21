@@ -30,6 +30,8 @@ public class Possibly_workingController implements Initializable {
     private StackPane contentPane;
     @FXML
     private VBox topPane;
+    private AnchorPane generalsettings;
+    private AnchorPane analytics;
     
     /**
      * Initializes the controller class.
@@ -46,6 +48,19 @@ public class Possibly_workingController implements Initializable {
        try {
           generalsettings = (AnchorPane) FXMLLoader.load(getClass().getResource("general_settings.fxml"));
           children.add((Node)generalsettings);
+       } 
+       catch (IOException exc)
+       {
+       }
+   }
+   
+   private void loadAnalytics(ActionEvent event) {
+      List<Node> children = topPane.getChildren();
+      children.remove(2);
+              
+       try {
+          analytics = (AnchorPane) FXMLLoader.load(getClass().getResource("analytics.fxml"));
+          children.add((Node)analytics);
        } 
        catch (IOException exc)
        {
