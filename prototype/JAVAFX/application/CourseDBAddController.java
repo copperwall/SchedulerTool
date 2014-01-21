@@ -59,8 +59,8 @@ public class CourseDBAddController {
         assert titleText != null : "fx:id=\"titleText\" was not injected: check your FXML file 'CourseDBAdd.fxml'.";
         assert unitsText != null : "fx:id=\"unitsText\" was not injected: check your FXML file 'CourseDBAdd.fxml'.";
 
-       labLengthText.setEditable(hasLabBox.selected);
-       labProximityText.setEditable(hasLabBox.selected);
+       labLengthText.setEditable(hasLabBox.isSelected());
+       labProximityText.setEditable(hasLabBox.isSelected());
     }
 
 }
