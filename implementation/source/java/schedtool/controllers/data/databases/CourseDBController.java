@@ -25,7 +25,7 @@ public class CourseDBController {
     @FXML
     void addCourse(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("CourseDBAdd.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("CourseDBAddView.fxml"));
 
             Scene scene = new Scene(root);
             Stage stage = new Stage();
