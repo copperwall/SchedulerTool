@@ -1,16 +1,19 @@
-package controllers.data;
+package controllers.data.databases;
 
+import java.io.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
+import javafx.fxml.*;
+import javafx.scene.*;
+import javafx.stage.*;
 
 /* Import Models */
 import models.data.*;
 
 public class CourseDBController {
-    CourseDBModel model = new CourseDBModel();
+    CourseDB model = new CourseDB();
 
     @FXML
     private ResourceBundle resources;
