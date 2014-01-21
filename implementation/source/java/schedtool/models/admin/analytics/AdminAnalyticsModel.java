@@ -1,11 +1,18 @@
+package models.admin.analytics;
+
 /**
- * Saves and loads data in Admin Available Courses
+ * Loads data for the admin analytics view.
  * 
  * @author Alex Kavanaugh
  *
  */
-class AdminAnalyticsModel {
+public class AdminAnalyticsModel {
     
     public void calculate_overall() {
         System.out.println("In AdminAnalyticsModel:calculate_overall()");
     }
+    
+    public void calculate_individual(String username) {
+        System.out.println("In AdminAnalyticsModel:calculate_individual()");
+    }
+}
