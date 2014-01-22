@@ -121,6 +121,17 @@ public class AdminFrameController {
 
     @FXML
     void loadExistingScheduleView(ActionEvent event) {
+    	 List<Node> children = topPane.getChildren();
+         children.remove(2);
+                 
+          try {
+             adminGeneralSettings = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/admin/generation/AdminExistingSchedules.fxml"));
+             children.add((Node) adminGeneralSettings);
+          } 
+          catch (Exception exc)
+          {
+              exc.printStackTrace();
+          }
     }
 
     @FXML
