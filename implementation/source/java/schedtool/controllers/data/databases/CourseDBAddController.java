@@ -6,6 +6,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
+/* Import Models */
+import models.data.databases.CourseDB;
 
 public class CourseDBAddController {
 

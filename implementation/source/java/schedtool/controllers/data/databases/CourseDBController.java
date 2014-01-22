@@ -25,12 +25,13 @@ public class CourseDBController {
     @FXML
     void addCourse(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../views/data/databases/CourseDBAddView.fxml"));
+            FXMLLoader loader = new FXMLLoader();
+            
+            Pane root = FXMLLoader.load(getClass().getResource("../../../views/data/databases/CourseDBAddView.fxml"));
             
             CourseDBAddController controller = (CourseDBAddController)(loader.getController());
             controller.setModel(model);
             
-            Parent root = FXMLLoader.load();
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             
@@ -40,11 +41,7 @@ public class CourseDBController {
             exc.printStackTrace();
         }
     }
-
-    @FXML
-    void cancelChanges(ActionEvent event) {
-    }
-
+    
     @FXML
     void deleteCourse(ActionEvent event) {
        model.deleteCourse(null);
@@ -53,12 +50,13 @@ public class CourseDBController {
     @FXML
     void editCourse(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../views/data/databases/CourseDBEditiew.fxml"));
+            FXMLLoader loader = new FXMLLoader();
+            
+            Pane root = FXMLLoader.load(getClass().getResource("../../../views/data/databases/CourseDBEditiew.fxml"));
             
             CourseDBEditController controller = (CourseDBEditController)(loader.getController());
             controller.setModel(model);
         
-            Parent root = FXMLLoader.load();
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             
@@ -67,11 +65,6 @@ public class CourseDBController {
         } catch (IOException exc) {
             exc.printStackTrace();
         }
-    }
-
-    @FXML
-    void saveChanges(ActionEvent event) {
-        this.model.save_changes();
     }
 
     @FXML
