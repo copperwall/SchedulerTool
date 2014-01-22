@@ -26,6 +26,7 @@ public class AdminFrameController {
     private AnchorPane adminNewSchedule;
     private AnchorPane adminPublish;
     private AnchorPane adminGenerating;
+    private AnchorPane adminInstructorPrefs;
 
     @FXML
     private ResourceBundle resources;
@@ -99,6 +100,17 @@ public class AdminFrameController {
 
     @FXML
     void loadAdminInstructorPreferencesView(ActionEvent event) {
+        List<Node> children = topPane.getChildren();
+        children.remove(2);
+                
+         try {
+            adminInstructorPrefs = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/admin/generation/AdminInstructorPreferencesView.fxml"));
+            children.add((Node) adminInstructorPrefs);
+         } 
+         catch (Exception exc)
+         {
+             exc.printStackTrace();
+         }
     }
 
     @FXML
