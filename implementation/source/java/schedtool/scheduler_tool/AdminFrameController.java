@@ -11,6 +11,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 
@@ -44,7 +46,8 @@ public class AdminFrameController {
         children.remove(2);
                 
          try {
-             adminAnalytics = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/admin/analytics/AdminAnalyticsView.fxml"));
+            adminAnalytics = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/admin/analytics/AdminAnalyticsView.fxml"));
+            VBox.setVgrow(adminAnalytics, Priority.ALWAYS);
             children.add((Node) adminAnalytics);
          } 
          catch (Exception exc)
@@ -59,7 +62,8 @@ public class AdminFrameController {
         children.remove(2);
                 
          try {
-             adminAvailableCourses = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/admin/generation/AdminAvailableCoursesView.fxml"));
+            adminAvailableCourses = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/admin/generation/AdminAvailableCoursesView.fxml"));
+            VBox.setVgrow(adminAvailableCourses, Priority.ALWAYS);
             children.add((Node) adminAvailableCourses);
          } 
          catch (Exception exc)
@@ -75,6 +79,7 @@ public class AdminFrameController {
                 
          try {
             adminGeneralSettings = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/admin/generation/AdminGeneralSettingsView.fxml"));
+            VBox.setVgrow(adminGeneralSettings, Priority.ALWAYS);
             children.add((Node) adminGeneralSettings);
          } 
          catch (Exception exc)
@@ -90,7 +95,8 @@ public class AdminFrameController {
                 
          try {
         	 adminGenerating = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/admin/generation/AdminGenerating.fxml"));
-            children.add((Node) adminGenerating);
+        	 VBox.setVgrow(adminGenerating, Priority.ALWAYS);
+        	 children.add((Node) adminGenerating);
          } 
          catch (Exception exc)
          {
@@ -105,6 +111,7 @@ public class AdminFrameController {
                 
          try {
             adminInstructorPrefs = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/admin/generation/AdminInstructorPreferencesView.fxml"));
+            VBox.setVgrow(adminInstructorPrefs, Priority.ALWAYS);
             children.add((Node) adminInstructorPrefs);
          } 
          catch (Exception exc)
@@ -117,8 +124,8 @@ public class AdminFrameController {
     void loadAdminMainView(MouseEvent event) {
         List<Node> children = topPane.getChildren();
         children.remove(2);
-                
          try {
+        	VBox.setVgrow(adminMainTable, Priority.ALWAYS);
             children.add((Node) adminMainTable);
          } 
          catch (Exception exc)
@@ -134,6 +141,7 @@ public class AdminFrameController {
              
       try {
          adminPublish = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/admin/generation/AdminPublish.fxml"));
+         VBox.setVgrow(adminPublish, Priority.ALWAYS);
          children.add((Node) adminPublish);
       } 
       catch (Exception exc)
@@ -149,7 +157,8 @@ public class AdminFrameController {
                 
          try {
         	coursesDBView = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/data/databases/CourseDBView.fxml"));
-            children.add((Node) coursesDBView);
+        	VBox.setVgrow(coursesDBView, Priority.ALWAYS);
+        	children.add((Node) coursesDBView);
          } 
          catch (Exception exc)
          {
@@ -164,6 +173,7 @@ public class AdminFrameController {
                  
           try {
              adminExistingSchedules = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/admin/generation/AdminExistingSchedules.fxml"));
+             VBox.setVgrow(adminExistingSchedules, Priority.ALWAYS);
              children.add((Node) adminExistingSchedules);
           } 
           catch (Exception exc)
@@ -179,7 +189,8 @@ public class AdminFrameController {
         
         try {
         	instructorsDB = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/data/databases/InstructorDBView.fxml"));
-            children.add((Node)instructorsDB);
+        	VBox.setVgrow(instructorsDB, Priority.ALWAYS);
+        	children.add((Node)instructorsDB);
         } catch(Exception exc) {
             exc.printStackTrace();
         }
@@ -192,6 +203,7 @@ public class AdminFrameController {
         
         try {
             locationDB = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/data/databases/LocationDBView.fxml"));
+            VBox.setVgrow(locationDB, Priority.ALWAYS);
             children.add((Node)locationDB);
         } catch(Exception exc) {
             exc.printStackTrace();
@@ -205,6 +217,7 @@ public class AdminFrameController {
                 
          try {
         	 adminNewSchedule = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/admin/generation/AdminNewSchedule.fxml"));
+        	 VBox.setVgrow(adminNewSchedule, Priority.ALWAYS);
             children.add((Node) adminNewSchedule);
          } 
          catch (Exception exc)
@@ -219,6 +232,7 @@ public class AdminFrameController {
         List<Node> children = topPane.getChildren();
         try {
         	adminMainTable = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/admin/generation/AdminMainTable.fxml"));
+        	VBox.setVgrow(adminMainTable, Priority.ALWAYS);
             children.add((Node)adminMainTable);
         } catch(Exception exc) {
             exc.printStackTrace();

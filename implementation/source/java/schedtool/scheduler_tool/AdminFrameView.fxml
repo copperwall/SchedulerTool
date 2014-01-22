@@ -6,20 +6,30 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox fx:id="topPane" prefHeight="540.0" prefWidth="750.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="scheduler_tool.AdminFrameController">
+<VBox fx:id="topPane" maxHeight="50000.0" maxWidth="50000.0" prefHeight="540.0" prefWidth="750.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="scheduler_tool.AdminFrameController">
   <children>
-    <Pane prefHeight="30.0" prefWidth="600.0">
+    <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="30.0" prefWidth="200.0" VBox.vgrow="NEVER">
       <children>
-        <ComboBox layoutX="300.0" layoutY="5.0" prefWidth="150.0" promptText="Change term" />
-        <Label layoutX="13.0" layoutY="6.0" onMouseClicked="#loadAdminMainView" prefHeight="18.84375" prefWidth="147.0" text="Scheduler">
+        <Label maxWidth="1.7976931348623157E308" onMouseClicked="#loadAdminMainView" prefHeight="18.84375" prefWidth="147.0" text="Scheduler" HBox.hgrow="ALWAYS">
           <font>
             <Font size="16.0" fx:id="x1" />
           </font>
+          <HBox.margin>
+            <Insets fx:id="x2" />
+          </HBox.margin>
         </Label>
-        <Label font="$x1" layoutX="612.0" layoutY="6.0" text="ADMINISTRATOR" />
+        <ComboBox maxWidth="1.7976931348623157E308" prefWidth="80.0" promptText="Change term" HBox.hgrow="ALWAYS" HBox.margin="$x2" />
+        <Label alignment="CENTER_RIGHT" contentDisplay="TOP" font="$x1" maxWidth="1.7976931348623157E308" text="ADMINISTRATOR" textAlignment="LEFT" HBox.hgrow="ALWAYS">
+          <HBox.margin>
+            <Insets right="10.0" />
+          </HBox.margin>
+        </Label>
       </children>
-    </Pane>
-    <MenuBar prefHeight="30.0" prefWidth="600.0">
+      <VBox.margin>
+        <Insets left="10.0" />
+      </VBox.margin>
+    </HBox>
+    <MenuBar maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="30.0" prefWidth="600.0" VBox.vgrow="NEVER">
       <menus>
         <Menu mnemonicParsing="false" text="Schedules">
           <items>
@@ -57,6 +67,9 @@
           </items>
         </Menu>
       </menus>
+      <VBox.margin>
+        <Insets fx:id="x2" />
+      </VBox.margin>
     </MenuBar>
   </children>
 </VBox>

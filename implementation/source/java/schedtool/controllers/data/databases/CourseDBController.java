@@ -56,14 +56,14 @@ public class CourseDBController {
 
     @FXML
     void editCourse(ActionEvent event) {
-        try {
+    	try {
             URL location = getClass().getResource("../../../views/data/databases/CourseDBEditView.fxml");
             FXMLLoader fxmlLoader = new FXMLLoader();
             Parent root = (Parent) fxmlLoader.load(location.openStream());
 
             CourseDBEditController controller = (CourseDBEditController)(fxmlLoader.getController());
             controller.setModel(model);
-        
+            
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             
