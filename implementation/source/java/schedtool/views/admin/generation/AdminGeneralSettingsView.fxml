@@ -4,55 +4,22 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="750.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
-  <children>
-    <Pane layoutX="14.0" layoutY="14.0" prefHeight="463.0" prefWidth="359.0">
-      <children>
-        <TableView layoutX="8.0" layoutY="141.0" prefHeight="159.0" prefWidth="333.0">
-          <columns>
-            <TableColumn minWidth="333.0" prefWidth="333.0" resizable="false" text="Constraint" />
-          </columns>
-        </TableView>
-        <Label layoutX="17.0" layoutY="106.0" text="Current Constraints" />
-        <Label layoutX="13.0" layoutY="78.0" text="End time:" />
-        <Label layoutX="14.0" layoutY="46.0" text="Start time:" />
-        <Slider layoutX="104.0" layoutY="79.0" />
-        <Label layoutX="14.0" layoutY="14.0" prefHeight="0.0" prefWidth="95.0" text="General Settings" />
-        <Slider layoutX="104.0" layoutY="48.0" />
-        <Label layoutX="13.0048828125" layoutY="310.5" text="Add constraint:" />
-        <Label layoutX="27.1337890625" layoutY="335.5" text="Ex: &quot;305, 309&quot; - 305 and 309 should not overlap" />
-        <Label layoutX="27.1337890625" layoutY="359.5" text="Ex: &quot;5XX&quot; - 500-level courses should not overlap" />
-        <Label layoutX="27.1337890625" layoutY="383.5" text="Ex: &quot;3{6,7,8}X&quot; - 360s, 370s, 390s should not overlap" />
-        <TextField layoutX="13.0" layoutY="408.0" prefHeight="25.0" prefWidth="200.0" />
-        <Button layoutX="228.5166015625" layoutY="408.0" mnemonicParsing="false" text="Add constraint" />
-      </children>
-    </Pane>
-    <Pane layoutX="395.0" layoutY="6.0" prefHeight="472.0" prefWidth="350.0">
-      <children>
-        <Pane layoutX="17.0" layoutY="341.0" prefHeight="106.0" prefWidth="317.0">
-          <children>
-            <CheckBox layoutX="14.0" layoutY="41.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="62.0" text="MWF" />
-            <CheckBox layoutX="94.0" layoutY="41.0" mnemonicParsing="false" text="TH" />
-            <Label layoutX="14.0048828125" layoutY="14.0" text="Available Time Patterns" />
-            <CheckBox layoutX="137.7099609375" layoutY="41.0" mnemonicParsing="false" text="MW" />
-            <CheckBox layoutX="217.7890625" layoutY="41.0" mnemonicParsing="false" text="WF" />
-            <CheckBox layoutX="14.2939453125" layoutY="75.0" mnemonicParsing="false" text="WF" />
-            <CheckBox layoutX="93.595703125" layoutY="75.0" mnemonicParsing="false" text="MTWH" />
-            <CheckBox layoutX="181.578125" layoutY="75.0" mnemonicParsing="false" text="MTWF" />
-          </children>
-        </Pane>
-        <Label layoutX="30.0048828125" layoutY="25.5" text="Blocked Out Times" />
-        <TableView layoutX="29.0" layoutY="66.0" prefHeight="286.0" prefWidth="310.0">
-          <columns>
-            <TableColumn prefWidth="75.0" text="Time" />
-            <TableColumn minWidth="0.0" prefWidth="51.0" text="Mon." />
-            <TableColumn minWidth="0.0" prefWidth="42.0" text="Tues." />
-            <TableColumn prefWidth="53.0" text="Wed." />
-            <TableColumn minWidth="0.0" prefWidth="46.0" text="Thurs." />
-            <TableColumn minWidth="0.0" prefWidth="42.0" text="Fri." />
-          </columns>
-        </TableView>
-      </children>
-    </Pane>
-  </children>
-</AnchorPane>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.admin.GeneralSettingsController">
+<children><Pane layoutX="36.0" layoutY="11.0" prefHeight="463.0" prefWidth="359.0">
+<children><TableView fx:id="constraintTable" layoutX="8.0" layoutY="141.0" prefHeight="159.0" prefWidth="333.0" xmlns:fx="http://javafx.com/fxml">
+  <columns>
+    <TableColumn minWidth="333.0" prefWidth="333.0" resizable="false" text="Constraint" />
+  </columns>
+</TableView><Label layoutX="17.0" layoutY="106.0" text="Current Constraints" /><Label layoutX="13.0" layoutY="78.0" text="End time:" /><Label layoutX="14.0" layoutY="46.0" text="Start time:" /><Slider fx:id="endTimeSlider" layoutX="104.0" layoutY="79.0" onMouseDragExited="#onEndTimeExit" /><Label layoutX="14.0" layoutY="14.0" prefHeight="0.0" prefWidth="95.0" text="General Settings" /><Slider fx:id="startTimeSlider" layoutX="104.0" layoutY="48.0" onMouseDragExited="#onStartTimeExit" /><Label layoutX="13.0048828125" layoutY="310.5" text="Add constraint:" /><Label layoutX="27.1337890625" layoutY="335.5" text="Ex: &quot;305, 309&quot; - 305 and 309 should not overlap" /><Label layoutX="27.1337890625" layoutY="359.5" text="Ex: &quot;5XX&quot; - 500-level courses should not overlap" /><Label layoutX="27.1337890625" layoutY="383.5" text="Ex: &quot;3{6,7,8}X&quot; - 360s, 370s, 390s should not overlap" /><TextField fx:id="constraintText" layoutX="13.0" layoutY="408.0" prefHeight="25.0" prefWidth="200.0" /><Button fx:id="addConstraintBtn" layoutX="228.5166015625" layoutY="408.0" mnemonicParsing="false" onAction="#onAddConstraintBtnEvent" text="Add constraint" />
+</children></Pane><Pane layoutX="395.0" layoutY="6.0" prefHeight="472.0" prefWidth="350.0">
+<children><Pane layoutX="17.0" layoutY="341.0" prefHeight="106.0" prefWidth="317.0">
+<children><CheckBox fx:id="mwfPattern" layoutX="14.0" layoutY="41.0" mnemonicParsing="false" onAction="#onMwfEvent" prefHeight="17.0" prefWidth="62.0" text="MWF" /><CheckBox fx:id="thPattern" layoutX="81.0" layoutY="41.0" mnemonicParsing="false" onAction="#onThEvent" prefHeight="17.0" prefWidth="49.0" text="TH" /><Label layoutX="14.0048828125" layoutY="14.0" text="Available Time Patterns" /><CheckBox fx:id="mwPattern" layoutX="138.0" layoutY="41.0" mnemonicParsing="false" onAction="#onMwEvent" prefHeight="17.0" prefWidth="55.0" text="MW" /><CheckBox fx:id="wfPattern" layoutX="209.0" layoutY="58.0" mnemonicParsing="false" onAction="#onWfEvent" prefHeight="17.0" prefWidth="62.0" text="WF" /><CheckBox fx:id="mfPattern" layoutX="14.0" layoutY="75.0" mnemonicParsing="false" onAction="#onMfEvent" prefHeight="17.0" prefWidth="49.0" text="MF" /><CheckBox fx:id="mtwhPattern" layoutX="63.0" layoutY="75.0" mnemonicParsing="false" onAction="#onMtwhEvent" text="MTWH" /><CheckBox fx:id="mtwfPattern" layoutX="138.0" layoutY="75.0" mnemonicParsing="false" onAction="#onMtwfEvent" prefHeight="17.0" prefWidth="80.0" text="MTWF" />
+</children></Pane><Label layoutX="30.0048828125" layoutY="25.5" text="Blocked Out Times" /><TableView fx:id="blockedOutTimesTable" layoutX="29.0" layoutY="66.0" prefHeight="286.0" prefWidth="310.0" xmlns:fx="http://javafx.com/fxml">
+  <columns>
+    <TableColumn prefWidth="75.0" text="Time" />
+    <TableColumn minWidth="0.0" prefWidth="51.0" text="Mon." /><TableColumn minWidth="0.0" prefWidth="42.0" text="Tues." /><TableColumn prefWidth="53.0" text="Wed." /><TableColumn minWidth="0.0" prefWidth="46.0" text="Thurs." /><TableColumn minWidth="0.0" prefWidth="42.0" text="Fri." />
+  </columns>
+</TableView>
+</children></Pane>
+</children></AnchorPane>
+
