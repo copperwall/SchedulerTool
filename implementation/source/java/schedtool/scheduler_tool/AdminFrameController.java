@@ -24,6 +24,7 @@ public class AdminFrameController {
     private AnchorPane instructorsDB;
     private AnchorPane adminExistingSchedules;
     private AnchorPane adminNewSchedule;
+    private AnchorPane adminPublish;
 
     @FXML
     private ResourceBundle resources;
@@ -104,6 +105,17 @@ public class AdminFrameController {
 
     @FXML
     void loadAdminPublishView(ActionEvent event) {
+   	 List<Node> children = topPane.getChildren();
+     children.remove(2);
+             
+      try {
+         adminPublish = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/admin/generation/AdminPublish.fxml"));
+         children.add((Node) adminPublish);
+      } 
+      catch (Exception exc)
+      {
+          exc.printStackTrace();
+      }
     }
 
     @FXML
