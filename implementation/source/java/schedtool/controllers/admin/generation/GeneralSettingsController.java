@@ -57,7 +57,7 @@ public class GeneralSettingsController {
     private CheckBox mfPattern;
 
     @FXML
-    void onEndTimeExit(ActionEvent event) {
+    void onEndTimeDone(ActionEvent event) {
        new AdminGeneralSettings().setEndTime(0);
     }
 
