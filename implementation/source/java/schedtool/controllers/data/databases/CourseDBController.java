@@ -52,7 +52,7 @@ public class CourseDBController {
     @FXML
     void editCourse(ActionEvent event) {
         try {
-            URL location = getClass().getResource("CourseDBEditiew.fxml");
+            URL location = getClass().getResource("CourseDBEditView.fxml");
             FXMLLoader fxmlLoader = new FXMLLoader();
             Parent root = (Parent) fxmlLoader.load(location.openStream());
 
