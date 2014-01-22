@@ -27,12 +27,8 @@ public class CourseDBController {
     @FXML
     void addCourse(ActionEvent event) {
         try {
-            URL location = getClass().getResource("../../../views/data/databases/CourseDBAddView.fxml");
-
+            URL location = getClass().getResource("CourseDBAddView.fxml");
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(location);
-            fxmlLoader.setBuilderFactory(new JavaFXBuilderFactory());
-
             Parent root = (Parent) fxmlLoader.load(location.openStream());
 
             CourseDBAddController controller = (CourseDBAddController)(fxmlLoader.getController());
@@ -56,12 +52,8 @@ public class CourseDBController {
     @FXML
     void editCourse(ActionEvent event) {
         try {
-            URL location = getClass().getResource("../../../views/data/databases/CourseDBEditiew.fxml");
-
+            URL location = getClass().getResource("CourseDBEditiew.fxml");
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(location);
-            fxmlLoader.setBuilderFactory(new JavaFXBuilderFactory());
-
             Parent root = (Parent) fxmlLoader.load(location.openStream());
 
             CourseDBEditController controller = (CourseDBEditController)(fxmlLoader.getController());
