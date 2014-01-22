@@ -34,7 +34,7 @@ public class CourseDBController {
         try {
             URL location = getClass().getResource("../../../views/data/databases/CourseDBAddView.fxml");
             FXMLLoader fxmlLoader = new FXMLLoader();
-            Parent root = (Parent) fxmlLoader.load(location);
+            Parent root = (Parent) fxmlLoader.load(location.openStream());
 
             CourseDBAddController controller = (CourseDBAddController)(fxmlLoader.getController());
             controller.setModel(model);
@@ -59,7 +59,7 @@ public class CourseDBController {
         try {
             URL location = getClass().getResource("../../../views/data/databases/CourseDBEditView.fxml");
             FXMLLoader fxmlLoader = new FXMLLoader();
-            Parent root = (Parent) fxmlLoader.load(location);
+            Parent root = (Parent) fxmlLoader.load(location.openStream());
 
             CourseDBEditController controller = (CourseDBEditController)(fxmlLoader.getController());
             controller.setModel(model);
