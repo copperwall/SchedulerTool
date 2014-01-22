@@ -7,6 +7,9 @@ import javafx.scene.layout.GridPane;
 import javafx.event.ActionEvent;
 import models.data.databases.*;
 
+/**
+ * @author Chase Kragenbrink
+ */
 public class InstructorPreferencesController {
 
    @FXML
