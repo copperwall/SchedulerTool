@@ -6,6 +6,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
+/**
+ * Controller for the add dialog for LocationDB
+ *
+ * @author Chris Opperwall
+ */
+
 
 public class LocationDBAddController {
 

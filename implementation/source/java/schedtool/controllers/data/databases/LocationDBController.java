@@ -13,6 +13,12 @@ import javafx.stage.Stage;
 /* Import Models */
 import models.data.databases.LocationDB;
 
+/**
+ * Controller for LocationDB
+ *
+ * @author Chris Opperwall
+ */
+
 public class LocationDBController {
     LocationDB model = new LocationDB();
 
