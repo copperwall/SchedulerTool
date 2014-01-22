@@ -13,7 +13,7 @@ import javafx.scene.control.TextField;
  */
 
 
-public class LocationDBAddController {
+public class LocationDBEditController {
 
     @FXML
     private ResourceBundle resources;
@@ -54,4 +54,5 @@ public class LocationDBAddController {
         // Should fill up fields with selected data. Future work perhaps
 
 
+}
 }

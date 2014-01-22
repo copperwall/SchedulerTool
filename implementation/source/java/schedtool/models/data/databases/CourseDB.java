@@ -20,7 +20,7 @@ public class CourseDB {
     @*/
    public Course getCourse(int courseNum) {
       System.out.println("Got a course.");
-      return new Course();
+      return null;//new Course();
    }
    /**
     * Adds course to the course database.

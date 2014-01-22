@@ -8,8 +8,8 @@ package models.data.databases;
  */
 public class LocationDB {
 	
-	public save_changes() {
-		System.out.println("In LocationDBModel:save_changes()")
+	public void save_changes() {
+		System.out.println("In LocationDBModel:save_changes()");
 	}
 
 }
