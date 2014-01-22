@@ -9,7 +9,7 @@ import javafx.scene.control.TextField;
 /**
  * Controller for the add dialog for LocationDB
  *
- * @author Chris Opperwall
+ * @author Jarred Stelfox
  */
 
 
