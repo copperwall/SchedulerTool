@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.layout.Pane;
+import javafx.fxml.JavaFXBuilderFactory;
 /* Import Models */
 import models.data.databases.CourseDB;
 
@@ -26,11 +27,15 @@ public class CourseDBController {
     @FXML
     void addCourse(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader();
-            
-            Pane root = FXMLLoader.load(getClass().getResource("../../../views/data/databases/CourseDBAddView.fxml"));
-            
-            CourseDBAddController controller = (CourseDBAddController)(loader.getController());
+            URL location = getClass().getResource("../../../views/data/databases/CourseDBAddView.fxml");
+
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(location);
+            fxmlLoader.setBuilderFactory(new JavaFXBuilderFactory());
+
+            Parent root = (Parent) fxmlLoader.load(location.openStream());
+
+            CourseDBAddController controller = (CourseDBAddController)(fxmlLoader.getController());
             controller.setModel(model);
             
             Scene scene = new Scene(root);
@@ -45,17 +50,21 @@ public class CourseDBController {
     
     @FXML
     void deleteCourse(ActionEvent event) {
-       model.deleteCourse(null);
+       model.deleteCourse(0);
     }
 
     @FXML
     void editCourse(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader();
-            
-            Pane root = FXMLLoader.load(getClass().getResource("../../../views/data/databases/CourseDBEditiew.fxml"));
-            
-            CourseDBEditController controller = (CourseDBEditController)(loader.getController());
+            URL location = getClass().getResource("../../../views/data/databases/CourseDBEditiew.fxml");
+
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(location);
+            fxmlLoader.setBuilderFactory(new JavaFXBuilderFactory());
+
+            Parent root = (Parent) fxmlLoader.load(location.openStream());
+
+            CourseDBEditController controller = (CourseDBEditController)(fxmlLoader.getController());
             controller.setModel(model);
         
             Scene scene = new Scene(root);

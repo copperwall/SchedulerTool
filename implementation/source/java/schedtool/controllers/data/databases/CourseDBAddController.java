@@ -53,7 +53,7 @@ public class CourseDBAddController {
 
     @FXML
     void submit(ActionEvent event) {
-       model.addCourse(null);
+       model.addCourse(0);
     }
     
     void setModel(CourseDB mod) {
