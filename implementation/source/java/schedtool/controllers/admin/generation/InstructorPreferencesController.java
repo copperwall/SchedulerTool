@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.GridPane;
-
+import javafx.event.ActionEvent;
 import models.data.databases.*;
 
 public class InstructorPreferencesController {
