@@ -1,4 +1,4 @@
-package controllers.data.databases;
+//package controllers.data.databases;
 
 import java.io.IOException;
 import java.net.URL;
@@ -25,13 +25,7 @@ public class CourseDBController {
     @FXML
     void addCourse(ActionEvent event) {
         try {
-<<<<<<< HEAD
             Parent root = FXMLLoader.load(getClass().getResource("../../../views/data/databases/CourseDBAddView.fxml"));
-
-=======
-        	//FXMLLoader fLoader = new FXMLLoader(getClass().getResource("CourseDBAddView.fxml"));
-            Parent root = FXMLLoader.load(getClass().getResource("../../../views/data/databases/CourseDBAddView.fxml"));
->>>>>>> e5c1610981c82d7b59180560d517588db584ec1b
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             
