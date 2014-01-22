@@ -8,6 +8,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 /* Import Models */
 import models.data.databases.CourseDB;
+import models.data.databases.Course;
 
 /**
  * This class is a controller for the Edit Course to database page. Edit course
@@ -58,7 +59,7 @@ public class CourseDBEditController {
 
     @FXML
     void submit(ActionEvent event) {
-       model.editCourse(new Course());
+       model.editCourse(null);
     }
     
     void setModel(CourseDB mod) {

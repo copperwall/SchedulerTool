@@ -8,6 +8,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 /* Import Models */
 import models.data.databases.CourseDB;
+import models.data.databases.Course;
 
 /**
  * This class is a controller for the Add Course to database page. Add course
@@ -58,7 +59,7 @@ public class CourseDBAddController {
 
     @FXML
     void submit(ActionEvent event) {
-       model.addCourse(new Course());
+       model.addCourse(null);
     }
     
     void setModel(CourseDB mod) {
