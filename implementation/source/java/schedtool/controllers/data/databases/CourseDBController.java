@@ -25,7 +25,12 @@ public class CourseDBController {
     @FXML
     void addCourse(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("../../../views/data/databases/CourseDBAddView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../views/data/databases/CourseDBAddView.fxml"));
+            
+            CourseDBAddController controller = (CourseDBAddController)(loader.getController());
+            controller.setModel(model);
+            
+            Parent root = FXMLLoader.load();
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             
@@ -42,13 +47,18 @@ public class CourseDBController {
 
     @FXML
     void deleteCourse(ActionEvent event) {
+       model.deleteCourse(null);
     }
 
     @FXML
     void editCourse(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("../../../views/data/databases/CourseDBEditView.fxml"));
-
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../views/data/databases/CourseDBEditiew.fxml"));
+            
+            CourseDBEditController controller = (CourseDBEditController)(loader.getController());
+            controller.setModel(model);
+        
+            Parent root = FXMLLoader.load();
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             

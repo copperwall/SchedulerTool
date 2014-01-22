@@ -1,4 +1,5 @@
 package controllers.data.databases;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -7,6 +8,8 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 
 public class CourseDBAddController {
+
+   private CourseDB model;
 
     @FXML
     private ResourceBundle resources;
@@ -48,6 +51,11 @@ public class CourseDBAddController {
 
     @FXML
     void submit(ActionEvent event) {
+       model.addCourse(null);
+    }
+    
+    void setModel(CourseDB mod) {
+      model = mod;
     }
 
     @FXML
