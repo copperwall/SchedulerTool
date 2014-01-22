@@ -12,7 +12,8 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import models.admin.generation.*;
+
+import models.admin.generation.AdminGeneralSettings;
 
 public class GeneralSettingsController {
 
@@ -56,54 +57,55 @@ public class GeneralSettingsController {
     private CheckBox mfPattern;
 
     @FXML
-    void onEndTimeExit(ActionEvent event) {
-       System.out.println("In onEndTimeExit()");
+    void onEndTimeDone(ActionEvent event) {
+       new AdminGeneralSettings().setEndTime(0);
     }
 
     @FXML
-    void onStartTimeExit(ActionEvent event) {
-        System.out.println("In onStartTimeExit()");
+    void onStartTimeDone(ActionEvent event) {
+        new AdminGeneralSettings().setEndTime(0);
     }
 
     @FXML
     void onAddConstraintBtnEvent(ActionEvent event) {
-        System.out.println("In onAddConstraintBtnEvent()");
+        new AdminGeneralSettings().addConstraint(constraintText.getText());
     }
 
     @FXML
     void onMwfEvent(ActionEvent event) {
-        System.out.println("In onMwfEvent()");
+        new AdminGeneralSettings().updateTimePattern(AdminGeneralSettings.TIME_PATTERN.MWF, mwfPattern.isSelected());
     }
 
     @FXML
     void onThEvent(ActionEvent event) {
-        System.out.println("In onThEvent()");
+        new AdminGeneralSettings().updateTimePattern(AdminGeneralSettings.TIME_PATTERN.TH, thPattern.isSelected());
     }
 
     @FXML
     void onMwEvent(ActionEvent event) {
-        System.out.println("In onMwEvent()");
+        new AdminGeneralSettings().updateTimePattern(AdminGeneralSettings.TIME_PATTERN.MW, mwPattern.isSelected());
     }
 
     @FXML
     void onWfEvent(ActionEvent event) {
-        System.out.println("In onWfEvent()");
+        new AdminGeneralSettings().updateTimePattern(AdminGeneralSettings.TIME_PATTERN.WF, wfPattern.isSelected());
     }
 
     @FXML
     void onMfEvent(ActionEvent event) {
-        System.out.println("In onMfEvent()");
+        new AdminGeneralSettings().updateTimePattern(AdminGeneralSettings.TIME_PATTERN.MF, mfPattern.isSelected());
     }
 
     @FXML
     void onMtwhEvent(ActionEvent event) {
-        System.out.println("In onMtwhEvent()");
+        new AdminGeneralSettings().updateTimePattern(AdminGeneralSettings.TIME_PATTERN.MTWH, mtwhPattern.isSelected());
     }
 
     @FXML
     void onMtwfEvent(ActionEvent event) {
-        System.out.println("In onMtwfEvent()");
+        new AdminGeneralSettings().updateTimePattern(AdminGeneralSettings.TIME_PATTERN.MTWF, mtwfPattern.isSelected());
     }
 
 }
+
 
