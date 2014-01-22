@@ -53,7 +53,7 @@ public class CourseDBEditController {
 
     @FXML
     void submit(ActionEvent event) {
-       model.editCourse(0);
+       model.editCourse(new Course());
     }
     
     void setModel(CourseDB mod) {
