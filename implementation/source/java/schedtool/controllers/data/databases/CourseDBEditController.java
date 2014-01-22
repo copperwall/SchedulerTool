@@ -1,3 +1,5 @@
+package controllers.data.databases;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -6,6 +8,8 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 
 public class CourseDBEditController {
+
+   private CourseDB model;
 
     @FXML
     private ResourceBundle resources;
@@ -41,12 +45,17 @@ public class CourseDBEditController {
 
     @FXML
     void onHasLab(ActionEvent event) {
-      labLengthText.setEditable(hasLabBox.selected);
-      labProximityText.setEditable(hasLabBox.selected);
+      labLengthText.setEditable(hasLabBox.isSelected());
+      labProximityText.setEditable(hasLabBox.isSelected());
     }
 
     @FXML
     void submit(ActionEvent event) {
+       model.editCourse(null);
+    }
+    
+    void setModel(CourseDB mod) {
+      model = mod;
     }
 
     @FXML
