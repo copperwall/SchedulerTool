@@ -46,7 +46,7 @@ public class InstructorDBController {
     @FXML
     void addInstructor(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("InstructorDBAdd.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("InstructorDBAddView.fxml"));
 
             Scene scene = new Scene(root);
             Stage stage = new Stage();

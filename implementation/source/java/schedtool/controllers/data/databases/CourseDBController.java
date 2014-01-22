@@ -11,7 +11,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 /* Import Models */
-import models.data.*;
 import models.data.databases.CourseDB;
 
 public class CourseDBController {
@@ -49,7 +48,7 @@ public class CourseDBController {
     @FXML
     void editCourse(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("CourseDBEditView.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("CourseDBEdit.fxml"));
 
             Scene scene = new Scene(root);
             Stage stage = new Stage();

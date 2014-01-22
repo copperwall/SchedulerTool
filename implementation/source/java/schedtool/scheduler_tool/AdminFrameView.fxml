@@ -41,23 +41,22 @@
             <MenuItem mnemonicParsing="false" onAction="#loadAdminAvailableCoursesView" text="Available Courses" />
           </items>
         </Menu>
-        <Menu mnemonicParsing="false" onAction="#loadAdminAnalyticsView" text="Analytics" />
-        <Menu mnemonicParsing="false" onAction="#loadAdminPublishView" text="Publish" />
-        <Menu mnemonicParsing="false" onAction="#loadAdminGenerateView" text="Generate" />
+        <Menu mnemonicParsing="false" onAction="#loadAdminAnalyticsView" text="Analytics">
+          <items>
+            <MenuItem mnemonicParsing="false" text="Analytics" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" onAction="#loadAdminPublishView" text="Publish">
+          <items>
+            <MenuItem mnemonicParsing="false" text="Publish" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" onAction="#loadAdminGenerateView" text="Generate" visible="true">
+          <items>
+            <MenuItem mnemonicParsing="false" text="Generate" />
+          </items>
+        </Menu>
       </menus>
     </MenuBar>
-    <Pane prefHeight="480.0" prefWidth="750.0" visible="true">
-      <children>
-        <TableView layoutX="0.0" layoutY="0.0" prefHeight="480.0" prefWidth="750.0">
-          <columnResizePolicy>
-            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-          </columnResizePolicy>
-          <columns>
-            <TableColumn prefWidth="75.0" text="C1" />
-            <TableColumn prefWidth="75.0" text="C2" />
-          </columns>
-        </TableView>
-      </children>
-    </Pane>
   </children>
 </VBox>

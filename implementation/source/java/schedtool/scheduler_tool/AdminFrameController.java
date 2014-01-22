@@ -16,9 +16,12 @@ import javafx.scene.layout.VBox;
 
 public class AdminFrameController {
     private AnchorPane adminGeneralSettings;
+    private AnchorPane adminMainTable;
     private AnchorPane adminAnalytics;
     private AnchorPane adminAvailableCourses;
     private AnchorPane locationDB;
+    private AnchorPane coursesDBView;
+    private AnchorPane instructorsDB;
 
     @FXML
     private ResourceBundle resources;
@@ -85,6 +88,16 @@ public class AdminFrameController {
 
     @FXML
     void loadAdminMainView(MouseEvent event) {
+        List<Node> children = topPane.getChildren();
+        children.remove(2);
+                
+         try {
+            children.add((Node) adminMainTable);
+         } 
+         catch (Exception exc)
+         {
+             exc.printStackTrace();
+         }
     }
 
     @FXML
@@ -93,6 +106,17 @@ public class AdminFrameController {
 
     @FXML
     void loadCoursesDBView(ActionEvent event) {
+        List<Node> children = topPane.getChildren();
+        children.remove(2);
+                
+         try {
+        	coursesDBView = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/data/databases/CourseDBView.fxml"));
+            children.add((Node) coursesDBView);
+         } 
+         catch (Exception exc)
+         {
+             exc.printStackTrace();
+         }
     }
 
     @FXML
@@ -101,6 +125,15 @@ public class AdminFrameController {
 
     @FXML
     void loadInstructorsDBView(ActionEvent event) {
+        List<Node> children = topPane.getChildren();
+        children.remove(2);
+        
+        try {
+        	instructorsDB = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/data/databases/InstructorDBView.fxml"));
+            children.add((Node)instructorsDB);
+        } catch(Exception exc) {
+            exc.printStackTrace();
+        }
     }
 
     @FXML
@@ -109,7 +142,7 @@ public class AdminFrameController {
         children.remove(2);
         
         try {
-            locationDB = (AnchorPane) FXMLLoader.load(getClass().getResource('../views/data/locationDB.fxml'));
+            locationDB = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/data/databases/LocationDBView.fxml"));
             children.add((Node)locationDB);
         } catch(Exception exc) {
             exc.printStackTrace();
@@ -123,6 +156,13 @@ public class AdminFrameController {
     @FXML
     void initialize() {
         assert topPane != null : "fx:id=\"topPane\" was not injected: check your FXML file 'AdminFrameView.fxml'.";
+        List<Node> children = topPane.getChildren();
+        try {
+        	adminMainTable = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/admin/generation/AdminMainTable.fxml"));
+            children.add((Node)adminMainTable);
+        } catch(Exception exc) {
+            exc.printStackTrace();
+        }
 
 
     }
