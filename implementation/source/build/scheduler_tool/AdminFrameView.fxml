@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox fx:id="topPane" prefHeight="540.0" prefWidth="750.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="scheduler_tool.AdminFrameController">
+  <children>
+    <Pane prefHeight="30.0" prefWidth="600.0">
+      <children>
+        <ComboBox layoutX="300.0" layoutY="5.0" prefWidth="150.0" promptText="Change term" />
+        <Label layoutX="13.0" layoutY="6.0" onMouseClicked="#loadAdminMainView" prefHeight="18.84375" prefWidth="147.0" text="Scheduler">
+          <font>
+            <Font size="16.0" fx:id="x1" />
+          </font>
+        </Label>
+        <Label font="$x1" layoutX="612.0" layoutY="6.0" text="ADMINISTRATOR" />
+      </children>
+    </Pane>
+    <MenuBar prefHeight="30.0" prefWidth="600.0">
+      <menus>
+        <Menu mnemonicParsing="false" text="Schedules">
+          <items>
+            <MenuItem mnemonicParsing="false" onAction="#loadNewScheduleView" text="New" />
+            <MenuItem mnemonicParsing="false" onAction="#loadExistingScheduleView" text="Load Exisiting" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Databases">
+          <items>
+            <MenuItem mnemonicParsing="false" onAction="#loadInstructorsDBView" text="Instructors" />
+            <MenuItem mnemonicParsing="false" onAction="#loadCoursesDBView" text="Courses" />
+            <MenuItem mnemonicParsing="false" onAction="#loadLocationsDBView" text="Locations" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Settings">
+          <items>
+            <MenuItem mnemonicParsing="false" onAction="#loadAdminGeneralSettingsView" text="General" />
+            <MenuItem mnemonicParsing="false" onAction="#loadAdminInstructorPreferencesView" text="Instructor Preferences" />
+            <MenuItem mnemonicParsing="false" onAction="#loadAdminAvailableCoursesView" text="Available Courses" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" onAction="#loadAdminAnalyticsView" text="Analytics">
+          <items>
+            <MenuItem mnemonicParsing="false" text="Analytics" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" onAction="#loadAdminPublishView" text="Publish">
+          <items>
+            <MenuItem mnemonicParsing="false" text="Publish" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" onAction="#loadAdminGenerateView" text="Generate" visible="true">
+          <items>
+            <MenuItem mnemonicParsing="false" text="Generate" />
+          </items>
+        </Menu>
+      </menus>
+    </MenuBar>
+  </children>
+</VBox>
