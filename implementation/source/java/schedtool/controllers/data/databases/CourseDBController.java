@@ -15,6 +15,11 @@ import javafx.fxml.JavaFXBuilderFactory;
 /* Import Models */
 import models.data.databases.CourseDB;
 
+/**
+ * This class is a controller for the Course database page. Add/edit/delete course
+ * are available.
+ * @author Katie Keim
+ */
 public class CourseDBController {
     CourseDB model = new CourseDB();
 

@@ -9,6 +9,11 @@ import javafx.scene.control.TextField;
 /* Import Models */
 import models.data.databases.CourseDB;
 
+/**
+ * This class is a controller for the Edit Course to database page. Edit course
+ * is available.
+ * @author Katie Keim
+ */
 public class CourseDBEditController {
 
    private CourseDB model;

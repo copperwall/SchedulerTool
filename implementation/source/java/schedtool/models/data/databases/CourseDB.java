@@ -5,6 +5,7 @@ import java.util.Collection;
 /**
  * Contains all Courses. Add/edit/delete course
  * are available.
+ * @author Katie Keim
  */
 public class CourseDB {
    public Collection<Course> courses;
