@@ -6,6 +6,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
+/* Import Models */
+import models.data.databases.CourseDB;
 
 public class CourseDBEditController {
 
@@ -51,7 +53,7 @@ public class CourseDBEditController {
 
     @FXML
     void submit(ActionEvent event) {
-       model.editCourse(null);
+       model.editCourse(0);
     }
     
     void setModel(CourseDB mod) {

@@ -10,6 +10,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.scene.layout.Pane;
+import javafx.fxml.JavaFXBuilderFactory;
 /* Import Models */
 import models.data.databases.CourseDB;
 
@@ -25,12 +27,13 @@ public class CourseDBController {
     @FXML
     void addCourse(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../views/data/databases/CourseDBAddView.fxml"));
-            
-            CourseDBAddController controller = (CourseDBAddController)(loader.getController());
+            URL location = getClass().getResource("CourseDBAddView.fxml");
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            Parent root = (Parent) fxmlLoader.load(location.openStream());
+
+            CourseDBAddController controller = (CourseDBAddController)(fxmlLoader.getController());
             controller.setModel(model);
             
-            Parent root = FXMLLoader.load();
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             
@@ -40,25 +43,22 @@ public class CourseDBController {
             exc.printStackTrace();
         }
     }
-
-    @FXML
-    void cancelChanges(ActionEvent event) {
-    }
-
+    
     @FXML
     void deleteCourse(ActionEvent event) {
-       model.deleteCourse(null);
+       model.deleteCourse(0);
     }
 
     @FXML
     void editCourse(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../../../views/data/databases/CourseDBEditiew.fxml"));
-            
-            CourseDBEditController controller = (CourseDBEditController)(loader.getController());
+            URL location = getClass().getResource("CourseDBEditiew.fxml");
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            Parent root = (Parent) fxmlLoader.load(location.openStream());
+
+            CourseDBEditController controller = (CourseDBEditController)(fxmlLoader.getController());
             controller.setModel(model);
         
-            Parent root = FXMLLoader.load();
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             
@@ -67,11 +67,6 @@ public class CourseDBController {
         } catch (IOException exc) {
             exc.printStackTrace();
         }
-    }
-
-    @FXML
-    void saveChanges(ActionEvent event) {
-        this.model.save_changes();
     }
 
     @FXML
