@@ -22,6 +22,8 @@ public class AdminFrameController {
     private AnchorPane locationDB;
     private AnchorPane coursesDBView;
     private AnchorPane instructorsDB;
+    private AnchorPane adminExistingSchedules;
+    private AnchorPane adminNewSchedule;
 
     @FXML
     private ResourceBundle resources;
@@ -125,8 +127,8 @@ public class AdminFrameController {
          children.remove(2);
                  
           try {
-             adminGeneralSettings = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/admin/generation/AdminExistingSchedules.fxml"));
-             children.add((Node) adminGeneralSettings);
+             adminExistingSchedules = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/admin/generation/AdminExistingSchedules.fxml"));
+             children.add((Node) adminExistingSchedules);
           } 
           catch (Exception exc)
           {
@@ -162,6 +164,17 @@ public class AdminFrameController {
 
     @FXML
     void loadNewScheduleView(ActionEvent event) {
+        List<Node> children = topPane.getChildren();
+        children.remove(2);
+                
+         try {
+        	 adminNewSchedule = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/admin/generation/AdminNewSchedule.fxml"));
+            children.add((Node) adminNewSchedule);
+         } 
+         catch (Exception exc)
+         {
+             exc.printStackTrace();
+         }
     }
 
     @FXML
