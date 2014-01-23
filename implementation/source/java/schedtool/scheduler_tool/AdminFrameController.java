@@ -44,186 +44,84 @@ public class AdminFrameController {
     void loadAdminAnalyticsView(ActionEvent event) {
         List<Node> children = topPane.getChildren();
         children.remove(2);
-                
-         try {
-            adminAnalytics = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/admin/analytics/AdminAnalyticsView.fxml"));
-            VBox.setVgrow(adminAnalytics, Priority.ALWAYS);
-            children.add((Node) adminAnalytics);
-         } 
-         catch (Exception exc)
-         {
-             exc.printStackTrace();
-         }
+        children.add((Node) adminAnalytics);
     }
 
     @FXML
     void loadAdminAvailableCoursesView(ActionEvent event) {
         List<Node> children = topPane.getChildren();
         children.remove(2);
-                
-         try {
-            adminAvailableCourses = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/admin/generation/AdminAvailableCoursesView.fxml"));
-            VBox.setVgrow(adminAvailableCourses, Priority.ALWAYS);
-            children.add((Node) adminAvailableCourses);
-         } 
-         catch (Exception exc)
-         {
-             exc.printStackTrace();
-         }
+        children.add((Node) adminAvailableCourses);
     }
 
     @FXML
     void loadAdminGeneralSettingsView(ActionEvent event) {
         List<Node> children = topPane.getChildren();
         children.remove(2);
-                
-         try {
-            adminGeneralSettings = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/admin/generation/AdminGeneralSettingsView.fxml"));
-            VBox.setVgrow(adminGeneralSettings, Priority.ALWAYS);
-            children.add((Node) adminGeneralSettings);
-         } 
-         catch (Exception exc)
-         {
-             exc.printStackTrace();
-         }
+        children.add((Node) adminGeneralSettings);
     }
 
     @FXML
     void loadAdminGenerateView(ActionEvent event) {
         List<Node> children = topPane.getChildren();
         children.remove(2);
-                
-         try {
-        	 adminGenerating = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/admin/generation/AdminGenerating.fxml"));
-        	 VBox.setVgrow(adminGenerating, Priority.ALWAYS);
-        	 children.add((Node) adminGenerating);
-         } 
-         catch (Exception exc)
-         {
-             exc.printStackTrace();
-         }
+        children.add((Node) adminGenerating);
     }
 
     @FXML
     void loadAdminInstructorPreferencesView(ActionEvent event) {
         List<Node> children = topPane.getChildren();
         children.remove(2);
-                
-         try {
-            adminInstructorPrefs = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/admin/generation/AdminInstructorPreferencesView.fxml"));
-            VBox.setVgrow(adminInstructorPrefs, Priority.ALWAYS);
-            children.add((Node) adminInstructorPrefs);
-         } 
-         catch (Exception exc)
-         {
-             exc.printStackTrace();
-         }
+        children.add((Node) adminInstructorPrefs);
     }
 
     @FXML
     void loadAdminMainView(MouseEvent event) {
         List<Node> children = topPane.getChildren();
         children.remove(2);
-         try {
-        	VBox.setVgrow(adminMainTable, Priority.ALWAYS);
-            children.add((Node) adminMainTable);
-         } 
-         catch (Exception exc)
-         {
-             exc.printStackTrace();
-         }
+        children.add((Node) adminMainTable);
     }
 
     @FXML
     void loadAdminPublishView(ActionEvent event) {
-   	 List<Node> children = topPane.getChildren();
-     children.remove(2);
-             
-      try {
-         adminPublish = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/admin/generation/AdminPublish.fxml"));
-         VBox.setVgrow(adminPublish, Priority.ALWAYS);
-         children.add((Node) adminPublish);
-      } 
-      catch (Exception exc)
-      {
-          exc.printStackTrace();
-      }
+    	List<Node> children = topPane.getChildren();
+    	children.remove(2);
+    	children.add((Node) adminPublish);
     }
 
     @FXML
     void loadCoursesDBView(ActionEvent event) {
         List<Node> children = topPane.getChildren();
         children.remove(2);
-                
-         try {
-        	coursesDBView = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/data/databases/CourseDBView.fxml"));
-        	VBox.setVgrow(coursesDBView, Priority.ALWAYS);
-        	children.add((Node) coursesDBView);
-         } 
-         catch (Exception exc)
-         {
-             exc.printStackTrace();
-         }
+        children.add((Node) coursesDBView);
     }
 
     @FXML
     void loadExistingScheduleView(ActionEvent event) {
-    	 List<Node> children = topPane.getChildren();
-         children.remove(2);
-                 
-          try {
-             adminExistingSchedules = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/admin/generation/AdminExistingSchedules.fxml"));
-             VBox.setVgrow(adminExistingSchedules, Priority.ALWAYS);
-             children.add((Node) adminExistingSchedules);
-          } 
-          catch (Exception exc)
-          {
-              exc.printStackTrace();
-          }
+        List<Node> children = topPane.getChildren();
+        children.remove(2);
+        children.add((Node) adminExistingSchedules);
     }
 
     @FXML
     void loadInstructorsDBView(ActionEvent event) {
         List<Node> children = topPane.getChildren();
         children.remove(2);
-        
-        try {
-        	instructorsDB = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/data/databases/InstructorDBView.fxml"));
-        	VBox.setVgrow(instructorsDB, Priority.ALWAYS);
-        	children.add((Node)instructorsDB);
-        } catch(Exception exc) {
-            exc.printStackTrace();
-        }
+        children.add((Node)instructorsDB);
     }
 
     @FXML
     void loadLocationsDBView(ActionEvent event) {
         List<Node> children = topPane.getChildren();
         children.remove(2);
-        
-        try {
-            locationDB = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/data/databases/LocationDBView.fxml"));
-            VBox.setVgrow(locationDB, Priority.ALWAYS);
-            children.add((Node)locationDB);
-        } catch(Exception exc) {
-            exc.printStackTrace();
-        }
+        children.add((Node)locationDB);
     }
 
     @FXML
     void loadNewScheduleView(ActionEvent event) {
         List<Node> children = topPane.getChildren();
         children.remove(2);
-                
-         try {
-        	 adminNewSchedule = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/admin/generation/AdminNewSchedule.fxml"));
-        	 VBox.setVgrow(adminNewSchedule, Priority.ALWAYS);
-            children.add((Node) adminNewSchedule);
-         } 
-         catch (Exception exc)
-         {
-             exc.printStackTrace();
-         }
+        children.add((Node) adminNewSchedule);
     }
 
     @FXML
@@ -234,9 +132,38 @@ public class AdminFrameController {
         	adminMainTable = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/admin/generation/AdminMainTable.fxml"));
         	VBox.setVgrow(adminMainTable, Priority.ALWAYS);
             children.add((Node)adminMainTable);
+            
+            
+            adminNewSchedule = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/admin/generation/AdminNewSchedule.fxml"));
+            locationDB = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/data/databases/LocationDBView.fxml"));
+            instructorsDB = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/data/databases/InstructorDBView.fxml"));
+            adminExistingSchedules = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/admin/generation/AdminExistingSchedules.fxml"));
+            coursesDBView = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/data/databases/CourseDBView.fxml"));
+            adminPublish = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/admin/generation/AdminPublish.fxml"));
+            adminAnalytics = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/admin/analytics/AdminAnalyticsView.fxml"));
+            adminAvailableCourses = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/admin/generation/AdminAvailableCoursesView.fxml"));
+            adminGeneralSettings = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/admin/generation/AdminGeneralSettingsView.fxml"));
+       	    adminGenerating = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/admin/generation/AdminGenerating.fxml"));
+            adminInstructorPrefs = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/admin/generation/AdminInstructorPreferencesView.fxml"));
+            
+            VBox.setVgrow(adminNewSchedule, Priority.ALWAYS);
+            VBox.setVgrow(locationDB, Priority.ALWAYS);
+            VBox.setVgrow(instructorsDB, Priority.ALWAYS);
+            VBox.setVgrow(adminExistingSchedules, Priority.ALWAYS);
+            VBox.setVgrow(coursesDBView, Priority.ALWAYS);
+            VBox.setVgrow(adminPublish, Priority.ALWAYS);
+            VBox.setVgrow(adminMainTable, Priority.ALWAYS);
+            VBox.setVgrow(adminInstructorPrefs, Priority.ALWAYS);
+            VBox.setVgrow(adminGenerating, Priority.ALWAYS);
+            VBox.setVgrow(adminGeneralSettings, Priority.ALWAYS);
+            VBox.setVgrow(adminAnalytics, Priority.ALWAYS);
+            VBox.setVgrow(adminAvailableCourses, Priority.ALWAYS);
+            
         } catch(Exception exc) {
             exc.printStackTrace();
         }
+        
+        
 
 
     }
