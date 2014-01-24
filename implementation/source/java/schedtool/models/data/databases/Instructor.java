@@ -31,35 +31,35 @@ public class Instructor extends User {
 	   this.act.set(active);
    }
    
-   public String getname() {
+   public String getName() {
        return name.get();
    }
    
-   public int getwtu() {
+   public int getWtu() {
        return wtu.get();
    }
    
-   public String getuser() {
+   public String getUser() {
 	   return user.get();
    }
    
-   public boolean getact() {
+   public boolean getAct() {
 	   return act.get();
    }
    
-   public void setname(String name) {
+   public void setName(String name) {
        this.name.set(name);
    }
    
-   public void setwtu(int wtu) {
+   public void setWtu(int wtu) {
        this.wtu.set(wtu);
    }
    
-   public void setuser(String user) {
+   public void setUser(String user) {
        this.user.set(user);
    }
    
-   public void setact(boolean act) {
+   public void setAct(boolean act) {
        this.act.set(act);
    }
    // empty constructor for making dummy objects
