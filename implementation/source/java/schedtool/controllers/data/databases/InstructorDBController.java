@@ -3,6 +3,7 @@ package controllers.data.databases;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -46,8 +47,9 @@ public class InstructorDBController {
     @FXML
     void addInstructor(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("InstructorDBAddView.fxml"));
-
+        	URL location = getClass().getResource("../../../views/data/databases/InstructorDBAddView.fxml");
+            Parent root = (Parent) FXMLLoader.load(location);
+          
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             
