@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import fxmltableview.*?>
 <?import java.lang.*?>
+<?import javafx.collections.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
@@ -50,19 +53,40 @@
         </GridPane>
       </bottom>
       <center>
-        <TableView prefHeight="200.0" prefWidth="200.0">
+        <TableView fx:id="instructorTable" prefHeight="200.0" prefWidth="200.0">
           <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
           </columnResizePolicy>
           <columns>
-            <TableColumn editable="false" prefWidth="75.0" text="Name" />
-            <TableColumn editable="false" minWidth="0.0" prefWidth="106.0" text="Cal Poly User ID" />
-            <TableColumn editable="false" minWidth="0.0" prefWidth="71.0" text="WTU" />
-            <TableColumn editable="false" minWidth="0.0" text="Active" />
+            <TableColumn editable="false" prefWidth="75.0" text="Name">
+              <cellValueFactory>
+                <PropertyValueFactory property="name" />
+              </cellValueFactory>
+            </TableColumn>
+            <TableColumn editable="false" minWidth="0.0" prefWidth="106.0" text="Cal Poly User ID">
+              <cellValueFactory>
+                <PropertyValueFactory property="user" />
+              </cellValueFactory>
+            </TableColumn>
+            <TableColumn editable="false" minWidth="0.0" prefWidth="71.0" text="WTU">
+              <cellValueFactory>
+                <PropertyValueFactory property="wtu" />
+              </cellValueFactory>
+            </TableColumn>
+            <TableColumn editable="false" minWidth="0.0" text="Active">
+              <cellValueFactory>
+                <PropertyValueFactory property="act" />
+              </cellValueFactory>
+            </TableColumn>
           </columns>
           <BorderPane.margin>
             <Insets left="10.0" right="10.0" />
           </BorderPane.margin>
+          <items>
+		    <FXCollections fx:factory="observableArrayList">
+		    	<models.data.databases.Instructor name="Gene Fisher" user="gfisher" wtu="12" act="true" />
+		    </FXCollections>
+		</items>
         </TableView>
       </center>
       <top>

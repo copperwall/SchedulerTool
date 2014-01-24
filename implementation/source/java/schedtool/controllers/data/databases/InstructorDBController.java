@@ -48,8 +48,12 @@ public class InstructorDBController {
     void addInstructor(ActionEvent event) {
         try {
         	URL location = getClass().getResource("../../../views/data/databases/InstructorDBAddView.fxml");
-            Parent root = (Parent) FXMLLoader.load(location);
+        	FXMLLoader fxmlLoader = new FXMLLoader();
+            Parent root = (Parent) fxmlLoader.load(location.openStream());
           
+            InstructorDBAddController controller = (InstructorDBAddController)(fxmlLoader.getController());
+            controller.passTable(instructorTable);
+            
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             
@@ -62,7 +66,7 @@ public class InstructorDBController {
     @FXML
     void editInstructor(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("InstructorDBEdit.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("../../../views/data/databases/InstructorDBEdit.fxml"));
 
             Scene scene = new Scene(root);
             Stage stage = new Stage();

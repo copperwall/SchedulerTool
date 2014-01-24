@@ -8,6 +8,8 @@ package controllers.data.databases;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -36,6 +38,8 @@ public class InstructorDBAddController implements Initializable {
     @FXML
     private TextField wtu;
     
+    private TableView<Instructor> table;
+    
     private InstructorDB instructorDB;
     /**
      * Initializes the controller class.
@@ -47,6 +51,8 @@ public class InstructorDBAddController implements Initializable {
 
     @FXML
     private void submit(ActionEvent event) {
+    	ObservableList<Instructor> data = table.getItems();
+    	data.add(new Instructor("Placeholder Name", userID.getText(), Integer.parseInt(wtu.getText()), active.isSelected()));
         instructorDB.addInstructor(new Instructor());
     }
 
@@ -58,4 +64,7 @@ public class InstructorDBAddController implements Initializable {
         srcStage.close();
     }
     
+    public void passTable(TableView<Instructor> table) {
+    	this.table = table;
+    }
 }
