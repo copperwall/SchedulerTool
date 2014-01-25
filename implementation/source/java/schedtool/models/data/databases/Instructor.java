@@ -2,6 +2,11 @@ package models.data.databases;
 
 import java.util.*;
 
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.fxml.FXML;
+
 /**
  * An Instructor has a first and last name, their work time units, 
  * their time preferences, their class preferences, if they're active, 
@@ -14,6 +19,51 @@ public class Instructor extends User {
    private boolean active;
    private boolean prefsLocked;
    
+   private final SimpleStringProperty name = new SimpleStringProperty("");
+   private final SimpleIntegerProperty wtu = new SimpleIntegerProperty();
+   private final SimpleStringProperty user = new SimpleStringProperty("");
+   private final SimpleBooleanProperty act = new SimpleBooleanProperty();
+   
+   public Instructor(String name, String username, int wtu, boolean active) {
+	   this.name.set(name);
+	   this.wtu.set(wtu);
+	   this.user.set(username);
+	   this.act.set(active);
+   }
+   
+   public String getName() {
+       return name.get();
+   }
+   
+   public int getWtu() {
+       return wtu.get();
+   }
+   
+   public String getUser() {
+	   return user.get();
+   }
+   
+   public boolean getAct() {
+	   return act.get();
+   }
+   
+   public void setName(String name) {
+       this.name.set(name);
+   }
+   
+   public void setWtu(int wtu) {
+       this.wtu.set(wtu);
+   }
+   
+   public void setUser(String user) {
+       this.user.set(user);
+   }
+   
+   public void setAct(boolean act) {
+       this.act.set(act);
+   }
+   // empty constructor for making dummy objects
+   public Instructor() {}
    /**
     * Gets the instructor's course preferences. 
     * @return a List of CoursePreferences
