@@ -66,6 +66,7 @@ public class AdminFrameController {
         List<Node> children = topPane.getChildren();
         children.remove(2);
         children.add((Node) adminGenerating);
+        controllers.admin.generation.GenerateController.generate();
     }
 
     @FXML
