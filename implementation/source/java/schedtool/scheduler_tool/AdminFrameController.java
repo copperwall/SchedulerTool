@@ -18,7 +18,7 @@ import javafx.scene.layout.VBox;
 
 public class AdminFrameController {
     private AnchorPane adminGeneralSettings;
-    private AnchorPane adminMainTable;
+    private static AnchorPane adminMainTable;
     private AnchorPane adminAnalytics;
     private AnchorPane adminAvailableCourses;
     private AnchorPane locationDB;
@@ -37,7 +37,7 @@ public class AdminFrameController {
     private URL location;
 
     @FXML
-    private VBox topPane;
+    private static VBox topPane;
 
 
     @FXML
@@ -66,6 +66,7 @@ public class AdminFrameController {
         List<Node> children = topPane.getChildren();
         children.remove(2);
         children.add((Node) adminGenerating);
+        controllers.admin.generation.GenerateController.generate();
     }
 
     @FXML
@@ -122,6 +123,12 @@ public class AdminFrameController {
         List<Node> children = topPane.getChildren();
         children.remove(2);
         children.add((Node) adminNewSchedule);
+    }
+    
+    public static void reloadMainTable(){
+    	List<Node> children = topPane.getChildren();
+        children.remove(2);
+        children.add((Node) adminMainTable);
     }
 
     @FXML
