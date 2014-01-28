@@ -34,7 +34,7 @@
         <Insets left="5.0" fx:id="x1" />
       </GridPane.margin>
     </TextField>
-    <Label text="Add Course">
+    <Label text="Edit Course">
       <font>
         <Font size="16.0" />
       </font>
