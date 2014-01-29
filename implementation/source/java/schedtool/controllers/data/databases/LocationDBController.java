@@ -31,7 +31,7 @@ public class LocationDBController {
     @FXML
     void addLocation(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("LocationDBAddView.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("../../../views/data/databases/LocationDBAddView.fxml"));
 
             Scene scene = new Scene(root);
             Stage stage = new Stage();
@@ -54,7 +54,7 @@ public class LocationDBController {
     @FXML
     void editLocation(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("LocationDBEdit.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("../../../views/data/databases/LocationDBEditView.fxml"));
 
             Scene scene = new Scene(root);
             Stage stage = new Stage();
