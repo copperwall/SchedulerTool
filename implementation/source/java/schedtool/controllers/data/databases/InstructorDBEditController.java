@@ -8,6 +8,7 @@ package controllers.data.databases;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -28,19 +29,24 @@ public class InstructorDBEditController implements Initializable {
 
     @FXML
     private TextField wtu;
+
+    @FXML
+    private TextField userID;
     
     private InstructorDB instructorDB;
+    private TableView table;
+    private Instructor instructor;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        instructorDB = new InstructorDB();
     }    
 
     @FXML
     private void edit(ActionEvent event) {
-        instructorDB.editInstructor(new Instructor());
+        instructorDB.editInstructor(new Instructor("Placeholder Name", 
+        			userID.getText(), Integer.parseInt(wtu.getText()), active.isSelected()));
     }
 
     @FXML
@@ -51,4 +57,18 @@ public class InstructorDBEditController implements Initializable {
         srcStage.close();
     }
     
+    public void passInstructor(Instructor target) {
+    	instructor = target;
+    	
+    	active.setSelected(instructor.getAct());
+    	wtu.setText("" + instructor.getWtu());
+    	userID.setEditable(true);
+    	userID.setText("" + instructor.getUser());
+    	userID.setEditable(false);
+    }
+    
+    public void passTable(TableView<Instructor> table, InstructorDB instructorDB) {
+    	this.table = table;
+    	this.instructorDB = instructorDB;
+    }
 }

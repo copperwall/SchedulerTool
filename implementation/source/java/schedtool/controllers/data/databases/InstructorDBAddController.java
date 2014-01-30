@@ -46,14 +46,11 @@ public class InstructorDBAddController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        instructorDB = new InstructorDB();
     }    
 
     @FXML
     private void submit(ActionEvent event) {
-    	ObservableList<Instructor> data = table.getItems();
-    	data.add(new Instructor("Placeholder Name", userID.getText(), Integer.parseInt(wtu.getText()), active.isSelected()));
-        instructorDB.addInstructor(new Instructor());
+        instructorDB.addInstructor(new Instructor("Placeholder Name", userID.getText(), Integer.parseInt(wtu.getText()), active.isSelected()));
     }
 
     @FXML
@@ -64,7 +61,8 @@ public class InstructorDBAddController implements Initializable {
         srcStage.close();
     }
     
-    public void passTable(TableView<Instructor> table) {
+    public void passTable(TableView<Instructor> table, InstructorDB instructorDB) {
     	this.table = table;
+    	this.instructorDB = instructorDB;
     }
 }
