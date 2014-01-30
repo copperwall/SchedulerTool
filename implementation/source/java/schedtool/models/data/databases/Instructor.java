@@ -25,6 +25,9 @@ public class Instructor extends User {
    private final SimpleBooleanProperty act = new SimpleBooleanProperty();
    
    public Instructor(String name, String username, int wtu, boolean active) {
+	   this.username = username;
+	   this.workTimeUnits = wtu;
+	   this.active = active;
 	   this.name.set(name);
 	   this.wtu.set(wtu);
 	   this.user.set(username);
@@ -36,7 +39,7 @@ public class Instructor extends User {
    }
    
    public int getWtu() {
-       return wtu.get();
+       return workTimeUnits;
    }
    
    public String getUser() {

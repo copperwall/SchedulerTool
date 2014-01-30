@@ -122,6 +122,8 @@ public class InstructorDBController implements Observer{
 		instructorTable.setItems(null);
 		items.clear();
 		items.addAll(instructorDB.getAllInstructors());
+		items.add(new Instructor());
+		items.remove(items.size() -1);
 		instructorTable.setItems(items);
 		System.out.println("updated");
 	}
