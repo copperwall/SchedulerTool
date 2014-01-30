@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +15,7 @@ import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import models.data.databases.*;
 
-public class InstructorDBController {
+public class InstructorDBController implements Observer{
 
     @FXML
     private ResourceBundle resources;
@@ -52,7 +53,7 @@ public class InstructorDBController {
             Parent root = (Parent) fxmlLoader.load(location.openStream());
           
             InstructorDBAddController controller = (InstructorDBAddController)(fxmlLoader.getController());
-            controller.passTable(instructorTable);
+            controller.passTable(instructorTable, instructorDB);
             
             Scene scene = new Scene(root);
             Stage stage = new Stage();
@@ -66,8 +67,14 @@ public class InstructorDBController {
     @FXML
     void editInstructor(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("../../../views/data/databases/InstructorDBEditView.fxml"));
-
+            URL location = getClass().getResource("../../../views/data/databases/InstructorDBEditView.fxml");
+        	FXMLLoader fxmlLoader = new FXMLLoader();
+            Parent root = (Parent) fxmlLoader.load(location.openStream());
+          
+            InstructorDBEditController controller = (InstructorDBEditController) (fxmlLoader.getController());
+            controller.passInstructor(instructorTable.getSelectionModel().getSelectedItem());
+            controller.passTable(instructorTable, instructorDB);
+            
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             
@@ -106,5 +113,18 @@ public class InstructorDBController {
         assert saveButton != null : "fx:id=\"saveButton\" was not injected: check your FXML file 'InstructorDB.fxml'.";
 
         instructorDB = new InstructorDB();
+        instructorDB.addObserver(this);
     }
+
+	@Override
+	public void update(Observable o, Object arg) {
+		ObservableList<Instructor> items = instructorTable.getItems();
+		instructorTable.setItems(null);
+		items.clear();
+		items.addAll(instructorDB.getAllInstructors());
+		items.add(new Instructor());
+		items.remove(items.size() -1);
+		instructorTable.setItems(items);
+		System.out.println("updated");
+	}
 }

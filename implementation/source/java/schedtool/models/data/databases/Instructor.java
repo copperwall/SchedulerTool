@@ -25,6 +25,9 @@ public class Instructor extends User {
    private final SimpleBooleanProperty act = new SimpleBooleanProperty();
    
    public Instructor(String name, String username, int wtu, boolean active) {
+	   this.username = username;
+	   this.workTimeUnits = wtu;
+	   this.active = active;
 	   this.name.set(name);
 	   this.wtu.set(wtu);
 	   this.user.set(username);
@@ -36,7 +39,7 @@ public class Instructor extends User {
    }
    
    public int getWtu() {
-       return wtu.get();
+       return workTimeUnits;
    }
    
    public String getUser() {
@@ -52,6 +55,7 @@ public class Instructor extends User {
    }
    
    public void setWtu(int wtu) {
+	   this.workTimeUnits = wtu;
        this.wtu.set(wtu);
    }
    
@@ -60,6 +64,7 @@ public class Instructor extends User {
    }
    
    public void setAct(boolean act) {
+	   this.active = act;
        this.act.set(act);
    }
    // empty constructor for making dummy objects
