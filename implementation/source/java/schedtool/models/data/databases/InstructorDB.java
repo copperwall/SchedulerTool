@@ -1,14 +1,19 @@
 package models.data.databases;
 
 import java.util.Collection;
+import java.util.Observable;
+import java.util.Vector;
 
 /**
  * Holds the instructor information for all instructors
  */
 
-public class InstructorDB{
-   public Collection<Instructor> instructors;
+public class InstructorDB extends Observable{
+   public Vector<Instructor> instructors;
    
+   public InstructorDB() {
+	   instructors = new Vector<Instructor>();
+   }
    /**
     * Gets an instructor 
     * @return an Instructor object given their username
@@ -33,7 +38,9 @@ public class InstructorDB{
      // contains the newly added instructor
     @*/
    public void addInstructor(Instructor instructor) {
-       System.out.println("InstructorDB.addInstructor");
+	   instructors.add(instructor);
+	   setChanged();
+	   notifyObservers();
    }
    
    /**
@@ -50,7 +57,22 @@ public class InstructorDB{
        instructors.contains(instructor);
     @*/
    public void editInstructor(Instructor instructor) {
-       System.out.println("InstructorDB.editInstructor");
+	   System.out.println("InstructorDB.editInstructor");
+	   Instructor instructorToEdit = null;
+	   for(Instructor item : instructors) {
+		   if (item.getUser().compareTo(instructor.getUser()) == 0) {
+			   instructorToEdit = item;
+			   break;
+		   }
+	   }
+	   if (instructorToEdit != null) {
+		   instructorToEdit.setWtu(instructor.getWtu());
+		   instructorToEdit.setAct(instructor.getAct());
+		   setChanged();
+		   notifyObservers();
+	   } else {
+		   this.addInstructor(instructor);
+	   }
    }
    
    /**
@@ -67,5 +89,9 @@ public class InstructorDB{
    
    public void save() {
        System.out.println("InstructorDB.save");
+   }
+   
+   public Vector<Instructor> getAllInstructors() {
+	   return instructors;
    }
 }

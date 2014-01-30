@@ -52,6 +52,7 @@ public class Instructor extends User {
    }
    
    public void setWtu(int wtu) {
+	   this.workTimeUnits = wtu;
        this.wtu.set(wtu);
    }
    
@@ -60,6 +61,7 @@ public class Instructor extends User {
    }
    
    public void setAct(boolean act) {
+	   this.active = act;
        this.act.set(act);
    }
    // empty constructor for making dummy objects
