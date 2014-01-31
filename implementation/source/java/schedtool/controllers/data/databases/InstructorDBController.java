@@ -48,7 +48,7 @@ public class InstructorDBController implements Observer{
     @FXML
     void addInstructor(ActionEvent event) {
         try {
-        	URL location = getClass().getResource("../../../views/data/databases/InstructorDBAddView.fxml");
+        	URL location = getClass().getResource("/views/data/databases/InstructorDBAddView.fxml");
         	FXMLLoader fxmlLoader = new FXMLLoader();
             Parent root = (Parent) fxmlLoader.load(location.openStream());
           
@@ -67,7 +67,7 @@ public class InstructorDBController implements Observer{
     @FXML
     void editInstructor(ActionEvent event) {
         try {
-            URL location = getClass().getResource("../../../views/data/databases/InstructorDBEditView.fxml");
+            URL location = getClass().getResource("/views/data/databases/InstructorDBEditView.fxml");
         	FXMLLoader fxmlLoader = new FXMLLoader();
             Parent root = (Parent) fxmlLoader.load(location.openStream());
           
