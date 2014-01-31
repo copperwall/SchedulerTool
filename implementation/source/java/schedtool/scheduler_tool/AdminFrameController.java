@@ -136,7 +136,7 @@ public class AdminFrameController {
         assert topPane != null : "fx:id=\"topPane\" was not injected: check your FXML file 'AdminFrameView.fxml'.";
         List<Node> children = topPane.getChildren();
         try {
-        	adminMainTable = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/admin/generation/AdminMainTable.fxml"));
+        	adminMainTable = (AnchorPane) FXMLLoader.load(getClass().getResource("AdminMainTable.fxml"));
         	VBox.setVgrow(adminMainTable, Priority.ALWAYS);
             children.add((Node)adminMainTable);
             
@@ -144,9 +144,9 @@ public class AdminFrameController {
             adminNewSchedule = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/admin/generation/AdminNewSchedule.fxml"));
             locationDB = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/data/databases/LocationDBView.fxml"));
             instructorsDB = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/data/databases/InstructorDBView.fxml"));
-            //adminExistingSchedules = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/admin/generation/AdminExistingSchedules.fxml"));
+            adminExistingSchedules = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/admin/generation/AdminExistingSchedules.fxml"));
             coursesDBView = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/data/databases/CourseDBView.fxml"));
-            //adminPublish = (AnchorPane) FXMLLoader.load(getClass().getResource("../views/admin/generation/AdminPublish.fxml"));
+            adminPublish = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/admin/generation/AdminPublish.fxml"));
             adminAnalytics = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/admin/analytics/AdminAnalyticsView.fxml"));
             adminAvailableCourses = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/admin/generation/AdminAvailableCoursesView.fxml"));
             adminGeneralSettings = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/admin/generation/AdminGeneralSettingsView.fxml"));
