@@ -1,10 +1,14 @@
 package controllers.admin.generation;
 
-
 /**
  *
  * @author Chase Kragenbrink
  */
+import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
+
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -12,100 +16,127 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-
 import models.admin.generation.AdminGeneralSettings;
+import models.admin.generation.Constraint;
+import models.data.databases.Instructor;
 
-public class GeneralSettingsController {
+public class GeneralSettingsController implements Observer {
 
-    @FXML
-    private CheckBox mwPattern;
+   @FXML
+   private CheckBox mwPattern;
 
-    @FXML
-    private Slider startTimeSlider;
+   @FXML
+   private Slider startTimeSlider;
 
-    @FXML
-    private Slider endTimeSlider;
+   @FXML
+   private Slider endTimeSlider;
 
-    @FXML
-    private CheckBox mwfPattern;
+   @FXML
+   private CheckBox mwfPattern;
 
-    @FXML
-    private TextField constraintText;
+   @FXML
+   private TextField constraintText;
 
-    @FXML
-    private CheckBox thPattern;
+   @FXML
+   private CheckBox thPattern;
 
-    @FXML
-    private TableView<?> blockedOutTimesTable;
+   @FXML
+   private TableView<?> blockedOutTimesTable;
 
-    @FXML
-    private Button addConstraintBtn;
+   @FXML
+   private Button addConstraintBtn;
 
-    @FXML
-    private CheckBox wfPattern;
+   @FXML
+   private CheckBox wfPattern;
 
-    @FXML
-    private CheckBox mtwhPattern;
+   @FXML
+   private CheckBox mtwhPattern;
 
-    @FXML
-    private CheckBox mtwfPattern;
+   @FXML
+   private CheckBox mtwfPattern;
 
-    @FXML
-    private TableView<?> constraintTable;
+   @FXML
+   private TableView<Constraint> constraintTable;
 
-    @FXML
-    private CheckBox mfPattern;
+   @FXML
+   private CheckBox mfPattern;
 
-    @FXML
-    void onEndTimeDone(ActionEvent event) {
-       new AdminGeneralSettings().setEndTime(0);
-    }
+   AdminGeneralSettings generalSettings;
 
-    @FXML
-    void onStartTimeDone(ActionEvent event) {
-        new AdminGeneralSettings().setEndTime(0);
-    }
+   public GeneralSettingsController() {
+      generalSettings = new AdminGeneralSettings();
+      generalSettings.addObserver(this);
+   }
 
-    @FXML
-    void onAddConstraintBtnEvent(ActionEvent event) {
-        new AdminGeneralSettings().addConstraint(constraintText.getText());
-    }
+   @FXML
+   void onEndTimeDone(ActionEvent event) {
+      generalSettings.setEndTime(0);
+   }
 
-    @FXML
-    void onMwfEvent(ActionEvent event) {
-        new AdminGeneralSettings().updateTimePattern(AdminGeneralSettings.TIME_PATTERN.MWF, mwfPattern.isSelected());
-    }
+   @FXML
+   void onStartTimeDone(ActionEvent event) {
+      generalSettings.setEndTime(0);
+   }
 
-    @FXML
-    void onThEvent(ActionEvent event) {
-        new AdminGeneralSettings().updateTimePattern(AdminGeneralSettings.TIME_PATTERN.TH, thPattern.isSelected());
-    }
+   @FXML
+   void onAddConstraintBtnEvent(ActionEvent event) {
+      if (generalSettings == null) 
+         generalSettings = new AdminGeneralSettings();
+      System.out.println("text " + constraintText.getText());
+      generalSettings.addConstraint(constraintText.getText());
+   }
 
-    @FXML
-    void onMwEvent(ActionEvent event) {
-        new AdminGeneralSettings().updateTimePattern(AdminGeneralSettings.TIME_PATTERN.MW, mwPattern.isSelected());
-    }
+   @FXML
+   void onMwfEvent(ActionEvent event) {
+      generalSettings.updateTimePattern(AdminGeneralSettings.TIME_PATTERN.MWF,
+         mwfPattern.isSelected());
+   }
 
-    @FXML
-    void onWfEvent(ActionEvent event) {
-        new AdminGeneralSettings().updateTimePattern(AdminGeneralSettings.TIME_PATTERN.WF, wfPattern.isSelected());
-    }
+   @FXML
+   void onThEvent(ActionEvent event) {
+      generalSettings.updateTimePattern(AdminGeneralSettings.TIME_PATTERN.TH,
+         thPattern.isSelected());
+   }
 
-    @FXML
-    void onMfEvent(ActionEvent event) {
-        new AdminGeneralSettings().updateTimePattern(AdminGeneralSettings.TIME_PATTERN.MF, mfPattern.isSelected());
-    }
+   @FXML
+   void onMwEvent(ActionEvent event) {
+      generalSettings.updateTimePattern(AdminGeneralSettings.TIME_PATTERN.MW,
+         mwPattern.isSelected());
+   }
 
-    @FXML
-    void onMtwhEvent(ActionEvent event) {
-        new AdminGeneralSettings().updateTimePattern(AdminGeneralSettings.TIME_PATTERN.MTWH, mtwhPattern.isSelected());
-    }
+   @FXML
+   void onWfEvent(ActionEvent event) {
+      generalSettings.updateTimePattern(AdminGeneralSettings.TIME_PATTERN.WF,
+         wfPattern.isSelected());
+   }
 
-    @FXML
-    void onMtwfEvent(ActionEvent event) {
-        new AdminGeneralSettings().updateTimePattern(AdminGeneralSettings.TIME_PATTERN.MTWF, mtwfPattern.isSelected());
-    }
+   @FXML
+   void onMfEvent(ActionEvent event) {
+      generalSettings.updateTimePattern(AdminGeneralSettings.TIME_PATTERN.MF,
+         mfPattern.isSelected());
+   }
+
+   @FXML
+   void onMtwhEvent(ActionEvent event) {
+      generalSettings.updateTimePattern(AdminGeneralSettings.TIME_PATTERN.MTWH,
+         mtwhPattern.isSelected());
+   }
+
+   @FXML
+   void onMtwfEvent(ActionEvent event) {
+      generalSettings.updateTimePattern(AdminGeneralSettings.TIME_PATTERN.MTWF,
+         mtwfPattern.isSelected());
+   }
+
+   @Override
+   public void update(Observable observable, Object data) {
+      ArrayList<Constraint> constraints = generalSettings.getConstraints();
+      ObservableList<Constraint> items = constraintTable.getItems();
+      constraintTable.setItems(null);
+      items.clear();
+      items.addAll(constraints);
+      constraintTable.setItems(items);
+      System.out.println("in GeneralSettings.update");
+   }
 
 }
-
-
