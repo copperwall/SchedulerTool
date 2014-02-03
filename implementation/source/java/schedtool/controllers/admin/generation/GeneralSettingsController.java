@@ -19,6 +19,7 @@ import javafx.scene.control.TextField;
 import models.admin.generation.AdminGeneralSettings;
 import models.admin.generation.Constraint;
 import models.data.databases.Instructor;
+import models.data.databases.InstructorDB;
 
 public class GeneralSettingsController implements Observer {
 
@@ -62,11 +63,13 @@ public class GeneralSettingsController implements Observer {
    private CheckBox mfPattern;
 
    AdminGeneralSettings generalSettings;
-
-   public GeneralSettingsController() {
+   
+   @FXML
+   void initialize() {
+      System.out.println("Initializing GenSettingsController");
       generalSettings = new AdminGeneralSettings();
       generalSettings.addObserver(this);
-   }
+  }
 
    @FXML
    void onEndTimeDone(ActionEvent event) {
@@ -80,8 +83,6 @@ public class GeneralSettingsController implements Observer {
 
    @FXML
    void onAddConstraintBtnEvent(ActionEvent event) {
-      if (generalSettings == null) 
-         generalSettings = new AdminGeneralSettings();
       System.out.println("text " + constraintText.getText());
       generalSettings.addConstraint(constraintText.getText());
    }
@@ -137,6 +138,7 @@ public class GeneralSettingsController implements Observer {
       items.addAll(constraints);
       constraintTable.setItems(items);
       System.out.println("in GeneralSettings.update");
+      System.out.print(generalSettings.toString());
    }
 
 }
