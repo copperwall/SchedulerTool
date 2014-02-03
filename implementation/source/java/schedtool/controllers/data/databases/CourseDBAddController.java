@@ -49,6 +49,10 @@ public class CourseDBAddController {
 
     @FXML
     void cancel(ActionEvent event) {
+      Button src = (Button)event.getSource();
+      Stage srcStage = (Stage)src.getScene().getWindow();
+        
+      srcStage.close();
     }
 
     @FXML
@@ -59,7 +63,8 @@ public class CourseDBAddController {
 
     @FXML
     void submit(ActionEvent event) {
-       model.addCourse(null);
+      model.addCourse(null);
+      cancel(event);
     }
     
     void setModel(CourseDB mod) {
