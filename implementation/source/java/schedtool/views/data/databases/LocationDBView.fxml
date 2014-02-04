@@ -22,11 +22,6 @@
                 <Button cancelButton="true" mnemonicParsing="false" onAction="#cancelChanges" text="Cancel" textOverrun="ELLIPSIS" />
               </children>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
-              <children>
-                <Button mnemonicParsing="false" onAction="#saveChanges" text="Save" />
-              </children>
-            </HBox>
           </children>
           <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
