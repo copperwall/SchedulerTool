@@ -25,3 +25,9 @@ local.properties
 
 # Locally stored "Eclipse launch configurations"
 *.launch
+/prototype/JAVAFX/application/SchedulerChaseVersion/nbproject/private/
+/prototype/JAVAFX/application/SchedulerChaseVersion/dist/
+/prototype/JAVAFX/application/SchedulerChaseVersion/build/
+/prototype/JAVAFX/application/JavaFXApplication2/nbproject/private/
+/prototype/JAVAFX/application/JavaFXApplication2/dist/
+/prototype/JAVAFX/application/JavaFXApplication2/build/
