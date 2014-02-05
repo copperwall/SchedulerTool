@@ -84,7 +84,20 @@ public class InstructorDB extends Observable{
       ensures !instructors.contains(instructor);
     @*/
    public void deleteInstructor(Instructor instructor) {
-       System.out.println("InstructorDB.deleteInstructor");
+	   Instructor instructorToDelete = null;
+	   for(Instructor item : instructors) {
+		   if (item.getUser().compareTo(instructor.getUser()) == 0) {
+			   instructorToDelete = item;
+			   break;
+		   }
+	   }
+	   if (instructorToDelete != null) {
+		   instructors.remove(instructorToDelete);
+		   setChanged();
+		   notifyObservers();
+	   } else {
+		   this.addInstructor(instructor);
+	   }
    }
    
    public void save() {
