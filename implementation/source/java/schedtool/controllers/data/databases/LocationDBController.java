@@ -67,11 +67,6 @@ public class LocationDBController {
     }
 
     @FXML
-    void saveChanges(ActionEvent event) {
-        this.model.save_changes();
-    }
-
-    @FXML
     void initialize() {
         System.out.println("LocationDBController initialized.");
     }
