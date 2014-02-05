@@ -2,10 +2,13 @@ package controllers.data.databases;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 /* Import Models */
 import models.data.databases.CourseDB;
 import models.data.databases.Course;
