@@ -8,7 +8,7 @@ import java.util.Vector;
  * It contains methods to get, add, edit, delete, and getAll from the 
  * instance Vector <code>locations</code>.
  * 
- * @author Chris Opperwall
+ * @author Chris Opperwall (copperwa@calpoly.edu)
  */
 public class LocationDB {
    /* A collection of locations for the current term */
@@ -45,7 +45,7 @@ public class LocationDB {
     * @see Location
     */
    public void editLocation(Location location) {
-      locations.set(location.getId(), location);
+      locations.set(locations.indexOf(location), location);
    }
 
    /**
@@ -55,7 +55,7 @@ public class LocationDB {
     * @see Location
     */
    public void deleteLocation(Location location) {
-      location.remove(location);
+      locations.remove(location);
    }
 
    /**
