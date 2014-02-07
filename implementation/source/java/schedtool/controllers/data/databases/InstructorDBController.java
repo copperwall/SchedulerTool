@@ -119,12 +119,9 @@ public class InstructorDBController implements Observer{
 	@Override
 	public void update(Observable o, Object arg) {
 		ObservableList<Instructor> items = instructorTable.getItems();
-		instructorTable.setItems(null);
-		items.clear();
-		items.addAll(instructorDB.getAllInstructors());
+		items.setAll(instructorDB.getAllInstructors());
 		instructorTable.setItems(items);
-		items.add(new Instructor());
-		items.remove(items.size() -1);
+		
 		System.out.println("updated");
 	}
 }
