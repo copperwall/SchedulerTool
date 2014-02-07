@@ -8,6 +8,11 @@ import java.util.*;
  */
 public class Schedule {
    public ArrayList<Section> sections;
+   
+   public Schedule()
+   {
+	   
+   }
 
    /**
     * Sets the schedule to the given set of sections.

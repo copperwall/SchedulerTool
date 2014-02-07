@@ -12,6 +12,11 @@ public class AdminGenerating {
 	 */
 	public void generate() {
 		Schedule generatedSchedule = new Schedule();
+		//Course testCourse = new Course();
+		Instructor testInstructor = new Instructor();
+		//ArrayList<Day> testdays = new ArrayList<Day>();
+		//Section testSection = new Section(testCourse, 0, testInstructor, null, testdays);
+		//generatedSchedule.setOneSection(testSection);
 		System.out.println("AdminGenerating.GENERATING!!!");
 	}
 }
