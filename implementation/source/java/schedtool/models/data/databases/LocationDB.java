@@ -1,6 +1,7 @@
 package models.data.databases;
 
 import java.util.Vector;
+import java.lang.NumberFormatException;
 
 /**
  * Class LocationDB contains a list of locations for the Term.
@@ -34,12 +35,24 @@ public class LocationDB {
     * @param location <code>Location</code> to add to locations vector.
     * @see Location
     */
-   public void addLocation(Location location) {
+   public void addLocation(String building, String room, String capacity, String equipment) {
+      /* Resulting building String from validation */
+      String building_check = validateBuilding(building);
+      /* Resulting room String from validation */
+      String room_check = validateRoom(room);
+      /* Resulting integer from converting capacity string to int */
+      int capacity_check = validateCapacity(capacity);
+      /* Resulting String[] after splitting equipment argument */
+      String[] equipment_check = validateEquipment(equipment);
+
+      Location location = new Location(building_check, room_check, capacity_check,
+       equipment_check);
+
       locations.add(location);
    }
 
    /**
-    * Accepts a <code>Location</cod> parameter to edit in the locations vector.
+    * Accepts a <code>Location</code> parameter to edit in the locations vector.
     *
     * @param location <code>Location</code> to edit.
     * @see Location
@@ -66,5 +79,73 @@ public class LocationDB {
     */
    public Vector<Location> getAllLocations() {
       return locations;
+   }
+
+   /* Begin data validation function */
+   /**
+    * Validates building name argument, returns validated copy
+    *
+    * @param building String representation of building name
+    * @return Validated copy of building name
+    */
+   private String validateBuilding(String building) {
+      if (building.length() > 70) {
+         System.err.println("Building name is too big: Greater than 70 chars");
+         System.exit(1);
+      }
+
+      return building;
+   }
+
+   /**
+    * Checks string length of <code>room</code>
+    *
+    * @param room String representation of a room
+    * @return Room value
+    */
+   private String validateRoom(String room) {
+      if (room.length() > 6) {
+         System.err.println("Room string does not match format: Too large");
+         System.exit(1);
+      }
+
+      return room;
+   }
+
+   /**
+    * Checks validity of capacity argument, returns int value if okay.
+    *
+    * @param capacity The string representation of capacity
+    * @return Integer value of capacity
+    */
+   private int validateCapacity(String capacity) {
+      int integer_capacity = -1;
+      
+      try {
+         integer_capacity = Integer.parseInt(capacity);
+      }
+      catch(NumberFormatException e) {
+         System.err.println("Capacity is not an integer value");
+         System.exit(1);
+      }
+
+      return integer_capacity;
+   }
+
+   /**
+    * Takes comma-separated equipment string and splits it into an array
+    *
+    * @param equipment Comma-separated equipment value to be parsed into a string[].
+    * @return String[] of equipment
+    */
+   private String[] validateEquipment(String equipment) {
+      String[] result = equipment.split(", ");
+      
+      if (result.length == 0) {
+         System.err.println("Equipment string not comma-separated");
+         System.exit(1);
+      }
+
+      return equipment.split(", ");
    }
 }
