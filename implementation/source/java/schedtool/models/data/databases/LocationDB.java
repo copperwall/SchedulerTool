@@ -68,10 +68,10 @@ public class LocationDB {
     */
     /*@
       requires \old(locations).contains(location);
-      ensures  locations.contains(location);
+      ensures  locations.contains(new_location) && !locations.contains(old);
     @*/
-   public void editLocation(Location location) {
-      locations.set(locations.indexOf(location), location);
+   public void editLocation(Location old, Location new_location) {
+      locations.set(locations.indexOf(old), new_location);
    }
 
    /**
