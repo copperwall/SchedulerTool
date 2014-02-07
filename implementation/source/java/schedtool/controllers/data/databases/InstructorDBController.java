@@ -94,7 +94,7 @@ public class InstructorDBController implements Observer{
 
     @FXML
     void cancelChanges(ActionEvent event) {
-        
+    	scheduler_tool.AdminFrameController.reloadMainTable();
     }
     
     @FXML
