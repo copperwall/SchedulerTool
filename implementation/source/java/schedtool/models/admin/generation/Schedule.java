@@ -7,7 +7,7 @@ import java.util.*;
  *
  */
 public class Schedule {
-   public ArrayList<Section> sections;
+   public Vector<Section> sections;
    
    public Schedule()
    {
@@ -24,8 +24,9 @@ public class Schedule {
        // the old set of sections.
        sections.containsAll(newSections) && newSections.containsAll(sections);
     @*/
-   public void setAllSections(ArrayList<Section> newSections)
+   public void setAllSections(Vector<Section> newSections)
    {
+	   sections.addAll(newSections);
    }
    /**
     * This returns all of the sections in the schedule.
@@ -39,7 +40,7 @@ public class Schedule {
          \result.contains(sec) && sections.contains(sec) &&
           \old(sections).contains(sec);
     @*/
-   public ArrayList<Section> getAllSections() {
+   public Vector<Section> getAllSections() {
 	   return sections;
    }
    
@@ -58,7 +59,7 @@ public class Schedule {
        sections.contains(value);
     @*/
    public void setOneSection(Section value) {
-	   
+	   sections.add(value);
    }
    
    /**
