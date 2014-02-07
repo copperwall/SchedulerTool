@@ -47,6 +47,10 @@ public class InstructorDBEditController implements Initializable {
     private void edit(ActionEvent event) {
         instructorDB.editInstructor(new Instructor("Placeholder Name", 
         			userID.getText(), Integer.parseInt(wtu.getText()), active.isSelected()));
+        Button src = (Button)event.getSource();
+        Stage srcStage = (Stage)src.getScene().getWindow();
+        
+        srcStage.close();
     }
 
     @FXML

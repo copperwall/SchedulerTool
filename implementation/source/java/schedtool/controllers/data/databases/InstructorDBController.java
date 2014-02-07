@@ -94,7 +94,7 @@ public class InstructorDBController implements Observer{
 
     @FXML
     void cancelChanges(ActionEvent event) {
-        
+    	scheduler_tool.AdminFrameController.reloadMainTable();
     }
     
     @FXML
@@ -119,12 +119,9 @@ public class InstructorDBController implements Observer{
 	@Override
 	public void update(Observable o, Object arg) {
 		ObservableList<Instructor> items = instructorTable.getItems();
-		instructorTable.setItems(null);
-		items.clear();
-		items.addAll(instructorDB.getAllInstructors());
-		items.add(new Instructor());
-		items.remove(items.size() -1);
+		items.setAll(instructorDB.getAllInstructors());
 		instructorTable.setItems(items);
+		
 		System.out.println("updated");
 	}
 }

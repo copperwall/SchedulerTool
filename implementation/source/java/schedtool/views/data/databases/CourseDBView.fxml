@@ -44,7 +44,7 @@
         </GridPane>
       </bottom>
       <center>
-        <TableView prefHeight="200.0" prefWidth="200.0">
+        <TableView fx:id="courseTable" prefHeight="200.0" prefWidth="200.0">
           <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
           </columnResizePolicy>

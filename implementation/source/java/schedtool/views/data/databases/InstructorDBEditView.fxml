@@ -21,6 +21,11 @@
         <Point3D y="1.0" z="1.0" />
       </rotationAxis>
     </HBox>
+    <TextField fx:id="userID" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <GridPane.margin>
+        <Insets left="5.0" />
+      </GridPane.margin>
+    </TextField>
     <TextField fx:id="wtu" GridPane.columnIndex="1" GridPane.rowIndex="2">
       <GridPane.margin>
         <Insets left="5.0" />
@@ -31,11 +36,6 @@
         <Label alignment="CENTER_RIGHT" text="Active" />
       </children>
     </HBox>
-    <TextField fx:id="userID" editable="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
-      <GridPane.margin>
-        <Insets left="5.0" />
-      </GridPane.margin>
-    </TextField>
     <Label text="Edit Instructor">
       <font>
         <Font size="16.0" />

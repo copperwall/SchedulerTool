@@ -5,7 +5,7 @@ package models.data.databases;
  * a prefix (CSC), class number (308), has lab, and number of units.
  * All of the get and set methods are included;
  */
-public abstract class Course {
+public class Course {
 
    /**
     * The department prefix for a course.
@@ -37,7 +37,27 @@ public abstract class Course {
     */
    private int labLength;
    
-	private enum labProximity {DIRECTLY_AFTER, DIFF_DAY, SAME_DAY};
+   private LabProximity labProx;
+   
+	public enum LabProximity {DIRECTLY_AFTER, DIFF_DAY, SAME_DAY};
+   
+   public Course(String prefix, int courseNum, boolean hasLab, int units, String title, int labLength, Course.LabProximity labProx) {
+      this. prefix = prefix;
+      this.courseNum = courseNum;
+      this. hasLab = hasLab;
+      this.units = units;
+      this.title = title;
+      this.labLength = labLength;
+      this.labProx = labProx;
+   }
+   
+   public void setNewData(boolean hasLab, int units, String title, int labLength, Course.LabProximity labProx) {
+      this. hasLab = hasLab;
+      this.units = units;
+      this.title = title;
+      this.labLength = labLength;
+      this.labProx = labProx;
+   }
 	
    /**
     * Returns prefix + course number
@@ -47,8 +67,9 @@ public abstract class Course {
         ensures 
           \result == (prefix + " " + this.courseNum);
    @*/
-   public abstract String getCourseID();
-   
+   public String getCourseID() {
+      return prefix + " " + courseNum;
+   }
    
    /**
     * Checks if the course number matches a given course number
@@ -58,5 +79,7 @@ public abstract class Course {
      ensures 
        \result == (courseNum == this.courseNum);
     @*/
-   public abstract boolean matchCourseNum(int courseNum);
+   public boolean matchCourse(int courseNum, String dept) {
+      return this.courseNum == courseNum && this.prefix.equals(dept);
+   }
 }

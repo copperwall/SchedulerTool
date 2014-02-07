@@ -8,10 +8,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 /* Import Models */
 import models.data.databases.CourseDB;
-//import models.data.databases.Course;
+import models.data.databases.Course;
 
 /**
  * This class is a controller for the Add Course to database page. Add course
@@ -38,7 +39,7 @@ public class CourseDBAddController {
     private TextField labLengthText;
 
     @FXML
-    private TextField labProximityText;
+    private ComboBox<Course.LabProximity> labProxCombo;
 
     @FXML
     private TextField prefixText;
@@ -61,14 +62,32 @@ public class CourseDBAddController {
     @FXML
     void onHasLab(ActionEvent event) {
       labLengthText.setEditable(hasLabBox.isSelected());
-      labProximityText.setEditable(hasLabBox.isSelected());
+      labProxCombo.setEditable(hasLabBox.isSelected());
     }
 
-    @FXML
-    void submit(ActionEvent event) {
-      model.addCourse(null);
-      cancel(event);
-    }
+   @FXML
+   void submit(ActionEvent event) {
+      boolean invalidInput = false;
+   
+      if (prefixText.getText().length <= 0) {
+         invalidInput = true;
+         JOptionPane.showMessageDialog(null,"Invalid prefix entry.");
+      }
+      else if (courseNoText.getText().length <= 0 || Integer.valueof(courseNoText.getText()) {
+         invalidInput = true;
+         JOptionPane.showMessageDialog(null,"Invalid course number.");
+      }
+
+      if (!invalidInput) {
+         if (hasLabBox.isSelected()) {
+            model.addCourse(prefixText.getText(), Integer.valueof(courseNoText.getText()), hasLabBox.isSelected(), Integer.valueof(unitsText.getText()), titleText.getText(), Integer.valueof(labLength.getText()), labProx.getValue());
+         }
+         else {
+            model.addCourse(prefixText.getText(), Intger.valueof(courseNoText.getText()), hasLabBox.isSelected(), Intger.valueof(unitsText.getText()), titleText.getText(), null, null);
+         }
+         cancel(event);
+      }
+   }
     
     void setModel(CourseDB mod) {
       model = mod;
@@ -85,7 +104,8 @@ public class CourseDBAddController {
         assert unitsText != null : "fx:id=\"unitsText\" was not injected: check your FXML file 'CourseDBAdd.fxml'.";
 
        labLengthText.setEditable(hasLabBox.isSelected());
-       labProximityText.setEditable(hasLabBox.isSelected());
+       labProxCombo.setEditable(hasLabBox.isSelected());
+       labProxCombo.setItems(Course.LabProximity.values());
     }
 
 }
