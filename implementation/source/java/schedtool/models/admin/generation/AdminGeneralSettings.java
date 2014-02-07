@@ -3,6 +3,8 @@ package models.admin.generation;
 import java.util.ArrayList;
 import java.util.Observable;
 
+import models.data.databases.Day;
+
 /**
  *
  * @author Chase Kragenbrink
@@ -13,6 +15,8 @@ public class AdminGeneralSettings extends Observable {
    public int startTime;
    public int endTime;
    private ArrayList<Constraint> constraints;
+   private TimePrefRow[] prefRows;
+   
    //private ArrayList<Day> days;
    private boolean[] timePatterns;
    
@@ -49,6 +53,7 @@ public class AdminGeneralSettings extends Observable {
    public AdminGeneralSettings() {
       timePatterns = new boolean[7];
       constraints = new ArrayList<Constraint>();
+      prefRows = new TimePrefRow[16];
    }
    
    public void setEndTime(int hour) {
@@ -78,7 +83,28 @@ public class AdminGeneralSettings extends Observable {
       
    }
    
+   public void initTimePrefsTable() {
+      for (int index = 0; index < 16; index++) {
+         int rawHour = index + 7;
+         int hour = rawHour % 13; 
+         if (rawHour >= 13) {
+            hour++;
+         }
+         prefRows[index] = new TimePrefRow(hour + ":00" + (rawHour >= 12 ? "PM" : "AM"), new Day());
+      }
+      
+      setChanged();
+      notifyObservers(prefRows);
+      
+   }
+   
+   public TimePrefRow[] getBlockedOutTimes() {
+      return prefRows;
+   }
+   
    public ArrayList<Constraint> getConstraints() {
       return constraints;
    }
+
+  
 }

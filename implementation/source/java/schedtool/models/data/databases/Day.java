@@ -7,26 +7,30 @@ import java.lang.Boolean;
  * A day holds 24 booleans of which an instructor is available
  * to hold a class for that hour. Set and get the availability.
  */
-public abstract class Day {
-   public Collection<Boolean> halfHourAvailability;
+public class Day {
+   public Collection<Boolean> hourAvailability;
    
    /**
     * Sets the availability to the new given availability.
     */
    /*@
-      requires availableHalfHours != null;
-      ensures halfHourAvailability.equals(availableHalfHours);
+      requires availableHours != null;
+      ensures hourAvailability.equals(availableHours);
    @*/
-   public abstract void setAvailability(Collection<Boolean> availableHalfHours);
+   public void setAvailability(Collection<Boolean> availableHours) {
+      
+   }
 
    /**
     * Returns this day's availability
     */
    /*@
-      requires halfHourAvailability != null;
+      requires hourAvailability != null;
       ensures 
          \result != null &&
-         \result.equals(halfHourAvailability);
+         \result.equals(hourAvailability);
    @*/
-   public abstract Collection<Boolean> getAvailability();
+   public Collection<Boolean> getAvailability() {
+      return null;
+   }
 }
