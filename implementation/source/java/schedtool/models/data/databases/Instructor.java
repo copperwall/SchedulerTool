@@ -38,16 +38,32 @@ public class Instructor extends User {
        return name.get();
    }
    
+   public SimpleStringProperty nameProperty() {
+	   return name;
+   }
+   
    public int getWtu() {
        return workTimeUnits;
+   }
+   
+   public SimpleIntegerProperty wtuProperty() {
+	   return wtu;
    }
    
    public String getUser() {
 	   return user.get();
    }
    
+   public SimpleStringProperty userProperty() {
+	   return user;
+   }
+   
    public boolean getAct() {
 	   return act.get();
+   }
+   
+   public SimpleBooleanProperty actProperty() {
+	   return act;
    }
    
    public void setName(String name) {
