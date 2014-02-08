@@ -17,7 +17,7 @@ public class CourseDB extends Observable{
       courses = new Vector<Course>();
       
       setChanged();
-	   notifyObservers();
+	  notifyObservers();
    }
    
    /**
@@ -53,7 +53,7 @@ public class CourseDB extends Observable{
       courses.add(new Course(prefix, courseNum, hasLab, units, title, labLength, labProx));
       
       setChanged();
-	   notifyObservers();
+	  notifyObservers();
    }
    /**
     * Edits the course whose course number matches course's course number
@@ -72,17 +72,17 @@ public class CourseDB extends Observable{
       Course curCourse = null;
       
       for (Course course : courses) {
-         if (course.matchCourse(courseNum, dept)) {
+         if (course.matchCourse(courseNum, prefix)) {
             curCourse = course;
          }
       }
       
       if (curCourse != null) {
-         course.setNewData(boolean hasLab, int units, String title, int labLength, Course.LabProximity labProx);
+    	  curCourse.setNewData(hasLab, units, title, labLength, labProx);
       }
       
       setChanged();
-	   notifyObservers();
+	  notifyObservers();
    }
    /**
     * Deletes the course whose course num matches courseNum.
@@ -95,14 +95,38 @@ public class CourseDB extends Observable{
      (\forall Course c; c.matchCourseNum(courseNum);
        !courses.contains(c));
     @*/
-   public void deleteCourse(int courseNum, String courseDept) {
-      courses.remove(getCourse(courseNum, courseDept));
+   public void deleteCourse(Course course) {
+      courses.remove(course);
       
       setChanged();
-	   notifyObservers();
+	  notifyObservers();
    }
    
    public Vector<Course> getAllCourses() {
       return courses;
    }
+
+	public void addCourse(String prefix, int courseNum, boolean hasLab, int units, String title) {
+		// TODO Auto-generated method stub
+		courses.add(new Course(prefix, courseNum, hasLab, units, title));
+	      
+       setChanged();
+	   notifyObservers();
+	}
+	
+	public void editCourse(String prefix, int courseNum, boolean hasLab, int units, String title) {
+		 Course curCourse = null;
+	      
+	      for (Course course : courses) {
+	         if (course.matchCourse(courseNum, prefix)) {
+	            curCourse = course;
+	         }
+	      }
+	      
+	      if (curCourse != null) {
+	    	  curCourse.setNewData(hasLab, units, title, 0, null);
+	      }    
+       setChanged();
+	   notifyObservers();
+	}
 }

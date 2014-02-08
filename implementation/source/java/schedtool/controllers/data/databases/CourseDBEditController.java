@@ -3,10 +3,13 @@ package controllers.data.databases;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javax.swing.JOptionPane;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 /* Import Models */
@@ -38,7 +41,7 @@ public class CourseDBEditController {
     private TextField labLengthText;
 
     @FXML
-    private TextField labProximityText;
+    private ComboBox<Course.LabProximity> labProxCombo;
 
     @FXML
     private TextField prefixText;
@@ -61,13 +64,31 @@ public class CourseDBEditController {
     @FXML
     void onHasLab(ActionEvent event) {
       labLengthText.setEditable(hasLabBox.isSelected());
-      labProximityText.setEditable(hasLabBox.isSelected());
+      labProxCombo.setEditable(hasLabBox.isSelected());
     }
 
     @FXML
     void submit(ActionEvent event) {
-      model.editCourse(null);
-      cancel(event);
+    	boolean invalidInput = false;
+    	   
+        if (prefixText.getText().length() <= 0) {
+           invalidInput = true;
+           JOptionPane.showMessageDialog(null,"Invalid prefix entry.");
+        }
+        else if (courseNoText.getText().length() <= 0 || isNumeric(courseNoText.getText())) {
+           invalidInput = true;
+           JOptionPane.showMessageDialog(null,"Invalid course number.");
+        }
+
+        if (!invalidInput) {
+           if (hasLabBox.isSelected()) {
+              model.editCourse(prefixText.getText(), Integer.valueOf(courseNoText.getText()), hasLabBox.isSelected(), Integer.valueOf(unitsText.getText()), titleText.getText(), Integer.valueOf(labLengthText.getText()), labProxCombo.getValue());
+           }
+           else {
+              model.editCourse(prefixText.getText(), Integer.valueOf(courseNoText.getText()), hasLabBox.isSelected(), Integer.valueOf(unitsText.getText()), titleText.getText());
+           }
+           cancel(event);
+        }
     }
     
     void setModel(CourseDB mod) {
@@ -79,7 +100,7 @@ public class CourseDBEditController {
         assert courseNoText != null : "fx:id=\"courseNoText\" was not injected: check your FXML file 'CourseDBAdd.fxml'.";
         assert hasLabBox != null : "fx:id=\"hasLabBox\" was not injected: check your FXML file 'CourseDBAdd.fxml'.";
         assert labLengthText != null : "fx:id=\"labLengthText\" was not injected: check your FXML file 'CourseDBAdd.fxml'.";
-        assert labProximityText != null : "fx:id=\"labProximityText\" was not injected: check your FXML file 'CourseDBAdd.fxml'.";
+        assert labProxCombo != null : "fx:id=\"labProximityText\" was not injected: check your FXML file 'CourseDBAdd.fxml'.";
         assert prefixText != null : "fx:id=\"prefixText\" was not injected: check your FXML file 'CourseDBAdd.fxml'.";
         assert titleText != null : "fx:id=\"titleText\" was not injected: check your FXML file 'CourseDBAdd.fxml'.";
         assert unitsText != null : "fx:id=\"unitsText\" was not injected: check your FXML file 'CourseDBAdd.fxml'.";
@@ -87,7 +108,12 @@ public class CourseDBEditController {
         //FILL IN DATA HERE!
         
        labLengthText.setEditable(hasLabBox.isSelected());
-       labProximityText.setEditable(hasLabBox.isSelected());
+       labProxCombo.setEditable(hasLabBox.isSelected());
+       labProxCombo.getItems().addAll(Course.LabProximity.values());
     }
-
+    
+    /* From http://stackoverflow.com/questions/14206768/how-to-check-if-a-string-is-numeric */
+    public boolean isNumeric(String s) {  
+        return s.matches("[-+]?\\d*\\.?\\d+");  
+    }
 }

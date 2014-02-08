@@ -51,7 +51,21 @@ public class Course {
       this.labProx = labProx;
    }
    
-   public void setNewData(boolean hasLab, int units, String title, int labLength, Course.LabProximity labProx) {
+   public Course(String prefix, int courseNum, boolean hasLab, int units, String title) {
+	  this. prefix = prefix;
+	  this.courseNum = courseNum;
+	  this. hasLab = hasLab;
+	  this.units = units;
+      this.title = title;
+      this.labLength = 0;
+      this.labProx = null;
+   }
+
+   public Course() {
+	
+   }
+
+public void setNewData(boolean hasLab, int units, String title, int labLength, Course.LabProximity labProx) {
       this. hasLab = hasLab;
       this.units = units;
       this.title = title;
