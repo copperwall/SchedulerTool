@@ -24,6 +24,7 @@ import models.data.databases.Course;
 public class CourseDBEditController {
 
    private CourseDB model;
+   private Course course;
 
     @FXML
     private ResourceBundle resources;
@@ -92,6 +93,10 @@ public class CourseDBEditController {
     void setModel(CourseDB mod) {
       model = mod;
     }
+    
+    void setCourse(Course course) {
+        this.course = course;
+    }
 
     @FXML
     void initialize() {
@@ -103,10 +108,22 @@ public class CourseDBEditController {
         assert titleText != null : "fx:id=\"titleText\" was not injected: check your FXML file 'CourseDBAdd.fxml'.";
         assert unitsText != null : "fx:id=\"unitsText\" was not injected: check your FXML file 'CourseDBAdd.fxml'.";
 
-        //FILL IN DATA HERE!
+       courseNoText.setText("" + course.getCourseNum());
+       prefixText.setText(course.getPrefix());
+       titleText.setText(course.getTitle());
+       unitsText.setText("" + course.getUnits());
+       hasLabBox.setSelected(course.getHasLab());
+       
+       if (hasLabBox.isSelected())
+       {
+    	   labLengthText.setText("" + course.getLabLength());
+    	   labProxCombo.setValue(course.getLabProx());
+       }
+
        courseNoText.setEditable(false);
        prefixText.setEditable(false);
        labLengthText.setEditable(hasLabBox.isSelected());
+       labProxCombo.getItems().clear();
        labProxCombo.getItems().addAll(Course.LabProximity.values());
     }
     

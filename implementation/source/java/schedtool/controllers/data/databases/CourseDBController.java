@@ -67,6 +67,8 @@ public class CourseDBController implements Observer{
 
     @FXML
     void editCourse(ActionEvent event) {
+    	Course selected = courseTable.getSelectionModel().getSelectedItem();
+    	
     	try {
             URL location = getClass().getResource("/views/data/databases/CourseDBEditView.fxml");
             FXMLLoader fxmlLoader = new FXMLLoader();
@@ -74,6 +76,7 @@ public class CourseDBController implements Observer{
 
             CourseDBEditController controller = (CourseDBEditController)(fxmlLoader.getController());
             controller.setModel(model);
+            controller.setCourse(selected);
             
             Scene scene = new Scene(root);
             Stage stage = new Stage();

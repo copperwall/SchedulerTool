@@ -80,7 +80,6 @@ public class CourseDBAddController {
       }
 
       if (!invalidInput) {
-    	 System.out.println("ADDING A COURSE");
          if (hasLabBox.isSelected()) {
             model.addCourse(prefixText.getText(), Integer.valueOf(courseNoText.getText()), hasLabBox.isSelected(), Integer.valueOf(unitsText.getText()), titleText.getText(), Integer.valueOf(labLengthText.getText()), labProxCombo.getValue());
          }
@@ -106,6 +105,7 @@ public class CourseDBAddController {
         assert unitsText != null : "fx:id=\"unitsText\" was not injected: check your FXML file 'CourseDBAddView.fxml'.";
 
        labLengthText.setEditable(hasLabBox.isSelected());
+       labProxCombo.getItems().clear();
        labProxCombo.getItems().addAll(Course.LabProximity.values());
     }
     
