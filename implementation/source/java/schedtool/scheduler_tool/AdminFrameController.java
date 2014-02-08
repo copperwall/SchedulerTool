@@ -46,6 +46,12 @@ public class AdminFrameController {
         children.remove(2);
         children.add((Node) adminAnalytics);
     }
+    
+    public static AnchorPane getAdminMainTable()
+    {
+    	return adminMainTable;
+    }
+    
 
     @FXML
     void loadAdminAvailableCoursesView(ActionEvent event) {

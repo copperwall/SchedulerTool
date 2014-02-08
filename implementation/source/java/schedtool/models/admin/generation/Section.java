@@ -34,6 +34,10 @@ public class Section {
 	   this.course = course;
    }
    
+   public String getCourseNo() {
+	   return ""+course.courseNum;
+   }
+   
    public int getSectionNum()
    {
 	   return sectionNum;

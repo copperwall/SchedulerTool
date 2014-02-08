@@ -1,6 +1,7 @@
 package models.admin.generation;
 import java.util.Vector;
 
+import javafx.scene.layout.AnchorPane;
 import models.data.databases.*;
 /**
  * Model to be called when user wants to generate.
@@ -15,10 +16,9 @@ public class AdminGenerating {
 	public void generate() {
 		String[] prefixes = {"CPE","CSC","MATH","AERO","BIO","EE","ME","CHEM"};
 		int numToAddToTable = 50;
-		
+		Schedule generatedSchedule = new Schedule();
 		for(int i = 0; i < numToAddToTable; i++)
 		{
-			Schedule generatedSchedule = new Schedule();
 			//Course testCourse = new Course();
 			//testCourse.setCourseNum((int) Math.random() * 500);
 			//testCourse.setPrefix(prefixes[(int) Math.random() * prefixes.length]);
@@ -35,6 +35,10 @@ public class AdminGenerating {
 			generatedSchedule.setOneSection(testSection);
 		}
 		//add schedule(collection of sections) to main table... how?
+		for(Section sec : generatedSchedule.getAllSections())
+		{
+			addToMainTable(sec);
+		}
 		System.out.println("AdminGenerating.GENERATING!!!");
 	}
 }
