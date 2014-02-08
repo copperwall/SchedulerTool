@@ -73,12 +73,10 @@ public class CourseDBAddController {
       boolean invalidInput = false;
    
       if (prefixText.getText().length() <= 0) {
-         invalidInput = true;
-         JOptionPane.showMessageDialog(null,"Invalid prefix entry.");
+         invalidInput = true;  
       }
       else if (courseNoText.getText().length() <= 0 || isNumeric(courseNoText.getText())) {
          invalidInput = true;
-         JOptionPane.showMessageDialog(null,"Invalid course number.");
       }
 
       if (!invalidInput) {
