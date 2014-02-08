@@ -25,31 +25,56 @@ public class AvailableCoursesRow
     {
         return prefix.get();
     }
+    
+    public SimpleStringProperty prefixProperty()
+    {
+        return prefix;
+    }
 
     public Integer getCourseNumber()
     {
         return courseNumber.get();
+    }
+    
+    public SimpleIntegerProperty courseNumberProperty()
+    {
+        return courseNumber;
     }
 
     public String getCourseTitle()
     {
         return courseTitle.get();
     }
-
-    public String getSections()
+    
+    public SimpleStringProperty courseTitleProperty()
     {
-        return "" + sections.get();
+        return courseTitle;
+    }
+
+    public Integer getSections()
+    {
+        return sections.get();
     }
     
-    public void setSections(String sections)
+    public SimpleIntegerProperty sectionsProperty()
     {
-        this.sections = new SimpleIntegerProperty(Integer.parseInt(sections));
+        return sections;
+    }
+    
+    public void setSections(Integer sections)
+    {
+        this.sections = new SimpleIntegerProperty(sections);
     }
     
 
     public Integer getSuggested()
     {
         return suggested.get();
+    }
+    
+    public SimpleIntegerProperty suggestedProperty()
+    {
+        return suggested;
     }
     
     public void loadSuggested()
