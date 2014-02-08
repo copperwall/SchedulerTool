@@ -17,8 +17,7 @@ import models.data.databases.CourseDB;
 import models.data.databases.Course;
 
 /**
- * This class is a controller for the Edit Course to database page. Edit course
- * is available.
+ * This class is a controller for the Edit Course dialog in the Course database page.
  * @author Katie Keim
  */
 public class CourseDBEditController {
