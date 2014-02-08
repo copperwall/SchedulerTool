@@ -107,7 +107,6 @@ public class CourseDB extends Observable{
    }
 
 	public void addCourse(String prefix, int courseNum, boolean hasLab, int units, String title) {
-		// TODO Auto-generated method stub
 		courses.add(new Course(prefix, courseNum, hasLab, units, title));
 	      
        setChanged();
@@ -126,6 +125,7 @@ public class CourseDB extends Observable{
 	      if (curCourse != null) {
 	    	  curCourse.setNewData(hasLab, units, title, 0, null);
 	      }    
+	      
        setChanged();
 	   notifyObservers();
 	}

@@ -96,12 +96,8 @@ public class CourseDBController implements Observer{
    @Override
 	public void update(Observable o, Object arg) {
 		ObservableList<Course> items = courseTable.getItems();
-		courseTable.setItems(null);
-		items.clear();
-		items.addAll(model.getAllCourses());
+		items.setAll(model.getAllCourses());
 		courseTable.setItems(items);
-		items.add(new Course());
-		items.remove(items.size() -1);
 		System.out.println("Course DB table updated");
 	}
 }
