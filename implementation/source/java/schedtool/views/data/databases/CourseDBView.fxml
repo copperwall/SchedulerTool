@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import fxmltableview.*?>
 <?import java.lang.*?>
+<?import javafx.collections.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
@@ -44,20 +47,55 @@
         </GridPane>
       </bottom>
       <center>
-        <TableView prefHeight="200.0" prefWidth="200.0">
+        <TableView fx:id="courseTable" prefHeight="200.0" prefWidth="200.0">
           <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
           </columnResizePolicy>
           <columns>
-            <TableColumn editable="false" prefWidth="75.0" text="Title" />
-            <TableColumn editable="false" minWidth="0.0" prefWidth="106.0" text="Prefix" />
-            <TableColumn editable="false" minWidth="0.0" prefWidth="71.0" text="Course No." />
-            <TableColumn editable="false" minWidth="0.0" text="Units" />
-            <TableColumn editable="false" minWidth="0.0" text="WTU" />
+            <TableColumn editable="false" prefWidth="75.0" text="Title">
+               <cellValueFactory>
+                  <PropertyValueFactory property="title" />
+               </cellValueFactory>
+            </TableColumn>
+            <TableColumn editable="false" minWidth="0.0" prefWidth="106.0" text="Prefix">
+               <cellValueFactory>
+                  <PropertyValueFactory property="prefix" />
+               </cellValueFactory>
+            </TableColumn>
+            <TableColumn editable="false" minWidth="0.0" prefWidth="71.0" text="Course No.">
+               <cellValueFactory>
+                <PropertyValueFactory property="courseNum" />
+              </cellValueFactory>
+            </TableColumn>
+            <TableColumn editable="false" minWidth="0.0" text="Units">
+               <cellValueFactory>
+                <PropertyValueFactory property="units" />
+              </cellValueFactory>
+            </TableColumn>
+            <TableColumn editable="false" minWidth="0.0" text="Has Lab?">
+               <cellValueFactory>
+                <PropertyValueFactory property="hasLab" />
+              </cellValueFactory>
+            </TableColumn>
+            <TableColumn editable="false" minWidth="0.0" text="Lab Length">
+               <cellValueFactory>
+                <PropertyValueFactory property="labLength" />
+              </cellValueFactory>
+            </TableColumn>
+            <TableColumn editable="false" minWidth="0.0" text="Lab Proximity">
+               <cellValueFactory>
+                <PropertyValueFactory property="labProx" />
+              </cellValueFactory>
+            </TableColumn>
           </columns>
           <BorderPane.margin>
             <Insets left="10.0" right="10.0" />
           </BorderPane.margin>
+          <items>
+		    <FXCollections fx:factory="observableArrayList">
+		    	<models.data.databases.Course prefix="CPE" courseNum="308" title="Software Engineering 1" units="4" hasLab="true" labLength="1" labProx="DIRECTLY_AFTER"/>
+		    </FXCollections>
+          </items>
         </TableView>
       </center>
       <top>
