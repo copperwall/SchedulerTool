@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,8 +21,6 @@ import javafx.scene.control.TextField;
 import models.admin.generation.AdminGeneralSettings;
 import models.admin.generation.Constraint;
 import models.admin.generation.TimePrefRow;
-import models.data.databases.Instructor;
-import models.data.databases.InstructorDB;
 
 public class GeneralSettingsController implements Observer {
 
@@ -64,73 +64,121 @@ public class GeneralSettingsController implements Observer {
    private CheckBox mfPattern;
 
    AdminGeneralSettings generalSettings;
-   
+
+   /**
+    * JavaFX will call this when this controller needs to be initialized
+    */
    @FXML
    void initialize() {
-      System.out.println("Initializing GenSettingsController");
       generalSettings = new AdminGeneralSettings();
       generalSettings.addObserver(this);
       generalSettings.initTimePrefsTable();
-  }
 
-   @FXML
-   void onEndTimeDone(ActionEvent event) {
-      generalSettings.setEndTime(0);
+      // Set ChangeListener for the endTimeSlider
+      endTimeSlider.valueProperty().addListener(new ChangeListener<Number>() {
+         @Override
+         public void changed(ObservableValue<? extends Number> observable, Number oldValue,
+            Number newValue) {
+            if (newValue.doubleValue() - newValue.intValue() == 0)
+               generalSettings.setEndTime(newValue.intValue());
+         }
+      });
+
+      // Set ChangeListener for the startTimeSlider
+      startTimeSlider.valueProperty().addListener(new ChangeListener<Number>() {
+         @Override
+         public void changed(ObservableValue<? extends Number> observable, Number oldValue,
+            Number newValue) {
+            if (newValue.doubleValue() - newValue.intValue() == 0)
+               generalSettings.setStartTime(newValue.intValue());
+         }
+      });
    }
 
-   @FXML
-   void onStartTimeDone(ActionEvent event) {
-      generalSettings.setEndTime(0);
-   }
-
+   /**
+    * When Add Constraint button is clicked
+    * @param event 
+    */
    @FXML
    void onAddConstraintBtnEvent(ActionEvent event) {
-      System.out.println("text " + constraintText.getText());
       generalSettings.addConstraint(constraintText.getText());
    }
 
+   /**
+    * When MWF checkbox is checked or unchecked
+    * @param event
+    */
    @FXML
    void onMwfEvent(ActionEvent event) {
       generalSettings.updateTimePattern(AdminGeneralSettings.TIME_PATTERN.MWF,
          mwfPattern.isSelected());
    }
 
+   /**
+    * When TH checkbox is checked or unchecked
+    * @param event
+    */
    @FXML
    void onThEvent(ActionEvent event) {
       generalSettings.updateTimePattern(AdminGeneralSettings.TIME_PATTERN.TH,
          thPattern.isSelected());
    }
 
+   /**
+    * When MW checkbox is checked or unchecked
+    * @param event
+    */
    @FXML
    void onMwEvent(ActionEvent event) {
       generalSettings.updateTimePattern(AdminGeneralSettings.TIME_PATTERN.MW,
          mwPattern.isSelected());
    }
 
+   /**
+    * When WF checkbox is checked or unchecked
+    * @param event
+    */
    @FXML
    void onWfEvent(ActionEvent event) {
       generalSettings.updateTimePattern(AdminGeneralSettings.TIME_PATTERN.WF,
          wfPattern.isSelected());
    }
 
+   /**
+    * When MF checkbox is checked or unchecked
+    * @param event
+    */
    @FXML
    void onMfEvent(ActionEvent event) {
       generalSettings.updateTimePattern(AdminGeneralSettings.TIME_PATTERN.MF,
          mfPattern.isSelected());
    }
 
+   /**
+    * When MTWH checkbox is checked or unchecked
+    * @param event
+    */
    @FXML
    void onMtwhEvent(ActionEvent event) {
       generalSettings.updateTimePattern(AdminGeneralSettings.TIME_PATTERN.MTWH,
          mtwhPattern.isSelected());
    }
 
+   /**
+    * When MTWF checkbox is checked or unchecked
+    * @param event
+    */
    @FXML
    void onMtwfEvent(ActionEvent event) {
       generalSettings.updateTimePattern(AdminGeneralSettings.TIME_PATTERN.MTWF,
          mtwfPattern.isSelected());
    }
 
+   /**
+    * Gets called when the observable calls notifyObservers(). This updates the table view of constraints
+    * and the table view of time preferences (even though time preferences don't change more than once
+    * yet). Does a dump of all the settings.
+    */
    @Override
    public void update(Observable observable, Object data) {
       ArrayList<Constraint> constraints = generalSettings.getConstraints();
@@ -139,15 +187,14 @@ public class GeneralSettingsController implements Observer {
       items.clear();
       items.addAll(constraints);
       constraintTable.setItems(items);
-      
+
       TimePrefRow[] blockTimes = generalSettings.getBlockedOutTimes();
       ObservableList<TimePrefRow> blockTimeItems = blockedOutTimesTable.getItems();
       blockedOutTimesTable.setItems(null);
       blockTimeItems.clear();
       blockTimeItems.addAll(blockTimes);
       blockedOutTimesTable.setItems(blockTimeItems);
-      
-      System.out.println("in GeneralSettings.update");
+
       System.out.print(generalSettings.toString());
    }
 

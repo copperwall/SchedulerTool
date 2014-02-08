@@ -6,35 +6,39 @@
 <?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.admin.generation.GeneralSettingsController">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="546.0" prefWidth="828.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.admin.generation.GeneralSettingsController">
   <children>
     <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="480.0" prefWidth="750.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <children>
-        <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+        <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" spacing="8.0" HBox.hgrow="ALWAYS">
           <children>
             <Label prefHeight="16.0" prefWidth="206.0" text="General Settings">
               <VBox.margin>
                 <Insets bottom="10.0" left="10.0" top="20.0" fx:id="x4" />
               </VBox.margin>
             </Label>
-            <Label text="End time:">
+            <Label alignment="TOP_LEFT" text="Start time (AM):" textAlignment="CENTER" VBox.margin="$x1" />
+            <Slider fx:id="startTimeSlider" blockIncrement="1.0" majorTickUnit="1.0" max="10.0" maxHeight="-Infinity" maxWidth="-Infinity" min="7.0" minorTickCount="0" prefHeight="14.0" prefWidth="248.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" VBox.margin="$x2" >
+               <VBox.margin>
+                <Insets left="10.0" fx:id="x1" />
+              </VBox.margin>
+            </Slider>
+            <Label text="End time (PM):">
               <VBox.margin>
                 <Insets left="10.0" fx:id="x1" />
               </VBox.margin>
             </Label>
-            <Slider fx:id="endTimeSlider" maxHeight="-Infinity" maxWidth="-Infinity" onDragDone="#onEndTimeDone" prefHeight="16.0" prefWidth="380.0">
+            <Slider fx:id="endTimeSlider" blockIncrement="1.0" majorTickUnit="1.0" max="10.0" maxHeight="-Infinity" maxWidth="-Infinity" min="7.0" minorTickCount="0" prefHeight="14.0" prefWidth="243.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="7.0">
               <VBox.margin>
                 <Insets bottom="10.0" left="10.0" right="10.0" fx:id="x2" />
               </VBox.margin>
             </Slider>
-            <Label text="Start time:" VBox.margin="$x1" />
-            <Slider fx:id="startTimeSlider" maxHeight="-Infinity" maxWidth="-Infinity" onDragDone="#onStartTimeDone" prefHeight="16.0" prefWidth="380.0" VBox.margin="$x2" />
             <Label text="Current Constraints">
               <VBox.margin>
                 <Insets bottom="10.0" left="10.0" fx:id="x3" />
               </VBox.margin>
             </Label>
-            <TableView fx:id="constraintTable" prefHeight="159.0" prefWidth="333.0" VBox.vgrow="ALWAYS">
+            <TableView fx:id="constraintTable" prefHeight="187.0" prefWidth="394.0" VBox.vgrow="ALWAYS">
               <columnResizePolicy>
                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" fx:id="x7" />
               </columnResizePolicy>
@@ -67,7 +71,7 @@
         <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS" HBox.margin="$x6">
           <children>
             <Label text="Blocked Out Times" VBox.margin="$x4" />
-            <TableView fx:id="blockedOutTimesTable" columnResizePolicy="$x7" styleClass="prefRow" prefHeight="286.0" prefWidth="310.0" stylesheets="/scheduler_tool/application.css" VBox.margin="$x5" VBox.vgrow="ALWAYS">
+            <TableView fx:id="blockedOutTimesTable" columnResizePolicy="$x7" prefHeight="286.0" prefWidth="310.0" styleClass="prefRow" stylesheets="/scheduler_tool/application.css" VBox.margin="$x5" VBox.vgrow="ALWAYS">
               <columns>
                 <TableColumn prefWidth="75.0" text="Time">
                    <cellValueFactory>
