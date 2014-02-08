@@ -66,7 +66,6 @@ public class CourseDBAddController {
     @FXML
     void onHasLab(ActionEvent event) {
       labLengthText.setEditable(hasLabBox.isSelected());
-      labProxCombo.setEditable(hasLabBox.isSelected());
     }
 
    @FXML
@@ -99,16 +98,15 @@ public class CourseDBAddController {
 
     @FXML
     void initialize() {
-        assert courseNoText != null : "fx:id=\"courseNoText\" was not injected: check your FXML file 'CourseDBAdd.fxml'.";
-        assert hasLabBox != null : "fx:id=\"hasLabBox\" was not injected: check your FXML file 'CourseDBAdd.fxml'.";
-        assert labLengthText != null : "fx:id=\"labLengthText\" was not injected: check your FXML file 'CourseDBAdd.fxml'.";
-        assert labProxCombo != null : "fx:id=\"labProximityText\" was not injected: check your FXML file 'CourseDBAdd.fxml'.";
-        assert prefixText != null : "fx:id=\"prefixText\" was not injected: check your FXML file 'CourseDBAdd.fxml'.";
-        assert titleText != null : "fx:id=\"titleText\" was not injected: check your FXML file 'CourseDBAdd.fxml'.";
-        assert unitsText != null : "fx:id=\"unitsText\" was not injected: check your FXML file 'CourseDBAdd.fxml'.";
+        assert courseNoText != null : "fx:id=\"courseNoText\" was not injected: check your FXML file 'CourseDBAddView.fxml'.";
+        assert hasLabBox != null : "fx:id=\"hasLabBox\" was not injected: check your FXML file 'CourseDBAddView.fxml'.";
+        assert labLengthText != null : "fx:id=\"labLengthText\" was not injected: check your FXML file 'CourseDBAddView.fxml'.";
+        assert labProxCombo != null : "fx:id=\"labProxCombo\" was not injected: check your FXML file 'CourseDBAddView.fxml'.";
+        assert prefixText != null : "fx:id=\"prefixText\" was not injected: check your FXML file 'CourseDBAddView.fxml'.";
+        assert titleText != null : "fx:id=\"titleText\" was not injected: check your FXML file 'CourseDBAddView.fxml'.";
+        assert unitsText != null : "fx:id=\"unitsText\" was not injected: check your FXML file 'CourseDBAddView.fxml'.";
 
        labLengthText.setEditable(hasLabBox.isSelected());
-       labProxCombo.setEditable(hasLabBox.isSelected());
        labProxCombo.getItems().addAll(Course.LabProximity.values());
     }
     

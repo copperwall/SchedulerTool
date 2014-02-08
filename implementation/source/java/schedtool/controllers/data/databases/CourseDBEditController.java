@@ -64,7 +64,6 @@ public class CourseDBEditController {
     @FXML
     void onHasLab(ActionEvent event) {
       labLengthText.setEditable(hasLabBox.isSelected());
-      labProxCombo.setEditable(hasLabBox.isSelected());
     }
 
     @FXML
@@ -108,7 +107,6 @@ public class CourseDBEditController {
         //FILL IN DATA HERE!
         
        labLengthText.setEditable(hasLabBox.isSelected());
-       labProxCombo.setEditable(hasLabBox.isSelected());
        labProxCombo.getItems().addAll(Course.LabProximity.values());
     }
     

@@ -90,7 +90,7 @@
     </TextField>
     <TextField fx:id="unitsText" prefWidth="200.0" GridPane.columnIndex="1" GridPane.margin="$x1" GridPane.rowIndex="4" />
     <TextField fx:id="labLengthText" prefWidth="200.0" GridPane.columnIndex="1" GridPane.margin="$x1" GridPane.rowIndex="6" />
-    <ComboBox prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
+    <ComboBox fx:id="labProxCombo" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
       <items>
         <FXCollections fx:factory="observableArrayList">
           <String fx:value="Item 1" />
