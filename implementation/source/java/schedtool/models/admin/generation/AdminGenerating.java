@@ -32,7 +32,7 @@ public class AdminGenerating {
 		//add schedule(collection of sections) to main table... how?
 		for(Section sec : generatedSchedule.getAllSections())
 		{
-			System.out.println(sec.getCourse().prefix +" "+ sec.getCourse().courseNum +" "+ sec.getInstructor().firstName +sec.getInstructor().lastName +" "+ sec.getLocation().getBuilding() + " "+ sec.getLocation().getRoom() +" "+sec.getLocation().getCapacity());
+			System.out.println(sec.getCourse().coursePrefix +" "+ sec.getCourse().courseNo +" "+ sec.getInstructor().firstName +sec.getInstructor().lastName +" "+ sec.getLocation().getBuilding() + " "+ sec.getLocation().getRoom() +" "+sec.getLocation().getCapacity());
 		}
 		System.out.println("AdminGenerating.GENERATING!!!");
 	}
