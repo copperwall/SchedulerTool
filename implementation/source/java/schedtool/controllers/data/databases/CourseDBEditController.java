@@ -73,12 +73,13 @@ public class CourseDBEditController {
         if (prefixText.getText().length() <= 0) {
            invalidInput = true;
         }
-        else if (courseNoText.getText().length() <= 0 || isNumeric(courseNoText.getText())) {
+        else if (courseNoText.getText().length() <= 0) {
            invalidInput = true;
         }
 
         if (!invalidInput) {
            if (hasLabBox.isSelected()) {
+        	  System.out.println("EDITTING A COURSE");
               model.editCourse(prefixText.getText(), Integer.valueOf(courseNoText.getText()), hasLabBox.isSelected(), Integer.valueOf(unitsText.getText()), titleText.getText(), Integer.valueOf(labLengthText.getText()), labProxCombo.getValue());
            }
            else {
@@ -103,7 +104,8 @@ public class CourseDBEditController {
         assert unitsText != null : "fx:id=\"unitsText\" was not injected: check your FXML file 'CourseDBAdd.fxml'.";
 
         //FILL IN DATA HERE!
-        
+       courseNoText.setEditable(false);
+       prefixText.setEditable(false);
        labLengthText.setEditable(hasLabBox.isSelected());
        labProxCombo.getItems().addAll(Course.LabProximity.values());
     }

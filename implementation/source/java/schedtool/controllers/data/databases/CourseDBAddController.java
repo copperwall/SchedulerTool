@@ -75,11 +75,12 @@ public class CourseDBAddController {
       if (prefixText.getText().length() <= 0) {
          invalidInput = true;  
       }
-      else if (courseNoText.getText().length() <= 0 || isNumeric(courseNoText.getText())) {
+      else if (courseNoText.getText().length() <= 0) {
          invalidInput = true;
       }
 
       if (!invalidInput) {
+    	 System.out.println("ADDING A COURSE");
          if (hasLabBox.isSelected()) {
             model.addCourse(prefixText.getText(), Integer.valueOf(courseNoText.getText()), hasLabBox.isSelected(), Integer.valueOf(unitsText.getText()), titleText.getText(), Integer.valueOf(labLengthText.getText()), labProxCombo.getValue());
          }
