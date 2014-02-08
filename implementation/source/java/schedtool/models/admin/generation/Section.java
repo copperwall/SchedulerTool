@@ -13,9 +13,9 @@ public class Section {
    private Instructor instructor;
    private Location location;
    private int linkedSectionNum;
-   private Collection<Day> days;
+   private String days;
    
-   public Section(Course course,int sectionNum, Instructor instructor, Location location, Collection<Day> days)
+   public Section(Course course,int sectionNum, Instructor instructor, Location location, String days)
    {
 	   this.course = course;
 	   this.sectionNum = sectionNum;
@@ -72,11 +72,11 @@ public class Section {
 		this.linkedSectionNum = linkedSectionNum;
 	}
 	
-	public Collection<Day> getDays() {
+	public String getDays() {
 		return days;
 	}
 	
-	public void setDays(Collection<Day> days) {
+	public void setDays(String days) {
 		this.days = days;
 	}
    
