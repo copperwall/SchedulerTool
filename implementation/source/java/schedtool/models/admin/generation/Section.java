@@ -35,7 +35,7 @@ public class Section {
    }
    
    public String getCourseNo() {
-	   return ""+course.courseNum;
+	   return ""+course.getCourseNum();
    }
    
    public int getSectionNum()
