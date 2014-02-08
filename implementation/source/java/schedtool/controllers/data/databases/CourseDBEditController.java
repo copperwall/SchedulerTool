@@ -107,6 +107,8 @@ public class CourseDBEditController {
         {
      	   labLengthText.setText("" + course.getLabLength());
      	   labProxCombo.setValue(course.getLabProx());
+     	   
+     	   labLengthText.setEditable(hasLabBox.isSelected());
         }
     }
 
