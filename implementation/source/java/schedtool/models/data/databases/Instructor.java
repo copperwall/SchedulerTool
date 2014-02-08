@@ -11,19 +11,37 @@ import javafx.fxml.FXML;
  * An Instructor has a first and last name, their work time units, 
  * their time preferences, their class preferences, if they're active, 
  * and if their preferences are locked by the administrator.
+ * 
+ * @author Calvin Elizan (celizan)
  */
 public class Instructor extends User {
+   /** maximum number of work time units for the instructor */
    private int workTimeUnits;
+   /** preferred times to teach */
    private Collection<Day> timePrefs;
+   /** preferred courses to teach */
    public List<CoursePreference> coursePrefs;
+   /** if the instructor is active for the quarter */
    private boolean active;
+   /** if the instructor's preferences are locked */
    private boolean prefsLocked;
    
+   /** name property for the tableview */
    private final SimpleStringProperty name = new SimpleStringProperty("");
+   /** work time units property for the tableview */
    private final SimpleIntegerProperty wtu = new SimpleIntegerProperty();
+   /** Cal Poly user ID for the TableView */
    private final SimpleStringProperty user = new SimpleStringProperty("");
+   /** active property for the TableView */
    private final SimpleBooleanProperty act = new SimpleBooleanProperty();
    
+   /**
+    * Creates an instructor with the given properties
+    * @param name Name of the instructor
+    * @param username Cal Poly username
+    * @param wtu Maximum number of work time units
+    * @param active if the instructor is active for the term
+    */
    public Instructor(String name, String username, int wtu, boolean active) {
 	   this.username = username;
 	   this.workTimeUnits = wtu;
@@ -34,57 +52,108 @@ public class Instructor extends User {
 	   this.act.set(active);
    }
    
+   /**
+    * returns the name of the instructor
+    * @return name of the instructor
+    */
    public String getName() {
        return name.get();
    }
    
+   /**
+    * Returns a String to be made into the data that shows up in the Name column
+    * of the instructor database.
+    * @return the name of the instructor as a string property
+    */
    public SimpleStringProperty nameProperty() {
 	   return name;
    }
    
+   /**
+    * Returns the maximum number of work time units for the instructor
+    * @return the maximum work time units
+    */
    public int getWtu() {
        return workTimeUnits;
    }
    
+   /**
+    * Returns the maximum work time units as a SimpleIntegerProperty.
+    * @return the maximum work time units
+    */
    public SimpleIntegerProperty wtuProperty() {
 	   return wtu;
    }
    
+   /**
+    * Returns the user ID of the instructor
+    * @return the user ID
+    */
    public String getUser() {
 	   return user.get();
    }
    
+   /**
+    * Returns the user ID as a SimpleStringProperty.
+    * @return the user ID
+    */
    public SimpleStringProperty userProperty() {
 	   return user;
    }
    
+   /**
+    * Returns whether or not the instructor is active for the term.
+    * @return if the instructor is active
+    */
    public boolean getAct() {
 	   return act.get();
    }
    
+   /**
+    * Returns the instructor's active state as a SimpleBooleanProperty.
+    * @return the instructor's active state
+    */
    public SimpleBooleanProperty actProperty() {
 	   return act;
    }
    
+   /**
+    * Sets the name of the instructor
+    * @param name the new name of the instructor
+    */
    public void setName(String name) {
        this.name.set(name);
    }
    
+   /**
+    * sets the maximum WTU of the instructor
+    * @param wtu the new max WTU 
+    */
    public void setWtu(int wtu) {
 	   this.workTimeUnits = wtu;
        this.wtu.set(wtu);
    }
    
+   /**
+    * Sets the user ID of the instructor
+    * @param user the new user ID
+    */
    public void setUser(String user) {
        this.user.set(user);
    }
    
+   /**
+    * Sets the instructor as active or not for the term.
+    * @param act if the instructor is active for the term.
+    */
    public void setAct(boolean act) {
 	   this.active = act;
        this.act.set(act);
    }
+   
    // empty constructor for making dummy objects
    public Instructor() {}
+   
    /**
     * Gets the instructor's course preferences. 
     * @return a List of CoursePreferences
