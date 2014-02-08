@@ -30,6 +30,9 @@ public class Location {
     *
     * @return Building name
     */
+    /*@
+      ensures \result.equals(this.building);
+    @*/ 
    public String getBuilding() {
       return this.building;
    }
@@ -39,6 +42,9 @@ public class Location {
     *
     * @param building New building name for this location.
     */
+    /*@
+      ensures this.building.equals(building);
+    @*/
    public void setBuilding(String building) {
       this.building = building;
    }
@@ -48,6 +54,9 @@ public class Location {
     *
     * @return Room number 
     */
+    /*@
+      ensures \result.equals(this.room);
+    @*/
    public String getRoom() {
       return this.room;
    }
@@ -57,6 +66,9 @@ public class Location {
     *
     * @return Building name
     */
+    /*@
+      ensures this.room.equals(room);
+    @*/
    public void setRoom(String room) {
       this.room = room;
    }
@@ -66,6 +78,9 @@ public class Location {
     *
     * @return The capacity of the location.
     */
+    /*@
+      ensures \result == this.capacity;
+    @*/
    public int getCapacity() {
       return this.capacity;
    }
@@ -75,6 +90,9 @@ public class Location {
     *
     * @param capacity The new capacity value for this location.
     */
+    /*@
+      ensures this.capacity == capacity;
+    @*/
    public void setCapacity(int capacity) {
       this.capacity = capacity;
    }
@@ -84,6 +102,9 @@ public class Location {
     *
     * @return array of equipment strings
     */
+    /*@
+      ensures \result.equals(this.equipment);
+    @*/
    public String[] getEquipment() {
       return this.equipment;
    }
@@ -93,6 +114,9 @@ public class Location {
     *
     * @param equipment The array of equipment names for this location.
     */
+    /*@
+      ensures this.equipment.equals(equipment);
+    @*/
    public void setEquipment(String[] equipment) {
       this.equipment = equipment;
    }

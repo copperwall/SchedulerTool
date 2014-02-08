@@ -19,54 +19,72 @@ import models.data.databases.Instructor;
 import models.data.databases.InstructorDB;
 
 /**
- * FXML Controller class
+ * FXML Controller class for the Add Instructor GUI.
  *
- * @author Calvin
+ * @author Calvin Elizan (celizan)
  */
 public class InstructorDBAddController implements Initializable {
 
-    
+    /** location of resources */
     @FXML
     private URL location;
 
+    /** active checkbox on GUI */
     @FXML
     private CheckBox active;
 
+    /** user ID text field on GUI */
     @FXML
     private TextField userID;
 
+    /** WTU text field on GUI */
     @FXML
     private TextField wtu;
     
-    private TableView<Instructor> table;
-    
+    /** current InstructorDB reference */
     private InstructorDB instructorDB;
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     }    
-
+    
+    /**
+     * Adds the instructor described by the user in the dialog.
+     * @param event the add button action
+     */
     @FXML
     private void submit(ActionEvent event) {
+    	/* create a new instructor to add to the database */
         instructorDB.addInstructor(new Instructor("Placeholder Name", userID.getText(), Integer.parseInt(wtu.getText()), active.isSelected()));
+        /* close the window */
         Button src = (Button)event.getSource();
         Stage srcStage = (Stage)src.getScene().getWindow();
         
         srcStage.close();
     }
 
+    /**
+     * Close the dialog.
+     * @param event the cancel button action
+     */
     @FXML
     private void cancel(ActionEvent event) {
+    	/* close the dialog */
         Button src = (Button)event.getSource();
         Stage srcStage = (Stage)src.getScene().getWindow();
         
         srcStage.close();
     }
     
+    /**
+     * Saves the necessary information for this dialog.
+     * @param table the TableView of instructors.
+     * @param instructorDB the instructor database
+     */
     public void passTable(TableView<Instructor> table, InstructorDB instructorDB) {
-    	this.table = table;
     	this.instructorDB = instructorDB;
     }
 }

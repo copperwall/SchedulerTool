@@ -22,22 +22,39 @@ import models.data.databases.Course;
 import models.data.databases.InstructorDB;
 
 /**
- * This class is a controller for the Course database page. Add/edit/delete course
- * are available.
+ * This class is a controller that ties the view and the model together for the Course database page. 
+ * The user can add, edit, or delete a course.
+ * It is an Observer of its model.
  * @author Katie Keim
  */
 public class CourseDBController implements Observer{
+	/**
+	 * The Course database model to tie in.
+	 */
     CourseDB model;
 
+    /**
+     * For the fxml.
+     */
     @FXML
     private ResourceBundle resources;
 
+    /**
+     * For the fxml.
+     */
     @FXML
     private URL location;
     
+    /**
+     * The table in the view to update with the model data.
+     */
     @FXML
     private TableView<Course> courseTable;
 
+    /**
+     * Adds a course.
+     * @param event the click button event
+     */
     @FXML
     void addCourse(ActionEvent event) {
         try {
@@ -58,6 +75,10 @@ public class CourseDBController implements Observer{
         }
     }
     
+   /**
+    * Deletes the selected course.
+    * @param event the button click event
+    */
    @FXML
    void deleteCourse(ActionEvent event) {
       Course selected = courseTable.getSelectionModel().getSelectedItem();
@@ -65,29 +86,38 @@ public class CourseDBController implements Observer{
       model.deleteCourse(selected);
    }
 
+   /**
+    * Edits the selected course.
+    * @param event the button click event.
+    */
     @FXML
     void editCourse(ActionEvent event) {
     	Course selected = courseTable.getSelectionModel().getSelectedItem();
     	
-    	try {
-            URL location = getClass().getResource("/views/data/databases/CourseDBEditView.fxml");
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            Parent root = (Parent) fxmlLoader.load(location.openStream());
-
-            CourseDBEditController controller = (CourseDBEditController)(fxmlLoader.getController());
-            controller.setModel(model);
-            controller.setCourse(selected);
-            
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException exc) {
-            exc.printStackTrace();
-        }
+    	if (selected != null) {
+	    	try {
+	            URL location = getClass().getResource("/views/data/databases/CourseDBEditView.fxml");
+	            FXMLLoader fxmlLoader = new FXMLLoader();
+	            Parent root = (Parent) fxmlLoader.load(location.openStream());
+	
+	            CourseDBEditController controller = (CourseDBEditController)(fxmlLoader.getController());
+	            controller.setModel(model);
+	            controller.setCourse(selected);
+	            
+	            Scene scene = new Scene(root);
+	            Stage stage = new Stage();
+	            
+	            stage.setScene(scene);
+	            stage.show();
+	        } catch (IOException exc) {
+	            exc.printStackTrace();
+	        }
+    	}
     }
 
+    /**
+     * Initializes the CourseDB page.
+     */
     @FXML
     void initialize() {
         System.out.println("CourseDBController initialized.");
@@ -96,7 +126,12 @@ public class CourseDBController implements Observer{
         model.addObserver(this);
     }
     
-   @Override
+    /**
+     * Updates the table with the changed model data.
+     * @param o the Observable model this call came from
+     * @param arg not used
+     */
+    @Override
 	public void update(Observable o, Object arg) {
 		ObservableList<Course> items = courseTable.getItems();
 		items.setAll(model.getAllCourses());

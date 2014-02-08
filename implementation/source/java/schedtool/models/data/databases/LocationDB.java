@@ -145,7 +145,12 @@ public class LocationDB {
     * @return Integer value of capacity
     */
     /*@
-      ensures  \result == Integer.getInteger(capacity).intValue();
+      public normal_behavior
+         ensures  \result == Integer.getInteger(capacity).intValue();
+      also
+       public exceptional_behavior
+         requires Integer.parseInt(this.capacity).getClass() == Integer.class;
+         signals (NumberFormatException) true; 
     @*/
    private int validateCapacity(String capacity) {
       int integer_capacity = -1;
