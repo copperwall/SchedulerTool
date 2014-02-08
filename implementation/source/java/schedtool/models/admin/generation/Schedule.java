@@ -11,7 +11,7 @@ public class Schedule {
    
    public Schedule()
    {
-	   
+	   sections = new Vector<Section>();
    }
 
    /**

@@ -19,6 +19,7 @@ import javafx.fxml.JavaFXBuilderFactory;
 /* Import Models */
 import models.data.databases.CourseDB;
 import models.data.databases.Course;
+import models.data.databases.InstructorDB;
 
 /**
  * This class is a controller for the Course database page. Add/edit/delete course
@@ -26,7 +27,7 @@ import models.data.databases.Course;
  * @author Katie Keim
  */
 public class CourseDBController implements Observer{
-    CourseDB model = new CourseDB();
+    CourseDB model;
 
     @FXML
     private ResourceBundle resources;
@@ -87,17 +88,16 @@ public class CourseDBController implements Observer{
     @FXML
     void initialize() {
         System.out.println("CourseDBController initialized.");
+        
+        model = new CourseDB();
+        model.addObserver(this);
     }
     
    @Override
 	public void update(Observable o, Object arg) {
 		ObservableList<Course> items = courseTable.getItems();
-		courseTable.setItems(null);
-		items.clear();
-		items.addAll(model.getAllCourses());
+		items.setAll(model.getAllCourses());
 		courseTable.setItems(items);
-		items.add(new Course());
-		items.remove(items.size() -1);
 		System.out.println("Course DB table updated");
 	}
 }

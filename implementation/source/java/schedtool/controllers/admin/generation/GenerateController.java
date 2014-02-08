@@ -1,5 +1,5 @@
 package controllers.admin.generation;
-
+import scheduler_tool.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -20,6 +20,9 @@ public class GenerateController {
 
     @FXML
     private AnchorPane AnchorPane;
+    
+    @FXML
+    private AnchorPane adminMainTable = AdminFrameController.getAdminMainTable();
     
     @FXML
     public static void generate() {

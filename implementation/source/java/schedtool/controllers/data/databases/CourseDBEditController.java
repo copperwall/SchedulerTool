@@ -64,7 +64,6 @@ public class CourseDBEditController {
     @FXML
     void onHasLab(ActionEvent event) {
       labLengthText.setEditable(hasLabBox.isSelected());
-      labProxCombo.setEditable(hasLabBox.isSelected());
     }
 
     @FXML
@@ -73,11 +72,9 @@ public class CourseDBEditController {
     	   
         if (prefixText.getText().length() <= 0) {
            invalidInput = true;
-           JOptionPane.showMessageDialog(null,"Invalid prefix entry.");
         }
         else if (courseNoText.getText().length() <= 0 || isNumeric(courseNoText.getText())) {
            invalidInput = true;
-           JOptionPane.showMessageDialog(null,"Invalid course number.");
         }
 
         if (!invalidInput) {
@@ -108,7 +105,6 @@ public class CourseDBEditController {
         //FILL IN DATA HERE!
         
        labLengthText.setEditable(hasLabBox.isSelected());
-       labProxCombo.setEditable(hasLabBox.isSelected());
        labProxCombo.getItems().addAll(Course.LabProximity.values());
     }
     

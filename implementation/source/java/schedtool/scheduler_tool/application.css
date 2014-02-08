@@ -1,3 +1,7 @@
 .prefRow { 
   -fx-accent: derive(-fx-control-inner-background, -40%);
 }
+
+.grayed-out {
+    background-color: gray;
+}
