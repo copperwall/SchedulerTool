@@ -96,6 +96,18 @@ public class CourseDBEditController {
     
     void setCourse(Course course) {
         this.course = course;
+        
+        courseNoText.setText("" + course.getCourseNum());
+        prefixText.setText(course.getPrefix());
+        titleText.setText(course.getTitle());
+        unitsText.setText("" + course.getUnits());
+        hasLabBox.setSelected(course.getHasLab());
+        
+        if (hasLabBox.isSelected())
+        {
+     	   labLengthText.setText("" + course.getLabLength());
+     	   labProxCombo.setValue(course.getLabProx());
+        }
     }
 
     @FXML
@@ -107,18 +119,6 @@ public class CourseDBEditController {
         assert prefixText != null : "fx:id=\"prefixText\" was not injected: check your FXML file 'CourseDBAdd.fxml'.";
         assert titleText != null : "fx:id=\"titleText\" was not injected: check your FXML file 'CourseDBAdd.fxml'.";
         assert unitsText != null : "fx:id=\"unitsText\" was not injected: check your FXML file 'CourseDBAdd.fxml'.";
-
-       courseNoText.setText("" + course.getCourseNum());
-       prefixText.setText(course.getPrefix());
-       titleText.setText(course.getTitle());
-       unitsText.setText("" + course.getUnits());
-       hasLabBox.setSelected(course.getHasLab());
-       
-       if (hasLabBox.isSelected())
-       {
-    	   labLengthText.setText("" + course.getLabLength());
-    	   labProxCombo.setValue(course.getLabProx());
-       }
 
        courseNoText.setEditable(false);
        prefixText.setEditable(false);
