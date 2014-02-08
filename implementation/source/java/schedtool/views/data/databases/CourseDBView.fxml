@@ -64,7 +64,7 @@
             </TableColumn>
             <TableColumn editable="false" minWidth="0.0" prefWidth="71.0" text="Course No.">
                <cellValueFactory>
-                <PropertyValueFactory property="courseNum">
+                <PropertyValueFactory property="courseNum" />
               </cellValueFactory>
             </TableColumn>
             <TableColumn editable="false" minWidth="0.0" text="Units">
