@@ -36,9 +36,9 @@ public class AvailableCoursesRow
         return courseNumber.get();
     }
     
-    public SimpleIntegerProperty courseNumberProperty()
+    public SimpleStringProperty courseNumberProperty()
     {
-        return courseNumber;
+        return new SimpleStringProperty("" + courseNumber.get());
     }
 
     public String getCourseTitle()
@@ -56,9 +56,9 @@ public class AvailableCoursesRow
         return sections.get();
     }
     
-    public SimpleIntegerProperty sectionsProperty()
+    public SimpleStringProperty sectionsProperty()
     {
-        return sections;
+        return new SimpleStringProperty("" + sections.get());
     }
     
     public void setSections(Integer sections)
