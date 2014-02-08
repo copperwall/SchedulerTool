@@ -11,7 +11,7 @@ public class DesktopMain extends Application {
     public void start(Stage primaryStage) {
         try {
             VBox root = (VBox) FXMLLoader.load(getClass().getResource("AdminFrameView.fxml"));
-            Scene scene = new Scene(root,750,540);
+            Scene scene = new Scene(root,800,600);
             scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
             primaryStage.setScene(scene);
             primaryStage.show();
