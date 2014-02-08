@@ -18,6 +18,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import models.admin.generation.AdminGeneralSettings;
 import models.admin.generation.Constraint;
+import models.admin.generation.TimePrefRow;
 import models.data.databases.Instructor;
 import models.data.databases.InstructorDB;
 
@@ -42,7 +43,7 @@ public class GeneralSettingsController implements Observer {
    private CheckBox thPattern;
 
    @FXML
-   private TableView<?> blockedOutTimesTable;
+   private TableView<TimePrefRow> blockedOutTimesTable;
 
    @FXML
    private Button addConstraintBtn;
@@ -69,6 +70,7 @@ public class GeneralSettingsController implements Observer {
       System.out.println("Initializing GenSettingsController");
       generalSettings = new AdminGeneralSettings();
       generalSettings.addObserver(this);
+      generalSettings.initTimePrefsTable();
   }
 
    @FXML
@@ -137,6 +139,14 @@ public class GeneralSettingsController implements Observer {
       items.clear();
       items.addAll(constraints);
       constraintTable.setItems(items);
+      
+      TimePrefRow[] blockTimes = generalSettings.getBlockedOutTimes();
+      ObservableList<TimePrefRow> blockTimeItems = blockedOutTimesTable.getItems();
+      blockedOutTimesTable.setItems(null);
+      blockTimeItems.clear();
+      blockTimeItems.addAll(blockTimes);
+      blockedOutTimesTable.setItems(blockTimeItems);
+      
       System.out.println("in GeneralSettings.update");
       System.out.print(generalSettings.toString());
    }
