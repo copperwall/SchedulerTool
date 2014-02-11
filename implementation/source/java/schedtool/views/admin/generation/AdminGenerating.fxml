@@ -28,9 +28,9 @@
             </Label>
             <HBox alignment="CENTER" prefHeight="216.0" prefWidth="650.0" VBox.vgrow="ALWAYS">
               <children>
-                <ImageView fitHeight="278.0" fitWidth="278.0" pickOnBounds="true" preserveRatio="true" smooth="true" visible="true" HBox.hgrow="ALWAYS">
+                <ImageView fitHeight="265.7147297219669" fitWidth="477.0" pickOnBounds="true" preserveRatio="true" smooth="true" visible="true" HBox.hgrow="ALWAYS">
                   <image>
-                    <Image url="@throbber.gif" />
+                    <Image url="@horse.gif" />
                   </image>
                   <HBox.margin>
                     <Insets fx:id="x1" />
