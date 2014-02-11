@@ -29,14 +29,10 @@ public class AdminGenerating {
 			testInstructor.lastName = "Fisher";
 			testInstructor.username = "gfisher";
 			Location testLocation = new Location(""+(int)(Math.random() * 100), ""+(int)(Math.random() * 200), (int)(Math.random() * 50), new String[1]);
-			Section testSection = new Section(testCourse, 0, testInstructor, testLocation, days[(int)Math.random()*days.length],(int) (Math.random() * 12), (int) (Math.random() * 12));
+			Section testSection = new Section(testCourse, 0, testInstructor, testLocation, days[(int)(Math.random()*days.length)],(int) (Math.random() * 12), (int) (Math.random() * 12));
 			generatedSchedule.setOneSection(testSection);
 		}
 		//add schedule(collection of sections) to main table... how?
-		for(Section sec : generatedSchedule.getAllSections())
-		{
-			System.out.println(sec.getCourse().coursePrefix +" "+ sec.getCourse().courseNo +" "+ sec.getInstructor().firstName +sec.getInstructor().lastName +" "+ sec.getLocation().getBuilding() + " "+ sec.getLocation().getRoom() +" "+sec.getLocation().getCapacity());
-		}
 		System.out.println("AdminGenerating.GENERATING!!!");
 	}
 	

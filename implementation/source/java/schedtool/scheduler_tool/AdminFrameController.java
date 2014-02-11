@@ -55,17 +55,13 @@ public class AdminFrameController {
     {
     	TableView<MainTableRow> tableView = null;
     	List<Node> children = adminMainTable.getChildren();
-    	for(Node node : children)
-    		System.out.println(node);
+
     	BorderPane bp = (BorderPane) children.get(0);
     	children = bp.getChildren();
-    	for(Node node : children)
-    		System.out.println(node);
     	if(children.get(1) instanceof TableView)
     	{
     		tableView = (TableView<MainTableRow>) children.get(1);
     	}
-    	System.out.println("HERE!!: "+ tableView);
     		return tableView;
     }
     
