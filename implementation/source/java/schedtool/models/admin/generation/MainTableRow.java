@@ -44,7 +44,7 @@ public class MainTableRow
         }
         this.units = new SimpleIntegerProperty(course.getUnits());
         this.workTimeUnits = new SimpleIntegerProperty(5);
-        this.plannedEnrollment = new SimpleIntegerProperty(0);
+        this.plannedEnrollment = new SimpleIntegerProperty(section.getEnrolled());
     }
     
     public String getPrefix()

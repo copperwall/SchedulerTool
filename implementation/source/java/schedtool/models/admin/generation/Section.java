@@ -16,6 +16,7 @@ public class Section {
    private String days;
    private int startTime;
    private int endTime;
+   private int enrolled;
    
    public Section(Course course,int sectionNum, Instructor instructor, Location location, String days, int startTime, int endTime)
    {
@@ -100,7 +101,18 @@ public class Section {
 		this.endTime = endTime;
 	}
 	
+	public int getEnrolled() {
+		return enrolled;
+	}
+	
+	public void setEnrolled(int enrolled) {
+		this.enrolled = enrolled;
+	}
+	
 	public String getTime() {
-		return startTime + " - " + endTime;
+		String time = "AM";
+		if(Math.random() < 0.5)
+			time = "PM";
+		return startTime + "-" + endTime + time;
 	}   
 }   
