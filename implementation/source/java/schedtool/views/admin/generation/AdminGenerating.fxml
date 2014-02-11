@@ -28,12 +28,15 @@
             </Label>
             <HBox alignment="CENTER" prefHeight="216.0" prefWidth="650.0" VBox.vgrow="ALWAYS">
               <children>
-                <ImageView fitHeight="265.7147297219669" fitWidth="477.0" pickOnBounds="true" preserveRatio="true" smooth="true" visible="true" HBox.hgrow="ALWAYS">
+                <ImageView fitHeight="265.7147297219669" fitWidth="477.0" pickOnBounds="true" preserveRatio="true" rotate="180.0" smooth="true" visible="true" HBox.hgrow="ALWAYS">
                   <image>
                     <Image url="@horse.gif" />
                   </image>
+                  <rotationAxis>
+                    <Point3D y="1.0" />
+                  </rotationAxis>
                   <HBox.margin>
-                    <Insets fx:id="x1" />
+                    <Insets right="30.0" />
                   </HBox.margin>
                 </ImageView>
               </children>
