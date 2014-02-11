@@ -19,19 +19,66 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
           </columnResizePolicy>
           <columns>
-            <TableColumn maxWidth="5000.0" minWidth="0.0" prefWidth="75.0" text="Prefix" />
-            <TableColumn prefWidth="80.0" text="Course No." >
+            <TableColumn maxWidth="5000.0" minWidth="0.0" prefWidth="75.0" text="Prefix" >
+              <cellValueFactory>
+                <PropertyValueFactory property="prefix" />
+              </cellValueFactory>
             </TableColumn>
-            <TableColumn prefWidth="85.0" text="Section No." />
-            <TableColumn prefWidth="150.0" text="Instructor" />
-            <TableColumn prefWidth="65.0" text="Building" />
-            <TableColumn prefWidth="50.0" text="Room" />
-            <TableColumn prefWidth="50.0" text="Days" />
-            <TableColumn prefWidth="55.0" text="Time" />
-            <TableColumn minWidth="50.0" prefWidth="75.0" text="Type" />
-            <TableColumn prefWidth="45.0" text="Units" />
-            <TableColumn prefWidth="75.0" text="WTU" />
-            <TableColumn prefWidth="60.0" text="Planned Enrollment" />
+            <TableColumn prefWidth="80.0" text="Course No." >
+              <cellValueFactory>
+                <PropertyValueFactory property="courseNumber" />
+              </cellValueFactory>
+            </TableColumn>
+            <TableColumn prefWidth="85.0" text="Section No." >
+              <cellValueFactory>
+                <PropertyValueFactory property="sectionNumber" />
+              </cellValueFactory>
+            </TableColumn>
+            <TableColumn prefWidth="150.0" text="Instructor" >
+              <cellValueFactory>
+                <PropertyValueFactory property="intructorName" />
+              </cellValueFactory>
+            </TableColumn>
+            <TableColumn prefWidth="65.0" text="Building" >
+              <cellValueFactory>
+                <PropertyValueFactory property="buildingNumber" />
+              </cellValueFactory>
+            </TableColumn>
+            <TableColumn prefWidth="50.0" text="Room" >
+              <cellValueFactory>
+                <PropertyValueFactory property="roomNumber" />
+              </cellValueFactory>
+            </TableColumn>
+            <TableColumn prefWidth="50.0" text="Days" >
+              <cellValueFactory>
+                <PropertyValueFactory property="days" />
+              </cellValueFactory>
+            </TableColumn>
+            <TableColumn prefWidth="55.0" text="Time" >
+              <cellValueFactory>
+                <PropertyValueFactory property="time" />
+              </cellValueFactory>
+            </TableColumn>
+            <TableColumn minWidth="50.0" prefWidth="75.0" text="Type" >
+              <cellValueFactory>
+                <PropertyValueFactory property="type" />
+              </cellValueFactory>
+            </TableColumn>
+            <TableColumn prefWidth="45.0" text="Units" >
+              <cellValueFactory>
+                <PropertyValueFactory property="units" />
+              </cellValueFactory>
+            </TableColumn>
+            <TableColumn prefWidth="75.0" text="WTU" >
+              <cellValueFactory>
+                <PropertyValueFactory property="workTimeUnits" />
+              </cellValueFactory>
+            </TableColumn>
+            <TableColumn prefWidth="60.0" text="Planned Enrollment" >
+              <cellValueFactory>
+                <PropertyValueFactory property="plannedEnrollment" />
+              </cellValueFactory>
+            </TableColumn>
           </columns>
         </TableView>
       </center>

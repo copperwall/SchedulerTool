@@ -14,14 +14,18 @@ public class Section {
    private Location location;
    private int linkedSectionNum;
    private String days;
+   private int startTime;
+   private int endTime;
    
-   public Section(Course course,int sectionNum, Instructor instructor, Location location, String days)
+   public Section(Course course,int sectionNum, Instructor instructor, Location location, String days, int startTime, int endTime)
    {
 	   this.course = course;
 	   this.sectionNum = sectionNum;
 	   this.instructor = instructor;
 	   this.location = location;
 	   this.days = days;
+	   this.startTime = startTime;
+	   this.endTime = endTime;
    }
    
    public Course getCourse()
@@ -79,5 +83,24 @@ public class Section {
 	public void setDays(String days) {
 		this.days = days;
 	}
-   
+	
+	public int getStartTime() {
+		return startTime;
+	}
+	
+	public void setStartTime(int startTime) {
+		this.startTime = startTime;
+	}
+	
+	public int getEndTime() {
+		return endTime;
+	}
+	
+	public void setEndTime(int endTime) {
+		this.endTime = endTime;
+	}
+	
+	public String getTime() {
+		return startTime + " - " + endTime;
+	}   
 }   
