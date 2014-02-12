@@ -114,24 +114,6 @@ public class AdminGeneralSettings extends Observable {
    }
    
    /**
-    * Puts the times into the time preferences table (from 7:00AM to 10:00PM) in the first column.
-    */
-   public void initTimePrefsTable() {
-      for (int index = 0; index < 16; index++) {
-         int rawHour = index + 7;
-         int hour = rawHour % 13; 
-         if (rawHour >= 13) {
-            hour++;
-         }
-         prefRows[index] = new TimePrefRow(hour + ":00" + (rawHour >= 12 ? "PM" : "AM"), new Day());
-      }
-      
-      setChanged();
-      notifyObservers(prefRows);
-      
-   }
-   
-   /**
     * This method is for the controller
     * @return the blocked out times (this is for the controller) for one row (Mon, Tues, ..., Fri).
     */
