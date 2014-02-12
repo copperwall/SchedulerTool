@@ -30,7 +30,7 @@
               <children>
                 <ImageView fitHeight="265.7147297219669" fitWidth="477.0" pickOnBounds="true" preserveRatio="true" rotate="180.0" smooth="true" visible="true" HBox.hgrow="ALWAYS">
                   <image>
-                    <Image url="@horse.gif" />
+                    <Image url="@horse2.gif" />
                   </image>
                   <rotationAxis>
                     <Point3D y="1.0" />
