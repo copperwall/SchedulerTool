@@ -93,6 +93,8 @@ public class GeneralSettingsController implements Observer {
                generalSettings.setStartTime(newValue.intValue());
          }
       });
+      
+      endTimeSlider.setValue(10);
    }
 
    /**
