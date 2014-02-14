@@ -1,5 +1,10 @@
 package models.data.databases;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Collection;
 import java.util.Observable;
 import java.util.Vector;
@@ -44,6 +49,15 @@ public class InstructorDB extends Observable{
     @*/
    public void addInstructor(Instructor instructor) {
 	   instructors.add(instructor);
+	   
+	   try {
+		   Connection con = DriverManager.getConnection("URL", "USERNAME", "PASSWORD");
+		   Statement stmt = con.createStatement();
+		   String query = "SELECT * FROM Instructors";
+		   ResultSet rs = stmt.executeQuery(query);
+	   } catch (SQLException exc) {
+		   System.out.println("Could not connect to database. " + exc.getMessage());
+	   }
 	   setChanged();
 	   notifyObservers();
    }
