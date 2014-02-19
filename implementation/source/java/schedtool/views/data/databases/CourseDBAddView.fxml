@@ -9,11 +9,24 @@
 
 <GridPane alignment="CENTER_RIGHT" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="controllers.data.databases.CourseDBAddController">
   <children>
+    <Label text="Add Course">
+      <font>
+        <Font size="16.0" />
+      </font>
+      <GridPane.margin>
+        <Insets left="10.0" />
+      </GridPane.margin>
+    </Label>
     <HBox alignment="CENTER_RIGHT" fillHeight="false" prefHeight="100.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
       <children>
         <Label text="Title" />
       </children>
     </HBox>
+    <TextField fx:id="titleText" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <GridPane.margin>
+        <Insets left="5.0" fx:id="x1" />
+      </GridPane.margin>
+    </TextField>
     <HBox alignment="CENTER_RIGHT" fillHeight="false" prefHeight="100.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2">
       <children>
         <Label text="Prefix" />
@@ -27,24 +40,27 @@
         <Insets left="5.0" fx:id="x1" />
       </GridPane.margin>
     </TextField>
+    <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="3">
+      <children>
+        <Label alignment="CENTER_RIGHT" text="Course No." />
+      </children>
+    </HBox>
+    <TextField fx:id="courseNoText" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+      <GridPane.margin>
+        <Insets left="5.0" fx:id="x1" />
+      </GridPane.margin>
+    </TextField>
+    <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="4">
+      <children>
+        <Label text="Units" />
+      </children>
+    </HBox>
+    <TextField fx:id="unitsText" prefWidth="200.0" GridPane.columnIndex="1" GridPane.margin="$x1" GridPane.rowIndex="4" />
     <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="5">
       <children>
         <Label alignment="CENTER_RIGHT" text="Has Lab?" />
       </children>
     </HBox>
-    <TextField fx:id="titleText" GridPane.columnIndex="1" GridPane.rowIndex="1">
-      <GridPane.margin>
-        <Insets left="5.0" fx:id="x1" />
-      </GridPane.margin>
-    </TextField>
-    <Label text="Add Course">
-      <font>
-        <Font size="16.0" />
-      </font>
-      <GridPane.margin>
-        <Insets left="10.0" />
-      </GridPane.margin>
-    </Label>
     <CheckBox fx:id="hasLabBox" mnemonicParsing="false" onAction="#onHasLab" GridPane.columnIndex="1" GridPane.rowIndex="5">
       <GridPane.margin>
         <Insets left="5.0" fx:id="x1" />
@@ -63,33 +79,17 @@
         <Insets right="10.0" />
       </GridPane.margin>
     </HBox>
-    <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="3">
-      <children>
-        <Label alignment="CENTER_RIGHT" text="Course No." />
-      </children>
-    </HBox>
-    <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="4">
-      <children>
-        <Label text="Units" />
-      </children>
-    </HBox>
     <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="6">
       <children>
         <Label text="Lab Length (hrs)" />
       </children>
     </HBox>
+    <TextField fx:id="labLengthText" prefWidth="200.0" GridPane.columnIndex="1" GridPane.margin="$x1" GridPane.rowIndex="6" />
     <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="7">
       <children>
         <Label text="Lab Proximity" />
       </children>
     </HBox>
-    <TextField fx:id="courseNoText" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
-      <GridPane.margin>
-        <Insets left="5.0" fx:id="x1" />
-      </GridPane.margin>
-    </TextField>
-    <TextField fx:id="unitsText" prefWidth="200.0" GridPane.columnIndex="1" GridPane.margin="$x1" GridPane.rowIndex="4" />
-    <TextField fx:id="labLengthText" prefWidth="200.0" GridPane.columnIndex="1" GridPane.margin="$x1" GridPane.rowIndex="6" />
     <ComboBox fx:id="labProxCombo" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
       <items>
         <FXCollections fx:factory="observableArrayList">

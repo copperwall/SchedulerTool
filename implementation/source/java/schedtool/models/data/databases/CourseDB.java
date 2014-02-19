@@ -3,15 +3,17 @@ package models.data.databases;
 import java.util.*;
 
 /**
- * Contains all Courses. Add/edit/delete course
- * are available.
+ * A database class which maintains a list of all Courses. 
+ * The user can add, edit, or delete a course.
+ * It is Observable for a data table.
  * @author Katie Keim
  */
 public class CourseDB extends Observable{
+   /** The list of courses to maintain. */
    public Vector<Course> courses;
    
    /**
-     * CourseDB constructor
+     * CourseDB constructor.
      */
    public CourseDB() {
       courses = new Vector<Course>();
@@ -21,7 +23,10 @@ public class CourseDB extends Observable{
    }
    
    /**
-    * Returns the course whose course number matches courseNum.
+    * Returns the course whose course number matches the courseNum and dept prefix.
+    * @param courseNum the number of the course to match
+    * @param dept the department prefix of the course to match
+    * @return the course matching the dept prefix and course number
     */
    /*@
      requires courseNum > 0 && dept != null && dept.length() > 0;
@@ -39,8 +44,16 @@ public class CourseDB extends Observable{
       
       return null;
    }
+   
    /**
     * Adds course to the course database.
+    * @param prefix the course's department prefix
+    * @param courseNum the course's id number
+    * @param hasLab whether the course has a lab
+    * @param units the number of units of the course
+    * @param title the title of the course
+    * @param labLength the length of the lab
+    * @param labProx the proximity of lab to lecture
     */
    /*@
      requires course != null;
@@ -55,9 +68,17 @@ public class CourseDB extends Observable{
       setChanged();
 	  notifyObservers();
    }
+
    /**
     * Edits the course whose course number matches course's course number
     * and changes the other properties to match.
+    * @param prefix the course's department prefix to match
+    * @param courseNum the course's id number to match
+    * @param hasLab whether the course has a lab
+    * @param units the number of units of the course
+    * @param title the title of the course
+    * @param labLength the length of the lab
+    * @param labProx the proximity of lab to lecture
     */
    /*@
      requires course != null;
@@ -85,7 +106,8 @@ public class CourseDB extends Observable{
 	  notifyObservers();
    }
    /**
-    * Deletes the course whose course num matches courseNum.
+    * Deletes the given course.
+    * @param course the course to delete
     */
    /*@
      requires (* none yet *);
@@ -102,10 +124,22 @@ public class CourseDB extends Observable{
 	  notifyObservers();
    }
    
+   /**
+    * Gets the list of courses for the data table.
+    * @return the list of courses for the data table.
+    */
    public Vector<Course> getAllCourses() {
       return courses;
    }
 
+   /**
+    * Adds a course without a lab.
+    * @param prefix the course's department prefix to match
+    * @param courseNum the course's id number to match
+    * @param hasLab whether the course has a lab
+    * @param units the number of units of the course
+    * @param title the title of the course
+    */
 	public void addCourse(String prefix, int courseNum, boolean hasLab, int units, String title) {
 		courses.add(new Course(prefix, courseNum, hasLab, units, title));
 	      
@@ -113,6 +147,14 @@ public class CourseDB extends Observable{
 	   notifyObservers();
 	}
 	
+	/**
+	 * Edits a course without a lab.
+	 * @param prefix the course's department prefix to match
+     * @param courseNum the course's id number to match
+     * @param hasLab whether the course has a lab
+     * @param units the number of units of the course
+     * @param title the title of the course
+	 */
 	public void editCourse(String prefix, int courseNum, boolean hasLab, int units, String title) {
 		 Course curCourse = null;
 	      

@@ -5,12 +5,15 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import models.admin.generation.MainTableRow;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
@@ -47,9 +50,19 @@ public class AdminFrameController {
         children.add((Node) adminAnalytics);
     }
     
-    public static AnchorPane getAdminMainTable()
+    @SuppressWarnings("unchecked")
+	public static TableView<MainTableRow> getAdminMainTable()
     {
-    	return adminMainTable;
+    	TableView<MainTableRow> tableView = null;
+    	List<Node> children = adminMainTable.getChildren();
+
+    	BorderPane bp = (BorderPane) children.get(0);
+    	children = bp.getChildren();
+    	if(children.get(1) instanceof TableView)
+    	{
+    		tableView = (TableView<MainTableRow>) children.get(1);
+    	}
+    		return tableView;
     }
     
 

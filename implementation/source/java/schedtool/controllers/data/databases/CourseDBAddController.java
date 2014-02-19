@@ -25,36 +25,70 @@ import models.data.databases.Course;
  */
 public class CourseDBAddController {
 
+	/**
+	 * the Course database model for editing
+	 */
    private CourseDB model;
 
+   /**
+    * For the fxml.
+    */
     @FXML
     private ResourceBundle resources;
 
+    /**
+     * For the fxml.
+     */
     @FXML
     private URL location;
 
+    /**
+     * The course number text field.
+     */
     @FXML
     private TextField courseNoText;
 
+    /**
+     * The has lab check box.
+     */
     @FXML
     private CheckBox hasLabBox;
 
+    /**
+     * The lab length text field.
+     */
     @FXML
     private TextField labLengthText;
 
+    /**
+     * The lab proximity combo box.
+     */
     @FXML
     private ComboBox<Course.LabProximity> labProxCombo;
 
+    /**
+     * The prefix text field.
+     */
     @FXML
     private TextField prefixText;
 
+    /**
+     * The title text field.
+     */
     @FXML
     private TextField titleText;
 
+    /**
+     * The number of units text field.
+     */
     @FXML
     private TextField unitsText;
 
 
+    /**
+     * Closes the dialog without submitting.
+     * @param event the button click event
+     */
     @FXML
     void cancel(ActionEvent event) {
       Button src = (Button)event.getSource();
@@ -63,11 +97,19 @@ public class CourseDBAddController {
       srcStage.close();
     }
 
+    /**
+     * A change listener for the has lab check box.
+     * @param event the button click listener
+     */
     @FXML
     void onHasLab(ActionEvent event) {
       labLengthText.setEditable(hasLabBox.isSelected());
     }
 
+    /**
+     * Submits a course to add to the model and closes the dialog.
+     * @param event the button click event
+     */
    @FXML
    void submit(ActionEvent event) {
       boolean invalidInput = false;
@@ -75,7 +117,7 @@ public class CourseDBAddController {
       if (prefixText.getText().length() <= 0) {
          invalidInput = true;  
       }
-      else if (courseNoText.getText().length() <= 0 || isNumeric(courseNoText.getText())) {
+      else if (courseNoText.getText().length() <= 0) {
          invalidInput = true;
       }
 
@@ -90,10 +132,17 @@ public class CourseDBAddController {
       }
    }
     
+   /**
+    * Sets the model for this dialog
+    * @param mod the model for this dialog
+    */
     void setModel(CourseDB mod) {
       model = mod;
     }
 
+    /** 
+     * Initializes a CourseDB Add page.
+     */
     @FXML
     void initialize() {
         assert courseNoText != null : "fx:id=\"courseNoText\" was not injected: check your FXML file 'CourseDBAddView.fxml'.";
@@ -105,12 +154,7 @@ public class CourseDBAddController {
         assert unitsText != null : "fx:id=\"unitsText\" was not injected: check your FXML file 'CourseDBAddView.fxml'.";
 
        labLengthText.setEditable(hasLabBox.isSelected());
+       labProxCombo.getItems().clear();
        labProxCombo.getItems().addAll(Course.LabProximity.values());
     }
-    
-    /* From http://stackoverflow.com/questions/14206768/how-to-check-if-a-string-is-numeric */
-    public boolean isNumeric(String s) {  
-        return s.matches("[-+]?\\d*\\.?\\d+");  
-    }
-
 }

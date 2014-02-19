@@ -1,15 +1,31 @@
 package models.admin.generation;
 
+import java.util.Vector;
+import java.util.Observable;
+
 /**
  * Saves and loads data in Admin Available Courses
  * 
  * @author Alex Kavanaugh
  *
  */
-public class AdminAvailableCourses {
+public class AdminAvailableCourses extends Observable {
     
-    public void saveSections() {
-        System.out.println("In AdminAvailableCourses:saveSections()");
+    private Vector<AvailableCoursesRow> availableCourses;
+    
+    public AdminAvailableCourses() {
+        availableCourses = new Vector<AvailableCoursesRow>();
+        
+        AvailableCoursesRow row = new AvailableCoursesRow("CPE", 101, "Introduction to Computing I", 0, 8);
+        availableCourses.add(row);
+        row = new AvailableCoursesRow("CPE", 102, "Introduction to Computing II", 0, 4);
+        availableCourses.add(row);
+        row = new AvailableCoursesRow("CPE", 103, "Introduction to Computing III", 0, 6);
+        availableCourses.add(row);
+    }
+    
+    public Vector<AvailableCoursesRow> getAvailableCourses() {
+        return this.availableCourses;
     }
     
     public void loadFromTerm(String term) {
@@ -17,6 +33,11 @@ public class AdminAvailableCourses {
     }
     
     public void loadSuggested() {
-        System.out.println("In AdminAvailableCourses:loadSuggested()");
+        for (AvailableCoursesRow row : this.availableCourses)
+        {
+            row.loadSuggested();
+        }
+        setChanged();
+        notifyObservers();
     }
 }

@@ -1,16 +1,26 @@
 package models.data.databases;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Collection;
 import java.util.Observable;
 import java.util.Vector;
 
 /**
  * Holds the instructor information for all instructors
+ * @author Calvin Elizan (celizan)
  */
 
 public class InstructorDB extends Observable{
+   /** vector containing all of the instructors **/
    public Vector<Instructor> instructors;
    
+   /**
+    * Instantiates an InstructorDB
+    */
    public InstructorDB() {
 	   instructors = new Vector<Instructor>();
    }
@@ -39,6 +49,15 @@ public class InstructorDB extends Observable{
     @*/
    public void addInstructor(Instructor instructor) {
 	   instructors.add(instructor);
+	   
+	   try {
+		   Connection con = DriverManager.getConnection("URL", "USERNAME", "PASSWORD");
+		   Statement stmt = con.createStatement();
+		   String query = "SELECT * FROM Instructors";
+		   ResultSet rs = stmt.executeQuery(query);
+	   } catch (SQLException exc) {
+		   System.out.println("Could not connect to database. " + exc.getMessage());
+	   }
 	   setChanged();
 	   notifyObservers();
    }
@@ -58,13 +77,17 @@ public class InstructorDB extends Observable{
     @*/
    public void editInstructor(Instructor instructor) {
 	   System.out.println("InstructorDB.editInstructor");
+	   // reference to the instructor that needs to be edited
 	   Instructor instructorToEdit = null;
+	   
+	   // find instructor that needs to be edited
 	   for(Instructor item : instructors) {
 		   if (item.getUser().compareTo(instructor.getUser()) == 0) {
 			   instructorToEdit = item;
 			   break;
 		   }
 	   }
+	   // edit the instructor or add it in if it isn't in the list
 	   if (instructorToEdit != null) {
 		   instructorToEdit.setWtu(instructor.getWtu());
 		   instructorToEdit.setAct(instructor.getAct());
@@ -84,26 +107,35 @@ public class InstructorDB extends Observable{
       ensures !instructors.contains(instructor);
     @*/
    public void deleteInstructor(Instructor instructor) {
+	   /* reference to the instructor that matches the given instructor */
 	   Instructor instructorToDelete = null;
+	   
+	   // finds the instructor whose name matches the given one
 	   for(Instructor item : instructors) {
 		   if (item.getUser().compareTo(instructor.getUser()) == 0) {
 			   instructorToDelete = item;
 			   break;
 		   }
 	   }
+	   // if the instructor was found, update
 	   if (instructorToDelete != null) {
 		   instructors.remove(instructorToDelete);
 		   setChanged();
 		   notifyObservers();
-	   } else {
-		   this.addInstructor(instructor);
 	   }
    }
    
+   /**
+    * Saves the changes made to the DB. May be removed in later versions
+    */
    public void save() {
        System.out.println("InstructorDB.save");
    }
    
+   /**
+    * Gets a vector of instructors that represents all of the ones in the database
+    * @return a Vector with all of the instructors
+    */
    public Vector<Instructor> getAllInstructors() {
 	   return instructors;
    }

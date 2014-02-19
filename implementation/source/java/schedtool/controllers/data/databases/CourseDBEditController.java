@@ -17,42 +17,79 @@ import models.data.databases.CourseDB;
 import models.data.databases.Course;
 
 /**
- * This class is a controller for the Edit Course to database page. Edit course
- * is available.
+ * This class is a controller for the Edit Course dialog from the Course database page.
  * @author Katie Keim
  */
 public class CourseDBEditController {
 
+	/**
+	 * the Course database model for editing
+	 */
    private CourseDB model;
+   
+   /**
+    * the course to edit
+    */
+   private Course course;
 
+   /**
+    * For the fxml.
+    */
     @FXML
     private ResourceBundle resources;
 
+    /**
+     * For the fxml.
+     */
     @FXML
     private URL location;
 
+    /**
+     * The course number text field.
+     */
     @FXML
     private TextField courseNoText;
 
+    /**
+     * The has lab check box.
+     */
     @FXML
     private CheckBox hasLabBox;
 
+    /**
+     * The lab length text field.
+     */
     @FXML
     private TextField labLengthText;
 
+    /**
+     * The lab proximity combo box.
+     */
     @FXML
     private ComboBox<Course.LabProximity> labProxCombo;
 
+    /**
+     * The prefix text field.
+     */
     @FXML
     private TextField prefixText;
 
+    /**
+     * The title text field.
+     */
     @FXML
     private TextField titleText;
 
+    /**
+     * The number of units text field.
+     */
     @FXML
     private TextField unitsText;
 
-
+    /**
+     * Closes the dialog without submitting.
+     * @param event the button click event
+     */
     @FXML
     void cancel(ActionEvent event) {
       Button src = (Button)event.getSource();
@@ -61,11 +98,19 @@ public class CourseDBEditController {
       srcStage.close();
     }
 
+    /**
+     * A listener function for when the has lab check box is changed.
+     * @param event the button click event
+     */
     @FXML
     void onHasLab(ActionEvent event) {
       labLengthText.setEditable(hasLabBox.isSelected());
     }
 
+    /**
+     * Submits the edit to the model and closes the dialog.
+     * @param event the button click event
+     */
     @FXML
     void submit(ActionEvent event) {
     	boolean invalidInput = false;
@@ -73,12 +118,13 @@ public class CourseDBEditController {
         if (prefixText.getText().length() <= 0) {
            invalidInput = true;
         }
-        else if (courseNoText.getText().length() <= 0 || isNumeric(courseNoText.getText())) {
+        else if (courseNoText.getText().length() <= 0) {
            invalidInput = true;
         }
 
         if (!invalidInput) {
            if (hasLabBox.isSelected()) {
+        	  System.out.println("EDITTING A COURSE");
               model.editCourse(prefixText.getText(), Integer.valueOf(courseNoText.getText()), hasLabBox.isSelected(), Integer.valueOf(unitsText.getText()), titleText.getText(), Integer.valueOf(labLengthText.getText()), labProxCombo.getValue());
            }
            else {
@@ -88,10 +134,39 @@ public class CourseDBEditController {
         }
     }
     
+    /**
+     * Sets the model.
+     * @param mod the model to set
+     */
     void setModel(CourseDB mod) {
       model = mod;
     }
+    
+    /**
+     * Sets the course the dialog is editing
+     * @param course the course the dialog is editing
+     */
+    void setCourse(Course course) {
+        this.course = course;
+        
+        courseNoText.setText("" + course.getCourseNum());
+        prefixText.setText(course.getPrefix());
+        titleText.setText(course.getTitle());
+        unitsText.setText("" + course.getUnits());
+        hasLabBox.setSelected(course.getHasLab());
+        
+        if (hasLabBox.isSelected())
+        {
+     	   labLengthText.setText("" + course.getLabLength());
+     	   labProxCombo.setValue(course.getLabProx());
+     	   
+     	   labLengthText.setEditable(hasLabBox.isSelected());
+        }
+    }
 
+    /**
+     * Initializes this CourseDB Edit page.
+     */
     @FXML
     void initialize() {
         assert courseNoText != null : "fx:id=\"courseNoText\" was not injected: check your FXML file 'CourseDBAdd.fxml'.";
@@ -102,14 +177,10 @@ public class CourseDBEditController {
         assert titleText != null : "fx:id=\"titleText\" was not injected: check your FXML file 'CourseDBAdd.fxml'.";
         assert unitsText != null : "fx:id=\"unitsText\" was not injected: check your FXML file 'CourseDBAdd.fxml'.";
 
-        //FILL IN DATA HERE!
-        
+       courseNoText.setEditable(false);
+       prefixText.setEditable(false);
        labLengthText.setEditable(hasLabBox.isSelected());
+       labProxCombo.getItems().clear();
        labProxCombo.getItems().addAll(Course.LabProximity.values());
-    }
-    
-    /* From http://stackoverflow.com/questions/14206768/how-to-check-if-a-string-is-numeric */
-    public boolean isNumeric(String s) {  
-        return s.matches("[-+]?\\d*\\.?\\d+");  
     }
 }

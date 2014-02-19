@@ -1,17 +1,24 @@
 package models.admin.generation;
 import models.data.databases.*;
+
 import java.util.*;
 
 /**
  * Models a schedule as a collection of sections.
  *
  */
-public class Schedule {
+public class Schedule extends Observable{
    public Vector<Section> sections;
+   public Vector<MainTableRow> sec;
    
    public Schedule()
    {
 	   sections = new Vector<Section>();
+	   sec = new Vector<MainTableRow>();
+   }
+   
+   public Vector<MainTableRow> getSections() {
+       return this.sec;
    }
 
    /**
@@ -26,7 +33,10 @@ public class Schedule {
     @*/
    public void setAllSections(Vector<Section> newSections)
    {
-	   sections.addAll(newSections);
+	   for(Section section : newSections)
+	   {
+		   setOneSection(section);
+	   }
    }
    /**
     * This returns all of the sections in the schedule.
@@ -60,6 +70,9 @@ public class Schedule {
     @*/
    public void setOneSection(Section value) {
 	   sections.add(value);
+	   sec.add(new MainTableRow(value));
+	   setChanged();
+       notifyObservers();
    }
    
    /**
@@ -76,6 +89,14 @@ public class Schedule {
        \result.course.equals(course)));
     @*/
    public  Section getOneSection(int sectionNum, Course course) {
-	   return sections.get(0);
+	   Section returnSection = null;
+	   for(Section section : sections)
+	   {
+		   if(section.getCourse().equals(course) && section.getSectionNum() == sectionNum)
+		   {
+			   returnSection = section;
+		   }
+	   }
+	   return returnSection;
    }
 }

@@ -93,7 +93,6 @@
           </BorderPane.margin>
           <items>
 		    <FXCollections fx:factory="observableArrayList">
-		    	<models.data.databases.Course prefix="CPE" courseNum="308" title="Software Engineering 1" units="4" hasLab="true" labLength="1" labProx="DIRECTLY_AFTER"/>
 		    </FXCollections>
           </items>
         </TableView>
