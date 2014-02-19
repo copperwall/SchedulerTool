@@ -28,6 +28,7 @@ import javafx.scene.layout.GridPane;
 import javafx.util.Callback;
 import models.admin.generation.AdminGeneralSettings;
 import models.admin.generation.Constraint;
+import models.admin.generation.Constraint.InvalidConstraintText;
 import models.admin.generation.TimePrefRow;
 
 public class GeneralSettingsController implements Observer {
@@ -129,7 +130,12 @@ public class GeneralSettingsController implements Observer {
     */
    @FXML
    void onAddConstraintBtnEvent(ActionEvent event) {
-      generalSettings.addConstraint(constraintText.getText());
+      try {
+         generalSettings.addConstraint(constraintText.getText());
+      }
+      catch (InvalidConstraintText e) {
+         e.printStackTrace();
+      }
    }
 
    /**
