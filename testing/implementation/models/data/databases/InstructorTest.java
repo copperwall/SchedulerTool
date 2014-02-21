@@ -65,7 +65,7 @@ public class InstructorTest {
 	}
 	
 	/**
-	 * Unit test getting an instructor's user name.
+	 * Unit test getting an instructor's work time units.
 	 * 																			<pre>
 	 *  Test
      *  Case    Input                    Output             Remarks
@@ -80,6 +80,30 @@ public class InstructorTest {
 		Instructor test = new Instructor("Test Name", "tname", 10, false);
 		
 		assertTrue(test.getWtu() == 10);
+	}
+	
+	/**
+	 * Unit test for checking if an instructor is active.
+	 * 																			<pre>
+	 *  Test
+     *  Case    Input                    Output             Remarks
+     * ====================================================================
+     *   1      {"Test Name", "tname"    false              Inactive instructor
+     *           10, false}
+     *           
+     *   2      {"Eikichi Onizuka",
+     *           "eonizuka", 5, true}    true               Active instructor
+     *                                                                         </pre>
+	 */
+	@Test
+	public void testGetActive()
+	{
+		Instructor test = new Instructor("Test Name", "tname", 10, false);
+		
+		assertTrue(test.getAct() == false);
+		
+		test = new Instructor("Eikichi Onizuka", "eonizuka", 10, true);
+		assertTrue(test.getAct() == true);
 	}
 	
 	/**
