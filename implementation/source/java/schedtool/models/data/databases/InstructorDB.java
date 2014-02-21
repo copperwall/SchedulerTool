@@ -51,7 +51,7 @@ public class InstructorDB extends Observable{
 	   instructors.add(instructor);
 	   
 	   try {
-		   Connection con = DriverManager.getConnection("URL", "USERNAME", "PASSWORD");
+		   Connection con = DriverManager.getConnection("polyschedules.db.9202206.hostedresource.com:3306", "polyschedules", "a1RightCorner!");
 		   Statement stmt = con.createStatement();
 		   String query = "SELECT * FROM Instructors";
 		   ResultSet rs = stmt.executeQuery(query);

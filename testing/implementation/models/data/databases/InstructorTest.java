@@ -1,7 +1,6 @@
 package models.data.databases;
 import static org.junit.Assert.*;
 
-import java.awt.List;
 import java.util.Vector;
 
 import org.junit.Before;
