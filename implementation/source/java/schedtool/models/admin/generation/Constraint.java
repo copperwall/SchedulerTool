@@ -1,6 +1,7 @@
 package models.admin.generation;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class Constraint {
    
@@ -13,37 +14,93 @@ public class Constraint {
     * The text that's displayed in the Constraint list in the GUI
     */
    String text;
-   ArrayList<Integer> notOverlap;
+   
+   ArrayList<Integer> notOverlapArr;
    ArrayList<Range> ranges;
    
+   /*@ 
+        requires 
+           textToParse != null && !textToParse.trim().isEmpty();
+        ensures
+           notOverLapArr != null || ranges != null;
+    @*/
    public Constraint(String textToParse) throws InvalidConstraintText {
       StringBuilder builder = new StringBuilder();
-      notOverlap = new ArrayList<Integer>();
+      HashSet<Integer> notOverlap = new HashSet<Integer>();
       
       if (textToParse.contains(",") && !textToParse.contains("{")) {
          String[] courseStrings = textToParse.split(", ");
+         if (courseStrings.length < 2)
+            throw new InvalidConstraintText("Must contain more than one course separated by ', '");
+         
+         
+         
+         char[] arr = textToParse.toCharArray();
+         int commaCount = 0;
+         for (char c : arr) {
+            if (c == ',')
+               commaCount++;
+         }
+         
+         if (courseStrings.length - 1 != commaCount) {
+            throw new InvalidConstraintText("Constraint list cannot have extra commas");
+         }
+         
          int[] courseNums = new int[courseStrings.length];
          
          for (int index = 0; index < courseStrings.length; index++) {
-            courseNums[index] = Integer.valueOf(courseStrings[index]);
+            try {
+               courseNums[index] = Integer.valueOf(courseStrings[index]);
+            }
+            catch (NumberFormatException e) {
+               throw new InvalidConstraintText("Invalid course number");
+            }
             notOverlap.add(courseNums[index]);
          }
+         
+         if (notOverlap.size() != courseStrings.length)
+            throw new InvalidConstraintText("No duplicate courses can be in a constraint");
+         
          int index;
+         notOverlapArr = new ArrayList<Integer>();
+         notOverlapArr.addAll(notOverlap);
          for (index = 0; index < notOverlap.size() - 1; index++) {
-            builder.append(notOverlap.get(index) + notOverlap.size() > 2 ? ", " : " ");
+            builder.append(notOverlapArr.get(index).toString() + (notOverlapArr.size() > 2 ? ", " : " "));
          }
-         builder.append("and " + notOverlap.get(index) + " should not overlap");
+         builder.append("and " + notOverlapArr.get(index) + " should not overlap");
          text = builder.toString();
       }
-      else if (textToParse.contains("X") && !textToParse.contains("{")) {
+      else if (textToParse.contains("X") && !textToParse.contains("{") && !textToParse.contains("}")) {
          char[] chars = textToParse.toCharArray();
          int index = 0;
          int rangeOffset = 99;
-         int baseLevel = Integer.valueOf(String.valueOf(chars[index]));
+         int baseLevel;
+         try {
+            baseLevel = Integer.valueOf(String.valueOf(chars[index]));
+         }
+         catch (NumberFormatException e) {
+            throw new InvalidConstraintText("First character must be a number");
+         }
          baseLevel *= 100;
          
+         char[] arr = textToParse.toCharArray();
+         int xCount = 0;
+         for (char c : arr) {
+            if (c == 'X')
+               xCount++;
+         }
+         
+         if (xCount > 2) {
+            throw new InvalidConstraintText("More than two X's not supported");
+         }
+         
          if (chars[++index] != 'X') {
-            baseLevel += Integer.valueOf(String.valueOf(chars[index])) * 10;
+            try {
+               baseLevel += Integer.valueOf(String.valueOf(chars[index])) * 10;
+            }
+            catch (NumberFormatException e) {
+               throw new InvalidConstraintText("Non-integers nor non-X's are not allowed");
+            }
             rangeOffset = 9;
          }
          
@@ -88,8 +145,13 @@ public class Constraint {
       }
    }
    
-   public ArrayList<ArrayList<Integer>> getConstraints() {
-      return null;
+   public ArrayList<Integer> getConstraints() throws InvalidConstraintText {
+      if (notOverlapArr != null && notOverlapArr.size() > 1)
+         return notOverlapArr;
+      else if (ranges != null && ranges.size() >= 1) {
+         
+      }
+      throw new InvalidConstraintText("Could not create constraint list");
    }
    
    public String getText() {
