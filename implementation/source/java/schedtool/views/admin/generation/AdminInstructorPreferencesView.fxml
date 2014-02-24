@@ -9,7 +9,7 @@
   <children>
     <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <children>
-        <HBox prefHeight="10.0" prefWidth="750.0" VBox.vgrow="NEVER">
+        <HBox prefHeight="10.0" prefWidth="800.0" VBox.vgrow="NEVER">
           <children>
             <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="140.0" text="Instructor Preferences" HBox.hgrow="ALWAYS">
               <HBox.margin>
@@ -44,10 +44,15 @@
               <content>
                 <GridPane alignment="CENTER" gridLinesVisible="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="348.0" prefWidth="277.0" style="-fx-border-color: black;">
                   <children>
-                    <Label text="Prefix" />
+                    <Label prefHeight="17.0" prefWidth="70.0" text="Prefix" />
                     <Label prefHeight="42.0" prefWidth="43.0" text="Course No." textAlignment="CENTER" wrapText="true" GridPane.columnIndex="1" />
                     <Label text="Not qualified" textAlignment="CENTER" GridPane.columnIndex="2" />
                     <Label text="Don't prefer - prefer" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="3" />
+                    
+                    <CheckBox mnemonicParsing="false" prefHeight="17.0" prefWidth="7.0" textAlignment="RIGHT" GridPane.columnIndex="2" GridPane.rowIndex="2">
+<GridPane.margin>
+<Insets left="40.0" right="50.0" />
+</GridPane.margin></CheckBox>
                   </children>
                   <columnConstraints>
                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="71.0" minWidth="10.0" prefWidth="46.0" />
