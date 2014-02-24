@@ -205,4 +205,70 @@ public class ConstraintTest {
          assertTrue(true);
       }
    }
+   
+   
+   @Test
+   public void testValidXLevelCurlyBraces() {
+      String ending = " level courses should not overlap";
+      
+      try {
+         Constraint c = new Constraint("3{1,2,3}X");
+         assertEquals("310, 320, and 330" + ending, c.getText());
+      }
+      catch (InvalidConstraintText e) {
+         assertTrue(false);
+      }
+      
+      try {
+         Constraint c = new Constraint("3{1}X");
+         assertEquals("310" + ending, c.getText());
+      }
+      catch (InvalidConstraintText e) {
+         assertTrue(false);
+      }
+   }
+   
+   @Test
+   public void testInvalidXLevelCurlyBraces() {
+      String ending = "-level courses should not overlap";
+
+      try {
+         Constraint c = new Constraint("X{X,3,2}X");
+      }
+      catch (InvalidConstraintText e) {
+         assertTrue(true);
+      }
+      
+      try {
+         new Constraint("B{2,3,3}X");
+         assertTrue(false);
+      }
+      catch (InvalidConstraintText e) {
+         assertTrue(true);
+      }
+      
+      try {
+         new Constraint("B{2,3,3}XX");
+         assertTrue(false);
+      }
+      catch (InvalidConstraintText e) {
+         assertTrue(true);
+      }
+      
+      try {
+         new Constraint("2X{1,2,3}");
+         assertTrue(false);
+      }
+      catch (InvalidConstraintText e) {
+         assertTrue(true);
+      }
+      
+      try {
+         new Constraint("3XXX");
+         assertTrue(false);
+      }
+      catch (InvalidConstraintText e) {
+         assertTrue(true);
+      }
+   }
 }
