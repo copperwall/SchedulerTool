@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.Collection;
 import java.util.Observable;
 import java.util.Vector;
+//import com.mysql.jdbc.Driver;
 
 /**
  * Holds the instructor information for all instructors
@@ -51,9 +52,9 @@ public class InstructorDB extends Observable{
 	   instructors.add(instructor);
 	   
 	   try {
-		   Connection con = DriverManager.getConnection("polyschedules.db.9202206.hostedresource.com:3306", "polyschedules", "a1RightCorner!");
+		   Connection con = DriverManager.getConnection("jdbc:mysql://polyschedules.db.9302206.hostedresource.com:3306/polyschedules", "polyschedules", "a1RightCorner!");
 		   Statement stmt = con.createStatement();
-		   String query = "SELECT * FROM Instructors";
+		   String query = "SELECT * FROM core_polyschedulesuser";
 		   ResultSet rs = stmt.executeQuery(query);
 	   } catch (SQLException exc) {
 		   System.out.println("Could not connect to database. " + exc.getMessage());
