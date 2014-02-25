@@ -40,7 +40,7 @@ public class InstructorTest {
 	@Test
 	public void testConstructor()
 	{
-		Instructor test = new Instructor("Test Name", "tname", 10, false);
+		Instructor test = new Instructor("Test", "Name", "tname", 10, false);
 		
 		assertTrue(test != null);
 	}
@@ -58,7 +58,7 @@ public class InstructorTest {
 	@Test
 	public void testGetUserID()
 	{
-		Instructor test = new Instructor("Test Name", "tname", 10, false);
+		Instructor test = new Instructor("Test", "Name", "tname", 10, false);
 		
 		assertTrue(test.getUser().equals("tname"));
 	}
@@ -76,7 +76,7 @@ public class InstructorTest {
 	@Test
 	public void testGetWTU()
 	{
-		Instructor test = new Instructor("Test Name", "tname", 10, false);
+		Instructor test = new Instructor("Test", "Name", "tname", 10, false);
 		
 		assertTrue(test.getWtu() == 10);
 	}
@@ -97,11 +97,11 @@ public class InstructorTest {
 	@Test
 	public void testGetActive()
 	{
-		Instructor test = new Instructor("Test Name", "tname", 10, false);
+		Instructor test = new Instructor("Test", "Name", "tname", 10, false);
 		
 		assertTrue(test.getAct() == false);
 		
-		test = new Instructor("Eikichi Onizuka", "eonizuka", 10, true);
+		test = new Instructor("Eikichi", "Onizuka", "eonizuka", 10, true);
 		assertTrue(test.getAct() == true);
 	}
 	
@@ -118,7 +118,7 @@ public class InstructorTest {
 	@Test
 	public void testGettingPrefs()
 	{
-		Instructor test = new Instructor("Test Name", "tname", 10, false);
+		Instructor test = new Instructor("Test", "Name", "tname", 10, false);
 		
 		assertTrue(new Vector<CoursePreference>().containsAll(test.getAllClassPrefs()));
 	}

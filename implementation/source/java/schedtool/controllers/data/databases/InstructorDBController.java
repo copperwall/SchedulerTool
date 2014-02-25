@@ -131,8 +131,6 @@ public class InstructorDBController implements Observer{
      */
     @FXML
     void save(ActionEvent event) {
-        // save to file
-        instructorDB.save();
     }
 
     /**
@@ -151,6 +149,7 @@ public class InstructorDBController implements Observer{
         /* Create a new instructorDB for the table */
         instructorDB = new InstructorDB();
         instructorDB.addObserver(this);
+        update(null, null);
     }
 
     /**

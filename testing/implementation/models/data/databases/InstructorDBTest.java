@@ -65,7 +65,7 @@ public class InstructorDBTest {
 	public void testDBGet()
 	{
 		testDBCreation();
-		Instructor testAdd = new Instructor("Test Instructor", "tinstruct", 10, true);
+		Instructor testAdd = new Instructor("Test", "Instructor", "tinstruct", 10, true);
 		testDB.addInstructor(testAdd);
 		
 		assertEquals(testAdd, testDB.getInstructor("tinstructor"));
@@ -86,7 +86,7 @@ public class InstructorDBTest {
 	public void testDBAdd()
 	{
 		testDBCreation();
-		Instructor testAdd = new Instructor("Test Instructor", "tinstruct", 10, true);
+		Instructor testAdd = new Instructor("Test", "Instructor", "tinstruct", 10, true);
 		testDB.addInstructor(testAdd);
 		
 		assertTrue(testDB.getAllInstructors().contains(testAdd));
@@ -107,9 +107,9 @@ public class InstructorDBTest {
 	public void testDBRemove()
 	{
 		testDBCreation();
-		Instructor testAdd = new Instructor("Test Instructor", "tinstruct", 10, true);
+		Instructor testAdd = new Instructor("Test", "Instructor", "tinstruct", 10, true);
 		testDB.addInstructor(testAdd);
-		testDB.deleteInstructor(new Instructor("Test Instructor", "tinstruct", 0, false));
+		testDB.deleteInstructor(new Instructor("Test", "Instructor", "tinstruct", 10, true));
 		
 		assert(!testDB.getAllInstructors().contains(testAdd));
 	}

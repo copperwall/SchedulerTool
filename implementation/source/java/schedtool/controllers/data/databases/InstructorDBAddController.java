@@ -58,7 +58,7 @@ public class InstructorDBAddController implements Initializable {
     @FXML
     private void submit(ActionEvent event) {
     	/* create a new instructor to add to the database */
-        instructorDB.addInstructor(new Instructor("Placeholder Name", userID.getText(), Integer.parseInt(wtu.getText()), active.isSelected()));
+        instructorDB.addInstructor(new Instructor("Placeholder", "Name", userID.getText(), Integer.parseInt(wtu.getText()), active.isSelected()));
         /* close the window */
         Button src = (Button)event.getSource();
         Stage srcStage = (Stage)src.getScene().getWindow();
