@@ -138,6 +138,23 @@ public class InstructorDB extends Observable{
     * @return a Vector with all of the instructors
     */
    public Vector<Instructor> getAllInstructors() {
+	   instructors = new Vector<Instructor>();
+	   
+	   try {
+		   Connection con = DriverManager.getConnection("jdbc:mysql://polyschedules.db.9302206.hostedresource.com:3306/polyschedules", "polyschedules", "a1RightCorner!");
+		   Statement stmt = con.createStatement();
+		   String query = "SELECT * FROM core_polyschedulesuser WHERE is_instructor = 1";
+		   ResultSet rs = stmt.executeQuery(query);
+		   while (rs.next()) {
+			   String name = rs.getString("first_name") + " " + rs.getString("last_name");
+			   String username = rs.getString("username");
+			   boolean active = rs.getBoolean("is_active_instructor");
+			   int wtu = rs.getInt("max_wtu");
+			   instructors.add(new Instructor(name, username, wtu, active));
+		   }
+	   } catch (SQLException exc) {
+		   System.out.println("Could not connect to database. " + exc.getMessage());
+	   }
 	   return instructors;
    }
 }
