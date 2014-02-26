@@ -19,7 +19,7 @@ public class CourseDB extends Observable{
       courses = new Vector<Course>();
       
       setChanged();
-	  notifyObservers();
+	   notifyObservers();
    }
    
    /**

@@ -3,6 +3,7 @@ package models.admin.generation;
 import java.util.ArrayList;
 import java.util.Observable;
 
+import models.admin.generation.Constraint.InvalidConstraintText;
 import models.data.databases.Day;
 
 /**
@@ -102,14 +103,15 @@ public class AdminGeneralSettings extends Observable {
    /**
     * 
     * @param constraintText the constraint to add. It's not being parsed yet into actual data.
+    * @throws InvalidConstraintText 
     */
-   public void addConstraint(String constraintText) {
-      Constraint constraint = new Constraint();
-      constraint.text = constraintText;
+   public void addConstraint(String constraintText) throws InvalidConstraintText {
+      Constraint constraint = new Constraint(constraintText);
       
       constraints.add(constraint);
       setChanged();
       notifyObservers(constraints);
+
       
    }
    

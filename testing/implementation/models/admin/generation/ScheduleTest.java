@@ -1,7 +1,7 @@
 /**
  * 
  */
-package implementation.models.admin.generation;
+package models.admin.generation;
 
 import static org.junit.Assert.*;
 import models.admin.generation.Schedule;
