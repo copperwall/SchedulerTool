@@ -17,7 +17,12 @@ public class Constraint {
    
    ArrayList<Integer> notOverlapArr;
    ArrayList<Range> ranges;
-   
+   /**
+    * Create new Constraint object via the "quick add" text input in General Settings screen.
+    * @param textToParse the text, such as "305, 309"
+    * @throws InvalidConstraintText is thrown when a Constraint cannot be created, occurs for any 
+    *  error that occurs. Includes a descriptive message.
+    */
    /*@ 
         requires 
            textToParse != null && !textToParse.trim().isEmpty();
@@ -167,6 +172,12 @@ public class Constraint {
       }
    }
    
+   /**
+    * 
+    * @return an ArrayList of Integers with ALL classes that shouldn't conflict. 
+    * If you have a range such as 38X, then the integers 380-389 will be in the returned ArrayList
+    * @throws InvalidConstraintText
+    */
    public ArrayList<Integer> getConstraints() throws InvalidConstraintText {
       if (notOverlapArr != null && notOverlapArr.size() > 1)
          return notOverlapArr;
