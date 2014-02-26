@@ -123,33 +123,7 @@ public class Course {
       this.aLabLength = labLength;
       this.aLabProx = labProx;
    }
-   
-   /**
-    * A constructor for a course WITHOUT a lab.
-    * @param prefix the course's department prefix
-    * @param courseNum the course's id number
-    * @param hasLab whether the course has a lab
-    * @param units the number of units of the course
-    * @param title the title of the course
-    */
-   public Course(String prefix, int courseNum, int units, String title) {
-	   this.prefix.set(prefix);
-      this.courseNum.set(courseNum);
-      this.hasLab.set(false);
-      this.units.set(units);
-      this.title.set(title);
-      this.labLength.set(0);
-      this.labProx.set(null);
-      
-      this.coursePrefix = prefix;
-      this.courseNo = courseNum;
-      this.hasALab = false;
-      this.numUnits = units;
-      this.titleString = title;
-      this.aLabLength = 0;
-      this.aLabProx = null;
-   }
-   
+
    /**
     * Gets the course's prefix
     * @return the course's prefix
