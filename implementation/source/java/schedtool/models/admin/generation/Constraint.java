@@ -150,6 +150,7 @@ public class Constraint {
 
             if (notOverlap.size() != courseStrings.length)
                throw new InvalidConstraintText("No duplicate course ranges can be in a constraint");
+            notOverlapArr = null;
          }
          else {
             throw new InvalidConstraintText("The list in the curly braces must be the second character");
@@ -170,7 +171,13 @@ public class Constraint {
       if (notOverlapArr != null && notOverlapArr.size() > 1)
          return notOverlapArr;
       else if (ranges != null && ranges.size() >= 1) {
-         
+         ArrayList<Integer> returnList = new ArrayList<Integer>();
+         for (Range r : ranges) {
+            int range = r.start;
+            while (range <= r.end)
+               returnList.add(range++);
+         }
+         return returnList;
       }
       throw new InvalidConstraintText("Could not create constraint list");
    }

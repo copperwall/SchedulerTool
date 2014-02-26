@@ -3,6 +3,8 @@ package models.admin.generation;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.Test;
 
 import models.admin.generation.Constraint.InvalidConstraintText;
@@ -227,6 +229,8 @@ public class ConstraintTest {
          assertTrue(false);
       }
       
+      
+      
       try {
          Constraint c = new Constraint("3{1}X");
          assertEquals("310s" + ending, c.getText());
@@ -239,7 +243,14 @@ public class ConstraintTest {
    @Test
    public void testInvalidXLevelCurlyBraces() {
       try {
-         Constraint c = new Constraint("X{X,3,2}X");
+         new Constraint("X{X,3,2}X");
+      }
+      catch (InvalidConstraintText e) {
+         assertTrue(true);
+      }
+      
+      try {
+         new Constraint("3{1,1,2}X");
       }
       catch (InvalidConstraintText e) {
          assertTrue(true);
@@ -270,11 +281,50 @@ public class ConstraintTest {
       }
       
       try {
+         new Constraint("3{F,2,3}X");
+      }
+      catch (InvalidConstraintText e) {
+         assertTrue(true);
+      }
+      
+      try {
+         new Constraint("3{1,2 ,3}X");
+      }
+      catch (InvalidConstraintText e) {
+         assertTrue(true);
+      }
+      
+      try {
          new Constraint("3XXX");
          assertTrue(false);
       }
       catch (InvalidConstraintText e) {
          assertTrue(true);
       }
+   }
+   
+   @Test
+   public void testGetConstraints() throws InvalidConstraintText {
+      ArrayList<Integer> returnList;
+      ArrayList<Integer> expected = new ArrayList<Integer>();
+      
+      Constraint simpleList = new Constraint("305, 309, 306");
+      expected.add(305);
+      expected.add(306);
+      expected.add(309);
+      returnList = simpleList.getConstraints();
+      
+      if (returnList.size() != expected.size())
+         assertTrue(false);
+      
+      for (int index = 0; index < expected.size(); index++) {
+         if (!expected.get(index).equals(returnList.get(index)))
+            assertTrue(false);
+      }
+      
+      
+      Constraint listOfTwo = new Constraint("305, 309");
+
+      
    }
 }
