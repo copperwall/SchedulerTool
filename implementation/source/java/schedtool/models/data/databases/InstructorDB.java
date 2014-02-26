@@ -26,6 +26,7 @@ public class InstructorDB extends Observable{
    public InstructorDB() {
 	   instructors = new Vector<Instructor>();
    }
+   
    /**
     * Gets an instructor 
     * @return an Instructor object given their username
@@ -53,7 +54,11 @@ public class InstructorDB extends Observable{
 	   instructors.add(instructor);
 	   
 	   try {
-		   Connection con = DriverManager.getConnection("jdbc:mysql://polyschedules.db.9302206.hostedresource.com:3306/polyschedules", "polyschedules", "a1RightCorner!");
+		   // database connection
+		   Connection con = DriverManager.getConnection("jdbc:mysql://polyschedules.db."
+		   		+ "9302206.hostedresource.com:3306/polyschedules", "polyschedules", 
+		   		"a1RightCorner!");
+		   // add statement
 		   PreparedStatement pstmt = con.prepareStatement(
                    "INSERT INTO core_polyschedulesuser " +
                    "(`username`, `first_name`, `last_name`, `email`, `max_wtu`, " +
@@ -61,6 +66,7 @@ public class InstructorDB extends Observable{
                    + "`last_login`, `is_superuser`, `is_staff`, `date_joined`) "
 				   + "VALUES( " +
                    "?, ?, ?, ?, ?, ?, ?, '!', 0, ?, 0, 0, ?)");
+		   
 		   pstmt.setString(1, instructor.username);
 		   pstmt.setString(2, instructor.firstName);
 		   pstmt.setString(3, instructor.lastName);
@@ -71,7 +77,7 @@ public class InstructorDB extends Observable{
 		   pstmt.setDate(8, new Date(new java.util.Date().getTime()));
 		   pstmt.setDate(9, new Date(new java.util.Date().getTime()));
 		   pstmt.addBatch();
-		   int [] updateCounts = pstmt.executeBatch();
+		   pstmt.executeBatch();
 	   } catch (SQLException exc) {
 		   System.out.println("Could not connect to database. " + exc.getMessage());
 	   }
@@ -96,12 +102,15 @@ public class InstructorDB extends Observable{
 	   System.out.println("InstructorDB.editInstructor");
 	   try {
 		   // connection to database
-		   Connection con = DriverManager.getConnection("jdbc:mysql://polyschedules.db.9302206.hostedresource.com:3306/polyschedules", "polyschedules", "a1RightCorner!");
+		   Connection con = DriverManager.getConnection("jdbc:mysql://polyschedules.db."
+		   		+ "9302206.hostedresource.com:3306/polyschedules", "polyschedules", 
+		   		"a1RightCorner!");
 		   // wtu update query
-		   String queryWTU = "UPDATE core_polyschedulesuser SET max_wtu = ? WHERE username = ?";
+		   String queryWTU = "UPDATE core_polyschedulesuser SET max_wtu = ?"
+		   		+ " WHERE username = ?";
 		   // active status update query
-		   String queryActive = "UPDATE core_polyschedulesuser SET is_active_instructor = ?"
-				   + " WHERE username = ?";
+		   String queryActive = "UPDATE core_polyschedulesuser "
+		   		+ "SET is_active_instructor = ? WHERE username = ?";
 		   // wtu update statement
 		   PreparedStatement updateWTU = con.prepareStatement(queryWTU);
 		   // active status update statement
@@ -132,7 +141,9 @@ public class InstructorDB extends Observable{
    public void deleteInstructor(Instructor instructor) {
 	   try {
 		   // connection to database
-		   Connection con = DriverManager.getConnection("jdbc:mysql://polyschedules.db.9302206.hostedresource.com:3306/polyschedules", "polyschedules", "a1RightCorner!");
+		   Connection con = DriverManager.getConnection("jdbc:mysql://polyschedules.db."
+		   		+ "9302206.hostedresource.com:3306/polyschedules", "polyschedules",
+		   		"a1RightCorner!");
 		   // delete query
 		   String queryDelete = "DELETE FROM core_polyschedulesuser WHERE username = ?";
 		   // delete statement
@@ -163,7 +174,9 @@ public class InstructorDB extends Observable{
 	   
 	   try {
 		   // connection to database
-		   Connection con = DriverManager.getConnection("jdbc:mysql://polyschedules.db.9302206.hostedresource.com:3306/polyschedules", "polyschedules", "a1RightCorner!");
+		   Connection con = DriverManager.getConnection("jdbc:mysql://polyschedules.db."
+		   		+ "9302206.hostedresource.com:3306/polyschedules", "polyschedules",
+		   		"a1RightCorner!");
 		   // select statement
 		   Statement stmt = con.createStatement();
 		   // select query
