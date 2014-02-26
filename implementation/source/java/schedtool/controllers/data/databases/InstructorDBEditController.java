@@ -55,7 +55,7 @@ public class InstructorDBEditController implements Initializable {
     @FXML
     private void edit(ActionEvent event) {
     	/* Creates a new instructor with the properties we need */
-        instructorDB.editInstructor(new Instructor("Placeholder Name", 
+        instructorDB.editInstructor(new Instructor("Placeholder", "Name", 
         			userID.getText(), Integer.parseInt(wtu.getText()), active.isSelected()));
         /* Close the dialog */
         Button src = (Button)event.getSource();
