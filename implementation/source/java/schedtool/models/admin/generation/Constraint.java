@@ -116,7 +116,13 @@ public class Constraint {
          char[] chars = textToParse.toCharArray();
          int index = 0;
          int rangeOffset = 99;
-         int baseLevel = Integer.valueOf(String.valueOf(chars[index]));
+         int baseLevel;
+         try {
+            baseLevel = Integer.valueOf(String.valueOf(chars[index]));
+         }
+         catch (NumberFormatException e) {
+            throw new InvalidConstraintText("First character must be a number");
+         }
          baseLevel *= 100;
          
          ranges = new ArrayList<Range>();
@@ -124,20 +130,35 @@ public class Constraint {
          if (chars[++index] == '{') {
             rangeOffset = 9;
             String[] courseStrings = textToParse.substring(++index, textToParse.indexOf('}')).split(",");
-            int[] courseNums = new int[courseStrings.length];
-            
+
             for (index = 0; index < courseStrings.length; index++) {
+               int value;
+               try {
+                  value = Integer.valueOf(courseStrings[index]);
+                  notOverlap.add(value);   
+               }
+               catch (NumberFormatException e) {
+                  throw new InvalidConstraintText("All values must be integers in the curly braces. No spaces allowed.");
+               }
                int tempBase = baseLevel;
-               courseNums[index] = Integer.valueOf(courseStrings[index]);
-               tempBase += courseNums[index] * 10;
+               tempBase += value * 10;
                ranges.add(new Range(tempBase, tempBase + rangeOffset));
             }
-         }
+            
+            notOverlapArr = new ArrayList<Integer>();
+            notOverlapArr.addAll(notOverlap);
 
+            if (notOverlap.size() != courseStrings.length)
+               throw new InvalidConstraintText("No duplicate course ranges can be in a constraint");
+         }
+         else {
+            throw new InvalidConstraintText("The list in the curly braces must be the second character");
+         }
+         
          for (index = 0; index < ranges.size() - 1; index++) {
             builder.append(ranges.get(index).start + "s" + (ranges.size() > 2 ? ", " : " "));
          }
-         builder.append("and " + ranges.get(index).start + "s should not overlap");
+         builder.append((ranges.size() > 1 ? "and " : "") + ranges.get(index).start + "s should not overlap");
          text = builder.toString();
       }
       else {
