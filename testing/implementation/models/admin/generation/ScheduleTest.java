@@ -51,8 +51,7 @@ public class ScheduleTest {
 		boolean isLab = false;
 		int count = 0;
 		models.data.databases.Course testCourse = new models.data.databases.Course("CSC", 101, hasLab, 4, "");
-		models.data.databases.Instructor testInstructor = new models.data.databases.Instructor("Gene", "Fisher", 15, true);
-		testInstructor.username = "gfisher";
+		models.data.databases.Instructor testInstructor = new models.data.databases.Instructor("Gene", "Fisher", "gfisher", 15, true);
 		Location testLocation = new Location(""+14, ""+256, 50, new String[1]);
 		Section testSection = new Section(testCourse, count++, testInstructor, testLocation, "MWF", 2, 4);
 		testSection.setEnrolled(50);
