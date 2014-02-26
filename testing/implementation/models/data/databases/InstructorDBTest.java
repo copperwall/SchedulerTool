@@ -127,4 +127,30 @@ public class InstructorDBTest {
 			assertTrue(!instructor.getUser().equals(testAdd.getUser()));
 		}
 	}
+	
+	/**
+	 * Unit test editing an Instructor.
+	 * 																		    <pre>
+	 *  Test
+     *  Case    Input                Output               Remarks
+     * ======================================================================
+     *   1      {"tinstruct", 8,     Test Instructor's     Should be the same for
+     *           false}              max wtu and active    all cases
+     *                               state are changed
+     *                                                                         </pre>
+	 */
+	@Test
+	public void testDBEdit()
+	{
+		testDBCreation();
+		Instructor testAdd = new Instructor("Test", "Instructor", "tinstruct", 10, true);
+		testDB.addInstructor(testAdd);
+		
+		testAdd = new Instructor("Test", "Instructor", "tinstruct", 8, false);
+		testDB.editInstructor(testAdd);
+		
+		testAdd = testDB.getInstructor("tinstruct");
+		assertEquals(8, testAdd.getWtu());
+		assertEquals(false, testAdd.getAct());
+	}
 }
