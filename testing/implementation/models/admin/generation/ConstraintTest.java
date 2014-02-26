@@ -313,18 +313,54 @@ public class ConstraintTest {
       expected.add(306);
       expected.add(309);
       returnList = simpleList.getConstraints();
+      assertTrue(listsEqual(expected, returnList)); 
+      expected.clear();
       
-      if (returnList.size() != expected.size())
+      Constraint listOfTwo = new Constraint("305, 309");
+      expected.add(305);
+      expected.add(309);
+      returnList = listOfTwo.getConstraints();
+      assertTrue(listsEqual(expected, returnList));
+      expected.clear();
+      
+      Constraint xNoCurlyBraces = new Constraint("38X");
+      for (int c = 380; c <= 389; c++) {
+         expected.add(c);  
+      }
+      returnList = xNoCurlyBraces.getConstraints();
+      assertTrue(listsEqual(expected, returnList));
+      expected.clear();
+      
+      Constraint xCurlyBraces = new Constraint("3{1,2,3}X");
+      for (int c = 310; c <= 339; c++) {
+         expected.add(c);  
+      }
+      returnList = xCurlyBraces.getConstraints();
+      assertTrue(listsEqual(expected, returnList));
+      expected.clear();
+      
+      Constraint invalid = new Constraint("3{1,2,3}X");
+      invalid.ranges = null;
+      invalid.notOverlapArr = null;
+      try {
+         returnList = invalid.getConstraints();
          assertTrue(false);
+      }
+      catch (InvalidConstraintText e) {
+         assertTrue(true);
+      }
+      
+      expected.clear();
+   }
+   
+   private boolean listsEqual(ArrayList<Integer> expected, ArrayList<Integer> returnList) {
+      if (returnList.size() != expected.size())
+         return false;
       
       for (int index = 0; index < expected.size(); index++) {
          if (!expected.get(index).equals(returnList.get(index)))
-            assertTrue(false);
+            return false;
       }
-      
-      
-      Constraint listOfTwo = new Constraint("305, 309");
-
-      
+      return true;
    }
 }
