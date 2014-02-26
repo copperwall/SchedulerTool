@@ -82,7 +82,7 @@ public class AdminGenerating {
 			boolean hasLab = Math.random() < 0.5;
 			boolean isLab = Math.random() < 0.5;
 			int courseRand = (int)(Math.random() * courses.size());
-			models.data.databases.Course testCourse = new models.data.databases.Course(courses.get(courseRand).prefix, Integer.valueOf(courses.get(courseRand).num), hasLab, 4, "");
+			models.data.databases.Course testCourse = new models.data.databases.Course(courses.get(courseRand).prefix, Integer.valueOf(courses.get(courseRand).num), 4, "");
 			if(hasLab)
 				testCourse.setLabProx(models.data.databases.Course.LabProximity.values()[(int)(Math.random()*models.data.databases.Course.LabProximity.values().length)]);
 			Instructor instructor = instructors.get((int)(Math.random() * instructors.size()));

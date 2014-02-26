@@ -62,8 +62,8 @@ public class CourseDB extends Observable{
      // Ensures that none of the old entries are touched and that courses
      // contains the course to be added
     @*/
-   public void addCourse(String prefix, int courseNum, boolean hasLab, int units, String title, int labLength, Course.LabProximity labProx) {
-      courses.add(new Course(prefix, courseNum, hasLab, units, title, labLength, labProx));
+   public void addCourse(String prefix, int courseNum, int units, String title, int labLength, Course.LabProximity labProx) {
+      courses.add(new Course(prefix, courseNum, units, title, labLength, labProx));
       
       setChanged();
 	  notifyObservers();
@@ -89,17 +89,11 @@ public class CourseDB extends Observable{
        \old(courses).contains(c) || c.equals(course)) &&
      courses.contains(course);
     @*/
-   public void editCourse(String prefix, int courseNum, boolean hasLab, int units, String title, int labLength, Course.LabProximity labProx) {
-      Course curCourse = null;
-      
-      for (Course course : courses) {
-         if (course.matchCourse(courseNum, prefix)) {
-            curCourse = course;
-         }
-      }
-      
-      if (curCourse != null) {
-    	  curCourse.setNewData(hasLab, units, title, labLength, labProx);
+   public void editCourse(Course oldCourse, String prefix, int courseNum, int units, String title, int labLength, Course.LabProximity labProx) {
+      int index = courses.indexOf(oldCourse);
+
+      if (index > 0 && index < courses.size()) {
+    	  courses.setElementAt(new Course(prefix, courseNum, units, title, labLength, labProx), index);
       }
       
       setChanged();
@@ -131,44 +125,4 @@ public class CourseDB extends Observable{
    public Vector<Course> getAllCourses() {
       return courses;
    }
-
-   /**
-    * Adds a course without a lab.
-    * @param prefix the course's department prefix to match
-    * @param courseNum the course's id number to match
-    * @param hasLab whether the course has a lab
-    * @param units the number of units of the course
-    * @param title the title of the course
-    */
-	public void addCourse(String prefix, int courseNum, boolean hasLab, int units, String title) {
-		courses.add(new Course(prefix, courseNum, hasLab, units, title));
-	      
-       setChanged();
-	   notifyObservers();
-	}
-	
-	/**
-	 * Edits a course without a lab.
-	 * @param prefix the course's department prefix to match
-     * @param courseNum the course's id number to match
-     * @param hasLab whether the course has a lab
-     * @param units the number of units of the course
-     * @param title the title of the course
-	 */
-	public void editCourse(String prefix, int courseNum, boolean hasLab, int units, String title) {
-		 Course curCourse = null;
-	      
-	      for (Course course : courses) {
-	         if (course.matchCourse(courseNum, prefix)) {
-	            curCourse = course;
-	         }
-	      }
-	      
-	      if (curCourse != null) {
-	    	  curCourse.setNewData(hasLab, units, title, 0, null);
-	      }    
-	      
-       setChanged();
-	   notifyObservers();
-	}
 }
