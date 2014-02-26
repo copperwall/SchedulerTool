@@ -94,7 +94,11 @@ public class Course {
     * as the class.
     * @author Katie
     */
-   public enum LabProximity {DIRECTLY_AFTER, DIFF_DAY, SAME_DAY};
+   public enum LabProximity {
+      DIRECTLY_AFTER, 
+      DIFF_DAY, 
+      SAME_DAY
+   };
    
    /**
     * A constructor for a course WITH a lab.
