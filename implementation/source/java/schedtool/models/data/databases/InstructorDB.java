@@ -93,7 +93,7 @@ public class InstructorDB extends Observable{
                    "`is_active_instructor`, `is_instructor`, `password`, `is_active`, "
                    + "`last_login`, `is_superuser`, `is_staff`, `date_joined`) "
 				   + "VALUES( " +
-                   "?, ?, ?, ?, ?, ?, ?, '!', 0, ?, 0, 0, ?)");
+                   "?, ?, ?, ?, ?, ?, ?, '!', 1, ?, 0, 0, ?)");
 		   
 		   pstmt.setString(1, instructor.username);
 		   pstmt.setString(2, instructor.firstName);
@@ -102,7 +102,7 @@ public class InstructorDB extends Observable{
 		   pstmt.setInt(5, instructor.getWtu());
 		   pstmt.setInt(6, instructor.getAct() ? 1 : 0);
 		   pstmt.setInt(7, 1);
-		   pstmt.setDate(8, new Date(new java.util.Date().getTime()));
+		   pstmt.setDate(8, new Date(0));
 		   pstmt.setDate(9, new Date(new java.util.Date().getTime()));
 		   pstmt.addBatch();
 		   pstmt.executeBatch();
