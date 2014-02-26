@@ -14,9 +14,9 @@ public class Location {
    private String building;
    private String room;
    private int capacity;
-   private String[] equipment;
+   private boolean equipment;
 
-   public Location(String building, String room, int capacity, String[] equipment) {
+   public Location(String building, String room, int capacity, boolean equipment) {
       this.building = building;
       this.room = room;
       this.capacity = capacity;
@@ -105,7 +105,7 @@ public class Location {
     /*@
       ensures \result.equals(this.equipment);
     @*/
-   public String[] getEquipment() {
+   public boolean getEquipment() {
       return this.equipment;
    }
 
@@ -117,7 +117,7 @@ public class Location {
     /*@
       ensures this.equipment.equals(equipment);
     @*/
-   public void setEquipment(String[] equipment) {
+   public void setEquipment(boolean equipment) {
       this.equipment = equipment;
    }
 }

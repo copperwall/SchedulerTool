@@ -44,7 +44,7 @@ public class LocationDB {
       ensures \old(locations).size() == locations.size() + 1
          && locations.contains(location);
     @*/
-   public void addLocation(String building, String room, String capacity, String equipment) {
+   public void addLocation(String building, String room, String capacity, boolean equipment) {
       /* Resulting building String from validation */
       String building_check = validateBuilding(building);
       /* Resulting room String from validation */
@@ -52,7 +52,7 @@ public class LocationDB {
       /* Resulting integer from converting capacity string to int */
       int capacity_check = validateCapacity(capacity);
       /* Resulting String[] after splitting equipment argument */
-      String[] equipment_check = validateEquipment(equipment);
+      boolean equipment_check = validateEquipment(equipment);
 
       Location location = new Location(building_check, room_check, capacity_check,
        equipment_check);
@@ -175,14 +175,7 @@ public class LocationDB {
     /*@
       ensures  /result != null && \result.length > 0;
     @*/
-   private String[] validateEquipment(String equipment) {
-      String[] result = equipment.split(", ");
-      
-      if (result.length == 0) {
-         System.err.println("Equipment string not comma-separated");
-         System.exit(1);
-      }
-
-      return equipment.split(", ");
+   private boolean validateEquipment(boolean equipment) {
+      return equipment;
    }
 }
