@@ -33,7 +33,7 @@ public class CourseDB extends Observable{
      ensures \old(courses).equals(courses);
      // Ensures courses hasn't changed since calling this method.
     @*/
-   public Course getCourse(int courseNum, String dept) {
+   public Course getCourse(String dept, int courseNum) {
       System.out.println("Got a course.");
       
       for (Course course : courses) {
