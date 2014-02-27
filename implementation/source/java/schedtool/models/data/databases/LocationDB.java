@@ -2,6 +2,7 @@ package models.data.databases;
 
 import java.util.Vector;
 import java.lang.NumberFormatException;
+import java.lang.RuntimeException;
 
 /**
  * Class LocationDB contains a list of locations for the Term.
@@ -113,8 +114,7 @@ public class LocationDB {
     @*/
    private String validateBuilding(String building) {
       if (building.length() > 70) {
-         System.err.println("Building name is too big: Greater than 70 chars");
-         System.exit(1);
+         throw new RuntimeException("Building name is too big: Greater than 70 chars");
       }
 
       return building;
@@ -131,8 +131,7 @@ public class LocationDB {
     @*/
    private String validateRoom(String room) {
       if (room.length() > 6) {
-         System.err.println("Room string does not match format: Too large");
-         System.exit(1);
+         throw new RuntimeException("Room string does not match format: Too large");
       }
 
       return room;
@@ -159,8 +158,7 @@ public class LocationDB {
          integer_capacity = Integer.parseInt(capacity);
       }
       catch(NumberFormatException e) {
-         System.err.println("Capacity is not an integer value");
-         System.exit(1);
+         throw new RuntimeException("Capacity is not an integer value");
       }
 
       return integer_capacity;
