@@ -13,6 +13,22 @@ public class AnalyticsRow {
     private SimpleStringProperty name;
     private SimpleIntegerProperty quality;
 
+    /**
+     * Constructs a new Analytics row.
+     * 
+     * @param name
+     *     The instructor's name.
+     * 
+     * @param quality
+     *     The instructor's schedule quality.
+     */
+    /*
+     * @ ensures // AnalyticsRow has all fields defined
+     * this.name.equals(name) &&
+     * this.quality.equals(quality);
+     * 
+     * @
+     */
     public AnalyticsRow(String name, Integer quality) {
         this.name = new SimpleStringProperty(name);
         this.quality = new SimpleIntegerProperty(quality);
