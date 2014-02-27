@@ -32,7 +32,7 @@ public class LocationDBTest {
     */
 
    @Test
-   protected void testConstructor() {
+   public void testConstructor() {
       LocationDB db;
 
       try {
@@ -59,7 +59,11 @@ public class LocationDBTest {
     */
 
    @Test
+<<<<<<< Updated upstream
    protected void testValidateBuilding() throws NoSuchMethodException, SecurityException, IllegalAccessException, InvocationTargetException {
+=======
+   public void testValidateBuilding() {
+>>>>>>> Stashed changes
       LocationDB db = new LocationDB();
       boolean flag = false;
 
@@ -102,7 +106,11 @@ public class LocationDBTest {
     */
 
    @Test
+<<<<<<< Updated upstream
    protected void testValidateRoom() throws IllegalAccessException, InvocationTargetException, NoSuchMethodException, SecurityException {
+=======
+   public void testValidateRoom() {
+>>>>>>> Stashed changes
       LocationDB db = new LocationDB();
       boolean flag = false;
 
@@ -144,11 +152,15 @@ public class LocationDBTest {
     */
 
    @Test
+<<<<<<< Updated upstream
    protected void testValidateCapacity() throws NoSuchMethodException, SecurityException, IllegalAccessException, InvocationTargetException {
+=======
+   public void testValidateCapacity() {
+>>>>>>> Stashed changes
       LocationDB db = new LocationDB();
       boolean flag = false;
 
-      Method method = LocationDB.class.getDeclaredMethod("validateCapacity", Integer.class);
+      Method method = LocationDB.class.getDeclaredMethod("validateCapacity", String.class);
 
       try {
          method.setAccessible(true);
@@ -185,10 +197,14 @@ public class LocationDBTest {
     */
 
    @Test
+<<<<<<< Updated upstream
    protected void testValidateEquipment() throws NoSuchMethodException, SecurityException, IllegalAccessException, InvocationTargetException {
+=======
+   public void testValidateEquipment() {
+>>>>>>> Stashed changes
       LocationDB db = new LocationDB();
 
-      Method method = LocationDB.class.getDeclaredMethod("validateEquipment", Boolean.class);
+      Method method = LocationDB.class.getDeclaredMethod("validateEquipment", boolean.class);
 
       try {
          method.setAccessible(true);
@@ -201,14 +217,14 @@ public class LocationDBTest {
    }
 
    @Test
-   protected void testGetAllLocations() {
+   public void testGetAllLocations() {
       LocationDB db = new LocationDB();
       Vector<Location> location = db.getAllLocations();
       assertTrue(true);
    }
 
    @Test
-   protected void testAddLocation() {
+   public void testAddLocation() {
       LocationDB db = new LocationDB();
       Vector<Location> locations = db.getAllLocations();
 
@@ -222,7 +238,7 @@ public class LocationDBTest {
    }
 
    @Test
-   protected void testGetLocation() {
+   public void testGetLocation() {
       LocationDB db = new LocationDB();
 
       db.addLocation("14", "234", "41", true);
@@ -235,12 +251,12 @@ public class LocationDBTest {
    }
 
    @Test
-   protected void testEditLocation() {
+   public void testEditLocation() {
       LocationDB db = new LocationDB();
       Vector<Location> locations = db.getAllLocations();
 
       db.addLocation("14", "234", "41", true);
-      Location location = db.getLocation(1);
+      Location location = db.getLocation(0);
       Location two = new Location("15", "2344", 40, false);
 
       db.editLocation(location, two);
@@ -254,7 +270,7 @@ public class LocationDBTest {
    }
 
    @Test
-   protected void testDeleteLocation() {
+   public void testDeleteLocation() {
       LocationDB db = new LocationDB();
 
       db.addLocation("14", "234", "41", true);
