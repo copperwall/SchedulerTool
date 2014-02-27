@@ -3,8 +3,12 @@ package models.data.databases;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+
 import java.util.Vector;
+
 import models.data.databases.Location;
+
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /****
@@ -48,10 +52,14 @@ public class LocationDBTest {
     * ==============================================================
     * 1     "14"           "14"              Valid Case
     * 2     "1....."       Exception         Invalid input
+    * @throws SecurityException 
+    * @throws NoSuchMethodException 
+    * @throws InvocationTargetException 
+    * @throws IllegalAccessException 
     */
 
    @Test
-   protected void testValidateBuilding() {
+   protected void testValidateBuilding() throws NoSuchMethodException, SecurityException, IllegalAccessException, InvocationTargetException {
       LocationDB db = new LocationDB();
       boolean flag = false;
 
@@ -87,10 +95,14 @@ public class LocationDBTest {
     * ==============================================================
     * 1     "123"           No Exception      Valid Case
     * 2     "1020304"       Exception         Invalid input
+    * @throws InvocationTargetException 
+    * @throws IllegalAccessException 
+    * @throws SecurityException 
+    * @throws NoSuchMethodException 
     */
 
    @Test
-   protected void testValidateRoom() {
+   protected void testValidateRoom() throws IllegalAccessException, InvocationTargetException, NoSuchMethodException, SecurityException {
       LocationDB db = new LocationDB();
       boolean flag = false;
 
@@ -125,10 +137,14 @@ public class LocationDBTest {
     * ==============================================================
     * 1     "40"           No Exception      Valid Case
     * 2     "abcd"         Exception         Invalid input
+    * @throws SecurityException 
+    * @throws NoSuchMethodException 
+    * @throws InvocationTargetException 
+    * @throws IllegalAccessException 
     */
 
    @Test
-   protected void testValidateCapacity() {
+   protected void testValidateCapacity() throws NoSuchMethodException, SecurityException, IllegalAccessException, InvocationTargetException {
       LocationDB db = new LocationDB();
       boolean flag = false;
 
@@ -162,10 +178,14 @@ public class LocationDBTest {
     * Case  Input          Output            Remarks
     * ==============================================================
     * 1     true           None              Expects no exceptions
+    * @throws SecurityException 
+    * @throws NoSuchMethodException 
+    * @throws InvocationTargetException 
+    * @throws IllegalAccessException 
     */
 
    @Test
-   protected void testValidateEquipment() {
+   protected void testValidateEquipment() throws NoSuchMethodException, SecurityException, IllegalAccessException, InvocationTargetException {
       LocationDB db = new LocationDB();
 
       Method method = LocationDB.class.getDeclaredMethod("validateEquipment", Boolean.class);
