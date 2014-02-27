@@ -59,11 +59,7 @@ public class LocationDBTest {
     */
 
    @Test
-<<<<<<< Updated upstream
    protected void testValidateBuilding() throws NoSuchMethodException, SecurityException, IllegalAccessException, InvocationTargetException {
-=======
-   public void testValidateBuilding() {
->>>>>>> Stashed changes
       LocationDB db = new LocationDB();
       boolean flag = false;
 
@@ -106,11 +102,7 @@ public class LocationDBTest {
     */
 
    @Test
-<<<<<<< Updated upstream
    protected void testValidateRoom() throws IllegalAccessException, InvocationTargetException, NoSuchMethodException, SecurityException {
-=======
-   public void testValidateRoom() {
->>>>>>> Stashed changes
       LocationDB db = new LocationDB();
       boolean flag = false;
 
@@ -152,11 +144,7 @@ public class LocationDBTest {
     */
 
    @Test
-<<<<<<< Updated upstream
    protected void testValidateCapacity() throws NoSuchMethodException, SecurityException, IllegalAccessException, InvocationTargetException {
-=======
-   public void testValidateCapacity() {
->>>>>>> Stashed changes
       LocationDB db = new LocationDB();
       boolean flag = false;
 
@@ -197,11 +185,7 @@ public class LocationDBTest {
     */
 
    @Test
-<<<<<<< Updated upstream
    protected void testValidateEquipment() throws NoSuchMethodException, SecurityException, IllegalAccessException, InvocationTargetException {
-=======
-   public void testValidateEquipment() {
->>>>>>> Stashed changes
       LocationDB db = new LocationDB();
 
       Method method = LocationDB.class.getDeclaredMethod("validateEquipment", boolean.class);
