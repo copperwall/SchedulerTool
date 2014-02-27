@@ -2,6 +2,8 @@ package models.data.databases;
 
 import static org.junit.Assert.*;
 
+import java.util.Vector;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -68,7 +70,7 @@ public class InstructorDBTest {
 		Instructor testAdd = new Instructor("Test", "Instructor", "tinstruct", 10, true);
 		testDB.addInstructor(testAdd);
 		
-		assertEquals(testAdd, testDB.getInstructor("tinstructor"));
+		assertEquals(testAdd.getUser(), testDB.getInstructor("tinstruct").getUser());
 	}
 	
 	/**
@@ -87,9 +89,17 @@ public class InstructorDBTest {
 	{
 		testDBCreation();
 		Instructor testAdd = new Instructor("Test", "Instructor", "tinstruct", 10, true);
+	    boolean existsInList = false;
 		testDB.addInstructor(testAdd);
 		
-		assertTrue(testDB.getAllInstructors().contains(testAdd));
+		Vector<Instructor> allInstructors = testDB.getAllInstructors();
+		for(Instructor instructor : allInstructors) {
+			if (instructor.getUser().equals(testAdd.getUser())) {
+				existsInList = true;
+			}
+		}
+		
+		assertTrue(existsInList);
 	}
 	
 	/**
@@ -108,9 +118,39 @@ public class InstructorDBTest {
 	{
 		testDBCreation();
 		Instructor testAdd = new Instructor("Test", "Instructor", "tinstruct", 10, true);
+		Vector<Instructor> allInstructors = new Vector<Instructor>();
 		testDB.addInstructor(testAdd);
 		testDB.deleteInstructor(new Instructor("Test", "Instructor", "tinstruct", 10, true));
 		
-		assert(!testDB.getAllInstructors().contains(testAdd));
+		allInstructors = testDB.getAllInstructors();
+		for(Instructor instructor : allInstructors) {
+			assertTrue(!instructor.getUser().equals(testAdd.getUser()));
+		}
+	}
+	
+	/**
+	 * Unit test editing an Instructor.
+	 * 																		    <pre>
+	 *  Test
+     *  Case    Input                Output               Remarks
+     * ======================================================================
+     *   1      {"tinstruct", 8,     Test Instructor's     Should be the same for
+     *           false}              max wtu and active    all cases
+     *                               state are changed
+     *                                                                         </pre>
+	 */
+	@Test
+	public void testDBEdit()
+	{
+		testDBCreation();
+		Instructor testAdd = new Instructor("Test", "Instructor", "tinstruct", 10, true);
+		testDB.addInstructor(testAdd);
+		
+		testAdd = new Instructor("Test", "Instructor", "tinstruct", 8, false);
+		testDB.editInstructor(testAdd);
+		
+		testAdd = testDB.getInstructor("tinstruct");
+		assertEquals(8, testAdd.getWtu());
+		assertEquals(false, testAdd.getAct());
 	}
 }

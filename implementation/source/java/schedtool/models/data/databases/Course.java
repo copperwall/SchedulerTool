@@ -1,13 +1,9 @@
 package models.data.databases;
 
-import java.util.*;
-
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.fxml.FXML;
-
 
 /**
  * This class holds all the information for a course, including
@@ -110,10 +106,10 @@ public class Course {
     * @param labLength the length of the lab
     * @param labProx the proximity of lab to lecture
     */
-   public Course(String prefix, int courseNum, boolean hasLab, int units, String title, int labLength, Course.LabProximity labProx) {
+   public Course(String prefix, int courseNum, int units, String title, int labLength, Course.LabProximity labProx) {
       this.prefix.set(prefix);
       this.courseNum.set(courseNum);
-      this.hasLab.set(hasLab);
+      this.hasLab.set(true);
       this.units.set(units);
       this.title.set(title);
       this.labLength.set(labLength);
@@ -121,62 +117,13 @@ public class Course {
       
       this.coursePrefix = prefix;
       this.courseNo = courseNum;
-      this.hasALab = hasLab;
+      this.hasALab = true;
       this.numUnits = units;
       this.titleString = title;
       this.aLabLength = labLength;
       this.aLabProx = labProx;
    }
-   
-   /**
-    * A constructor for a course WITHOUT a lab.
-    * @param prefix the course's department prefix
-    * @param courseNum the course's id number
-    * @param hasLab whether the course has a lab
-    * @param units the number of units of the course
-    * @param title the title of the course
-    */
-   public Course(String prefix, int courseNum, boolean hasLab, int units, String title) {
-	   this.prefix.set(prefix);
-      this.courseNum.set(courseNum);
-      this.hasLab.set(hasLab);
-      this.units.set(units);
-      this.title.set(title);
-      this.labLength.set(0);
-      this.labProx.set(null);
-      
-      this.coursePrefix = prefix;
-      this.courseNo = courseNum;
-      this.hasALab = hasLab;
-      this.numUnits = units;
-      this.titleString = title;
-      this.aLabLength = 0;
-      this.aLabProx = null;
-   }
 
-   /**
-    * Sets new data for editing a course. Please note that the course number
-    * and department prefix cannot be changed.
-    * @param hasLab
-    * @param units
-    * @param title
-    * @param labLength
-    * @param labProx
-    */
-   public void setNewData(boolean hasLab, int units, String title, int labLength, Course.LabProximity labProx) {
-      this.hasLab.set(hasLab);
-      this.units.set(units);
-      this.title.set(title);
-      this.labLength.set(labLength);
-      this.labProx.set(labProx);
-
-      this.hasALab = hasLab;
-      this.numUnits = units;
-      this.titleString = title;
-      this.aLabLength = labLength;
-      this.aLabProx = labProx;
-   }
-   
    /**
     * Gets the course's prefix
     * @return the course's prefix
@@ -285,7 +232,7 @@ public class Course {
     * Gets the proximity of the course's lab to the lecture for the data table
     * @return the proximity of the course's lab to the lecture for the data table
     */
-   public SimpleObjectProperty labProxProperty() {
+   public SimpleObjectProperty<LabProximity> labProxProperty() {
 	   return labProx;
    }
    
@@ -371,7 +318,7 @@ public class Course {
     * @param dept the department prefix to match
     */
    /*@
-     requires (* none yet *);
+     requires courseNum ;
      ensures 
        \result == (courseNum == this.courseNum);
     @*/

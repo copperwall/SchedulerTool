@@ -1,9 +1,12 @@
 package models.data.databases;
 
 import static org.junit.Assert.*;
+import models.data.databases.Course;
 
 import org.junit.Before;
 import org.junit.Test;
+
+
 
 /**
  * Test class for <a href="CourseDB.html">Course</a>. It implements the
@@ -65,8 +68,8 @@ public class CourseDBTest {
 	@Test
 	public void testDBGet() {
 		testDBCreation();
-		Course testAdd = new Course("CPE", 309, true, 4, "Software Engineering I", 1, Course.LabProximity.DIRECTLY_AFTER);
-		testDB.addCourse(testAdd);
+		Course testAdd = new Course("CPE", 309, 4, "Software Engineering I", 1, Course.LabProximity.DIRECTLY_AFTER);
+		testDB.addCourse("CPE", 309, 4, "Software Engineering I", 1, Course.LabProximity.DIRECTLY_AFTER);
 		
 		assertEquals(testAdd, testDB.getCourse("CPE", 309));
 	}
@@ -86,8 +89,8 @@ public class CourseDBTest {
 	@Test
 	public void testDBAdd() {
 		testDBCreation();
-		Course testAdd = new Course("CPE", 309, true, 4, "Software Engineering I", 1, Course.LabProximity.DIRECTLY_AFTER);
-		testDB.addCourse(testAdd);
+		Course testAdd = new Course("CPE", 309, 4, "Software Engineering I", 1, Course.LabProximity.DIRECTLY_AFTER);
+		testDB.addCourse("CPE", 309, 4, "Software Engineering I", 1, Course.LabProximity.DIRECTLY_AFTER);
 		
 		assertTrue(testDB.getAllCourses().contains(testAdd));
 	}
@@ -106,9 +109,10 @@ public class CourseDBTest {
 	@Test
 	public void testDBRemove() {
 		testDBCreation();
-		Course testAdd = new Course("CPE", 309, true, 4, "Software Engineering I", 1, Course.LabProximity.DIRECTLY_AFTER);
-		testDB.addCourse(testAdd);
-		testDB.deleteCourse(new Course("CPE", 309, true, 4, "Software Engineering I", 1, Course.LabProximity.DIRECTLY_AFTER));
+		Course testAdd;
+		testDB.addCourse("CPE", 309, 4, "Software Engineering I", 1, Course.LabProximity.DIRECTLY_AFTER);
+		testAdd = testDB.getCourse("CPE", 309);
+		testDB.deleteCourse(testAdd);
 		
 		assert(!testDB.getAllCourses().contains(testAdd));
 	}

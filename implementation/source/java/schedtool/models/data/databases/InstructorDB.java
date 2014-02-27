@@ -36,8 +36,36 @@ public class InstructorDB extends Observable{
       ensures \result.username.equals(username);
     @*/
    public Instructor getInstructor(String username) {
-       System.out.println("InstructorDB.getInstructor");
-       return new Instructor();
+	   Instructor result = null;
+	   try {
+		   // connection to database
+		   Connection con = DriverManager.getConnection("jdbc:mysql://polyschedules.db."
+		   		+ "9302206.hostedresource.com:3306/polyschedules", "polyschedules",
+		   		"a1RightCorner!");
+		   // select statement
+		   Statement stmt = con.createStatement();
+		   // select query
+		   String query = "SELECT * FROM core_polyschedulesuser WHERE username = '"
+				          + username + "'";
+		   // result set from query
+		   ResultSet rs = stmt.executeQuery(query);
+		   
+		   while (rs.next()) {
+			   // first name of instructor
+			   String firstName = rs.getString("first_name");
+			   // last name of instructor
+			   String lastName = rs.getString("last_name");
+			   // instructor active status
+			   boolean active = rs.getBoolean("is_active_instructor");
+			   // instructor's maximum wtu
+			   int wtu = rs.getInt("max_wtu");
+			   
+			   result = new Instructor(firstName, lastName, username, wtu, active);
+		   }
+	   } catch (SQLException exc) {
+		   System.out.println("Could not connect to database. " + exc.getMessage());
+	   }
+       return result;
    }
 
    /**
@@ -65,7 +93,7 @@ public class InstructorDB extends Observable{
                    "`is_active_instructor`, `is_instructor`, `password`, `is_active`, "
                    + "`last_login`, `is_superuser`, `is_staff`, `date_joined`) "
 				   + "VALUES( " +
-                   "?, ?, ?, ?, ?, ?, ?, '!', 0, ?, 0, 0, ?)");
+                   "?, ?, ?, ?, ?, ?, ?, '!', 1, ?, 0, 0, ?)");
 		   
 		   pstmt.setString(1, instructor.username);
 		   pstmt.setString(2, instructor.firstName);
@@ -74,7 +102,7 @@ public class InstructorDB extends Observable{
 		   pstmt.setInt(5, instructor.getWtu());
 		   pstmt.setInt(6, instructor.getAct() ? 1 : 0);
 		   pstmt.setInt(7, 1);
-		   pstmt.setDate(8, new Date(new java.util.Date().getTime()));
+		   pstmt.setDate(8, new Date(0));
 		   pstmt.setDate(9, new Date(new java.util.Date().getTime()));
 		   pstmt.addBatch();
 		   pstmt.executeBatch();
