@@ -84,7 +84,8 @@ public class Course {
    /*@
       requires (prefix != null && title != null);
       ensures 
-        \result != null;
+        this.prefix != null && this.courseNum != null && this.hasLab != null && this.units != null && this.hasEquipment != null
+        && this.labLength != null && this.labProx != null && this.labHasEquipment != null;
    @*/
    public Course(String prefix, int courseNum, int units, String title, boolean hasEquipment, int labLength, Course.LabProximity labProx, boolean labHasEquipment) {
       this.prefix.set(prefix);
