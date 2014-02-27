@@ -67,7 +67,7 @@ public class CourseTest {
 	public void testGetPrefix() {
 		Course test = new Course("CPE", 309, 4, "Software Engineering I", 1, Course.LabProximity.DIRECTLY_AFTER);
 		
-		assertEquals(test.getUser(), "CPE");
+		assertEquals(test.getPrefix(), "CPE");
 	}
 	
 	/**
