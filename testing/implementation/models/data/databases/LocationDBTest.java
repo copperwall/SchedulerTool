@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 import java.util.Vector;
 import models.data.databases.Location;
+import java.lang.reflect.Method;
 
 /****
  *
@@ -52,7 +53,7 @@ public class LocationDBTest {
    @Test
    protected void testValidateBuilding() {
       LocationDB db = new LocationDB();
-      int flag = false;
+      boolean flag = false;
 
       // Reflection time
       Method method = LocationDB.class.getDeclaredMethod("validateBuilding", String.class);
@@ -182,7 +183,7 @@ public class LocationDBTest {
    @Test
    protected void testGetAllLocations() {
       LocationDB db = new LocationDB();
-      Vector<Location> = db.getAllLocations();
+      Vector<Location> location = db.getAllLocations();
       assertTrue(true);
    }
 
@@ -203,7 +204,6 @@ public class LocationDBTest {
    @Test
    protected void testGetLocation() {
       LocationDB db = new LocationDB();
-      Vector<Location> locations = db.getAllLocations();
 
       db.addLocation("14", "234", "41", true);
       Location location = db.getLocation(1);
