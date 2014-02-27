@@ -63,7 +63,7 @@ public class InstructorDB extends Observable{
 			   result = new Instructor(firstName, lastName, username, wtu, active);
 		   }
 	   } catch (SQLException exc) {
-		   System.out.println("Could not connect to database. " + exc.getMessage());
+		   System.err.println("InstructorDB Get: Could not connect to database.\n\t" + exc.getMessage());
 	   }
        return result;
    }
@@ -107,7 +107,7 @@ public class InstructorDB extends Observable{
 		   pstmt.addBatch();
 		   pstmt.executeBatch();
 	   } catch (SQLException exc) {
-		   System.out.println("Could not connect to database. " + exc.getMessage());
+		   System.err.println("InstructorDB Add: Could not connect to database.\n\t" + exc.getMessage());
 	   }
 	   setChanged();
 	   notifyObservers();
@@ -151,7 +151,7 @@ public class InstructorDB extends Observable{
 		   updateActive.setString(2, instructor.getUser());
 		   updateActive.executeUpdate();
 	   } catch (SQLException exc) {
-		   System.out.println("Could not connect to database. " + exc.getMessage());
+		   System.err.println("InstructorDB Edit: Could not connect to database.\n\t" + exc.getMessage());
 	   }
 
 	   setChanged();
@@ -183,7 +183,7 @@ public class InstructorDB extends Observable{
 		   setChanged();
 		   notifyObservers();
 	   } catch (SQLException exc) {
-		   System.out.println("Could not connect to database. " + exc.getMessage());
+		   System.err.println("InstructorDB Delete: Could not connect to database.\n\t" + exc.getMessage());
 	   }
    }
    
@@ -227,7 +227,7 @@ public class InstructorDB extends Observable{
 			   instructors.add(new Instructor(firstName, lastName, username, wtu, active));
 		   }
 	   } catch (SQLException exc) {
-		   System.out.println("Could not connect to database. " + exc.getMessage());
+		   System.err.println("InstructorDB GetAll: Could not connect to database.\n\t" + exc.getMessage());
 	   }
 	   return instructors;
    }
