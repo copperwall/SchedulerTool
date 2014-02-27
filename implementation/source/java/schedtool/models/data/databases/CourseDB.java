@@ -62,8 +62,8 @@ public class CourseDB extends Observable{
      // Ensures that none of the old entries are touched and that courses
      // contains the course to be added
     @*/
-   public void addCourse(String prefix, int courseNum, int units, String title, int labLength, Course.LabProximity labProx) {
-      courses.add(new Course(prefix, courseNum, units, title, labLength, labProx));
+   public void addCourse(String prefix, int courseNum, int units, String title, boolean hasEquip, int labLength, Course.LabProximity labProx, boolean labHasEquip) {
+      courses.add(new Course(prefix, courseNum, units,  title, hasEquip, labLength, labProx, labHasEquip));
       
       setChanged();
 	  notifyObservers();
@@ -107,11 +107,11 @@ public class CourseDB extends Observable{
        \old(courses).contains(c) || c.equals(course)) &&
      courses.contains(course);
     @*/
-   public void editCourse(Course oldCourse, String prefix, int courseNum, int units, String title, int labLength, Course.LabProximity labProx) {
+   public void editCourse(Course oldCourse, String prefix, int courseNum, int units, String title, boolean hasEquip, int labLength, Course.LabProximity labProx, boolean labHasEquip) {
       int index = courses.indexOf(oldCourse);
 
       if (index > 0 && index < courses.size()) {
-    	  courses.setElementAt(new Course(prefix, courseNum, units, title, labLength, labProx), index);
+    	  courses.setElementAt(new Course(prefix, courseNum, units, title, hasEquip, labLength, labProx, labHasEquip), index);
       }
       
       setChanged();
