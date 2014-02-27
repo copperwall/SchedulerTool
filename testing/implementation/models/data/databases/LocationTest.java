@@ -25,7 +25,7 @@ public class LocationTest {
     */
 
     @Test
-    protected void testConstructor() {
+    public void testConstructor() {
       Location location;
 
       try {
@@ -47,7 +47,7 @@ public class LocationTest {
     */
 
     @Test
-    protected void testGetBuilding() {
+    public void testGetBuilding() {
       Location location = new Location("14", "234B", 40, true);
 
       String result = location.getBuilding();
@@ -65,7 +65,7 @@ public class LocationTest {
     */
 
     @Test
-    protected void testGetRoom() {
+    public void testGetRoom() {
       Location location = new Location("14", "234B", 40, true);
 
       String result = location.getRoom();
@@ -83,7 +83,7 @@ public class LocationTest {
     */
 
    @Test
-    protected void testGetCapacity() {
+    public void testGetCapacity() {
       Location location = new Location("14", "234B", 40, true);
 
       int result = location.getCapacity();
@@ -101,7 +101,7 @@ public class LocationTest {
     */
 
     @Test
-    protected void testGetEquipment() {
+    public void testGetEquipment() {
       Location location = new Location("14", "234B", 40, true);
 
       boolean result = location.getEquipment();
@@ -110,7 +110,7 @@ public class LocationTest {
     }
 
     @Test
-    protected void testSetBuilding() {
+    public void testSetBuilding() {
       Location location = new Location("14", "312", 100, false);
 
       location.setBuilding("52");
@@ -119,7 +119,7 @@ public class LocationTest {
     }
 
     @Test
-    protected void testSetRoom() {
+    public void testSetRoom() {
       Location location = new Location("14", "312", 100, false);
 
       location.setRoom("250");
@@ -128,7 +128,7 @@ public class LocationTest {
     }
 
     @Test
-    protected void testSetCapacity() {
+    public void testSetCapacity() {
       Location location = new Location("14", "312", 100, false);
       
       location.setCapacity(23);
@@ -137,7 +137,7 @@ public class LocationTest {
     }
 
     @Test
-    protected void testSetEquipment() {
+    public void testSetEquipment() {
       Location location = new Location("14", "312", 100, false);
       
       location.setEquipment(false);
