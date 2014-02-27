@@ -19,6 +19,7 @@ public class Constraint {
    ArrayList<Range> ranges;
    /**
     * Create new Constraint object via the "quick add" text input in General Settings screen.
+    * Every course added should not conflict with ANY of the other courses in the list.
     * @param textToParse the text, such as "305, 309"
     * @throws InvalidConstraintText is thrown when a Constraint cannot be created, occurs for any 
     *  error that occurs. Includes a descriptive message.
