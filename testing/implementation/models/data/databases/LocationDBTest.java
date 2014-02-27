@@ -3,6 +3,9 @@ package models.data.databases;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+import java.util.Vector;
+import models.data.databases.Location;
+import java.lang.reflect.Method;
 
 /****
  *
@@ -13,7 +16,6 @@ import org.junit.Test;
  *    Phase 3: Unit test the higher level add, remove, and edit methods
  */
 
-@Test
 public class LocationDBTest {
    
    /**
@@ -48,10 +50,10 @@ public class LocationDBTest {
     * 2     "1....."       Exception         Invalid input
     */
 
-   @Test(dependsOnMethods = {"testConstructor"})
+   @Test
    protected void testValidateBuilding() {
       LocationDB db = new LocationDB();
-      int flag = false;
+      boolean flag = false;
 
       // Reflection time
       Method method = LocationDB.class.getDeclaredMethod("validateBuilding", String.class);
@@ -176,5 +178,66 @@ public class LocationDBTest {
          /* Failure */
          assertTrue(false);
       }
+   }
+
+   @Test
+   protected void testGetAllLocations() {
+      LocationDB db = new LocationDB();
+      Vector<Location> location = db.getAllLocations();
+      assertTrue(true);
+   }
+
+   @Test
+   protected void testAddLocation() {
+      LocationDB db = new LocationDB();
+      Vector<Location> locations = db.getAllLocations();
+
+      assertTrue(locations.size() == 0);
+
+      db.addLocation("14", "234", "41", true);
+
+      locations = db.getAllLocations();
+
+      assertTrue(locations.size() == 1);
+   }
+
+   @Test
+   protected void testGetLocation() {
+      LocationDB db = new LocationDB();
+
+      db.addLocation("14", "234", "41", true);
+      Location location = db.getLocation(1);
+
+      assertTrue(location.building.equals("14"));
+      assertTrue(location.room.equals("234"));
+      assertTrue(location.capacity == 41);
+      assertTrue(location.equipment);
+   }
+
+   @Test
+   protected void testEditLocation() {
+      LocationDB db = new LocationDB();
+      Vector<Location> locations = db.getAllLocations();
+
+      db.addLocation("14", "234", "41", true);
+      Location location = db.getLocation(1);
+      Location two = new Location("15", "2344", "40", false);
+
+      db.editLocation(location, two);
+
+      location = db.getLocation(1);
+
+      assertTrue(location.building.equals("15"));
+      assertTrue(location.room.equals("2344"));
+      assertTrue(location.capacity == 40);
+      assertFalse(location.equipment);
+   }
+
+   @Test
+   protected void testDeleteLocation() {
+      LocationDB db = new LocationDB();
+
+      db.addLocation("14", "234", "41", true);
+      db.removeLocation(1);
    }
 }
