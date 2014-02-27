@@ -14,6 +14,10 @@ public class AdminAnalytics
     private HashMap<String, ArrayList<Integer>> overallAnalytics;
     private ArrayList<AnalyticsRow> individualAnalytics;
 
+    /**
+     * The default constructor. All analytics data is static at this point, so
+     * HashMaps of data are created here.
+     */
     public AdminAnalytics()
     {
         this.overallAnalytics = new HashMap<String, ArrayList<Integer>>();
@@ -25,25 +29,59 @@ public class AdminAnalytics
         this.overallAnalytics.put("Standard Deviation", new ArrayList<Integer>(1));
     }
 
+    /**
+     * A public accessor to the calculate methods.
+     */
     public void calculate()
     {
-        calculate_overall();
+        calculateOverall();
 
         // TODO: Iterate over all current instructors, pass in his/her id
-        calculate_individual(0);
+        calculateIndividual(0);
     }
     
+    /**
+     * Returns the individual analytics for each instructor.
+     * 
+     * @return Returns a list of individual analytics.
+     */
+    /*
+     * @ ensures // the list returned is the list in this class.
+     * \result.equals(individualAnalytics);
+     * 
+     * @
+     */
     public ArrayList<AnalyticsRow> getIndividualAnalytics()
     {
         return this.individualAnalytics;
     }
     
+    /**
+     * Returns the overall analytics for the current schedule.
+     * 
+     * @return Returns a list of overall analytics.
+     */
+    /*
+     * @ ensures // the list returned is the list in this class.
+     * \result.equals(overallAnalytics);
+     * 
+     * @
+     */
     public HashMap<String, ArrayList<Integer>> getOverallAnalytics()
     {
         return this.overallAnalytics;
     }
 
-    private void calculate_overall()
+    /**
+     * Calculates the overall analytics.
+     */
+    /*
+     * @ ensures // the overall analytics list has calculations in it.
+     * !overallAnalytics.isEmpty();
+     * 
+     * @
+     */
+    private void calculateOverall()
     {
         ArrayList<Integer> average = new ArrayList<Integer>(1);
         ArrayList<Integer> median = new ArrayList<Integer>(1);
@@ -64,7 +102,16 @@ public class AdminAnalytics
         this.overallAnalytics.put("Standard Deviation", stdDev);
     }
 
-    private void calculate_individual(int userId)
+    /**
+     * Calculates the individual analytics.
+     */
+    /*
+     * @ ensures // the individual analytics list has calculations in it.
+     * !individualAnalytics.isEmpty();
+     * 
+     * @
+     */
+    private void calculateIndividual(int userId)
     {
         // TODO: actually pull instructor stuff
         this.individualAnalytics.add(new AnalyticsRow("Paul Hatalsky", 80));

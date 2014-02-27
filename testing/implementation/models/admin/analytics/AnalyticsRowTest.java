@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * Test class for Analytics table row. It implements the following test plan:
+ * Test class for an Analytics table row. It implements the following test plan:
  *
  *     Phase 1: Unit test the constructor.
  *
