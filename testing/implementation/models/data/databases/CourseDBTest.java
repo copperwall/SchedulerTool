@@ -6,26 +6,19 @@ import models.data.databases.Course;
 import org.junit.Before;
 import org.junit.Test;
 
-
-
 /**
- * Test class for <a href="CourseDB.html">Course</a>. It implements the
+ * Test class for <a href="CourseDB.html">CourseDB</a>. It implements the
  * following test plan:
- *                                                                        <ul>
- *                                                                      <p><li>
+ <ul>
+ <p><li>
  *     Phase 1: Unit test the constructor.
- *                                                                      <p><li>
+ <p><li>
  *     Phase 2: Unit test getting a course.
- *                                                                      <p><li>
- *     Phase 3: Unit test adding a course
- *                                                                      <p><li>
- *     Phase 4: Unit test removing a course
- *                                                                      <p><li>
- *     Phase 5: Unit test editing a course with inputs that mimic the ones
- *              given by each of the GUIs that call editCourse()
- *                                                                      <p><li>
- *     Phase 6: Stress test by scheduling and deleting 100 items.
- *                                                                        </ul>
+ <p><li>
+ *     Phase 3: Unit test adding a course.
+ <p><li>
+ *     Phase 4: Unit test removing a course.
+ </ul>
  * @author Katie Keim
  *
  */
@@ -58,8 +51,8 @@ public class CourseDBTest {
 	  *  Test
      *  Case    Input                        Output               Remarks
      * ======================================================================
-     *   1   {"CPE", 309, true, 4,        Course object   Should be the same for
-             "Software Engineering I",     is returned         all cases
+     *   1   {"CPE", 309, 4,        Course object   Should be the same for
+             "Software Engineering II",     is returned         all cases
      1, Course.LabProximity.DIRECTLY_AFTER}        
      *                               
      *                                                                      
@@ -68,8 +61,8 @@ public class CourseDBTest {
 	@Test
 	public void testDBGet() {
 		testDBCreation();
-		Course testAdd = new Course("CPE", 309, 4, "Software Engineering I", 1, Course.LabProximity.DIRECTLY_AFTER);
-		testDB.addCourse("CPE", 309, 4, "Software Engineering I", 1, Course.LabProximity.DIRECTLY_AFTER);
+		Course testAdd = new Course("CPE", 309, 4, "Software Engineering II", 1, Course.LabProximity.DIRECTLY_AFTER);
+		testDB.addCourse(testAdd);
 		
 		assertEquals(testAdd, testDB.getCourse("CPE", 309));
 	}
@@ -80,38 +73,43 @@ public class CourseDBTest {
 	  *  Test
      *  Case    Input                      Output             Remarks
      * ====================================================================
-     *   1  {"CPE", 309, true, 4,        testDB has one   Adding one course
-             "Software Engineering I",     course          
-     1, Course.LabProximity.DIRECTLY_AFTER}    
+     *   1  {"CPE", 309, 4,            testDB contains   Adding one course
+             "Software Engineering II",  this course     by all the course
+     1, Course.LabProximity.DIRECTLY_AFTER}             parameters with a lab
+         2  Course {"CPE", 308, 4,     testDB contains   Adding one course by a
+            "Software Engineering I",   this course    Course Object without a lab
+            0, null}
      *                                                                      
     </pre>
 	 */
 	@Test
 	public void testDBAdd() {
 		testDBCreation();
-		Course testAdd = new Course("CPE", 309, 4, "Software Engineering I", 1, Course.LabProximity.DIRECTLY_AFTER);
-		testDB.addCourse("CPE", 309, 4, "Software Engineering I", 1, Course.LabProximity.DIRECTLY_AFTER);
 		
+		testDB.addCourse("CPE", 309, 4, "Software Engineering II", 1, Course.LabProximity.DIRECTLY_AFTER);	
+		assertTrue(testDB.getAllCourses().contains(testDB.getCourse("CPE", 309)));
+		
+		Course testAdd = new Course("CPE", 308, 4, "Software Engineering I", 0, null);
+		testDB.addCourse(testAdd);
 		assertTrue(testDB.getAllCourses().contains(testAdd));
 	}
 	
 	/**
 	 * Unit test the remove method for an CourseDB.
-	 * 																		    <pre>
+	 <pre>
 	 *  Test
      *  Case    Input                      Output             Remarks
      * ====================================================================
-        1  {"CPE", 309, true, 4,          testDB doesn't   Delete a course
-             "Software Engineering I",     contain Test          
+        1  {"CPE", 309, 4,          testDB doesn't        Delete a course
+        "Software Engineering II",   contain Test          
      1, Course.LabProximity.DIRECTLY_AFTER}  Course
-     *                                                                         </pre>
+     </pre>
 	 */
 	@Test
 	public void testDBRemove() {
 		testDBCreation();
-		Course testAdd;
-		testDB.addCourse("CPE", 309, 4, "Software Engineering I", 1, Course.LabProximity.DIRECTLY_AFTER);
-		testAdd = testDB.getCourse("CPE", 309);
+		Course testAdd = new Course("CPE", 309, 4, "Software Engineering II", 1, Course.LabProximity.DIRECTLY_AFTER);
+		testDB.addCourse(testAdd);
 		testDB.deleteCourse(testAdd);
 		
 		assert(!testDB.getAllCourses().contains(testAdd));

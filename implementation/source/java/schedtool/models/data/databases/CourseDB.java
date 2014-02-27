@@ -68,6 +68,24 @@ public class CourseDB extends Observable{
       setChanged();
 	  notifyObservers();
    }
+   
+   /**
+    * Adds course to the course database.
+    * @param course the new course to be added
+    */
+   /*@
+     requires course != null;
+     ensures courses.containsAll(\old(courses)) && 
+       courses.contains(course);
+     // Ensures that none of the old entries are touched and that courses
+     // contains the course to be added
+    @*/
+   public void addCourse(Course course) {
+      courses.add(course);
+      
+      setChanged();
+	  notifyObservers();
+   }
 
    /**
     * Edits the course whose course number matches course's course number
