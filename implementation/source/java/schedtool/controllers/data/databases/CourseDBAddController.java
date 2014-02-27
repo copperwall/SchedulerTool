@@ -120,10 +120,10 @@ public class CourseDBAddController {
 
       if (!invalidInput) {
          if (hasLabBox.isSelected()) {
-            model.addCourse(prefixText.getText(), Integer.valueOf(courseNoText.getText()), Integer.valueOf(unitsText.getText()), titleText.getText(), Integer.valueOf(labLengthText.getText()), labProxCombo.getValue());
+            model.addCourse(prefixText.getText(), Integer.valueOf(courseNoText.getText()), Integer.valueOf(unitsText.getText()), titleText.getText(), false, Integer.valueOf(labLengthText.getText()), labProxCombo.getValue(), false);
          }
          else {
-            model.addCourse(prefixText.getText(), Integer.valueOf(courseNoText.getText()), Integer.valueOf(unitsText.getText()), titleText.getText(), 0, null);
+            model.addCourse(prefixText.getText(), Integer.valueOf(courseNoText.getText()), Integer.valueOf(unitsText.getText()), titleText.getText(), false, 0, null, false);
          }
          cancel(event);
       }

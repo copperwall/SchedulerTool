@@ -15,6 +15,12 @@ public class CourseDB extends Observable{
    /**
      * CourseDB constructor.
      */
+   
+   /*@
+      requires courseNum > 0 && dept != null && dept.length() > 0;
+      ensures \old(courses).equals(courses);
+      // Ensures courses hasn't changed since calling this method.
+   @*/
    public CourseDB() {
       courses = new Vector<Course>();
       

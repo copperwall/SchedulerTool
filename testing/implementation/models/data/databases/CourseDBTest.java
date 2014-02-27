@@ -86,7 +86,7 @@ public class CourseDBTest {
 	public void testDBAdd() {
 		testDBCreation();
 		
-		testDB.addCourse("CPE", 309, 4, "Software Engineering II", 1, Course.LabProximity.DIRECTLY_AFTER);	
+		testDB.addCourse("CPE", 309, 4, "Software Engineering II", false, 1, Course.LabProximity.DIRECTLY_AFTER, false);	
 		assertTrue(testDB.getAllCourses().contains(testDB.getCourse("CPE", 309)));
 		
 		Course testAdd = new Course("CPE", 308, 4, "Software Engineering I", false, 0, null, false);
