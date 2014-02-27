@@ -57,7 +57,7 @@ public class Course {
    /**
     * An enum value for the proximity of lab and lecture for the data table.
     */
-   private final SimpleObjectProperty<LabProximity> labProx = new SimpleObjectProperty<>();
+   private final SimpleObjectProperty<LabProximity> labProx = new SimpleObjectProperty<LabProximity>();
    
    /**
     * An enum representing how close the associated lab should be to this class (time-wise).
