@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Observable;
 
 import models.admin.generation.Constraint.InvalidConstraintText;
+import models.admin.generation.Range.RangeOutOfBoundsException;
+import models.admin.generation.Range.StartAfterEndException;
 import models.data.databases.Day;
 
 /**
@@ -104,8 +106,10 @@ public class AdminGeneralSettings extends Observable {
     * 
     * @param constraintText the constraint to add. It's not being parsed yet into actual data.
     * @throws InvalidConstraintText 
+    * @throws StartAfterEndException 
+    * @throws RangeOutOfBoundsException 
     */
-   public void addConstraint(String constraintText) throws InvalidConstraintText {
+   public void addConstraint(String constraintText) throws InvalidConstraintText, RangeOutOfBoundsException, StartAfterEndException {
       Constraint constraint = new Constraint(constraintText);
       
       constraints.add(constraint);
