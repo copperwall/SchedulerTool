@@ -206,12 +206,12 @@ public class LocationDBTest {
       LocationDB db = new LocationDB();
 
       db.addLocation("14", "234", "41", true);
-      Location location = db.getLocation(1);
+      Location location = db.getLocation(0);
 
-      assertTrue(location.building.equals("14"));
-      assertTrue(location.room.equals("234"));
-      assertTrue(location.capacity == 41);
-      assertTrue(location.equipment);
+      assertTrue(location.getBuilding().equals("14"));
+      assertTrue(location.getRoom().equals("234"));
+      assertTrue(location.getCapacity() == 41);
+      assertTrue(location.getEquipment());
    }
 
    @Test
@@ -221,16 +221,16 @@ public class LocationDBTest {
 
       db.addLocation("14", "234", "41", true);
       Location location = db.getLocation(1);
-      Location two = new Location("15", "2344", "40", false);
+      Location two = new Location("15", "2344", 40, false);
 
       db.editLocation(location, two);
 
-      location = db.getLocation(1);
+      location = db.getLocation(0);
 
-      assertTrue(location.building.equals("15"));
-      assertTrue(location.room.equals("2344"));
-      assertTrue(location.capacity == 40);
-      assertFalse(location.equipment);
+      assertTrue(location.getBuilding().equals("15"));
+      assertTrue(location.getRoom().equals("2344"));
+      assertTrue(location.getCapacity() == 40);
+      assertFalse(location.getEquipment());
    }
 
    @Test
@@ -238,6 +238,6 @@ public class LocationDBTest {
       LocationDB db = new LocationDB();
 
       db.addLocation("14", "234", "41", true);
-      db.removeLocation(1);
+      db.deleteLocation(db.getLocation(0));
    }
 }
