@@ -3,6 +3,9 @@ package models.admin.generation;
 import java.util.ArrayList;
 import java.util.HashSet;
 
+import models.admin.generation.Range.RangeOutOfBoundsException;
+import models.admin.generation.Range.StartAfterEndException;
+
 public class Constraint {
    
    public static class InvalidConstraintText extends Exception {
@@ -23,6 +26,8 @@ public class Constraint {
     * @param textToParse the text, such as "305, 309"
     * @throws InvalidConstraintText is thrown when a Constraint cannot be created, occurs for any 
     *  error that occurs. Includes a descriptive message.
+    * @throws StartAfterEndException 
+    * @throws RangeOutOfBoundsException 
     */
    /*@ 
         requires 
@@ -30,7 +35,7 @@ public class Constraint {
         ensures
            notOverLapArr != null || ranges != null;
     @*/
-   public Constraint(String textToParse) throws InvalidConstraintText {
+   public Constraint(String textToParse) throws InvalidConstraintText, RangeOutOfBoundsException, StartAfterEndException {
       StringBuilder builder = new StringBuilder();
       HashSet<Integer> notOverlap = new HashSet<Integer>();
       

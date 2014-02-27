@@ -8,9 +8,10 @@ import java.util.ArrayList;
 import org.junit.Test;
 
 import models.admin.generation.Constraint.InvalidConstraintText;
+import models.admin.generation.Range.RangeOutOfBoundsException;
+import models.admin.generation.Range.StartAfterEndException;
 /**
- * Test class for <a href="Constraint.html">Instructor</a>. It implements the
- * following test plan:
+ * Test class for Constraint.java. It implements the following test plan:
  *                                                                        <ul>
  *                                                                      <p><li>
  *     Phase 1: Test valid simple lists of courses
@@ -43,16 +44,20 @@ public class ConstraintTest {
     * Unit test for simple valid constraint lists
     *                                                          <pre>
     *  Test
-     *  Case    Input                    Output             Remarks
+     *  Case    Input                    Output               Remarks
      * ==========================================================================
-     *   1      "305, 309, 306"        none             Valid list of constraints
-     *
-     *           
-     *   2      "305, 309"             none             Valid list of constraints
-     *                                                                         </pre>
+     *   1      "305, 309, 306"        Constraint.text =      Valid list of constraints
+     *                                 305, 306, and 309 
+     *                                 should not overlap
+     *                                 
+     *   2      "305, 309"             Constraint.text =      Valid list of constraints
+     *                                 305 and 309 should 
+     *                                 not overlap              </pre>
+    * @throws StartAfterEndException 
+    * @throws RangeOutOfBoundsException 
     */
    @Test
-   public void testValidList() {
+   public void testValidList() throws RangeOutOfBoundsException, StartAfterEndException {
       try {
          Constraint c = new Constraint("305, 309, 306");
          assertEquals("305, 306, and 309 should not overlap", c.getText());
@@ -76,39 +81,41 @@ public class ConstraintTest {
     *  Test
      *  Case    Input                    Output             Remarks
      * ==========================================================================
-     *   1      "305"                  none             Constraint must have more 
-     *                                                   than one entry
+     *   1      "305"                  Exception thrown     Constraint must have more 
+     *                                                      than one entry
      *
-     *   2      "305,309"              none             Constraint list must have
-     *                                                   a space after the commas
+     *   2      "305,309"              Exception thrown     Constraint list must have
+     *                                                      a space after the commas
      *                                                   
-     *   3      "305, 309, 305,        none             No duplicates allowed
+     *   3      "305, 309, 305,        Exception thrown     No duplicates allowed
      *           207, 308, 410"                        
      *   
-     *   4      ""                     none             Cannot be an empty list
+     *   4      ""                     Exception thrown     Cannot be an empty list
      *   
-     *   5      "       "              none             Cannot be an empty list
+     *   5      "       "              Exception thrown     Cannot be an empty list
      *   
-     *   6      "305, 309,"            none             No extra commas allowed
+     *   6      "305, 309,"            Exception thrown     No extra commas allowed
      *   
-     *   7      "305, 309, 309"        none             No duplicates allowed
+     *   7      "305, 309, 309"        Exception thrown     No duplicates allowed
      *   
-     *   8      "305, "                none             No extra commas allowed
+     *   8      "305, "                Exception thrown     No extra commas allowed
      *   
-     *   9      "305, , 309"           none             Must be list of integers
+     *   9      "305, , 309"           Exception thrown     Must be list of integers
      *   
-     *   10     "305, ,309 305"        none             Must be a list of valid 
-     *                                                  integers
+     *   10     "305, ,309 305"        Exception thrown     Must be a list of valid 
+     *                                                      integers
      *   
-     *   11     "305, 305"             none             No duplicates
+     *   11     "305, 305"             Exception thrown     No duplicates
      *   
-     *   12     "asdf, 334"            none             Must be valid integers
+     *   12     "asdf, 334"            Exception thrown     Must be valid integers
      *   
-     *   13     "asdfaobvhwoie"        none             Must be valid integers
+     *   13     "asdfaobvhwoie"        Exception thrown     Must be valid integers
      *                                                                         </pre>
+    * @throws StartAfterEndException 
+    * @throws RangeOutOfBoundsException 
     */
    @Test
-   public void testInvalidList() {
+   public void testInvalidList() throws RangeOutOfBoundsException, StartAfterEndException {
       try {
          new Constraint("305");
          assertTrue(false);
@@ -226,17 +233,17 @@ public class ConstraintTest {
     * Unit tests for valid constrains in the form of "NXX"
     *                                                          <pre>
     *  Test
-    *  Case    Input                    Output             Remarks
-    * ==========================================================================
-    *   1      "3XX"                  none             300-level courses should 
-    *                                                  not overlap
+    *  Case    Input                    Output                                Remarks
+    * ===============================================================================
+    *   1      "3XX"  Constraint.text = 300-level courses should not overlap 
     *
-    *   2      "38X"                  none             380-level courses should
-    *                                                  not overlap
+    *   2      "38X"  Constraint.text = 380-level courses should not overlap
     *                                                        </pre>
+    * @throws StartAfterEndException 
+    * @throws RangeOutOfBoundsException 
     */
    @Test
-   public void testValidXLevelNoCurlyBraces() {
+   public void testValidXLevelNoCurlyBraces() throws RangeOutOfBoundsException, StartAfterEndException {
       String ending = "-level courses should not overlap";
       
       try {
@@ -262,22 +269,24 @@ public class ConstraintTest {
     *  Test
     *  Case    Input               Output           Remarks
     * =============================================================================
-    *   1      "X8X"               none             First character must be 
+    *   1      "X8X"               Exception thrown  First character must be 
     *                                                  an integer
     *                                               
     *
-    *   2      "BXX"               none             First character must be 
+    *   2      "BXX"               Exception thrown  First character must be 
     *                                                  an integer
     *                                                  
-    *   3      "2BX"               none             Cannot contain other characters
+    *   3      "2BX"               Exception thrown  Cannot contain other characters
     *                                               than X or integers
     *                                               
-    *   4      "3XXX"              none             Thousand-level courses not 
+    *   4      "3XXX"              Exception thrown  Thousand-level courses not 
     *                                               supported.
     *                                                                         </pre>
+    * @throws StartAfterEndException 
+    * @throws RangeOutOfBoundsException 
     */
    @Test
-   public void testInvalidXLevelNoCurlyBraces() {
+   public void testInvalidXLevelNoCurlyBraces() throws RangeOutOfBoundsException, StartAfterEndException {
       try {
          new Constraint("X8X");
       }
@@ -316,17 +325,19 @@ public class ConstraintTest {
     *  Test
     *  Case    Input               Output           Remarks
     * =============================================================================
-    *   1      "3{1,2,3}X"         none             310s, 320s, and 330s should not
-    *                                               overlap                                 
+    *   1      "3{1,2,3}X"     Constraint.txt =         
+    *                          "310s, 320s, and 330s should not overlap"                       
     *
-    *   2      "3{3,1}X"           none             330s and 310s should not overlap                                      
+    *   2      "3{3,1}X"       Constraint.txt = "330s and 310s should not overlap"                                      
     *                                               
-    *   3      "3{1}X"             none             310s should not overlap
+    *   3      "3{1}X"         Constraint.txt = "310s should not overlap"
     *                                              
     *                                                                         </pre>
+    * @throws StartAfterEndException 
+    * @throws RangeOutOfBoundsException 
     */
    @Test
-   public void testValidXLevelCurlyBraces() {
+   public void testValidXLevelCurlyBraces() throws RangeOutOfBoundsException, StartAfterEndException {
       String ending = " should not overlap";
       
       try {
@@ -360,28 +371,30 @@ public class ConstraintTest {
     *  Test
     *  Case    Input               Output           Remarks
     * =============================================================================
-    *   1      "X{X,3,2}X"         none             1st char must be an integer                                 
+    *   1      "X{X,3,2}X"         Exception thrown  1st char must be an integer                                 
     *
-    *   2      "3{1,1,2}X"         none             No duplicates                                      
+    *   2      "3{1,1,2}X"         Exception thrown  No duplicates                                      
     *                                               
-    *   3      "B{2,3,3}X"         none             1st char must be an integer
+    *   3      "B{2,3,3}X"         Exception thrown  1st char must be an integer
     *   
-    *   4      "3{2,3,4}XX"        none             Thousand-level courses not 
+    *   4      "3{2,3,4}XX"        Exception thrown  Thousand-level courses not 
     *                                               supported
     *                                               
-    *   5      "2X{1,2,3}"         none             Ones place not valid for
+    *   5      "2X{1,2,3}"         Exception thrown  Ones place not valid for
     *                                               curly brace list
     *                                               
-    *   6      "3{F,2,3}X"         none             All values in curly braces 
+    *   6      "3{F,2,3}X"         Exception thrown  All values in curly braces 
     *                                               must be integers
     *                                               
-    *   7      "3{1,2 ,3}X"        none             No spaces in curly brace list
+    *   7      "3{1,2 ,3}X"        Exception thrown  No spaces in curly brace list
     *   
-    *   8      "3{X,X}X"           none             Curly brace values must be ints
+    *   8      "3{X,X}X"           Exception thrown  Curly brace values must be ints
     *                                                                         </pre>
+    * @throws StartAfterEndException 
+    * @throws RangeOutOfBoundsException 
     */
    @Test
-   public void testInvalidXLevelCurlyBraces() {
+   public void testInvalidXLevelCurlyBraces() throws RangeOutOfBoundsException, StartAfterEndException {
       try {
          new Constraint("X{X,3,2}X");
       }
@@ -456,15 +469,17 @@ public class ConstraintTest {
     *   
     *   4      "3{1,2,3}X"        none              List from 310 to 339
     *   
-    *   5      "300, 301"         none              Sets ranges and notOverlapArr 
+    *   5      "300, 301"         Exception thrown   Sets ranges and notOverlapArr 
     *                                               to null which then getConstraints()
     *                                               will throw InvalidConstraintText
     *                                               
     *                                                                         </pre>
     * @throws InvalidConstraintText
+    * @throws StartAfterEndException 
+    * @throws RangeOutOfBoundsException 
     */
    @Test
-   public void testGetConstraints() throws InvalidConstraintText {
+   public void testGetConstraints() throws InvalidConstraintText, RangeOutOfBoundsException, StartAfterEndException {
       ArrayList<Integer> returnList;
       ArrayList<Integer> expected = new ArrayList<Integer>();
       
