@@ -59,7 +59,7 @@ public class LocationDBTest {
     */
 
    @Test
-   protected void testValidateBuilding() throws NoSuchMethodException, SecurityException, IllegalAccessException, InvocationTargetException {
+   public void testValidateBuilding() throws NoSuchMethodException, SecurityException, IllegalAccessException, InvocationTargetException {
       LocationDB db = new LocationDB();
       boolean flag = false;
 
@@ -102,7 +102,7 @@ public class LocationDBTest {
     */
 
    @Test
-   protected void testValidateRoom() throws IllegalAccessException, InvocationTargetException, NoSuchMethodException, SecurityException {
+   public void testValidateRoom() throws IllegalAccessException, InvocationTargetException, NoSuchMethodException, SecurityException {
       LocationDB db = new LocationDB();
       boolean flag = false;
 
@@ -144,7 +144,7 @@ public class LocationDBTest {
     */
 
    @Test
-   protected void testValidateCapacity() throws NoSuchMethodException, SecurityException, IllegalAccessException, InvocationTargetException {
+   public void testValidateCapacity() throws NoSuchMethodException, SecurityException, IllegalAccessException, InvocationTargetException {
       LocationDB db = new LocationDB();
       boolean flag = false;
 
@@ -185,7 +185,7 @@ public class LocationDBTest {
     */
 
    @Test
-   protected void testValidateEquipment() throws NoSuchMethodException, SecurityException, IllegalAccessException, InvocationTargetException {
+   public void testValidateEquipment() throws NoSuchMethodException, SecurityException, IllegalAccessException, InvocationTargetException {
       LocationDB db = new LocationDB();
 
       Method method = LocationDB.class.getDeclaredMethod("validateEquipment", boolean.class);
