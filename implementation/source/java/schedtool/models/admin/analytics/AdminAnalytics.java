@@ -1,7 +1,6 @@
 package models.admin.analytics;
 
 import java.util.ArrayList;
-import java.util.Observable;
 import java.util.HashMap;
 
 /**
