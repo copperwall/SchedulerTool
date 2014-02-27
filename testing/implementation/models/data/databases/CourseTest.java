@@ -39,9 +39,9 @@ public class CourseTest {
 	  *  Test
      *  Case    Input                    Output             Remarks
      * ====================================================================
-     *   1      {"Test Name", "tname"    Proper init done   with a lab
-     *           10, false}
-     *   2      { }                      Proper init done   without a lab                                 
+     *   1      {"CPE", 309, 4,          Proper init done    Construct a Course
+     *   "Software Engineering I", 1, 
+     *   Course.LabProximity.DIRECTLY_AFTER}                               
     </pre>
 	 */
 	@Test
@@ -50,83 +50,77 @@ public class CourseTest {
 		Course test = new Course("CPE", 309, 4, "Software Engineering I", 1, Course.LabProximity.DIRECTLY_AFTER);
 		
 		assertTrue(test != null);
-      
-      Course test = new Course("Test", "Name", "tname", 10, false);
-		
-		assertTrue(test != null);
 	}
 	
 	/**
-	 * Unit test getting an course's user name
+	 * Unit test getting an course's prefix
 	 * 																			<pre>
 	 *  Test
      *  Case    Input                    Output             Remarks
      * ====================================================================
-     *   1      {"Test Name", "tname"    "tname"            Only case
-     *           10, false}
+     *   1      {"CPE", 309, 4,           "CPE"           Getting a course prefix
+     *   "Software Engineering I", 1, 
+     *   Course.LabProximity.DIRECTLY_AFTER}
      *                                                                         </pre>
 	 */
 	@Test
 	public void testGetPrefix() {
-		Course test = new Course("Test", "Name", "tname", 10, false);
+		Course test = new Course("CPE", 309, 4, "Software Engineering I", 1, Course.LabProximity.DIRECTLY_AFTER);
 		
-		assertTrue(test.getUser().equals("tname"));
+		assertEquals(test.getPrefix(), "CPE");
 	}
 	
 	/**
-	 * Unit test getting an course's work time units.
+	 * Unit test getting an course's id number.
 	 * 																			<pre>
 	 *  Test
      *  Case    Input                    Output             Remarks
      * ====================================================================
-     *   1      {"Test Name", "tname"    10                 Only case
-     *           10, false}
+     *   1      {""CPE", 309, 4,          309             Get Course Number
+     *   "Software Engineering I", 1, 
+     *   Course.LabProximity.DIRECTLY_AFTER}
      *                                                                         </pre>
 	 */
 	@Test
 	public void testGetCourseNum() {
-		Course test = new Course("Test", "Name", "tname", 10, false);
+		Course test = new Course("CPE", 309, 4, "Software Engineering I", 1, Course.LabProximity.DIRECTLY_AFTER);
 		
-		assertTrue(test.getWtu() == 10);
+		assertEquals(test.getCourseNum(), 309);
 	}
 	
 	/**
-	 * Unit test for checking if an course is active.
-	 * 																			<pre>
+	 * Unit test for getting a course title
+	 <pre>
 	 *  Test
      *  Case    Input                    Output             Remarks
      * ====================================================================
-     *   1      {"Test Name", "tname"    false              Inactive course
-     *           10, false}
-     *           
-     *   2      {"Eikichi Onizuka",
-     *           "eonizuka", 5, true}    true               Active course
-     *                                                                         </pre>
+     *   1      {"CPE", 309, 4,   "Software Engineering I"   Getting a course title
+     *   "Software Engineering I", 1, 
+     *   Course.LabProximity.DIRECTLY_AFTER}
+     </pre>
 	 */
 	@Test
 	public void testGetTitle() {
-		Course test = new Course("Test", "Name", "tname", 10, false);
+		Course test = new Course("CPE", 309, 4, "Software Engineering I", 1, Course.LabProximity.DIRECTLY_AFTER);
 		
-		assertTrue(test.getAct() == false);
-		
-		test = new Course("Eikichi", "Onizuka", "eonizuka", 10, true);
-		assertTrue(test.getAct() == true);
+		assertEquals(test.getTitle(), "Software Engineering I");
 	}
 	
 	/**
 	 * Unit test getting course preferences.
-	 * 																			<pre>
+	 <pre>
 	 *  Test
      *  Case    Input                    Output               Remarks
      * ======================================================================
-     *   1      {"Test Name", "tname"    all default course   gets all course
-     *           10, false}              prefs                preferences
-     *                                                                         </pre>
+     *   1      {"CPE", 309, 4,           4                Getting a course's units
+     *   "Software Engineering I", 1, 
+     *   Course.LabProximity.DIRECTLY_AFTER}
+     </pre>
 	 */
 	@Test
 	public void testGetUnits() {
-		Course test = new Course("Test", "Name", "tname", 10, false);
+		Course test = new Course("CPE", 309, 4, "Software Engineering I", 1, Course.LabProximity.DIRECTLY_AFTER);
 		
-		assertTrue(new Vector<CoursePreference>().containsAll(test.getAllClassPrefs()));
+		assertEquals(test.getUnits(), 4);
 	}
 }

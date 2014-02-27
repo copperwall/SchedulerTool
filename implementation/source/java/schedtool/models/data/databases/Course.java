@@ -318,7 +318,7 @@ public class Course {
     * @param dept the department prefix to match
     */
    /*@
-     requires (* none yet *);
+     requires courseNum ;
      ensures 
        \result == (courseNum == this.courseNum);
     @*/
