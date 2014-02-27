@@ -5,7 +5,7 @@ import org.junit.Test;
 
 /****
  *
- * Class LocationTest is the companion testing class for <a href=Location.html> Schedule </a>. It implements the following module test plan:
+ * Class LocationTest is the companion testing class for <a href='Location.html'>Location</a>. It implements the following module test plan:
  *
  *
  *    Phase 1: Unit test the constructor
@@ -14,7 +14,7 @@ import org.junit.Test;
  */
 
 @Test
-pubic class LocationTest {
+public class LocationTest {
    /**
     * Unit test the constructor by building multiple Locations.
     *
