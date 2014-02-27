@@ -32,12 +32,12 @@ public class CourseDBTest {
 	/**
 	 * Unit test the constructor for an CourseDB. Only requires one test because
 	 * it will only be instantiated once at the beginning of the program. 
-	 * 																			<pre>
+	 <pre>
 	 *  Test
      *  Case    Input            Output             Remarks
      * ====================================================================
      *   1      null             Proper init done   Only case
-     *                                                                         </pre>
+     </pre>
 	 */
 	@Test
 	public void testDBCreation() {
@@ -51,7 +51,7 @@ public class CourseDBTest {
 	  *  Test
      *  Case    Input                        Output               Remarks
      * ======================================================================
-     *   1   {"CPE", 309, 4,        Course object   Should be the same for
+     *   1   {"CPE", 309, 4,               Course object   Should be the same for
              "Software Engineering II",     is returned         all cases
      1, Course.LabProximity.DIRECTLY_AFTER}        
      *                               
@@ -61,7 +61,7 @@ public class CourseDBTest {
 	@Test
 	public void testDBGet() {
 		testDBCreation();
-		Course testAdd = new Course("CPE", 309, 4, "Software Engineering II", 1, Course.LabProximity.DIRECTLY_AFTER);
+		Course testAdd = new Course("CPE", 309, 4, "Software Engineering II", false, 1, Course.LabProximity.DIRECTLY_AFTER, false);
 		testDB.addCourse(testAdd);
 		
 		assertEquals(testAdd, testDB.getCourse("CPE", 309));
@@ -89,7 +89,7 @@ public class CourseDBTest {
 		testDB.addCourse("CPE", 309, 4, "Software Engineering II", 1, Course.LabProximity.DIRECTLY_AFTER);	
 		assertTrue(testDB.getAllCourses().contains(testDB.getCourse("CPE", 309)));
 		
-		Course testAdd = new Course("CPE", 308, 4, "Software Engineering I", 0, null);
+		Course testAdd = new Course("CPE", 308, 4, "Software Engineering I", false, 0, null, false);
 		testDB.addCourse(testAdd);
 		assertTrue(testDB.getAllCourses().contains(testAdd));
 	}
@@ -108,7 +108,7 @@ public class CourseDBTest {
 	@Test
 	public void testDBRemove() {
 		testDBCreation();
-		Course testAdd = new Course("CPE", 309, 4, "Software Engineering II", 1, Course.LabProximity.DIRECTLY_AFTER);
+		Course testAdd = new Course("CPE", 309, 4, "Software Engineering II", false, 1, Course.LabProximity.DIRECTLY_AFTER, false);
 		testDB.addCourse(testAdd);
 		testDB.deleteCourse(testAdd);
 		

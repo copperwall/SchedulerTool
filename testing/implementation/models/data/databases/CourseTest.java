@@ -41,7 +41,7 @@ public class CourseTest {
 	@Test
 	public void testConstructor()
 	{
-		Course test = new Course("CPE", 309, 4, "Software Engineering II", 1, Course.LabProximity.DIRECTLY_AFTER);
+		Course test = new Course("CPE", 309, 4, "Software Engineering II", false, 1, Course.LabProximity.DIRECTLY_AFTER, false);
 		assertTrue(test != null);
 	}
 	
@@ -58,7 +58,7 @@ public class CourseTest {
 	 */
 	@Test
 	public void testGetPrefix() {
-		Course test = new Course("CPE", 309, 4, "Software Engineering II", 1, Course.LabProximity.DIRECTLY_AFTER);
+		Course test = new Course("CPE", 309, 4, "Software Engineering II", false, 1, Course.LabProximity.DIRECTLY_AFTER, false);
 		assertEquals(test.getPrefix(), "CPE");
 	}
 	
@@ -75,7 +75,7 @@ public class CourseTest {
 	 */
 	@Test
 	public void testGetCourseNum() {
-		Course test = new Course("CPE", 309, 4, "Software Engineering II", 1, Course.LabProximity.DIRECTLY_AFTER);
+		Course test = new Course("CPE", 309, 4, "Software Engineering II", false, 1, Course.LabProximity.DIRECTLY_AFTER, false);
 		assertEquals(test.getCourseNum(), 309);
 	}
 	
@@ -92,7 +92,7 @@ public class CourseTest {
 	 */
 	@Test
 	public void testGetTitle() {
-		Course test = new Course("CPE", 309, 4, "Software Engineering II", 1, Course.LabProximity.DIRECTLY_AFTER);
+		Course test = new Course("CPE", 309, 4, "Software Engineering II", false, 1, Course.LabProximity.DIRECTLY_AFTER, false);
 		assertEquals(test.getTitle(), "Software Engineering II");
 	}
 	
@@ -109,7 +109,7 @@ public class CourseTest {
 	 */
 	@Test
 	public void testGetUnits() {
-		Course test = new Course("CPE", 309, 4, "Software Engineering II", 1, Course.LabProximity.DIRECTLY_AFTER);
+		Course test = new Course("CPE", 309, 4, "Software Engineering II", false, 1, Course.LabProximity.DIRECTLY_AFTER, false);
 		assertEquals(test.getUnits(), 4);
 	}
 }
