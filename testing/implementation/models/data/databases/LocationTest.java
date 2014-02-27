@@ -13,7 +13,6 @@ import org.junit.Test;
  *    Phase 3: Unit test the access methods set*
  */
 
-@Test
 public class LocationTest {
    /**
     * Unit test the constructor by building multiple Locations.
@@ -46,7 +45,7 @@ public class LocationTest {
     * 1     String: "14"         None              Asserts result == expected
     */
 
-    @Test(dependsOnMethods = {"testConstructor"})
+    @Test
     protected void testGetBuilding() {
       Location location = new Location("14", "234B", 40, true);
 
@@ -64,7 +63,7 @@ public class LocationTest {
     * 1     String: "234B"       None              Asserts output == expected
     */
 
-    @Test(dependsOnMethods = {"testConstructor"})
+    @Test
     protected void testGetRoom() {
       Location location = new Location("14", "234B", 40, true);
 
@@ -82,7 +81,7 @@ public class LocationTest {
     * 1     Integer: 40          None              Asserts output == expected
     */
 
-    @Test(dependsOnMethods = {"testConstructor"})
+   @Test
     protected void testGetCapacity() {
       Location location = new Location("14", "234B", 40, true);
 
@@ -100,7 +99,7 @@ public class LocationTest {
     * 1     boolean: true        None              Asserts output == expected
     */
 
-    @Test(dependsOnMethods = {"testConstructor"})
+    @Test
     protected void testGetEquipment() {
       Location location = new Location("14", "234B", 40, true);
 
@@ -109,8 +108,7 @@ public class LocationTest {
       assertTrue(result);
     }
 
-    @Test(dependsOnMethods = {"testConstructor", "testGetBuilding", 
-     "testGetRoom", "testGetCapacity", "testGetEquipment"}
+    @Test
     protected void testSetBuilding() {
       Location location = new Location("14", "312", 100, false);
 
@@ -119,8 +117,7 @@ public class LocationTest {
       assertTrue(location.getBuilding().equals("52"));
     }
 
-    @Test(dependsOnMethods = {"testConstructor", "testGetBuilding", 
-     "testGetRoom", "testGetCapacity", "testGetEquipment"}
+    @Test
     protected void testSetRoom() {
       Location location = new Location("14", "312", 100, false);
 
@@ -129,8 +126,7 @@ public class LocationTest {
       assertTrue(location.getRoom().equals("250"));
     }
 
-    @Test(dependsOnMethods = {"testConstructor", "testGetBuilding", 
-     "testGetRoom", "testGetCapacity", "testGetEquipment"}
+    @Test
     protected void testSetCapacity() {
       Location location = new Location("14", "312", 100, false);
       
@@ -139,8 +135,7 @@ public class LocationTest {
       assertTrue(location.getCapacity() == 23);
     }
 
-    @Test(dependsOnMethods = {"testConstructor", "testGetBuilding", 
-     "testGetRoom", "testGetCapacity", "testGetEquipment"}
+    @Test
     protected void testSetEquipment() {
       Location location = new Location("14", "312", 100, false);
       
