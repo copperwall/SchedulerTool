@@ -17,7 +17,7 @@ public class Instructor extends User {
     /** maximum number of work time units for the instructor */
     private int workTimeUnits;
     /** preferred times to teach */
-    private Collection<Day> timePrefs;
+    public Collection<Day> timePrefs;
     /** preferred courses to teach */
     public List<CoursePreference> coursePrefs;
     /** if the instructor is active for the quarter */

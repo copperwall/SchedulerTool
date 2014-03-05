@@ -49,8 +49,16 @@ public class InstructorDB extends Observable {
             // select statement
             Statement stmt = con.createStatement();
             // select query
-            String query = "SELECT * FROM core_polyschedulesuser WHERE username = '"
-                    + username + "'";
+            String query = "SELECT * FROM core_polyschedulesuser"
+                    + " LEFT JOIN "
+                	+ "(core_polyschedulesuser_course_preferences,"
+                	+ " preferences_coursepreference, schedules_course"
+                	+ " ) "
+                	+ "ON "
+                 	+ "(core_polyschedulesuser_course_preferences.polyschedulesuser_id=core_polyschedulesuser.id"
+                 	+ " AND preferences_coursepreference.id=core_polyschedulesuser_course_preferences.coursepreference_id"
+                 	+ " AND preferences_coursepreference.course_id=schedules_course.id"
+                 	+ ") WHERE username = '" + username + "'";
             // result set from query
             ResultSet rs = stmt.executeQuery(query);
 
@@ -63,10 +71,61 @@ public class InstructorDB extends Observable {
                 boolean active = rs.getBoolean("is_active_instructor");
                 // instructor's maximum wtu
                 int wtu = rs.getInt("max_wtu");
+                // course preferences
+                Vector<CoursePreference> cPrefs = new Vector<CoursePreference>();
+                // temp course pref
+                CoursePreference cPref = new CoursePreference();
 
                 result = new Instructor(firstName, lastName, username, wtu,
                         active);
+                
+                // add first course pref
+                cPref.course = new Course(rs.getString("prefix"), rs.getInt("number"),
+                        rs.getInt("units"), rs.getString("title"), 
+                        rs.getInt("requires_equipment") > 0 ? true : false, 
+                        rs.getInt("lab_length"), Course.LabProximity.values()[rs.getInt("lab_time_proximity")], 
+                        rs.getInt("lab_requires_equiment") > 0 ? true : false);
+                cPref.preference = rs.getInt("preference");
+                cPrefs.add(cPref);
+                
+                // add rest
+                while (rs.next()) {
+                    cPref = new CoursePreference();
+                    cPref.course = new Course(rs.getString("prefix"), rs.getInt("number"),
+                            rs.getInt("units"), rs.getString("title"), 
+                            rs.getInt("requires_equipment") > 0 ? true : false, 
+                            rs.getInt("lab_length"), Course.LabProximity.values()[rs.getInt("lab_time_proximity")], 
+                            rs.getInt("lab_requires_equiment") > 0 ? true : false);
+                    cPref.preference = rs.getInt("preference");
+                    cPrefs.add(cPref);
+                }
+                
+                result.coursePrefs = cPrefs;
             }
+            
+            // time preference query
+            query = "SELECT * FROM core_polyschedulesuser"
+                    + " LEFT JOIN "
+                    + "(core_polyschedulesuser_time_preference,"
+                    + " preferences_timepreference,"
+                    + " schedules_week)"
+                    + "ON "
+                    + "("
+                    + " core_polyschedulesuser_time_preference.polyschedulesuser_id=core_polyschedulesuser.id "
+                    + " AND preferences_timepreference.id=core_polyschedulesuser_time_preference.timepreference_id"
+                    + " AND schedules_week.id=preferences_timepreference.availability_id"
+                    + ") WHERE username = '" + username + "'";
+            rs = stmt.executeQuery(query);
+            rs.next();
+            Vector<Day> timeprefs = new Vector<Day>();
+                timeprefs.add(new Day(rs.getString("monday")));
+                timeprefs.add(new Day(rs.getString("tuesday")));
+                timeprefs.add(new Day(rs.getString("wednesday")));
+                timeprefs.add(new Day(rs.getString("thursday")));
+                timeprefs.add(new Day(rs.getString("friday")));
+                timeprefs.add(new Day(rs.getString("saturday")));
+                timeprefs.add(new Day(rs.getString("sunday")));
+            result.timePrefs = timeprefs;
         }
         catch (SQLException exc) {
             System.err
