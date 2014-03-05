@@ -309,8 +309,7 @@ public class InstructorDB extends Observable {
                 // instructor's maximum wtu
                 int wtu = rs.getInt("max_wtu");
 
-                instructors.add(new Instructor(firstName, lastName, username,
-                        wtu, active));
+                instructors.add(getInstructor(username));
             }
         }
         catch (SQLException exc) {

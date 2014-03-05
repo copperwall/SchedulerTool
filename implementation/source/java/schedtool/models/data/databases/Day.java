@@ -17,10 +17,10 @@ public class Day {
    
    public Day(String longtext) {
        hourAvailability = new Vector<Boolean>();
-       
-       for (int i = 0; i < longtext.length(); i++) {
-           System.out.println(i + ":00 - " + (longtext.charAt(i) != '0'));
-           hourAvailability.add(longtext.charAt(i) != '0');
+       if (longtext != null) {
+           for (int i = 0; i < longtext.length(); i++) {
+               hourAvailability.add(longtext.charAt(i) != '0');
+           }
        }
    }
    /**
