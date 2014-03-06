@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Vector;
 
@@ -117,7 +118,7 @@ public class InstructorDB extends Observable {
                     + ") WHERE username = '" + username + "'";
             rs = stmt.executeQuery(query);
             rs.next();
-            Vector<Day> timeprefs = new Vector<Day>();
+            ArrayList<Day> timeprefs = new ArrayList<Day>();
                 timeprefs.add(new Day(rs.getString("monday")));
                 timeprefs.add(new Day(rs.getString("tuesday")));
                 timeprefs.add(new Day(rs.getString("wednesday")));
