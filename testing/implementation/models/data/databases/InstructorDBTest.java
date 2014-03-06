@@ -67,6 +67,8 @@ public class InstructorDBTest {
 	public void testDBGet()
 	{
 		testDBCreation();
+		Instructor testAdd = new Instructor("Test", "Instructor", "tinstruct", 10, true);
+		//testDB.addInstructor(testAdd);
 		
 		assertEquals("gfisher", testDB.getInstructor("gfisher").getUser());
 	}
@@ -115,6 +117,8 @@ public class InstructorDBTest {
 	public void testDBRemove()
 	{
 		testDBCreation();
+		Instructor testAdd = new Instructor("Test", "Instructor", "tinstruct", 10, true);
+		Vector<Instructor> allInstructors = new Vector<Instructor>();
 		testDB.deleteInstructor(new Instructor("Test", "Instructor", "tinstruct", 10, true));
 		
 		allInstructors = testDB.getAllInstructors();
@@ -139,7 +143,7 @@ public class InstructorDBTest {
 	{
 		testDBCreation();
 		Instructor testAdd = new Instructor("Test", "Instructor", "tinstruct", 10, true);
-		testDB.addInstructor(testAdd);
+		//testDB.addInstructor(testAdd);
 		
 		testAdd = new Instructor("Test", "Instructor", "tinstruct", 8, false);
 		testDB.editInstructor(testAdd);

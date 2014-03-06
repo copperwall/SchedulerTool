@@ -83,9 +83,9 @@ public class InstructorDB extends Observable {
                 // add first course pref
                 cPref.course = new Course(rs.getString("prefix"), rs.getInt("number"),
                         rs.getInt("units"), rs.getString("title"), 
-                        rs.getInt("requires_equipment") > 0 ? true : false, 
+                        rs.getBoolean("requires_equipment"), 
                         rs.getInt("lab_length"), Course.LabProximity.values()[rs.getInt("lab_time_proximity")], 
-                        rs.getInt("lab_requires_equiment") > 0 ? true : false);
+                        rs.getBoolean("lab_requires_equiment"));
                 cPref.preference = rs.getInt("preference");
                 cPrefs.add(cPref);
                 
@@ -310,8 +310,7 @@ public class InstructorDB extends Observable {
                 // instructor's maximum wtu
                 int wtu = rs.getInt("max_wtu");
 
-                instructors.add(new Instructor(firstName, lastName, username,
-                        wtu, active));
+                instructors.add(getInstructor(username));
             }
         }
         catch (SQLException exc) {
