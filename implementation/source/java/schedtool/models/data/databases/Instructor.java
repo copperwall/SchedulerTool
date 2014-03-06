@@ -17,7 +17,7 @@ public class Instructor extends User {
     /** maximum number of work time units for the instructor */
     private int workTimeUnits;
     /** preferred times to teach */
-    public Collection<Day> timePrefs;
+    public ArrayList<Day> timePrefs;
     /** preferred courses to teach */
     public List<CoursePreference> coursePrefs;
     /** if the instructor is active for the quarter */
@@ -302,5 +302,13 @@ public class Instructor extends User {
      */
     public void setOneClassPref(Course course, int prefNum) {
         System.out.println("Instructor.setOneClassPref()");
+    }
+    
+    public void setTimePrefs(ArrayList<Day> timePrefs) {
+       this.timePrefs = timePrefs;
+    }
+    
+    public ArrayList<Day> getTimePrefs() {
+       return timePrefs;
     }
 }
