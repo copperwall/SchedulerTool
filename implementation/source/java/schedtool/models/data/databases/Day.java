@@ -31,7 +31,7 @@ public class Day {
       ensures hourAvailability.equals(availableHours);
    @*/
    public void setAvailability(Collection<Boolean> availableHours) {
-      
+      this.hourAvailability = availableHours;
    }
 
    /**
@@ -44,6 +44,6 @@ public class Day {
          \result.equals(hourAvailability);
    @*/
    public Collection<Boolean> getAvailability() {
-      return null;
+      return hourAvailability;
    }
 }
