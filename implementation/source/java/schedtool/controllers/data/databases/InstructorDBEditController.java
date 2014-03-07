@@ -41,6 +41,14 @@ public class InstructorDBEditController implements Initializable {
     /** Reference to the instructor that is being edited */
     private Instructor instructor;
     
+    /** first name field on GUI */
+    @FXML
+    private TextField firstName;
+
+    /** last name field on GUI */
+    @FXML
+    private TextField lastName;
+    
     /**
      * Initializes the controller class.
      */
@@ -55,7 +63,7 @@ public class InstructorDBEditController implements Initializable {
     @FXML
     private void edit(ActionEvent event) {
     	/* Creates a new instructor with the properties we need */
-        instructorDB.editInstructor(new Instructor("Placeholder", "Name", 
+        instructorDB.editInstructor(new Instructor(firstName.getText(), lastName.getText(), 
         			userID.getText(), Integer.parseInt(wtu.getText()), active.isSelected()));
         /* Close the dialog */
         Button src = (Button)event.getSource();
@@ -85,6 +93,10 @@ public class InstructorDBEditController implements Initializable {
     public void passInstructor(Instructor target) {
     	instructor = target;
     	
+    	firstName.setText(instructor.firstName);
+    	lastName.setText(instructor.lastName);
+    	firstName.setEditable(false);
+    	lastName.setEditable(false);
     	active.setSelected(instructor.getAct());
     	wtu.setText("" + instructor.getWtu());
     	userID.setEditable(true);

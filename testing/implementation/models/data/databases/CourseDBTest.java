@@ -73,10 +73,7 @@ public class CourseDBTest {
 	  *  Test
      *  Case    Input                      Output             Remarks
      * ====================================================================
-     *   1  {"CPE", 309, 4,            testDB contains   Adding one course
-             "Software Engineering II",  this course     by all the course
-     1, Course.LabProximity.DIRECTLY_AFTER}             parameters with a lab
-         2  Course {"CPE", 308, 4,     testDB contains   Adding one course by a
+     *   1  Course {"CPE", 308, 4,     testDB contains   Adding one course by a
             "Software Engineering I",   this course    Course Object without a lab
             0, null}
      *                                                                      
@@ -85,9 +82,6 @@ public class CourseDBTest {
 	@Test
 	public void testDBAdd() {
 		testDBCreation();
-		
-		testDB.addCourse("CPE", 309, 4, "Software Engineering II", false, 1, Course.LabProximity.DIRECTLY_AFTER, false);	
-		assertTrue(testDB.getAllCourses().contains(testDB.getCourse("CPE", 309)));
 		
 		Course testAdd = new Course("CPE", 308, 4, "Software Engineering I", false, 0, null, false);
 		testDB.addCourse(testAdd);
