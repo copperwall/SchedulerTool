@@ -2,6 +2,7 @@ package models.data.databases;
 
 import java.util.Vector;
 import java.lang.NumberFormatException;
+import java.lang.RuntimeException;
 
 /**
  * Class LocationDB contains a list of locations for the Term.
@@ -44,7 +45,7 @@ public class LocationDB {
       ensures \old(locations).size() == locations.size() + 1
          && locations.contains(location);
     @*/
-   public void addLocation(String building, String room, String capacity, String equipment) {
+   public void addLocation(String building, String room, String capacity, boolean equipment) {
       /* Resulting building String from validation */
       String building_check = validateBuilding(building);
       /* Resulting room String from validation */
@@ -52,7 +53,7 @@ public class LocationDB {
       /* Resulting integer from converting capacity string to int */
       int capacity_check = validateCapacity(capacity);
       /* Resulting String[] after splitting equipment argument */
-      String[] equipment_check = validateEquipment(equipment);
+      boolean equipment_check = validateEquipment(equipment);
 
       Location location = new Location(building_check, room_check, capacity_check,
        equipment_check);
@@ -113,8 +114,7 @@ public class LocationDB {
     @*/
    private String validateBuilding(String building) {
       if (building.length() > 70) {
-         System.err.println("Building name is too big: Greater than 70 chars");
-         System.exit(1);
+         throw new RuntimeException("Building name is too big: Greater than 70 chars");
       }
 
       return building;
@@ -131,8 +131,7 @@ public class LocationDB {
     @*/
    private String validateRoom(String room) {
       if (room.length() > 6) {
-         System.err.println("Room string does not match format: Too large");
-         System.exit(1);
+         throw new RuntimeException("Room string does not match format: Too large");
       }
 
       return room;
@@ -159,8 +158,7 @@ public class LocationDB {
          integer_capacity = Integer.parseInt(capacity);
       }
       catch(NumberFormatException e) {
-         System.err.println("Capacity is not an integer value");
-         System.exit(1);
+         throw new RuntimeException("Capacity is not an integer value");
       }
 
       return integer_capacity;
@@ -175,14 +173,7 @@ public class LocationDB {
     /*@
       ensures  /result != null && \result.length > 0;
     @*/
-   private String[] validateEquipment(String equipment) {
-      String[] result = equipment.split(", ");
-      
-      if (result.length == 0) {
-         System.err.println("Equipment string not comma-separated");
-         System.exit(1);
-      }
-
-      return equipment.split(", ");
+   private boolean validateEquipment(boolean equipment) {
+      return equipment;
    }
 }

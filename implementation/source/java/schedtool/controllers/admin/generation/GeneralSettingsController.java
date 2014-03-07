@@ -8,18 +8,29 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
+import javafx.util.Callback;
 import models.admin.generation.AdminGeneralSettings;
 import models.admin.generation.Constraint;
+import models.admin.generation.Constraint.InvalidConstraintText;
+import models.admin.generation.Range.RangeOutOfBoundsException;
+import models.admin.generation.Range.StartAfterEndException;
 import models.admin.generation.TimePrefRow;
 
 public class GeneralSettingsController implements Observer {
@@ -43,7 +54,7 @@ public class GeneralSettingsController implements Observer {
    private CheckBox thPattern;
 
    @FXML
-   private TableView<TimePrefRow> blockedOutTimesTable;
+   private GridPane blockedOutTimesTable;
 
    @FXML
    private Button addConstraintBtn;
@@ -72,7 +83,25 @@ public class GeneralSettingsController implements Observer {
    void initialize() {
       generalSettings = new AdminGeneralSettings();
       generalSettings.addObserver(this);
-      generalSettings.initTimePrefsTable();
+      
+      ObservableList<Node> children = blockedOutTimesTable.getChildren();
+      for (final Node n : children) {
+         if (n instanceof Label)
+            continue;
+         n.setOnMouseClicked(new EventHandler<Event>() {
+
+            @Override
+            public void handle(Event event) {
+               
+               if (n.getStyle().equals("-fx-background-color: red;"))
+                  n.setStyle("-fx-background-color: white;");
+               else
+                  n.setStyle("-fx-background-color: red;");
+            }
+            
+         });
+         
+      }
 
       // Set ChangeListener for the endTimeSlider
       endTimeSlider.valueProperty().addListener(new ChangeListener<Number>() {
@@ -93,15 +122,24 @@ public class GeneralSettingsController implements Observer {
                generalSettings.setStartTime(newValue.intValue());
          }
       });
+
+      endTimeSlider.setValue(10);
    }
 
    /**
     * When Add Constraint button is clicked
     * @param event 
+    * @throws StartAfterEndException 
+    * @throws RangeOutOfBoundsException 
     */
    @FXML
-   void onAddConstraintBtnEvent(ActionEvent event) {
-      generalSettings.addConstraint(constraintText.getText());
+   void onAddConstraintBtnEvent(ActionEvent event) throws RangeOutOfBoundsException, StartAfterEndException {
+      try {
+         generalSettings.addConstraint(constraintText.getText());
+      }
+      catch (InvalidConstraintText e) {
+         e.printStackTrace();
+      }
    }
 
    /**
@@ -187,13 +225,6 @@ public class GeneralSettingsController implements Observer {
       items.clear();
       items.addAll(constraints);
       constraintTable.setItems(items);
-
-      TimePrefRow[] blockTimes = generalSettings.getBlockedOutTimes();
-      ObservableList<TimePrefRow> blockTimeItems = blockedOutTimesTable.getItems();
-      blockedOutTimesTable.setItems(null);
-      blockTimeItems.clear();
-      blockTimeItems.addAll(blockTimes);
-      blockedOutTimesTable.setItems(blockTimeItems);
 
       System.out.print(generalSettings.toString());
    }

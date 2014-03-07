@@ -33,7 +33,10 @@ public class Schedule extends Observable{
     @*/
    public void setAllSections(Vector<Section> newSections)
    {
-	   sections.addAll(newSections);
+	   for(Section section : newSections)
+	   {
+		   setOneSection(section);
+	   }
    }
    /**
     * This returns all of the sections in the schedule.
@@ -86,6 +89,14 @@ public class Schedule extends Observable{
        \result.course.equals(course)));
     @*/
    public  Section getOneSection(int sectionNum, Course course) {
-	   return sections.get(0);
+	   Section returnSection = null;
+	   for(Section section : sections)
+	   {
+		   if(section.getCourse().equals(course) && section.getSectionNum() == sectionNum)
+		   {
+			   returnSection = section;
+		   }
+	   }
+	   return returnSection;
    }
 }

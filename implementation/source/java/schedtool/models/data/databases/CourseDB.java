@@ -15,6 +15,11 @@ public class CourseDB extends Observable{
    /**
      * CourseDB constructor.
      */
+   
+   /*@
+      requires ( *nothing* );
+      ensures (courses != null);
+   @*/
    public CourseDB() {
       courses = new Vector<Course>();
       
@@ -29,11 +34,10 @@ public class CourseDB extends Observable{
     * @return the course matching the dept prefix and course number
     */
    /*@
-     requires courseNum > 0 && dept != null && dept.length() > 0;
+     requires courses != null && dept != null;
      ensures \old(courses).equals(courses);
-     // Ensures courses hasn't changed since calling this method.
     @*/
-   public Course getCourse(int courseNum, String dept) {
+   public Course getCourse(String dept, int courseNum) {
       System.out.println("Got a course.");
       
       for (Course course : courses) {
@@ -56,14 +60,33 @@ public class CourseDB extends Observable{
     * @param labProx the proximity of lab to lecture
     */
    /*@
-     requires course != null;
+     requires courses != null && prefix != null && title != null;
      ensures courses.containsAll(\old(courses)) && 
        courses.contains(course);
      // Ensures that none of the old entries are touched and that courses
      // contains the course to be added
     @*/
-   public void addCourse(String prefix, int courseNum, boolean hasLab, int units, String title, int labLength, Course.LabProximity labProx) {
-      courses.add(new Course(prefix, courseNum, hasLab, units, title, labLength, labProx));
+   public void addCourse(String prefix, int courseNum, int units, String title, boolean hasEquip, int labLength, Course.LabProximity labProx, boolean labHasEquip) {
+      Course course = new Course(prefix, courseNum, units,  title, hasEquip, labLength, labProx, labHasEquip);
+	  courses.add(course);
+      
+      setChanged();
+	  notifyObservers();
+   }
+   
+   /**
+    * Adds course to the course database.
+    * @param course the new course to be added
+    */
+   /*@
+     requires courses != null && course != null;
+     ensures courses.containsAll(\old(courses)) && 
+       courses.contains(course);
+     // Ensures that none of the old entries are touched and that courses
+     // contains the course to be added
+    @*/
+   public void addCourse(Course course) {
+      courses.add(course);
       
       setChanged();
 	  notifyObservers();
@@ -81,7 +104,7 @@ public class CourseDB extends Observable{
     * @param labProx the proximity of lab to lecture
     */
    /*@
-     requires course != null;
+     requires courses != null && oldCourse != null && prefix != null && title != null && courses.contains(oldCourse);
      ensures
      // Ensures that all of the courses are either from the old set of
      // courses, an edited course, or a new course that was added.
@@ -89,17 +112,12 @@ public class CourseDB extends Observable{
        \old(courses).contains(c) || c.equals(course)) &&
      courses.contains(course);
     @*/
-   public void editCourse(String prefix, int courseNum, boolean hasLab, int units, String title, int labLength, Course.LabProximity labProx) {
-      Course curCourse = null;
-      
-      for (Course course : courses) {
-         if (course.matchCourse(courseNum, prefix)) {
-            curCourse = course;
-         }
-      }
-      
-      if (curCourse != null) {
-    	  curCourse.setNewData(hasLab, units, title, labLength, labProx);
+   public void editCourse(Course oldCourse, String prefix, int courseNum, int units, String title, boolean hasEquip, int labLength, Course.LabProximity labProx, boolean labHasEquip) {
+      int index = courses.indexOf(oldCourse);
+      Course course = new Course(prefix, courseNum, units, title, hasEquip, labLength, labProx, labHasEquip);
+
+      if (index > 0 && index < courses.size()) {
+    	  courses.setElementAt(course, index);
       }
       
       setChanged();
@@ -110,12 +128,11 @@ public class CourseDB extends Observable{
     * @param course the course to delete
     */
    /*@
-     requires (* none yet *);
+     requires courses != null && course != null && courses.contains(course);
      ensures
-     // Ensures that the course that matches courseNum gets removed from
+     // Ensures that the course that matches course gets removed from
      // the list of courses
-     (\forall Course c; c.matchCourseNum(courseNum);
-       !courses.contains(c));
+       !courses.contains(course));
     @*/
    public void deleteCourse(Course course) {
       courses.remove(course);
@@ -128,47 +145,11 @@ public class CourseDB extends Observable{
     * Gets the list of courses for the data table.
     * @return the list of courses for the data table.
     */
+   /*@
+    * requires courses != null; 
+    * ensures \return != null;
+   @*/
    public Vector<Course> getAllCourses() {
       return courses;
    }
-
-   /**
-    * Adds a course without a lab.
-    * @param prefix the course's department prefix to match
-    * @param courseNum the course's id number to match
-    * @param hasLab whether the course has a lab
-    * @param units the number of units of the course
-    * @param title the title of the course
-    */
-	public void addCourse(String prefix, int courseNum, boolean hasLab, int units, String title) {
-		courses.add(new Course(prefix, courseNum, hasLab, units, title));
-	      
-       setChanged();
-	   notifyObservers();
-	}
-	
-	/**
-	 * Edits a course without a lab.
-	 * @param prefix the course's department prefix to match
-     * @param courseNum the course's id number to match
-     * @param hasLab whether the course has a lab
-     * @param units the number of units of the course
-     * @param title the title of the course
-	 */
-	public void editCourse(String prefix, int courseNum, boolean hasLab, int units, String title) {
-		 Course curCourse = null;
-	      
-	      for (Course course : courses) {
-	         if (course.matchCourse(courseNum, prefix)) {
-	            curCourse = course;
-	         }
-	      }
-	      
-	      if (curCourse != null) {
-	    	  curCourse.setNewData(hasLab, units, title, 0, null);
-	      }    
-	      
-       setChanged();
-	   notifyObservers();
-	}
 }

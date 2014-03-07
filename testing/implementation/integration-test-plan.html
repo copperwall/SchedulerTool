@@ -1,0 +1,38 @@
+
+<html>
+<head>
+<title>
+Scheduling Tool Integration Test Plan
+</title>
+</head>
+<body bgcolor=white>
+<p align=center>
+<font size=+2>
+<strong>Scheduling Tool Integration Test Plan</strong>
+</font>
+</p>
+
+<br>
+Perform integration testing in the following phases:
+<ol type=1>
+<p>
+<li>
+Integrate the <tt>models.data.databases</tt> package with the <tt>controllers.data.databases</tt> package and rerun the class tests in the <tt>models.data.databases</tt> package.
+<p>
+<li>
+Add the <tt>schedtool</tt> package to the integrated <tt>models.data.databases</tt> + <tt>controllers.data.databases</tt> package and rerun the class tests in the <tt>schedtool</tt> and <tt>models.data.databases</tt> package.
+<p>
+<li>
+Integrate the <tt>models.admin.generation</tt> package with the <tt>controllers.admin.generation</tt> package and rerun the class tests in the <tt>models.admin.generation</tt> package.
+<p>
+<li>
+Add the <tt>models.admin.generation</tt> + <tt>controllers.admin.generation</tt> integrated packages to the <tt>schedtool</tt> + <tt>models.data.databases</tt> + <tt>controllers.data.databases</tt> integrated packages and rerun the class tests in the <tt>models.admin.generation</tt>, <tt>schedtool</tt>, and <tt>models.data.databases</tt> packages.
+<p>
+<li>
+Integrate the <tt>models.admin.analytics</tt> package with the <tt>controllers.admin.analytics</tt> package and rerun the class tests in the <tt>models.admin.analytics</tt> package.
+<p>
+<li>
+Add the <tt>models.admin.analytics</tt> + <tt>controllers.admin.analytics</tt> integrated packages to the <tt>schedtool</tt> + <tt>models.data.databases</tt> + <tt>controllers.data.databases</tt> + <tt>models.admin.generation</tt> + <tt>controllers.admin.generation</tt> integrated packages, and rerun all the class tests in each package.
+</ol>
+</body>
+</html>

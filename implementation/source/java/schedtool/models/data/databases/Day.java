@@ -1,7 +1,11 @@
 package models.data.databases;
 
 import java.util.Collection;
+import java.util.Scanner;
+import java.util.Vector;
 import java.lang.Boolean;
+import java.sql.Clob;
+import java.sql.SQLException;
 
 /**
  * A day holds 24 booleans of which an instructor is available
@@ -10,15 +14,24 @@ import java.lang.Boolean;
 public class Day {
    public Collection<Boolean> hourAvailability;
    
+   
+   public Day(String longtext) {
+       hourAvailability = new Vector<Boolean>();
+       if (longtext != null) {
+           for (int i = 0; i < longtext.length(); i++) {
+               hourAvailability.add(longtext.charAt(i) != '0');
+           }
+       }
+   }
    /**
     * Sets the availability to the new given availability.
     */
-   /*@
+   /*
       requires availableHours != null;
       ensures hourAvailability.equals(availableHours);
    @*/
    public void setAvailability(Collection<Boolean> availableHours) {
-      
+      this.hourAvailability = availableHours;
    }
 
    /**
@@ -31,6 +44,6 @@ public class Day {
          \result.equals(hourAvailability);
    @*/
    public Collection<Boolean> getAvailability() {
-      return null;
+      return hourAvailability;
    }
 }

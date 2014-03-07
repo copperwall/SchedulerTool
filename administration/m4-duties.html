@@ -1,0 +1,61 @@
+<html>
+<head>
+<title>
+CSC 309 Milestone 3 Duties
+</title>
+</head>
+<body bgcolor=white>
+<p align=center>
+<font size=+2>
+<strong>CSC 309 Milestone 3 Duties</strong>
+</font>
+</p>
+<br>
+<br>
+<table align=center border=1 cellpadding=4>
+  <tr>
+    <td valign=top><strong>Team Member</strong></td>
+    <td valign=top><strong>Executable Part of Project</strong></td>
+    <td valign=top><strong>Classes with Test Plans</strong></td>
+    <td valign=top><strong>Methods with JML & Testing</strong></td>
+   </tr>
+  <tr>
+    <td valign=top>Katie Keim</td>
+    <td valign=top>Course Database</td>
+    <td valign=top>CourseDB, Course (CourseDBTest, CourseTest)</td>
+    <td valign=top>CourseDB: CourseDB(), getCourse(), addCourse(String, int ...), addCourse(Course), deleteCourse(Course); Course: Course(String, int, ...), getPrefix(), getCourseNum(), getTitle(), getUnits() (All methods in Course & CourseDB have JML)</td>
+    </tr>
+  <tr>
+    <td valign=top>Alex Kavanaugh</td>
+    <td valign=top>Analytics, Available Courses</td>
+    <td valign=top>AdminAnalytics.java, AnalyticsRow, AdminAvailableCourses.java, AvailableCoursesRow.java</td>
+    <td valign=top>AdminAnalytics: getIndividualAnalytics(), getOverallAnalytics(), calculate_overall(), calculate_individual(); AnalyticsRow: AnalyticsRow(String, Integer), getName(), getQuality(); AdminAvailableCourses: getAvailableCourses(), loadFromTerm(String), loadSuggested(); AvailableCoursesRow: AvailableCoursesRow(String ,Integer, ...), getPrefix(), prefixProperty(), getCourseNumber(), courseNumberProperty(), getCourseTitle(), courseTitleProperty(), getSections(), sectionsProperty(), setSections(), getSuggested(), suggestedProperty(), loadSuggested()</td>
+    </tr>
+  <tr>
+    <td valign=top>Chris Opperwall</td>
+    <td valign=top>Loaction Database</td>
+    <td valign=top>Location.java, LocationDB.java</td>
+    <td valign=top>Location: Location(String, String ...), getBuilding(), getRoom(), getCapacity(), getEquipment(), setBuilding(String), setCapacity(int), setEquipment(boolean); LocationDB: LocationDB(), validateBuilding(String), validateRoom(String), validateCapacity(int), validateEquipment(boolean), getAllLocations(), addLocation(String, String ...), getLocation(int), editLocation(Location, Location), deleteLocation(Location)</td>
+  </tr>
+  <tr>
+    <td valign=top>Jarred Stelfox</td>
+    <td valign=top>Main Schedule Viewing, Publish, Existing Schedules, Generation</td>
+    <td valign=top> Schedule.java</td>
+    <td valign=top> Schedule: Schedule(), setOneSection(Section)</td>
+  </tr>
+  <tr>
+    <td valign=top>Calvin Elizan</td>
+    <td valign=top>Instructor Database, Instructor Day Preferences</td>
+    <td valign=top>InstructorDB.java, Instructor.java, Day.java</td>
+    <td valign=top>Instructor: Instructor(String, String ...), getUser(), getWtu(), getAct(), getAllClassPrefs(); InstructorDB: InstructorDB(), getInstructor(String), addInstructor(Instructor), deleteInstructor(Instructor), editInstructor(Instructor) ; Day: none</td>
+  </tr>
+  <tr>
+    <td valign=top>Chase Kragenbrink</td>
+    <td valign=top>General Settings</td>
+    <td valign=top>Constraint.java, Range.java</td>
+    <td valign=top>Constraint: Constraint(String) (this is a large method with 7 test methods); Range: Range(int, int)</td>
+  </tr>
+</table>
+</body>
+</html>
+

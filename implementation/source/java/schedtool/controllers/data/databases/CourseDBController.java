@@ -14,12 +14,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.control.TableView;
-import javafx.scene.layout.Pane;
-import javafx.fxml.JavaFXBuilderFactory;
 /* Import Models */
 import models.data.databases.CourseDB;
 import models.data.databases.Course;
-import models.data.databases.InstructorDB;
 
 /**
  * This class is a controller that ties the view and the model together for the Course database page. 

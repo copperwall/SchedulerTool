@@ -3,5 +3,14 @@
 }
 
 .grayed-out {
-    -fx-background-color: gray;
+    background-color: gray;
+}
+
+.menu-bar {
+	-fx-background-color: lightgray;
+	size: 14;
+}
+
+.menu-bar .label {
+	-fx-text-fill: black;
 }
