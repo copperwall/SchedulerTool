@@ -28,6 +28,14 @@ public class InstructorDBAddController implements Initializable {
     /** location of resources */
     @FXML
     private URL location;
+    
+    /** first name field on GUI */
+    @FXML
+    private TextField firstName;
+
+    /** last name field on GUI */
+    @FXML
+    private TextField lastName;
 
     /** active checkbox on GUI */
     @FXML
@@ -58,7 +66,7 @@ public class InstructorDBAddController implements Initializable {
     @FXML
     private void submit(ActionEvent event) {
     	/* create a new instructor to add to the database */
-        instructorDB.addInstructor(new Instructor("Placeholder", "Name", userID.getText(), Integer.parseInt(wtu.getText()), active.isSelected()));
+        instructorDB.addInstructor(new Instructor(firstName.getText(), lastName.getText(), userID.getText(), Integer.parseInt(wtu.getText()), active.isSelected()));
         /* close the window */
         Button src = (Button)event.getSource();
         Stage srcStage = (Stage)src.getScene().getWindow();
