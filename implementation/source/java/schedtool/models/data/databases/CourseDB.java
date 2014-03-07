@@ -1,6 +1,13 @@
 package models.data.databases;
 
-import java.util.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Observable;
+import java.util.ArrayList;
 
 /**
  * A database class which maintains a list of all Courses. 
@@ -8,25 +15,7 @@ import java.util.*;
  * It is Observable for a data table.
  * @author Katie Keim
  */
-public class CourseDB extends Observable{
-   /** The list of courses to maintain. */
-   public Vector<Course> courses;
-   
-   /**
-     * CourseDB constructor.
-     */
-   
-   /*@
-      requires ( *nothing* );
-      ensures (courses != null);
-   @*/
-   public CourseDB() {
-      courses = new Vector<Course>();
-      
-      setChanged();
-	  notifyObservers();
-   }
-   
+public class CourseDB extends Observable{  
    /**
     * Returns the course whose course number matches the courseNum and dept prefix.
     * @param courseNum the number of the course to match
@@ -38,40 +27,17 @@ public class CourseDB extends Observable{
      ensures \old(courses).equals(courses);
     @*/
    public Course getCourse(String dept, int courseNum) {
-      System.out.println("Got a course.");
-      
-      for (Course course : courses) {
-         if (course.matchCourse(courseNum, dept)) {
-            return course;
-         }
-      }
-      
-      return null;
-   }
-   
-   /**
-    * Adds course to the course database.
-    * @param prefix the course's department prefix
-    * @param courseNum the course's id number
-    * @param hasLab whether the course has a lab
-    * @param units the number of units of the course
-    * @param title the title of the course
-    * @param labLength the length of the lab
-    * @param labProx the proximity of lab to lecture
-    */
-   /*@
-     requires courses != null && prefix != null && title != null;
-     ensures courses.containsAll(\old(courses)) && 
-       courses.contains(course);
-     // Ensures that none of the old entries are touched and that courses
-     // contains the course to be added
-    @*/
-   public void addCourse(String prefix, int courseNum, int units, String title, boolean hasEquip, int labLength, Course.LabProximity labProx, boolean labHasEquip) {
-      Course course = new Course(prefix, courseNum, units,  title, hasEquip, labLength, labProx, labHasEquip);
-	  courses.add(course);
-      
-      setChanged();
-	  notifyObservers();
+	   ArrayList<Course> courses = getAllCourses();
+	   Course correctCourse = null;
+	   
+	   for (Course course : courses)
+	   {
+	       if (course.getPrefix().equals(dept) && courseNum == course.getCourseNum()) {
+	    	   correctCourse = course;
+	       }    	  
+       }
+               
+       return correctCourse; 
    }
    
    /**
@@ -86,8 +52,36 @@ public class CourseDB extends Observable{
      // contains the course to be added
     @*/
    public void addCourse(Course course) {
-      courses.add(course);
-      
+	   try {
+           // connection to database
+           Connection con = DriverManager.getConnection(
+                   "jdbc:mysql://polyschedules.db."
+                           + "9302206.hostedresource.com:3306/polyschedules",
+                   "polyschedules", "a1RightCorner!");
+        // add statement
+           PreparedStatement pstmt = con
+                   .prepareStatement("INSERT INTO schedules_course"
+                           + "(`prefix`, `number`, `title`, `units`, `requires_equipment`, "
+                           + "`has_lab`, `lab_requires_equipment`, `lab_length`, `lab_time_proximity`)"
+                           + "VALUES( "
+                           + course.getPrefix() + ", " 
+                           + course.getCourseNum() + ", " 
+                           + course.getTitle() + ", " 
+                           + course.getUnits() + ", " 
+                           + (course.getHasEquipment() ? 1 : 0) + ", "
+                           + (course.getHasLab() ? 1 : 0) + ", "
+                           + (course.getLabHasEquipment() ? 1 : 0) + ", "
+                           + course.getLabLength() + ", "
+                           + course.getLabProx() + ")");
+           pstmt.addBatch();
+           pstmt.executeBatch();
+       }
+       catch (SQLException exc) {
+           System.err
+                   .println("CourseDB Add: Could not add to database.\n\t"
+                           + exc.getMessage());
+       }
+
       setChanged();
 	  notifyObservers();
    }
@@ -113,13 +107,33 @@ public class CourseDB extends Observable{
      courses.contains(course);
     @*/
    public void editCourse(Course oldCourse, String prefix, int courseNum, int units, String title, boolean hasEquip, int labLength, Course.LabProximity labProx, boolean labHasEquip) {
-      int index = courses.indexOf(oldCourse);
-      Course course = new Course(prefix, courseNum, units, title, hasEquip, labLength, labProx, labHasEquip);
-
-      if (index > 0 && index < courses.size()) {
-    	  courses.setElementAt(course, index);
+      try {
+	      // connection to database
+	      Connection con = DriverManager.getConnection(
+	              "jdbc:mysql://polyschedules.db."
+	                      + "9302206.hostedresource.com:3306/polyschedules",
+	              "polyschedules", "a1RightCorner!");
+	      
+	      PreparedStatement pstmt = con.prepareStatement(
+	      "UPDATE schedules_course" +
+	      " SET prefix = '" + prefix + "', " +
+	      " SET number = " + courseNum + ", " +
+	      " SET units = " + units + ", " +
+	      " SET title = '" + title + "', " +
+	      " SET has_lab = " + (labProx != null ? 1 : 0) + ", " +
+	      " SET requires_equipment = " + (hasEquip ? 1 : 0) + ", " +
+	      " SET lab_length = " + labLength + ", " +
+	      " SET lab_proximity = " + labProx + ", " +
+	      " SET lab_requires_equipment = " + (labHasEquip ? 1 : 0) + ", " +
+	      "WHERE `prefix` = " + oldCourse.getPrefix() + " AND `number` = " + oldCourse.getCourseNum());
+	      
+	      pstmt.addBatch();
+	      pstmt.executeBatch();
       }
-      
+      catch (SQLException exc) {
+           System.err.println("CourseDB Add: Could not add to database.\n\t" + exc.getMessage());
+	  }
+
       setChanged();
 	  notifyObservers();
    }
@@ -135,7 +149,23 @@ public class CourseDB extends Observable{
        !courses.contains(course));
     @*/
    public void deleteCourse(Course course) {
-      courses.remove(course);
+      try {
+	      // connection to database
+	      Connection con = DriverManager.getConnection(
+	              "jdbc:mysql://polyschedules.db."
+	                      + "9302206.hostedresource.com:3306/polyschedules",
+	              "polyschedules", "a1RightCorner!");
+	      
+	      PreparedStatement pstmt = con.prepareStatement(
+	      "DELETE FROM schedules_course " +
+	      "WHERE `prefix` = " + course.getPrefix() + " AND `number` = " + course.getCourseNum());
+	      
+	      pstmt.addBatch();
+	      pstmt.executeBatch();
+      }
+      catch (SQLException exc) {
+           System.err.println("CourseDB Add: Could not add to database.\n\t" + exc.getMessage());
+	  }
       
       setChanged();
 	  notifyObservers();
@@ -149,7 +179,48 @@ public class CourseDB extends Observable{
     * requires courses != null; 
     * ensures \return != null;
    @*/
-   public Vector<Course> getAllCourses() {
+   public ArrayList<Course> getAllCourses() {
+	  Course course;
+	  ArrayList<Course> courses = new ArrayList<Course>();
+	   
+      try {
+	     // connection to database
+         Connection con = DriverManager.getConnection(
+                   "jdbc:mysql://polyschedules.db."
+                           + "9302206.hostedresource.com:3306/polyschedules",
+                   "polyschedules", "a1RightCorner!");
+           // select statement
+           Statement stmt = con.createStatement();
+           // select query
+           String query = "SELECT * FROM schedules_course";
+           // result set from query
+           ResultSet rs = stmt.executeQuery(query);
+
+           while (rs.next()) {
+               String prefix = rs.getString("prefix");
+               int number = rs.getInt("number");
+               String title = rs.getString("title");
+               int units = rs.getInt("units");
+               boolean hasEquip = rs.getBoolean("requires_equipment");
+               boolean hasLab = rs.getBoolean("has_lab");
+               boolean labHasEquip = rs.getBoolean("lab_requires_equipment");
+               double labLength = rs.getDouble("lab_length");
+               Course.LabProximity labProx = Course.LabProximity.values()[rs.getInt("lab_time_proximity")];
+
+        	  if (hasLab) {
+                 course = new Course(prefix, number, units, title, hasEquip, (int)labLength, labProx, labHasEquip);
+        	  }
+        	  else {
+        		 course = new Course(prefix, number, units, title, hasEquip, 0, null, false);
+        	  }
+        	  
+        	  courses.add(course);
+           }
+	  }
+	  catch (SQLException exc) {
+	       System.err.println("CourseDB Add: Could not add to database.\n\t" + exc.getMessage());
+	  } 
+	   
       return courses;
    }
 }

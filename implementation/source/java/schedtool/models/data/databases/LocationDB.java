@@ -1,8 +1,15 @@
 package models.data.databases;
 
 import java.util.Vector;
+import java.util.Observable;
 import java.lang.NumberFormatException;
 import java.lang.RuntimeException;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  * Class LocationDB contains a list of locations for the Term.
@@ -12,7 +19,7 @@ import java.lang.RuntimeException;
  * 
  * @author Chris Opperwall (copperwa@calpoly.edu)
  */
-public class LocationDB {
+public class LocationDB extends Observable {
    /* A collection of locations for the current term */
    private Vector<Location> locations;
 
@@ -31,7 +38,18 @@ public class LocationDB {
       ensures  \result instanceof Location
     @*/
    public Location getLocation(int id) {
-      return locations.get(id);
+      try {
+         // Get Connection
+         Connection con = DriverManager.getConncetion(
+            "jdbc:mysql://polyschedules.db."
+               + "9302206.hostedresource.com:3306/polyschedules",
+            "polyschedules", "a1RightCorner!");
+         // Just need to do shit now
+      }
+      catch (SQLException e) {
+         System.err.println("LocationDB Get: Could not connect to database.\n\t"
+            + exc.getMessage());
+      }
    }
 
    /**
@@ -59,6 +77,19 @@ public class LocationDB {
        equipment_check);
 
       locations.add(location);
+
+      try {
+         // Get Connection
+         Connection con = DriverManager.getConncetion(
+            "jdbc:mysql://polyschedules.db."
+               + "9302206.hostedresource.com:3306/polyschedules",
+            "polyschedules", "a1RightCorner!");
+         // Just need to do shit now
+      }
+      catch (SQLException e) {
+         System.err.println("LocationDB Add: Could not connect to database.\n\t"
+            + exc.getMessage());
+      }
    }
 
    /**
@@ -72,7 +103,21 @@ public class LocationDB {
       ensures  locations.contains(new_location) && !locations.contains(old);
     @*/
    public void editLocation(Location old, Location new_location) {
+      // Do I still need this?
       locations.set(locations.indexOf(old), new_location);
+
+      try {
+         // Get Connection
+         Connection con = DriverManager.getConncetion(
+            "jdbc:mysql://polyschedules.db."
+               + "9302206.hostedresource.com:3306/polyschedules",
+            "polyschedules", "a1RightCorner!");
+         // Just need to do shit now
+      }
+      catch (SQLException e) {
+         System.err.println("LocationDB Edit: Could not connect to database.\n\t"
+            + exc.getMessage());
+      }
    }
 
    /**
@@ -87,6 +132,19 @@ public class LocationDB {
     @*/
    public void deleteLocation(Location location) {
       locations.remove(location);
+
+      try {
+         // Get Connection
+         Connection con = DriverManager.getConncetion(
+            "jdbc:mysql://polyschedules.db."
+               + "9302206.hostedresource.com:3306/polyschedules",
+            "polyschedules", "a1RightCorner!");
+         // Just need to do shit now
+      }
+      catch (SQLException e) {
+         System.err.println("LocationDB Delete: Could not connect to database.\n\t"
+            + exc.getMessage());
+      }
    }
 
    /**
@@ -175,5 +233,12 @@ public class LocationDB {
     @*/
    private boolean validateEquipment(boolean equipment) {
       return equipment;
+   }
+
+   private Connection openConnection() {
+      Connection con = DriverManager.getConncetion(
+         "jdbc:mysql://polyschedules.db."
+            + "9302206.hostedresource.com:3306/polyschedules",
+            "polyschedules", "a1RightCorner!");
    }
 }
