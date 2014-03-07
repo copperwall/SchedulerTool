@@ -262,7 +262,7 @@ public class Instructor extends User {
      * @
      */
     public List<CoursePreference> getAllClassPrefs() {
-        return new ArrayList<CoursePreference>();
+        return coursePrefs;
     }
 
     /**
@@ -276,8 +276,15 @@ public class Instructor extends User {
      * @
      */
     public int getOneClassPref(Course course) {
-        System.out.println("Instructor.getOneClassPref()");
-        return 0;
+        int result = 0;
+        
+        for (CoursePreference cp : coursePrefs) {
+            if (cp.course.getCourseID().equals(course.getCourseID())) {
+                result = cp.preference;
+            }
+        }
+        
+        return result;
     }
 
     /**
