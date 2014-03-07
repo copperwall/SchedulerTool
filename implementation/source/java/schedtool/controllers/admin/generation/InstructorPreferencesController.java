@@ -1,6 +1,8 @@
 package controllers.admin.generation;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.Vector;
 
 import javafx.fxml.FXML;
@@ -10,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -59,8 +62,18 @@ public class InstructorPreferencesController {
       ObservableList<Instructor> instructorsObservable = instructorListTable.getItems();
       instructorsObservable.clear();
       instructorsObservable.addAll(instructors);
-      instructorListTable.setItems(instructorsObservable);
-      
+      instructorListTable.setItems(instructorsObservable);     
+      instructorListTable.setOnMouseClicked(new EventHandler<Event>() {
+
+         @Override
+         public void handle(Event event) {
+            Instructor instructor= instructorListTable.getSelectionModel().getSelectedItem();
+            populatePrefs(instructor);
+         }
+      });
+   }
+   
+   private void populatePrefs(Instructor instructor) {
       Vector<Course> courses = new CourseDB().getAllCourses();
       courses.add(new Course("CPE", 101, 0, "", true, 0, LabProximity.DIFF_DAY, false));
       courses.add(new Course("CPE", 102, 0, "", true, 0, LabProximity.DIFF_DAY, false));
@@ -72,10 +85,25 @@ public class InstructorPreferencesController {
       courses.add(new Course("CPE", 308, 0, "", true, 0, LabProximity.DIFF_DAY, false));
       courses.add(new Course("CPE", 309, 0, "", true, 0, LabProximity.DIFF_DAY, false));
       
+      Iterator<Node> coursePrefs = coursePreferencesGrid.getChildren().iterator();
+      while (coursePrefs.hasNext()) {
+         Node next = coursePrefs.next(); 
+         if (next instanceof Label) {
+            Label label = (Label)next;
+            if (!label.getText().equals("Course No.") && !label.getText().equals("Not qualified")
+               && !label.getText().equals("Don't prefer - prefer") && !label.getText().equals("Prefix"))
+               coursePrefs.remove();
+         }
+         else
+            coursePrefs.remove();
+         //System.out.println("coursePref size: " + coursePrefs.size());
+      }
+      
+      
       int rowIndex = 1;
       for (Course course : courses) {
          CheckBox checkbox = new CheckBox();
-         checkbox.setSelected(instructors.get(0).getOneClassPref(course) == 0);
+         checkbox.setSelected(instructor.getOneClassPref(course) == 0);
          
          Slider slider = new Slider();
          slider.setMajorTickUnit(1);
@@ -85,8 +113,9 @@ public class InstructorPreferencesController {
          slider.setShowTickMarks(true);
          slider.setSnapToTicks(true);
          slider.setMax(5);
-         if (instructors.get(0).getOneClassPref(course) != 0)
-            slider.setValue(instructors.get(0).getOneClassPref(course));
+         if (instructor.getOneClassPref(course) != 0)
+            slider.setValue(instructor.getOneClassPref(course));
+         
          
          coursePreferencesGrid.add(new Label(course.getPrefix()), 0, rowIndex);
          coursePreferencesGrid.add(new Label(String.valueOf(course.getCourseNum())), 1, rowIndex);
@@ -94,20 +123,29 @@ public class InstructorPreferencesController {
          coursePreferencesGrid.add(slider, 3, rowIndex);
          rowIndex++;
       }
-      Day monday = new Day("101001010111001");
-      ArrayList<Day> timePref = new ArrayList<Day>();
-      timePref.add(monday);
-      instructors.get(0).setTimePrefs(timePref);
       
-      ArrayList<Day> timePrefs = instructors.get(0).getTimePrefs();
-      if (timePrefs != null) {
-         for (int column = 0; column < 5 && column < timePrefs.size(); column++) {
+      
+      
+      ArrayList<Day> timePrefs = instructor.getTimePrefs();
+      ObservableList<Node> children = timePreferencesTable.getChildren();
+      if (timePrefs == null || timePrefs.size() == 0) {
+         for (int column = 0; column < 5; column++) {
             int row = 0;
-            if (timePrefs.get(column) != null) {
-               for (boolean isAvailable : timePrefs.get(column).getAvailability()) {
-                  children.get(21 + column + row * 5).setStyle("-fx-background-color: " + (isAvailable ? "green" : "white") +";");
-                  row++;
-               }
+            while (row < 16){
+               children.get(21 + column * 15 + row).setStyle("-fx-background-color: white;");
+               row++;
+            }
+         }
+      }
+      else {
+         for (int column = 0; column < 5; column++) {
+            int index;
+            int row = 0;
+            ArrayList<Boolean> prefs = column < timePrefs.size() ? timePrefs.get(column).getAvailability() : null;
+            for (int hour = 7; hour < 22; hour++) {
+               index = 21 + column * 15 + row;
+               children.get(index).setStyle("-fx-background-color: " + (prefs != null && hour < prefs.size() && prefs.get(hour) ? "green" : "white") +";");
+               row++;
             }
          }
       }
@@ -115,7 +153,7 @@ public class InstructorPreferencesController {
 
    @FXML
    void onLockChanged(ActionEvent event) {
-      new InstructorDB().editInstructor(null);
+      
    }
 
 }
