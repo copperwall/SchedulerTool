@@ -29,7 +29,7 @@ public class LocationTest {
       Location location;
 
       try {
-         location = new Location("14", "234B", 40, true);
+         location = new Location("Frank E. Pilling Building", "14", "234B", 40, true);
       }
       catch (Exception e) {
          /* This should never happen */
@@ -48,7 +48,7 @@ public class LocationTest {
 
     @Test
     public void testGetBuilding() {
-      Location location = new Location("14", "234B", 40, true);
+      Location location = new Location("Frank E. Pilling Building", "14", "234B", 40, true);
 
       String result = location.getBuilding();
 
@@ -66,7 +66,7 @@ public class LocationTest {
 
     @Test
     public void testGetRoom() {
-      Location location = new Location("14", "234B", 40, true);
+      Location location = new Location("Frank E. Pilling Building", "14", "234B", 40, true);
 
       String result = location.getRoom();
 
@@ -84,7 +84,7 @@ public class LocationTest {
 
    @Test
     public void testGetCapacity() {
-      Location location = new Location("14", "234B", 40, true);
+      Location location = new Location("Frank E. Pilling Building", "14", "234B", 40, true);
 
       int result = location.getCapacity();
 
@@ -102,7 +102,7 @@ public class LocationTest {
 
     @Test
     public void testGetEquipment() {
-      Location location = new Location("14", "234B", 40, true);
+      Location location = new Location("Frank E. Pilling Building", "14", "234B", 40, true);
 
       boolean result = location.getEquipment();
 
@@ -111,7 +111,7 @@ public class LocationTest {
 
     @Test
     public void testSetBuilding() {
-      Location location = new Location("14", "312", 100, false);
+      Location location = new Location("Frank E. Pilling Building", "14", "312", 100, false);
 
       location.setBuilding("52");
 
@@ -120,7 +120,7 @@ public class LocationTest {
 
     @Test
     public void testSetRoom() {
-      Location location = new Location("14", "312", 100, false);
+      Location location = new Location("Frank E. Pilling Building", "14", "312", 100, false);
 
       location.setRoom("250");
 
@@ -129,7 +129,7 @@ public class LocationTest {
 
     @Test
     public void testSetCapacity() {
-      Location location = new Location("14", "312", 100, false);
+      Location location = new Location("Frank E. Pilling Building", "14", "312", 100, false);
       
       location.setCapacity(23);
 
@@ -138,7 +138,7 @@ public class LocationTest {
 
     @Test
     public void testSetEquipment() {
-      Location location = new Location("14", "312", 100, false);
+      Location location = new Location("Frank E. Pilling Building", "14", "312", 100, false);
       
       location.setEquipment(false);
 
