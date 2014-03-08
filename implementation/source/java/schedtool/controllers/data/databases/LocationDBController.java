@@ -26,7 +26,7 @@ import models.data.databases.Location;
  * @author Chris Opperwall
  */
 
-public class LocationDBController {
+public class LocationDBController implements Observer {
     LocationDB model;
 
     @FXML
@@ -43,7 +43,7 @@ public class LocationDBController {
         try {
            URL location = getClass().getResource("/views/data/databases/LocationDBAddView.fxml");
            FXMLLoader loader = new FXMLLoader();
-           Parent root = FXMLLoader.load(location.openStream());
+           Parent root = (Parent)loader.load(location.openStream());
 
            LocationDBAddController controller = (LocationDBAddController)(loader.getController());
 

@@ -6,6 +6,7 @@ import java.lang.NumberFormatException;
 import java.lang.RuntimeException;
 import java.sql.Connection;
 import java.sql.Date;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -40,7 +41,7 @@ public class LocationDB extends Observable {
    public Location getLocation(int id) {
       try {
          // Get Connection
-         Connection con = DriverManager.getConncetion(
+         Connection con = DriverManager.getConnection(
             "jdbc:mysql://polyschedules.db."
                + "9302206.hostedresource.com:3306/polyschedules",
             "polyschedules", "a1RightCorner!");
@@ -48,8 +49,9 @@ public class LocationDB extends Observable {
       }
       catch (SQLException e) {
          System.err.println("LocationDB Get: Could not connect to database.\n\t"
-            + exc.getMessage());
+            + e.getMessage());
       }
+      return null;
    }
 
    /**
@@ -80,7 +82,7 @@ public class LocationDB extends Observable {
 
       try {
          // Get Connection
-         Connection con = DriverManager.getConncetion(
+         Connection con = DriverManager.getConnection(
             "jdbc:mysql://polyschedules.db."
                + "9302206.hostedresource.com:3306/polyschedules",
             "polyschedules", "a1RightCorner!");
@@ -88,7 +90,7 @@ public class LocationDB extends Observable {
       }
       catch (SQLException e) {
          System.err.println("LocationDB Add: Could not connect to database.\n\t"
-            + exc.getMessage());
+            + e.getMessage());
       }
    }
 
@@ -108,7 +110,7 @@ public class LocationDB extends Observable {
 
       try {
          // Get Connection
-         Connection con = DriverManager.getConncetion(
+         Connection con = DriverManager.getConnection(
             "jdbc:mysql://polyschedules.db."
                + "9302206.hostedresource.com:3306/polyschedules",
             "polyschedules", "a1RightCorner!");
@@ -116,7 +118,7 @@ public class LocationDB extends Observable {
       }
       catch (SQLException e) {
          System.err.println("LocationDB Edit: Could not connect to database.\n\t"
-            + exc.getMessage());
+            + e.getMessage());
       }
    }
 
@@ -135,7 +137,7 @@ public class LocationDB extends Observable {
 
       try {
          // Get Connection
-         Connection con = DriverManager.getConncetion(
+         Connection con = DriverManager.getConnection(
             "jdbc:mysql://polyschedules.db."
                + "9302206.hostedresource.com:3306/polyschedules",
             "polyschedules", "a1RightCorner!");
@@ -143,7 +145,7 @@ public class LocationDB extends Observable {
       }
       catch (SQLException e) {
          System.err.println("LocationDB Delete: Could not connect to database.\n\t"
-            + exc.getMessage());
+            + e.getMessage());
       }
    }
 
@@ -233,12 +235,5 @@ public class LocationDB extends Observable {
     @*/
    private boolean validateEquipment(boolean equipment) {
       return equipment;
-   }
-
-   private Connection openConnection() {
-      Connection con = DriverManager.getConncetion(
-         "jdbc:mysql://polyschedules.db."
-            + "9302206.hostedresource.com:3306/polyschedules",
-            "polyschedules", "a1RightCorner!");
    }
 }
