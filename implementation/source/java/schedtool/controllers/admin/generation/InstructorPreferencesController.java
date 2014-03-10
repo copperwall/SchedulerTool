@@ -74,16 +74,7 @@ public class InstructorPreferencesController {
    }
    
    private void populatePrefs(Instructor instructor) {
-      Vector<Course> courses = new CourseDB().getAllCourses();
-      courses.add(new Course("CPE", 101, 0, "", true, 0, LabProximity.DIFF_DAY, false));
-      courses.add(new Course("CPE", 102, 0, "", true, 0, LabProximity.DIFF_DAY, false));
-      courses.add(new Course("CPE", 103, 0, "", true, 0, LabProximity.DIFF_DAY, false));
-      courses.add(new Course("CPE", 141, 0, "", true, 0, LabProximity.DIFF_DAY, false));
-      courses.add(new Course("CPE", 225, 0, "", true, 0, LabProximity.DIFF_DAY, false));
-      courses.add(new Course("CPE", 300, 0, "", true, 0, LabProximity.DIFF_DAY, false));
-      courses.add(new Course("CPE", 307, 0, "", true, 0, LabProximity.DIFF_DAY, false));
-      courses.add(new Course("CPE", 308, 0, "", true, 0, LabProximity.DIFF_DAY, false));
-      courses.add(new Course("CPE", 309, 0, "", true, 0, LabProximity.DIFF_DAY, false));
+      ArrayList<Course> courses = new CourseDB().getAllCourses();
       
       Iterator<Node> coursePrefs = coursePreferencesGrid.getChildren().iterator();
       while (coursePrefs.hasNext()) {
