@@ -27,8 +27,6 @@ import models.data.databases.Location;
  */
 
 public class LocationDBController implements Observer {
-    LocationDB model;
-
     @FXML
     private ResourceBundle resources;
 
@@ -37,6 +35,8 @@ public class LocationDBController implements Observer {
 
     @FXML
     private TableView<Location> locationTable;
+
+    private LocationDB locationDB;
 
     @FXML
     void addLocation(ActionEvent event) {
@@ -47,15 +47,15 @@ public class LocationDBController implements Observer {
 
            LocationDBAddController controller = (LocationDBAddController)(loader.getController());
 
-           controller.setModel(model);
+            controller.passTable(locationTable, locationDB);
 
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             
             stage.setScene(scene);
             stage.show();
-        } catch (IOException exc) {
-            exc.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -63,45 +63,59 @@ public class LocationDBController implements Observer {
     void deleteLocation(ActionEvent event) {
        Location selected = locationTable.getSelectionModel().getSelectedItem();
 
-       model.deleteLocation(selected);
+       locationDB.deleteLocation(selected);
     }
 
     @FXML
     void editLocation(ActionEvent event) {
-       Location selected = locationTable.getSelectionModel().getSelectedItem();
+        try {
+           URL location = getClass().getResource("/views/data/databases/LocationDBAddView.fxml");
+           FXMLLoader loader = new FXMLLoader();
+           Parent root = (Parent) loader.load(location.openStream());
 
-       if (selected != null) {
-           try {
-              URL location = getClass().getResource("/views/data/databases/LocationDBAddView.fxml");
-              FXMLLoader loader = new FXMLLoader();
-              Parent root = FXMLLoader.load(location.openStream());
+           LocationDBEditController controller = (LocationDBEditController)(loader.getController());
 
-              LocationDBEditController controller = (LocationDBEditController)(loader.getController());
-              controller.setModel(model);
-              controller.setLocation(selected);
+           controller.passLocation(locationTable.getSelectionModel().getSelectedItem());
+           controller.passTable(locationTable, locationDB);
 
-               Scene scene = new Scene(root);
-               Stage stage = new Stage();
-               
-               stage.setScene(scene);
-               stage.show();
-           } catch (IOException exc) {
-               exc.printStackTrace();
-           }
-      }
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
+    @FXML
+    void deleteLocation(ActionEvent event) {
+         Location selected = locationTable.getSelectionModel().getSelectedItem();
+
+         locationDB.deleteLocation(selected);
+    }
+
+    @FXML
+    void cancelChanges(ActionEvent event) {
+         scheduler_tool.AdminFrameController.reloadMainTable();
+    }
+
+    @FXML
+    void save(ActionEvent event) {}
 
     @FXML
     void initialize() {
         System.out.println("LocationDBController initialized.");
         
-        model = new LocationDB();
-        model.addObserver(this);
+        locationDB = new LocationDB();
+        locationDB.addObserver(this);
+        update(null, null);
     }
 
+    @Override
     public void update(Observable o, Object arg) {
        ObservableList<Location> items = locationTable.getItems();
-       item.setAll(model.getAllLocations());
+       item.setAll(locationDB.getAllLocations());
        locationTable.setItems(items);
        System.out.println("LocationDB Updated");
     }

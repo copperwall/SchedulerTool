@@ -7,10 +7,8 @@ import javax.swing.JOptionPane;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 /* Import Models */
@@ -24,19 +22,13 @@ import models.data.databases.Location;
  */
 
 
-public class LocationDBEditController {
-   private LocationDB model;
-
-   private Location location;
-
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
+public class LocationDBEditController implements Initializable {
 
     @FXML
     private TextField buildingText;
+
+    @FXML
+    private TextField buildingNumberText;
 
     @FXML
     private TextField capacityText;
@@ -46,6 +38,21 @@ public class LocationDBEditController {
 
     @FXML
     private TextField roomText;
+
+    private LocationDB locationDB;
+
+    private Location location;
+
+    void edit(ActionEvent event) {
+       Location generated = genLocation();
+
+       locationDB.editLocation(location, generated);
+
+       Button src = (Button)event.getSource();
+       Stage srcStage = (Stage)src.getScene().getWindow();
+
+       srcStage.close();
+    }
 
 
     @FXML
@@ -61,25 +68,29 @@ public class LocationDBEditController {
     	// TODO Adds new row to grid view
     }
 
-    void setModel(LocationDB model) {
-       this.model = model;
+    public void passLocation(Location target) {
+       location = target;
+
+       buildingText.setText(location.getBuilding());
+       buildingNumberText.setText(location.getBuildingNumber());
+       roomText.setText(location.getRoom());
+       capacityText.setText(location.getCapacity());
+       equipmentText.setText(location.getEquipment() ? "yes" : "no");
+
     }
 
-    void setLocation(Location location) {
-         this.location = location;
-         // TODO Finish
-         
+    public void passTable(TableView<Location> table, LocationDB locationDB) {
+       this.locationDB = locationDB;
     }
 
-    @FXML
-    void initialize() {
-        assert buildingText != null : "fx:id=\"buildingText\" was not injected: check your FXML file 'LocationDBEditView.fxml'.";
-        assert capacityText != null : "fx:id=\"capacityText\" was not injected: check your FXML file 'LocationDBEditView.fxml'.";
-        assert equipmentText != null : "fx:id=\"equipmentText\" was not injected: check your FXML file 'LocationDBEditView.fxml'.";
-        assert roomText != null : "fx:id=\"roomText\" was not injected: check your FXML file 'LocationDBEditView.fxml'.";
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+    }
 
-        // Should fill up fields with selected data. Future work perhaps
-         //TODO Finish stuff
-
+   private Location genLocation() {
+      return new Location(buildingText.getText(), buildingNumberText.getText(),
+       roomText.getText(), Integer.parseInt(capacityText.getText()),
+       equipmentText.getText().equals("yes"));
    }
+
 }
