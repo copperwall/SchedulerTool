@@ -61,7 +61,6 @@ public class LocationDBTest {
    @Test
    public void testValidateBuilding() throws NoSuchMethodException, SecurityException, IllegalAccessException, InvocationTargetException {
       LocationDB db = new LocationDB();
-      boolean flag = false;
 
       // Reflection time
       Method method = LocationDB.class.getDeclaredMethod("validateBuilding", String.class);
@@ -80,10 +79,7 @@ public class LocationDBTest {
       }
       catch (RuntimeException e) {
          /* Success */
-         flag = true;
-      }
-      finally {
-         assertTrue(flag);
+         assertTrue(true);
       }
    }
 
@@ -104,7 +100,6 @@ public class LocationDBTest {
    @Test
    public void testValidateRoom() throws IllegalAccessException, InvocationTargetException, NoSuchMethodException, SecurityException {
       LocationDB db = new LocationDB();
-      boolean flag = false;
 
       Method method = LocationDB.class.getDeclaredMethod("validateRoom", String.class);
 
@@ -121,11 +116,7 @@ public class LocationDBTest {
          Object o = method.invoke(db, "1020304");
       }
       catch (RuntimeException e) {
-         /* Success */
-         flag = true;
-      }
-      finally {
-         assertTrue(flag);
+         assertTrue(true);
       }
    }
 
@@ -146,7 +137,6 @@ public class LocationDBTest {
    @Test
    public void testValidateCapacity() throws NoSuchMethodException, SecurityException, IllegalAccessException, InvocationTargetException {
       LocationDB db = new LocationDB();
-      boolean flag = false;
 
       Method method = LocationDB.class.getDeclaredMethod("validateCapacity", String.class);
 
@@ -163,10 +153,7 @@ public class LocationDBTest {
          method.invoke(db, "abcd");
       }
       catch (RuntimeException e) {
-         flag = true;
-      }
-      finally {
-         assertTrue(flag);
+         assertTrue(true);
       }
          
    }
@@ -225,10 +212,11 @@ public class LocationDBTest {
    public void testGetLocation() {
       LocationDB db = new LocationDB();
 
-      db.addLocation("14", "234", "41", true);
+      db.addLocation("Frank E. Pilling Building", "14", "234", "41", true);
       Location location = db.getLocation(0);
 
-      assertTrue(location.getBuilding().equals("14"));
+      assertTrue(location.getBuilding().equals("Frank E. Pilling Building"));
+      assertTrue(location.getBuildingNumber().equals("14"));
       assertTrue(location.getRoom().equals("234"));
       assertTrue(location.getCapacity() == 41);
       assertTrue(location.getEquipment());
@@ -239,15 +227,16 @@ public class LocationDBTest {
       LocationDB db = new LocationDB();
       Vector<Location> locations = db.getAllLocations();
 
-      db.addLocation("14", "234", "41", true);
+      db.addLocation("Frank E. Pilling Building", "14", "234", "41", true);
       Location location = db.getLocation(0);
-      Location two = new Location("15", "2344", 40, false);
+      Location two = new Location("Frank E. Pilling Building", "15", "2344", 40, false);
 
       db.editLocation(location, two);
 
       location = db.getLocation(0);
 
-      assertTrue(location.getBuilding().equals("15"));
+      assertTrue(location.getBuilding().equals("Frank E. Pilling Building"));
+      assertTrue(location.getBuildingName().equals("15"));
       assertTrue(location.getRoom().equals("2344"));
       assertTrue(location.getCapacity() == 40);
       assertFalse(location.getEquipment());
@@ -257,7 +246,7 @@ public class LocationDBTest {
    public void testDeleteLocation() {
       LocationDB db = new LocationDB();
 
-      db.addLocation("14", "234", "41", true);
+      db.addLocation("Frank E. Pilling Building", "14", "234", "41", true);
       db.deleteLocation(db.getLocation(0));
    }
 }

@@ -84,7 +84,7 @@ public class InstructorDBTest {
      *           true}
      *                                                                         </pre>
 	 */
-	//@Test
+	@Test
 	public void testDBAdd()
 	{
 		testDBCreation();
@@ -113,7 +113,7 @@ public class InstructorDBTest {
      *           false}              Instructor
      *                                                                         </pre>
 	 */
-	//@Test
+	@Test
 	public void testDBRemove()
 	{
 		testDBCreation();
@@ -138,12 +138,12 @@ public class InstructorDBTest {
      *                               state are changed
      *                                                                         </pre>
 	 */
-	//@Test
+	@Test
 	public void testDBEdit()
 	{
 		testDBCreation();
 		Instructor testAdd = new Instructor("Test", "Instructor", "tinstruct", 10, true);
-		//testDB.addInstructor(testAdd);
+		testDB.addInstructor(testAdd);
 		
 		testAdd = new Instructor("Test", "Instructor", "tinstruct", 8, false);
 		testDB.editInstructor(testAdd);

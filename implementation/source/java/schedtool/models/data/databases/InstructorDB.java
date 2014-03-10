@@ -251,11 +251,87 @@ public class InstructorDB extends Observable {
                     "jdbc:mysql://polyschedules.db."
                             + "9302206.hostedresource.com:3306/polyschedules",
                     "polyschedules", "a1RightCorner!");
+            // find user id
+            String queryFindId = "SELECT id FROM core_polyschedulesuser WHERE username = ?";
             // delete query
             String queryDelete = "DELETE FROM core_polyschedulesuser WHERE username = ?";
+            // find user's course preferences in index table
+            String queryFindCPrefs = "SELECT coursepreference_id FROM core_polyschedulesuser_course_preferences WHERE polyschedulesuser_id = ?";
+            // delete user's actual course preferences
+            String queryDeleteCPrefs = "DELETE FROM preferences_coursepreference WHERE id = ?";
+            // delete user's course preference indices
+            String queryDeleteCPIndex = "DELETE FROM core_polyschedulesuser_course_preferences WHERE polyschedulesuser_id = ?";
+            // find user's time preferences in index table
+            String queryFindTPrefs = "SELECT timepreference_id FROM core_polyschedulesuser_time_preference WHERE polyschedulesuser_id = ?";
+            // find user's availability indices
+            String queryFindWeeks = "SELECT availability_id FROM preferences_timepreference WHERE id = ?";
+            // delete user's actual time preferences
+            String queryDeleteTPrefs = "DELETE FROM preferences_timepreference WHERE id = ?";
+            // delete user's availability prefs
+            String queryDeleteWeeks = "DELETE FROM schedules_week WHERE id = ?";
+            // delete user's course preference indices
+            String queryDeleteTPIndex = "DELETE FROM core_polyschedulesuser_time_preference WHERE polyschedulesuser_id = ?";
+            // find user id statement
+            PreparedStatement stmtId = con.prepareStatement(queryFindId);
             // delete statement
             PreparedStatement stmtDelete = con.prepareStatement(queryDelete);
+            // find user's course preferences statement
+            PreparedStatement stmtFindCP = con.prepareStatement(queryFindCPrefs);
+            // delete user's actual course preferences
+            PreparedStatement stmtDeleteCPrefs = con.prepareStatement(queryDeleteCPrefs);
+            // delete index of user course preferences
+            PreparedStatement stmtDeleteCPIndex = con.prepareStatement(queryDeleteCPIndex);
+            // statement object for finding  time prefs
+            PreparedStatement stmtFindTimePref = con.prepareStatement(queryFindTPrefs);
+            // statement for deleting time prefs
+            PreparedStatement stmtDeleteTimePref = con.prepareStatement(queryDeleteWeeks);
+            // statement for deleting week index
+            PreparedStatement stmtDeleteWeekIndex = con.prepareStatement(queryDeleteTPrefs);
+            // statement for deleting time pref index
+            PreparedStatement stmtDeleteTPIndex = con.prepareStatement(queryDeleteTPIndex);
+            // user id in database
+            int userId;
+            // coursepref id in database
+            int coursePrefId;
+            // timepref id in database
+            int timePrefId;
+            // week id in database
+            int weekId;
 
+            stmtId.setString(1, instructor.username);
+            ResultSet rs = stmtId.executeQuery();
+            rs.next();
+            userId = rs.getInt("id");
+            stmtFindCP.setInt(1, userId);
+            rs = stmtFindCP.executeQuery();
+            // deletes course preferences
+            while (rs.next())
+            {
+                ResultSet rsCP;
+                coursePrefId = rs.getInt("coursepreference_id");
+                stmtDeleteCPrefs.setInt(1, coursePrefId);
+                stmtDeleteCPrefs.execute();
+            }
+            stmtDeleteCPIndex.setInt(1, userId);
+            stmtDeleteCPIndex.execute();
+            // deletes time preferences
+            stmtFindTimePref.setInt(1, userId);
+            while (rs.next()) {
+                ResultSet rsTP;
+                timePrefId = rs.getInt("timepreference_id");
+                stmtFindTimePref = con.prepareStatement(queryFindWeeks);
+                rsTP = stmtFindTimePref.executeQuery();
+                while (rsTP.next()) {
+                    weekId = rsTP.getInt("availability_id");
+                    stmtDeleteTimePref.setInt(1, weekId);
+                    stmtDeleteTimePref.execute();
+                }
+                stmtDeleteWeekIndex.setInt(1, timePrefId);
+                stmtDeleteWeekIndex.execute();
+            }
+            stmtDeleteTPIndex.setInt(1, userId);
+            stmtDeleteTPIndex.execute();
+            
             stmtDelete.setString(1, instructor.username);
             stmtDelete.executeUpdate();
 

@@ -51,7 +51,9 @@ public class LocationDB extends Observable {
          System.err.println("LocationDB Get: Could not connect to database.\n\t"
             + e.getMessage());
       }
-      return null;
+
+      // Not from DB, temporary
+      return locations.get(id);
    }
 
    /**
@@ -65,9 +67,11 @@ public class LocationDB extends Observable {
       ensures \old(locations).size() == locations.size() + 1
          && locations.contains(location);
     @*/
-   public void addLocation(String building, String room, String capacity, boolean equipment) {
+   public void addLocation(String building, String building_number, String room, String capacity, boolean equipment) {
       /* Resulting building String from validation */
       String building_check = validateBuilding(building);
+      /* Resulting building_number String from validation */
+      String building_number_check = validateBuildingNumber(building_number);
       /* Resulting room String from validation */
       String room_check = validateRoom(room);
       /* Resulting integer from converting capacity string to int */
@@ -75,7 +79,7 @@ public class LocationDB extends Observable {
       /* Resulting String[] after splitting equipment argument */
       boolean equipment_check = validateEquipment(equipment);
 
-      Location location = new Location(building_check, room_check, capacity_check,
+      Location location = new Location(building_check, building_number_check, room_check, capacity_check,
        equipment_check);
 
       locations.add(location);
@@ -173,11 +177,19 @@ public class LocationDB extends Observable {
       ensures \result.getClass() == String.class && \result.length <= 70;
     @*/
    private String validateBuilding(String building) {
-      if (building.length() > 70) {
+      if (building.length() > 60) {
          throw new RuntimeException("Building name is too big: Greater than 70 chars");
       }
 
       return building;
+   }
+   
+   private String validateBuildingNumber(String building_number) {
+      if (building_number.length() > 6) {
+         throw new RuntimeException("Building number is too big: Greater than 6 chars");
+      }
+
+      return building_number;
    }
 
    /**
