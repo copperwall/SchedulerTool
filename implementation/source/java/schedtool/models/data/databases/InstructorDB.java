@@ -94,9 +94,9 @@ public class InstructorDB extends Observable {
                     cPref = new CoursePreference();
                     cPref.course = new Course(rs.getString("prefix"), rs.getInt("number"),
                             rs.getInt("units"), rs.getString("title"), 
-                            rs.getInt("requires_equipment") > 0 ? true : false, 
+                            rs.getBoolean("requires_equipment"), 
                             rs.getInt("lab_length"), Course.LabProximity.values()[rs.getInt("lab_time_proximity")], 
-                            rs.getInt("lab_requires_equipment") > 0 ? true : false);
+                            rs.getBoolean("lab_requires_equipment"));
                     cPref.preference = rs.getInt("preference");
                     cPrefs.add(cPref);
                 }
@@ -221,7 +221,7 @@ public class InstructorDB extends Observable {
             updateWTU.setInt(1, instructor.getWtu());
             updateWTU.setString(2, instructor.getUser());
             updateWTU.executeUpdate();
-            updateActive.setInt(1, instructor.getAct() ? 1 : 0);
+            updateActive.setBoolean(1, instructor.getAct());
             updateActive.setString(2, instructor.getUser());
             updateActive.executeUpdate();
         }

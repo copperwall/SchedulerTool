@@ -49,6 +49,10 @@ public class InstructorDBAddController implements Initializable {
     @FXML
     private TextField wtu;
     
+    /** WTU error field on GUI */
+    @FXML
+    private Label lblWtuError;
+    
     /** current InstructorDB reference */
     private InstructorDB instructorDB;
     
@@ -65,13 +69,24 @@ public class InstructorDBAddController implements Initializable {
      */
     @FXML
     private void submit(ActionEvent event) {
-    	/* create a new instructor to add to the database */
-        instructorDB.addInstructor(new Instructor(firstName.getText(), lastName.getText(), userID.getText(), Integer.parseInt(wtu.getText()), active.isSelected()));
-        /* close the window */
-        Button src = (Button)event.getSource();
-        Stage srcStage = (Stage)src.getScene().getWindow();
+        // work time units
+        int wtuInt;
         
-        srcStage.close();
+        try
+        {
+            wtuInt = Integer.parseInt(wtu.getText());
+
+            /* create a new instructor to add to the database */
+            instructorDB.addInstructor(new Instructor(firstName.getText(), lastName.getText(), userID.getText(), Integer.parseInt(wtu.getText()), active.isSelected()));
+            /* close the window */
+            Button src = (Button)event.getSource();
+            Stage srcStage = (Stage)src.getScene().getWindow();
+            srcStage.close();
+        }
+        catch (NumberFormatException exc)
+        {
+            lblWtuError.setText("Invalid work time units value.");
+        }
     }
 
     /**
