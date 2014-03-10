@@ -120,6 +120,9 @@ public class CourseDBController implements Observer{
         System.out.println("CourseDBController initialized.");
         
         model = new CourseDB();
+        ObservableList<Course> courses = courseTable.getItems();
+        courses.addAll(model.getAllCourses());
+        courseTable.setItems(courses);
         model.addObserver(this);
     }
     
