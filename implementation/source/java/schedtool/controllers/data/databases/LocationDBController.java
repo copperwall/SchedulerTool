@@ -60,13 +60,6 @@ public class LocationDBController implements Observer {
     }
 
     @FXML
-    void deleteLocation(ActionEvent event) {
-       Location selected = locationTable.getSelectionModel().getSelectedItem();
-
-       locationDB.deleteLocation(selected);
-    }
-
-    @FXML
     void editLocation(ActionEvent event) {
         try {
            URL location = getClass().getResource("/views/data/databases/LocationDBAddView.fxml");
@@ -115,7 +108,7 @@ public class LocationDBController implements Observer {
     @Override
     public void update(Observable o, Object arg) {
        ObservableList<Location> items = locationTable.getItems();
-       item.setAll(locationDB.getAllLocations());
+       items.setAll(locationDB.getAllLocations());
        locationTable.setItems(items);
        System.out.println("LocationDB Updated");
     }

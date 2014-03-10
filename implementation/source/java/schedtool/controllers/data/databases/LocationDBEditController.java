@@ -74,7 +74,7 @@ public class LocationDBEditController implements Initializable {
        buildingText.setText(location.getBuilding());
        buildingNumberText.setText(location.getBuildingNumber());
        roomText.setText(location.getRoom());
-       capacityText.setText(location.getCapacity());
+       capacityText.setText(Integer.toString(location.getCapacity()));
        equipmentText.setText(location.getEquipment() ? "yes" : "no");
 
     }

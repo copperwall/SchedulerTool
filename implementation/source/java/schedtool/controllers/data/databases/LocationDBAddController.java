@@ -51,7 +51,7 @@ public class LocationDBAddController implements Initializable {
     @FXML
     void submit(ActionEvent event) {
        locationDB.addLocation(buildingText.getText(), buildingNumberText.getText(),
-        roomText.getText(), Integer.parseInt(capacityText.getText()),
+        roomText.getText(), capacityText.getText(),
         equipmentText.getText().equals("yes"));
 
        Button src = (Button)event.getSource();
