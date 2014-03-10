@@ -83,8 +83,11 @@ public class LocationDB extends Observable {
        equipment_check);
 
       locations.add(location);
+      
+      setChanged();
+      notifyObservers();
 
-      try {
+      /*try {
          // Get Connection
          Connection con = DriverManager.getConnection(
             "jdbc:mysql://polyschedules.db."
@@ -95,7 +98,7 @@ public class LocationDB extends Observable {
       catch (SQLException e) {
          System.err.println("LocationDB Add: Could not connect to database.\n\t"
             + e.getMessage());
-      }
+      }*/
    }
 
    /**
@@ -112,7 +115,10 @@ public class LocationDB extends Observable {
       // Do I still need this?
       locations.set(locations.indexOf(old), new_location);
 
-      try {
+      setChanged();
+      notifyObservers();
+      
+      /*try {
          // Get Connection
          Connection con = DriverManager.getConnection(
             "jdbc:mysql://polyschedules.db."
@@ -123,7 +129,7 @@ public class LocationDB extends Observable {
       catch (SQLException e) {
          System.err.println("LocationDB Edit: Could not connect to database.\n\t"
             + e.getMessage());
-      }
+      }*/
    }
 
    /**
@@ -139,7 +145,10 @@ public class LocationDB extends Observable {
    public void deleteLocation(Location location) {
       locations.remove(location);
 
-      try {
+      setChanged();
+      notifyObservers();
+      
+      /*try {
          // Get Connection
          Connection con = DriverManager.getConnection(
             "jdbc:mysql://polyschedules.db."
@@ -150,7 +159,7 @@ public class LocationDB extends Observable {
       catch (SQLException e) {
          System.err.println("LocationDB Delete: Could not connect to database.\n\t"
             + e.getMessage());
-      }
+      }*/
    }
 
    /**

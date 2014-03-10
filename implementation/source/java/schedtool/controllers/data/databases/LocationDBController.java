@@ -62,7 +62,7 @@ public class LocationDBController implements Observer {
     @FXML
     void editLocation(ActionEvent event) {
         try {
-           URL location = getClass().getResource("/views/data/databases/LocationDBAddView.fxml");
+           URL location = getClass().getResource("/views/data/databases/LocationDBEditView.fxml");
            FXMLLoader loader = new FXMLLoader();
            Parent root = (Parent) loader.load(location.openStream());
 

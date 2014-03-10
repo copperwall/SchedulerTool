@@ -49,9 +49,10 @@
           </columnResizePolicy>
           <columns>
             <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="154.0" text="Building" fx:id="buildingColumn" />
+            <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="156.0" text="Bldg Num" fx:id="buildingNumberColumn" />
             <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="128.0" text="Room" fx:id="roomColumn" />
-            <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="141.0" text="Capacity" fx:id="capacityColumn" />
-            <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="147.0" text="Equipment" fx:id="equipmentColumn" />
+            <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="152.0" text="Capacity" fx:id="capacityColumn" />
+            <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="126.0" text="Equipment" fx:id="equipmentColumn" />
           </columns>
           <BorderPane.margin>
             <Insets left="10.0" right="10.0" />
