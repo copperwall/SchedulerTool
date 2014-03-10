@@ -122,34 +122,23 @@ public class CourseDB extends Observable {
 
          PreparedStatement pstmt = con.prepareStatement("UPDATE schedules_course"
             + " SET prefix = '"
-            + prefix
-            + "', "
-            + " SET number = "
-            + courseNum
-            + ", "
-            + " SET units = "
-            + units
-            + ", "
-            + " SET title = '"
-            + title
-            + "', "
-            + " SET has_lab = "
+            + prefix + "', "
+            + "number = " + courseNum + ", units = " + units
+            + ", title = '" + title + "', has_lab = "
             + (labProx != null ? 1 : 0)
-            + ", "
-            + " SET requires_equipment = "
+            + ", requires_equipment = "
             + (hasEquip ? 1 : 0)
             + ", "
-            + " SET lab_length = "
+            + "lab_length = "
             + labLength
             + ", "
-            + " SET lab_proximity = "
-            + labProx
+            + "lab_time_proximity = "
+            + labProx.ordinal()
             + ", "
-            + " SET lab_requires_equipment = "
+            + "lab_requires_equipment = "
             + (labHasEquip ? 1 : 0)
-            + ", "
-            + "WHERE `prefix` = "
-            + oldCourse.getPrefix() + " AND `number` = " + oldCourse.getCourseNum());
+            + " WHERE `prefix` = '"
+            + oldCourse.getPrefix() + "' AND `number` = " + oldCourse.getCourseNum());
 
          pstmt.addBatch();
          pstmt.executeBatch();
@@ -182,14 +171,14 @@ public class CourseDB extends Observable {
             + "9302206.hostedresource.com:3306/polyschedules", "polyschedules", "a1RightCorner!");
 
          PreparedStatement pstmt = con
-            .prepareStatement("DELETE FROM schedules_course " + "WHERE `prefix` = "
-               + course.getPrefix() + " AND `number` = " + course.getCourseNum());
+            .prepareStatement("DELETE FROM schedules_course " + "WHERE `prefix` = '"
+               + course.getPrefix() + "' AND `number` = " + course.getCourseNum());
 
          pstmt.addBatch();
          pstmt.executeBatch();
       }
       catch (SQLException exc) {
-         System.err.println("CourseDB Add: Could not add to database.\n\t" + exc.getMessage());
+         System.err.println("CourseDB Add: Could not delete from database.\n\t" + exc.getMessage());
       }
 
       setChanged();
@@ -217,7 +206,7 @@ public class CourseDB extends Observable {
          // select statement
          Statement stmt = con.createStatement();
          // select query
-         String query = "SELECT * FROM schedules_course";
+         String query = "SELECT * FROM schedules_course ORDER BY number";
          // result set from query
          ResultSet rs = stmt.executeQuery(query);
 
