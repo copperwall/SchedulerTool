@@ -161,7 +161,7 @@ public class AdminFrameController {
             
             
             adminNewSchedule = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/admin/generation/AdminNewSchedule.fxml"));
-            locationDB = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/data/databases/LocationDBView.fxml"));
+            //locationDB = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/data/databases/LocationDBView.fxml"));
             instructorsDB = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/data/databases/InstructorDBView.fxml"));
             adminExistingSchedules = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/admin/generation/AdminExistingSchedules.fxml"));
             coursesDBView = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/data/databases/CourseDBView.fxml"));
@@ -173,7 +173,7 @@ public class AdminFrameController {
             adminInstructorPrefs = (AnchorPane) FXMLLoader.load(getClass().getResource("/views/admin/generation/AdminInstructorPreferencesView.fxml"));
             
             VBox.setVgrow(adminNewSchedule, Priority.ALWAYS);
-            VBox.setVgrow(locationDB, Priority.ALWAYS);
+            //VBox.setVgrow(locationDB, Priority.ALWAYS);
             VBox.setVgrow(instructorsDB, Priority.ALWAYS);
             VBox.setVgrow(adminExistingSchedules, Priority.ALWAYS);
             VBox.setVgrow(coursesDBView, Priority.ALWAYS);
