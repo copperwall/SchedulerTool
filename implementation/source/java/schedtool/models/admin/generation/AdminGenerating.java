@@ -90,7 +90,7 @@ public class AdminGenerating {
 			testInstructor.firstName = instructor.first;
 			testInstructor.lastName = instructor.last;
 			testInstructor.username = "gfisher";
-			Location testLocation = new Location(""+(int)(Math.random() * 100), ""+(int)(Math.random() * 200), (int)(Math.random() * 50), true);
+			Location testLocation = new Location(""+(int)(Math.random() * 100), ""+(int)(Math.random() * 100), ""+(int)(Math.random() * 200), (int)(Math.random() * 50), true);
 			Section testSection = new Section(testCourse, (int)(Math.random()*150) + 1, testInstructor, testLocation, days[(int)(Math.random()*days.length)],(int) (Math.random() * 11) + 1, (int) (Math.random() * 11) + 1);
 			testSection.setEnrolled((int)(Math.random()*150));
 			if(isLab)
