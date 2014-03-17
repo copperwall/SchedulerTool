@@ -82,7 +82,7 @@ public class AdminGenerating {
 			boolean hasLab = Math.random() < 0.5;
 			boolean isLab = Math.random() < 0.5;
 			int courseRand = (int)(Math.random() * courses.size());
-			models.data.databases.Course testCourse = new models.data.databases.Course(courses.get(courseRand).prefix, Integer.valueOf(courses.get(courseRand).num), 4, "", 0, null);
+			models.data.databases.Course testCourse = new models.data.databases.Course(courses.get(courseRand).prefix, Integer.valueOf(courses.get(courseRand).num), 4, "", false, 0, null, false);
 			if(hasLab)
 				testCourse.setLabProx(models.data.databases.Course.LabProximity.values()[(int)(Math.random()*models.data.databases.Course.LabProximity.values().length)]);
 			Instructor instructor = instructors.get((int)(Math.random() * instructors.size()));
@@ -90,7 +90,7 @@ public class AdminGenerating {
 			testInstructor.firstName = instructor.first;
 			testInstructor.lastName = instructor.last;
 			testInstructor.username = "gfisher";
-			Location testLocation = new Location(""+(int)(Math.random() * 100), ""+(int)(Math.random() * 200), (int)(Math.random() * 50), true);
+			Location testLocation = new Location(""+(int)(Math.random() * 100), ""+(int)(Math.random() * 100), ""+(int)(Math.random() * 200), (int)(Math.random() * 50), true);
 			Section testSection = new Section(testCourse, (int)(Math.random()*150) + 1, testInstructor, testLocation, days[(int)(Math.random()*days.length)],(int) (Math.random() * 11) + 1, (int) (Math.random() * 11) + 1);
 			testSection.setEnrolled((int)(Math.random()*150));
 			if(isLab)

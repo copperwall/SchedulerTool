@@ -110,6 +110,7 @@ public class CourseDBAddController {
    @FXML
    void submit(ActionEvent event) {
       boolean invalidInput = false;
+      Course course;
    
       if (prefixText.getText().length() <= 0) {
          invalidInput = true;  
@@ -120,11 +121,14 @@ public class CourseDBAddController {
 
       if (!invalidInput) {
          if (hasLabBox.isSelected()) {
-            model.addCourse(prefixText.getText(), Integer.valueOf(courseNoText.getText()), Integer.valueOf(unitsText.getText()), titleText.getText(), Integer.valueOf(labLengthText.getText()), labProxCombo.getValue());
+        	course = new Course(prefixText.getText(), Integer.valueOf(courseNoText.getText()), Integer.valueOf(unitsText.getText()), titleText.getText(), false, Integer.valueOf(labLengthText.getText()), labProxCombo.getValue(), false);
          }
          else {
-            model.addCourse(prefixText.getText(), Integer.valueOf(courseNoText.getText()), Integer.valueOf(unitsText.getText()), titleText.getText(), 0, null);
+        	 course = new Course(prefixText.getText(), Integer.valueOf(courseNoText.getText()), Integer.valueOf(unitsText.getText()), titleText.getText(), false, 0, null, false);
          }
+         
+         model.addCourse(course);
+         
          cancel(event);
       }
    }

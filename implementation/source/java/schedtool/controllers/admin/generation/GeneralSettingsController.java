@@ -29,6 +29,8 @@ import javafx.util.Callback;
 import models.admin.generation.AdminGeneralSettings;
 import models.admin.generation.Constraint;
 import models.admin.generation.Constraint.InvalidConstraintText;
+import models.admin.generation.Range.RangeOutOfBoundsException;
+import models.admin.generation.Range.StartAfterEndException;
 import models.admin.generation.TimePrefRow;
 
 public class GeneralSettingsController implements Observer {
@@ -127,9 +129,11 @@ public class GeneralSettingsController implements Observer {
    /**
     * When Add Constraint button is clicked
     * @param event 
+    * @throws StartAfterEndException 
+    * @throws RangeOutOfBoundsException 
     */
    @FXML
-   void onAddConstraintBtnEvent(ActionEvent event) {
+   void onAddConstraintBtnEvent(ActionEvent event) throws RangeOutOfBoundsException, StartAfterEndException {
       try {
          generalSettings.addConstraint(constraintText.getText());
       }

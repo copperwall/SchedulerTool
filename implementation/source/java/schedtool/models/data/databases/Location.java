@@ -1,5 +1,9 @@
 package models.data.databases;
 
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+
 /****
  * Class Location is the object representation of a room or lab to schedule course 
  * sections in. Class Location provides methods for getting and setting the building
@@ -12,15 +16,29 @@ package models.data.databases;
 
 public class Location {
    private String building;
+   private String building_number;
    private String room;
    private int capacity;
    private boolean equipment;
+   
+   private final SimpleStringProperty buildingProp = new SimpleStringProperty("");
+   private final SimpleStringProperty buildingNumProp = new SimpleStringProperty("");
+   private final SimpleStringProperty roomProp = new SimpleStringProperty("");
+   private final SimpleIntegerProperty capacityProp = new SimpleIntegerProperty();
+   private final SimpleBooleanProperty equipmentProp = new SimpleBooleanProperty();
 
-   public Location(String building, String room, int capacity, boolean equipment) {
+   public Location(String building, String building_number, String room, int capacity, boolean equipment) {
       this.building = building;
+      this.building_number = building_number;
       this.room = room;
       this.capacity = capacity;
       this.equipment = equipment;
+      
+      this.buildingProp.set(building);
+      this.buildingNumProp.set(building_number);
+      this.roomProp.set(room);
+      this.capacityProp.set((Integer)capacity);
+      this.equipmentProp.set((Boolean)equipment);
       
    }
 
@@ -47,6 +65,30 @@ public class Location {
     @*/
    public void setBuilding(String building) {
       this.building = building;
+   }
+
+   /**
+    * Gets the value of <code>building_number</code> for this Location.
+    *
+    * @return Building Number
+    */
+    /*@
+      ensures \result.equals(this.building_number);
+    @*/ 
+   public String getBuildingNumber() {
+      return this.building_number;
+   }
+
+   /**
+    * Sets the value of <code>building_number</code> for this Location.
+    *
+    * @param building_number New building number for this location.
+    */
+    /*@
+      ensures this.building.equals(building_number);
+    @*/
+   public void setBuildingNumber(String building_number) {
+      this.building_number = building_number;
    }
 
    /**
@@ -119,5 +161,25 @@ public class Location {
     @*/
    public void setEquipment(boolean equipment) {
       this.equipment = equipment;
+   }
+   
+   public SimpleStringProperty buildingPropProperty() {
+	   return this.buildingProp;
+   }
+   
+   public SimpleStringProperty buildingNumPropProperty() {
+	   return this.buildingNumProp;
+   }
+   
+   public SimpleStringProperty roomPropProperty() {
+	   return this.roomProp;
+   }
+   
+   public SimpleIntegerProperty capacityPropProperty() {
+	   return this.capacityProp;
+   }
+   
+   public SimpleBooleanProperty equipmentPropProperty() {
+	   return this.equipmentProp;
    }
 }

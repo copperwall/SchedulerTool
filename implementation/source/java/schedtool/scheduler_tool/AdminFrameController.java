@@ -134,6 +134,7 @@ public class AdminFrameController {
     void loadLocationsDBView(ActionEvent event) {
         List<Node> children = topPane.getChildren();
         children.remove(2);
+        System.out.println("boom " + locationDB);
         children.add((Node)locationDB);
     }
 

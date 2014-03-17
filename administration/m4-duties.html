@@ -15,52 +15,45 @@ CSC 309 Milestone 3 Duties
 <table align=center border=1 cellpadding=4>
   <tr>
     <td valign=top><strong>Team Member</strong></td>
-    <td valign=top><strong>Model/View Class Pairs</strong></td>
-    <td valign=top><strong>Implementation Responsibility</strong></td>
-    <td valign=top><strong>Responsibility Validation</strong></td>
-    <td valign=top><strong>How To Run From Top-Level GUI</strong></td>
+    <td valign=top><strong>Executable Part of Project</strong></td>
+    <td valign=top><strong>Classes with Test Plans</strong></td>
+    <td valign=top><strong>Methods with JML & Testing</strong></td>
    </tr>
   <tr>
     <td valign=top>Katie Keim</td>
-    <td valign=top>CoursesDB.java/CourseDB.fxml, CourseDBAddView.fxml, CourseDBEditView.fxml</td>
-    <td valign=top>Adding, editing, and deleting a course on the CourseDB page</td>
-    <td valign=top>Courses should appear correctly after adding, editing or deleting in the Course Database.</td>
-    <td valign=top>Click Databases in the top menu then Course. Click add and fill in the data to add a course. It should appear in the table. Select the course and click edit to change it. It should appear changed in the table. Select the course and click delete. It should disapper.</td>
+    <td valign=top>Course Database</td>
+    <td valign=top>CourseDB, Course (CourseDBTest, CourseTest)</td>
+    <td valign=top>CourseDB: CourseDB(), getCourse(), addCourse(String, int ...), addCourse(Course), deleteCourse(Course); Course: Course(String, int, ...), getPrefix(), getCourseNum(), getTitle(), getUnits() (All methods in Course & CourseDB have JML)</td>
     </tr>
   <tr>
     <td valign=top>Alex Kavanaugh</td>
-    <td valign=top>AdminAnalytics.java/AdminAnalyticsView.fxml</td>
-    <td valign=top>Analytics should appear on the analytics page. Data is fake for now.</td>
-    <td valign=top>Some analytics should appear on the analytics page.</td>
-    <td valign=top>Click the Analytics button in the menu bar</td>
+    <td valign=top>Analytics, Available Courses</td>
+    <td valign=top>AdminAnalytics.java, AnalyticsRow, AdminAvailableCourses.java, AvailableCoursesRow.java</td>
+    <td valign=top>AdminAnalytics: getIndividualAnalytics(), getOverallAnalytics(), calculate_overall(), calculate_individual(); AnalyticsRow: AnalyticsRow(String, Integer), getName(), getQuality(); AdminAvailableCourses: getAvailableCourses(), loadFromTerm(String), loadSuggested(); AvailableCoursesRow: AvailableCoursesRow(String ,Integer, ...), getPrefix(), prefixProperty(), getCourseNumber(), courseNumberProperty(), getCourseTitle(), courseTitleProperty(), getSections(), sectionsProperty(), setSections(), getSuggested(), suggestedProperty(), loadSuggested()</td>
     </tr>
   <tr>
     <td valign=top>Chris Opperwall</td>
-    <td valign=top>LocationDB.java, Location.java LocationDBView.fxml, LocationDBAddView.fxml, LocationDBEditView.fxml</td>
-    <td valign=top>Adding and editing a location on the LocationDB page</td>
-    <td valign=top>Locations appear correctly in table on LocationDB page</td>
-    <td valign=top>Click the Databases dropdown and then click Locations</td>
+    <td valign=top>Loaction Database</td>
+    <td valign=top>Location.java, LocationDB.java</td>
+    <td valign=top>Location: Location(String, String ...), getBuilding(), getRoom(), getCapacity(), getEquipment(), setBuilding(String), setCapacity(int), setEquipment(boolean); LocationDB: LocationDB(), validateBuilding(String), validateRoom(String), validateCapacity(int), validateEquipment(boolean), getAllLocations(), addLocation(String, String ...), getLocation(int), editLocation(Location, Location), deleteLocation(Location)</td>
   </tr>
   <tr>
     <td valign=top>Jarred Stelfox</td>
-    <td valign=top>AdminGenerating.java, AdminNewSchedule.java, AdminExistingSchedules.java/AdminFrameView.fxml, AdminMainTable.fxml, AdminNewSchedules.java, AdminNewSchedule.fxml, Schedule.java, MainTableRow.java, Section.java, AdminPublish.java, AdminPublish.fxml</td>
-    <td valign=top>A schedule should appear on the main page maybe with some data from the DBs. Doesn't have to be a valid schedule. Generate should show a loading screen for now.</td>
-    <td valign=top>A schedule on the main page with some data in it.</td>
-    <td valign=top>This is the top-level GUI of the scheduler tool</td>
+    <td valign=top>Main Schedule Viewing, Publish, Existing Schedules, Generation</td>
+    <td valign=top> Schedule.java</td>
+    <td valign=top> Schedule: Schedule(), setOneSection(Section)</td>
   </tr>
   <tr>
     <td valign=top>Calvin Elizan</td>
-    <td valign=top>InstructorDB.java/ InstructorDBView.fxml, InstructorDBAddView.fxml, InstructorDBEditView.fxml</td>
-    <td valign=top>Adding, editing, and deleting an instructor on the InstructorDB page</td>
-    <td valign=top>Instructors appear correctly in table on IsntructorDB page</td>
-    <td valign=top>Click on the Databases tab and then click on Instructors</td>
+    <td valign=top>Instructor Database, Instructor Day Preferences</td>
+    <td valign=top>InstructorDB.java, Instructor.java, Day.java</td>
+    <td valign=top>Instructor: Instructor(String, String ...), getUser(), getWtu(), getAct(), getAllClassPrefs(); InstructorDB: InstructorDB(), getInstructor(String), addInstructor(Instructor), deleteInstructor(Instructor), editInstructor(Instructor) ; Day: none</td>
   </tr>
   <tr>
     <td valign=top>Chase Kragenbrink</td>
-    <td valign=top>AdminGeneralSettings.java, AdminAvailableCourses.java/AdminGeneralSettingsView.fxml</td>
-    <td valign=top>General Settings, Instructor Preferences (nothing more implemented in this milestone), and helping with generating a schedule.</td>
-    <td valign=top>Data is added in the constraint table, times are displayed in the blocked out times table, the sliders set the appropriate time, and settings are dumped out in a System.out</td>
-    <td valign=top>Click Settings in the menu bar and then click General. Adjust the sliders to change the start and end times of the schedule. Add a constraint by typing in the textbox and clicking Add Constraint (will print a dump of the settings). Click the checkboxes to select/deselect available time patterns.</td>
+    <td valign=top>General Settings</td>
+    <td valign=top>Constraint.java, Range.java</td>
+    <td valign=top>Constraint: Constraint(String) (this is a large method with 7 test methods); Range: Range(int, int)</td>
   </tr>
 </table>
 </body>

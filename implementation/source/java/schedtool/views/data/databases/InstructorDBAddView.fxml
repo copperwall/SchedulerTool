@@ -6,14 +6,14 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane alignment="CENTER_RIGHT" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="controllers.data.databases.InstructorDBAddController">
+<GridPane alignment="CENTER_RIGHT" prefHeight="190.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="controllers.data.databases.InstructorDBAddController">
   <children>
-    <HBox alignment="CENTER_RIGHT" fillHeight="false" prefHeight="100.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
+    <HBox alignment="CENTER_RIGHT" fillHeight="false" prefHeight="100.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3">
       <children>
         <Label text="Cal Poly User ID" />
       </children>
     </HBox>
-    <HBox alignment="CENTER_RIGHT" fillHeight="false" prefHeight="100.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2">
+    <HBox alignment="CENTER_RIGHT" fillHeight="false" prefHeight="100.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4">
       <children>
         <Label text="WTU" />
       </children>
@@ -21,17 +21,17 @@
         <Point3D y="1.0" z="1.0" />
       </rotationAxis>
     </HBox>
-    <TextField fx:id="userID" GridPane.columnIndex="1" GridPane.rowIndex="1">
+    <TextField fx:id="userID" GridPane.columnIndex="1" GridPane.rowIndex="3">
       <GridPane.margin>
         <Insets left="5.0" />
       </GridPane.margin>
     </TextField>
-    <TextField fx:id="wtu" GridPane.columnIndex="1" GridPane.rowIndex="2">
+    <TextField fx:id="wtu" GridPane.columnIndex="1" GridPane.rowIndex="4">
       <GridPane.margin>
         <Insets left="5.0" />
       </GridPane.margin>
     </TextField>
-    <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
+    <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="5">
       <children>
         <Label alignment="CENTER_RIGHT" text="Active" />
       </children>
@@ -44,12 +44,12 @@
         <Insets left="10.0" />
       </GridPane.margin>
     </Label>
-    <CheckBox fx:id="active" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="3">
+    <CheckBox fx:id="active" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="5">
       <GridPane.margin>
         <Insets left="5.0" />
       </GridPane.margin>
     </CheckBox>
-    <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+    <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="6" GridPane.valignment="CENTER">
       <children>
         <Button mnemonicParsing="false" onAction="#submit" text="Submit">
           <HBox.margin>
@@ -62,6 +62,11 @@
         <Insets right="10.0" />
       </GridPane.margin>
     </HBox>
+    <Label text="First Name" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+    <TextField fx:id="firstName" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+    <TextField fx:id="lastName" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+    <Label text="Last Name" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+    <Label fx:id="lblWtuError" text="" textFill="RED" GridPane.columnIndex="2" GridPane.rowIndex="4" />
   </children>
   <columnConstraints>
     <ColumnConstraints minWidth="10.0" percentWidth="33.0" prefWidth="100.0" />
@@ -70,6 +75,8 @@
   </columnConstraints>
   <rowConstraints>
     <RowConstraints />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" />
     <RowConstraints minHeight="10.0" prefHeight="30.0" />
     <RowConstraints minHeight="10.0" prefHeight="30.0" />
     <RowConstraints minHeight="10.0" prefHeight="30.0" />

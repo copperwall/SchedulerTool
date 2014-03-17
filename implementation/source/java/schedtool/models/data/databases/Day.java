@@ -1,6 +1,6 @@
 package models.data.databases;
 
-import java.util.Collection;
+import java.util.ArrayList;
 import java.lang.Boolean;
 
 /**
@@ -8,17 +8,27 @@ import java.lang.Boolean;
  * to hold a class for that hour. Set and get the availability.
  */
 public class Day {
-   public Collection<Boolean> hourAvailability;
+   public ArrayList<Boolean> hourAvailability;
+   public String text;
    
+   public Day(String longtext) {
+      this.text = longtext;
+       hourAvailability = new ArrayList<Boolean>();
+       if (longtext != null) {
+           for (int i = 0; i < longtext.length(); i++) {
+               hourAvailability.add(longtext.charAt(i) != '0');
+           }
+       }
+   }
    /**
     * Sets the availability to the new given availability.
     */
-   /*@
+   /*
       requires availableHours != null;
       ensures hourAvailability.equals(availableHours);
    @*/
-   public void setAvailability(Collection<Boolean> availableHours) {
-      
+   public void setAvailability(ArrayList<Boolean> availableHours) {
+      this.hourAvailability = availableHours;
    }
 
    /**
@@ -30,7 +40,7 @@ public class Day {
          \result != null &&
          \result.equals(hourAvailability);
    @*/
-   public Collection<Boolean> getAvailability() {
-      return null;
+   public ArrayList<Boolean> getAvailability() {
+      return hourAvailability;
    }
 }

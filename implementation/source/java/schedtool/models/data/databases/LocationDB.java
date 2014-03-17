@@ -1,8 +1,16 @@
 package models.data.databases;
 
 import java.util.Vector;
+import java.util.Observable;
 import java.lang.NumberFormatException;
 import java.lang.RuntimeException;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  * Class LocationDB contains a list of locations for the Term.
@@ -12,7 +20,7 @@ import java.lang.RuntimeException;
  * 
  * @author Chris Opperwall (copperwa@calpoly.edu)
  */
-public class LocationDB {
+public class LocationDB extends Observable {
    /* A collection of locations for the current term */
    private Vector<Location> locations;
 
@@ -31,6 +39,20 @@ public class LocationDB {
       ensures  \result instanceof Location
     @*/
    public Location getLocation(int id) {
+      try {
+         // Get Connection
+         Connection con = DriverManager.getConnection(
+            "jdbc:mysql://polyschedules.db."
+               + "9302206.hostedresource.com:3306/polyschedules",
+            "polyschedules", "a1RightCorner!");
+         // Just need to do shit now
+      }
+      catch (SQLException e) {
+         System.err.println("LocationDB Get: Could not connect to database.\n\t"
+            + e.getMessage());
+      }
+
+      // Not from DB, temporary
       return locations.get(id);
    }
 
@@ -45,9 +67,11 @@ public class LocationDB {
       ensures \old(locations).size() == locations.size() + 1
          && locations.contains(location);
     @*/
-   public void addLocation(String building, String room, String capacity, boolean equipment) {
+   public void addLocation(String building, String building_number, String room, String capacity, boolean equipment) {
       /* Resulting building String from validation */
       String building_check = validateBuilding(building);
+      /* Resulting building_number String from validation */
+      String building_number_check = validateBuildingNumber(building_number);
       /* Resulting room String from validation */
       String room_check = validateRoom(room);
       /* Resulting integer from converting capacity string to int */
@@ -55,10 +79,26 @@ public class LocationDB {
       /* Resulting String[] after splitting equipment argument */
       boolean equipment_check = validateEquipment(equipment);
 
-      Location location = new Location(building_check, room_check, capacity_check,
+      Location location = new Location(building_check, building_number_check, room_check, capacity_check,
        equipment_check);
 
       locations.add(location);
+      
+      setChanged();
+      notifyObservers();
+
+      /*try {
+         // Get Connection
+         Connection con = DriverManager.getConnection(
+            "jdbc:mysql://polyschedules.db."
+               + "9302206.hostedresource.com:3306/polyschedules",
+            "polyschedules", "a1RightCorner!");
+         // Just need to do shit now
+      }
+      catch (SQLException e) {
+         System.err.println("LocationDB Add: Could not connect to database.\n\t"
+            + e.getMessage());
+      }*/
    }
 
    /**
@@ -72,7 +112,24 @@ public class LocationDB {
       ensures  locations.contains(new_location) && !locations.contains(old);
     @*/
    public void editLocation(Location old, Location new_location) {
+      // Do I still need this?
       locations.set(locations.indexOf(old), new_location);
+
+      setChanged();
+      notifyObservers();
+      
+      /*try {
+         // Get Connection
+         Connection con = DriverManager.getConnection(
+            "jdbc:mysql://polyschedules.db."
+               + "9302206.hostedresource.com:3306/polyschedules",
+            "polyschedules", "a1RightCorner!");
+         // Just need to do shit now
+      }
+      catch (SQLException e) {
+         System.err.println("LocationDB Edit: Could not connect to database.\n\t"
+            + e.getMessage());
+      }*/
    }
 
    /**
@@ -87,6 +144,22 @@ public class LocationDB {
     @*/
    public void deleteLocation(Location location) {
       locations.remove(location);
+
+      setChanged();
+      notifyObservers();
+      
+      /*try {
+         // Get Connection
+         Connection con = DriverManager.getConnection(
+            "jdbc:mysql://polyschedules.db."
+               + "9302206.hostedresource.com:3306/polyschedules",
+            "polyschedules", "a1RightCorner!");
+         // Just need to do shit now
+      }
+      catch (SQLException e) {
+         System.err.println("LocationDB Delete: Could not connect to database.\n\t"
+            + e.getMessage());
+      }*/
    }
 
    /**
@@ -113,11 +186,19 @@ public class LocationDB {
       ensures \result.getClass() == String.class && \result.length <= 70;
     @*/
    private String validateBuilding(String building) {
-      if (building.length() > 70) {
+      if (building.length() > 60) {
          throw new RuntimeException("Building name is too big: Greater than 70 chars");
       }
 
       return building;
+   }
+   
+   private String validateBuildingNumber(String building_number) {
+      if (building_number.length() > 6) {
+         throw new RuntimeException("Building number is too big: Greater than 6 chars");
+      }
+
+      return building_number;
    }
 
    /**

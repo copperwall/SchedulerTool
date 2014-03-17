@@ -4,6 +4,9 @@
 package models.admin.generation;
 
 import static org.junit.Assert.*;
+
+import java.util.Vector;
+
 import models.admin.generation.Schedule;
 import models.admin.generation.Section;
 import models.data.databases.Course;
@@ -51,7 +54,7 @@ public class ScheduleTest {
 		boolean hasLab = false;
 		boolean isLab = false;
 		int count = 0;
-		models.data.databases.Course testCourse = new models.data.databases.Course("CSC", 101, 4, "title", 0, null);
+		models.data.databases.Course testCourse = new models.data.databases.Course("CSC", 101, 4, "title", false, 0, null, false);
 		models.data.databases.Instructor testInstructor = new models.data.databases.Instructor("Gene", "Fisher", "gfisher", 15, true);
 		Location testLocation = new Location(""+14, ""+256, 50, true);
 		Section testSection = new Section(testCourse, count++, testInstructor, testLocation, "MWF", 2, 4);
@@ -65,23 +68,26 @@ public class ScheduleTest {
 	 */
 	@Test
 	public void testSetAllSections() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link models.admin.generation.Schedule#getAllSections()}.
-	 */
-	@Test
-	public void testGetAllSections() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link models.admin.generation.Schedule#setOneSection(models.admin.generation.Section)}.
-	 */
-	@Test
-	public void testSetOneSection() {
-		fail("Not yet implemented");
+		Schedule schedule = new Schedule();
+		Vector<Section>sections = new Vector<Section>();
+		boolean hasLab = false;
+		boolean isLab = false;
+		int count = 0;
+		models.data.databases.Course testCourse = new models.data.databases.Course("CSC", 101, 4, "title", false, 0, null, false);
+		models.data.databases.Instructor testInstructor = new models.data.databases.Instructor("Gene", "Fisher", "gfisher", 15, true);
+		Location testLocation = new Location(""+14, ""+256, 50, true);
+		Section testSection = new Section(testCourse, count++, testInstructor, testLocation, "MWF", 2, 4);
+		testSection.setEnrolled(50);
+		sections.add(testSection);
+		models.data.databases.Course testCourse2 = new models.data.databases.Course("CSC", 101, 4, "title", false, 0, null, false);
+		models.data.databases.Instructor testInstructor2 = new models.data.databases.Instructor("Gene", "Fisher", "gfisher", 15, true);
+		Location testLocation2 = new Location(""+14, ""+256, 50, true);
+		Section testSection2 = new Section(testCourse, count++, testInstructor, testLocation, "MWF", 2, 4);
+		testSection2.setEnrolled(50);
+		sections.add(testSection2);
+		
+		schedule.setAllSections(sections);
+		assertEquals(schedule.getAllSections().size(),2);
 	}
 
 	/**
@@ -89,7 +95,28 @@ public class ScheduleTest {
 	 */
 	@Test
 	public void testGetOneSection() {
-		fail("Not yet implemented");
+		Schedule schedule = new Schedule();
+		Vector<Section>sections = new Vector<Section>();
+		boolean hasLab = false;
+		boolean isLab = false;
+		int count = 0;
+		models.data.databases.Course testCourse = new models.data.databases.Course("CSC", 101, 4, "title", false, 0, null, false);
+		models.data.databases.Instructor testInstructor = new models.data.databases.Instructor("Gene", "Fisher", "gfisher", 15, true);
+		Location testLocation = new Location(""+14, ""+256, 50, true);
+		Section testSection = new Section(testCourse, count++, testInstructor, testLocation, "MWF", 2, 4);
+		testSection.setEnrolled(50);
+		sections.add(testSection);
+		models.data.databases.Course testCourse2 = new models.data.databases.Course("CSC", 102, 4, "title", false, 0, null, false);
+		models.data.databases.Instructor testInstructor2 = new models.data.databases.Instructor("Gene", "Fisher", "gfisher", 15, true);
+		Location testLocation2 = new Location(""+14, ""+256, 50, true);
+		Section testSection2 = new Section(testCourse, count++, testInstructor, testLocation, "MWF", 2, 4);
+		testSection2.setEnrolled(50);
+		sections.add(testSection2);
+		
+		schedule.setAllSections(sections);
+		Section sec = schedule.getOneSection(0, testCourse);
+		schedule.getSections();
+		assertEquals(sec.getCourse(),testCourse);
 	}
 
 }

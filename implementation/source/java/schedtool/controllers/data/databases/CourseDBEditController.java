@@ -123,10 +123,10 @@ public class CourseDBEditController {
         if (!invalidInput) {
            if (hasLabBox.isSelected()) {
         	  System.out.println("EDITTING A COURSE");
-              model.editCourse(this.course, prefixText.getText(), Integer.valueOf(courseNoText.getText()), Integer.valueOf(unitsText.getText()), titleText.getText(), Integer.valueOf(labLengthText.getText()), labProxCombo.getValue());
+              model.editCourse(this.course, prefixText.getText(), Integer.valueOf(courseNoText.getText()), Integer.valueOf(unitsText.getText()), titleText.getText(), false, Integer.valueOf(labLengthText.getText()), labProxCombo.getValue(), false);
            }
            else {
-              model.editCourse(this.course, prefixText.getText(), Integer.valueOf(courseNoText.getText()), Integer.valueOf(unitsText.getText()), titleText.getText(), 0, null);
+              model.editCourse(this.course, prefixText.getText(), Integer.valueOf(courseNoText.getText()), Integer.valueOf(unitsText.getText()), titleText.getText(), false, 0, null, false);
            }
            cancel(event);
         }

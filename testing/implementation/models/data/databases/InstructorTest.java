@@ -120,6 +120,6 @@ public class InstructorTest {
 	{
 		Instructor test = new Instructor("Test", "Name", "tname", 10, false);
 		
-		assertTrue(new Vector<CoursePreference>().containsAll(test.getAllClassPrefs()));
+		assertTrue(null == test.getAllClassPrefs());
 	}
 }
