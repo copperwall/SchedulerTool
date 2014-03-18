@@ -2,6 +2,8 @@ package models.data.databases;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -26,8 +28,50 @@ public class DayTest {
 	}
 
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void testConstructor() {
+	    Day test = new Day("111100001111000011110000");
+	    
+	    assertTrue(test != null);
+	    
+	    try {
+	        test = new Day("0000");
+	        assertTrue(false);
+	    }
+	    catch (StringIndexOutOfBoundsException exc) {
+	        assertTrue(true);
+	    }
+	}
+	
+	@Test
+	public void testGettingAvailability() {
+	    Day test = new Day("111100001111000011110000");
+	    
+	    ArrayList<Boolean> result = test.getAvailability();
+	    ArrayList<Boolean> expected = new ArrayList<Boolean>();
+	    
+	    assertTrue(result.size() == 24);
+	    for (int i = 0; i < 4; i++) {
+	        expected.add(true);
+	    }
+	    for (int i = 0; i < 4; i++) {
+            expected.add(false);
+        }
+	    for (int i = 0; i < 4; i++) {
+            expected.add(true);
+        }
+	    for (int i = 0; i < 4; i++) {
+            expected.add(false);
+        }
+        for (int i = 0; i < 4; i++) {
+            expected.add(true);
+        }
+        for (int i = 0; i < 4; i++) {
+            expected.add(false);
+        }
+	    
+	    for (int i = 0; i < 24; i++) {
+	        assertTrue(expected.get(i).equals(result.get(i)));
+	    }
 	}
 
 }

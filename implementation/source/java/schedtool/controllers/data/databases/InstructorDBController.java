@@ -91,18 +91,20 @@ public class InstructorDBController implements Observer{
           
             /* Pass instructorDB and table to controller */
             InstructorDBEditController controller = (InstructorDBEditController) (fxmlLoader.getController());
-            controller.passInstructor(instructorTable.getSelectionModel().getSelectedItem());
-            controller.passTable(instructorTable, instructorDB);
-            
-            /* create new window for dialog */
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            
-            stage.setScene(scene);
-            stage.show();
+            if (instructorTable.getSelectionModel().getSelectedItem() != null) {
+                controller.passInstructor(instructorTable.getSelectionModel().getSelectedItem());
+                controller.passTable(instructorTable, instructorDB);
+                
+                /* create new window for dialog */
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                
+                stage.setScene(scene);
+                stage.show();
+            }
         } catch (IOException exc) {
             exc.printStackTrace();
-        }
+        } 
     }
 
     /**
@@ -112,8 +114,9 @@ public class InstructorDBController implements Observer{
     @FXML
     void deleteInstructor(ActionEvent event) {
         Instructor selected = instructorTable.getSelectionModel().getSelectedItem();
-        
-        instructorDB.deleteInstructor(selected);
+        if (instructorTable.getSelectionModel().getSelectedItem() != null) {
+            instructorDB.deleteInstructor(selected);
+        }
     }
 
     /**

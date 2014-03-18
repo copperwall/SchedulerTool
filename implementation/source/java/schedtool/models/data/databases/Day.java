@@ -15,7 +15,7 @@ public class Day {
       this.text = longtext;
        hourAvailability = new ArrayList<Boolean>();
        if (longtext != null) {
-           for (int i = 0; i < longtext.length(); i++) {
+           for (int i = 0; i < 24; i++) {
                hourAvailability.add(longtext.charAt(i) != '0');
            }
        }
