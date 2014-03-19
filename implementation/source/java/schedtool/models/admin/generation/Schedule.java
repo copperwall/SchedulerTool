@@ -111,4 +111,9 @@ public Integer getSectionCount(Course course) {
 	   }
 	   return sectionCount;
 }
+
+public void clear() {
+	sections.clear();
+	sec.clear();
+}
 }

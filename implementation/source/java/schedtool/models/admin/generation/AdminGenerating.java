@@ -15,37 +15,12 @@ import models.data.databases.*;
 public class AdminGenerating {
 	
 	private Schedule generatedSchedule;
-
-	public void generate() {
-		String[] days ={"MWF","TR","MTRF","MTWR","MW","MF","WF"};
-
-		int numToAddToTable = 150;
-		for(int i = 0; i < numToAddToTable; i++)
-		{
-			boolean hasLab = Math.random() < 0.5;
-			boolean isLab = Math.random() < 0.5;
-			int courseRand = (int)(Math.random() * courses.size());
-			models.data.databases.Course testCourse = new models.data.databases.Course(courses.get(courseRand).prefix, Integer.valueOf(courses.get(courseRand).num), 4, "", false, 0, null, false);
-			if(hasLab)
-				testCourse.setLabProx(models.data.databases.Course.LabProximity.values()[(int)(Math.random()*models.data.databases.Course.LabProximity.values().length)]);
-			Instructor instructor = instructors.get((int)(Math.random() * instructors.size()));
-			models.data.databases.Instructor testInstructor = new models.data.databases.Instructor();
-			testInstructor.firstName = instructor.first;
-			testInstructor.lastName = instructor.last;
-			testInstructor.username = "gfisher";
-			Location testLocation = new Location(""+(int)(Math.random() * 100), ""+(int)(Math.random() * 100), ""+(int)(Math.random() * 200), (int)(Math.random() * 50), true);
-			Section testSection = new Section(testCourse, (int)(Math.random()*150) + 1, testInstructor, testLocation, days[(int)(Math.random()*days.length)],(int) (Math.random() * 11) + 1, (int) (Math.random() * 11) + 1);
-			testSection.setEnrolled((int)(Math.random()*150));
-			if(isLab)
-				testSection.setLinkedSectionNum((int)(Math.random()*20));
-			generatedSchedule.setOneSection(testSection);
-		}
-		System.out.println("AdminGenerating.GENERATING!!!");
-	}
 	
-	public void generating2()
+	public void generate()
 	{
+		generatedSchedule.clear();
 		//generatedSchedule
+		System.out.println("AdminGenerating.GENERATING!!!??????????");
 		InstructorDB instructordb = new InstructorDB();
 		Vector<Instructor> instructors = removeInactiveInstructors(instructordb.getAllInstructors());
 		Collections.sort(instructors, new pickinessComparator());
@@ -53,7 +28,55 @@ public class AdminGenerating {
 		{
 			Course course = getTopAvailableCourseThatNeedsSections(instructor);
 			int hours = getCourseLength(course);
+			ArrayList<Day> timePrefs = instructor.getTimePrefs();
+			int startTime = startTime(timePrefs);
+			Location location = getLocationAtTime(startTime, startTime + 1);
+			Section section = new Section(course,
+					generatedSchedule.getSectionCount(course), instructor, location, "MWF", startTime, startTime + 1);
+			generatedSchedule.setOneSection(section);
+			
 		}
+	}
+		
+	public Location getLocationAtTime(int startTime, int endTime)
+	{
+		LocationDB locationdb = new LocationDB();
+		Vector<Location> allLocs = locationdb.getAllLocations();
+		Location location = null;
+		Vector<Section> sections = generatedSchedule.getAllSections();
+		for(Section section : sections)
+		{
+			if(overlap(startTime, endTime, section.getStartTime()) || overlap(startTime, endTime, section.getEndTime())
+					|| overlap(section.getStartTime(), section.getEndTime(), startTime) || overlap(section.getStartTime(), section.getEndTime(), endTime))
+			{
+				allLocs.remove(section.getLocation());
+			}
+		}
+		if(allLocs.size() > 0)
+		{
+			location = allLocs.get(0);
+		}
+		return location;
+	}
+	
+	public boolean overlap(int startTime, int endTime, int checkTime)
+	{
+		return checkTime > startTime && checkTime < endTime;
+	}
+	
+	public int startTime(ArrayList<Day> timePrefs)
+	{
+		ArrayList<Boolean> monday = timePrefs.get(0).getAvailability();
+		ArrayList<Boolean> wednesday = timePrefs.get(2).getAvailability();
+		ArrayList<Boolean> friday = timePrefs.get(4).getAvailability();
+		for(int i = 0; i < monday.size(); i++)
+		{
+			if(monday.get(i) && wednesday.get(i) && friday.get(i))
+			{
+				return i;
+			}
+		}
+		return -1;
 	}
 	
 	public int getCourseLength(Course course)
@@ -68,6 +91,7 @@ public class AdminGenerating {
 		{
 			toReturn = units;
 		}
+		toReturn = 3;
 		return toReturn;
 	}
 	
