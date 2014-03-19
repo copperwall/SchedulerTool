@@ -11,7 +11,7 @@ import java.util.Observable;
  */
 public class AdminAvailableCourses extends Observable {
     
-    private Vector<AvailableCoursesRow> availableCourses;
+    private static Vector<AvailableCoursesRow> availableCourses;
     
     public AdminAvailableCourses() {
         availableCourses = new Vector<AvailableCoursesRow>();
@@ -24,8 +24,8 @@ public class AdminAvailableCourses extends Observable {
         availableCourses.add(row);
     }
     
-    public Vector<AvailableCoursesRow> getAvailableCourses() {
-        return this.availableCourses;
+    public static Vector<AvailableCoursesRow> getAvailableCourses() {
+        return availableCourses;
     }
     
     public void loadFromTerm(String term) {
@@ -33,7 +33,7 @@ public class AdminAvailableCourses extends Observable {
     }
     
     public void loadSuggested() {
-        for (AvailableCoursesRow row : this.availableCourses)
+        for (AvailableCoursesRow row : availableCourses)
         {
             row.loadSuggested();
         }

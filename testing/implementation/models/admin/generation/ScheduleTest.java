@@ -50,13 +50,14 @@ public class ScheduleTest {
 	 */
 	@Test
 	public void testGetSections() {
+		String building = "Frank E. Pilling";
 		Schedule schedule = new Schedule();
 		boolean hasLab = false;
 		boolean isLab = false;
 		int count = 0;
 		models.data.databases.Course testCourse = new models.data.databases.Course("CSC", 101, 4, "title", false, 0, null, false);
 		models.data.databases.Instructor testInstructor = new models.data.databases.Instructor("Gene", "Fisher", "gfisher", 15, true);
-		Location testLocation = new Location(""+14, ""+256, 50, true);
+		Location testLocation = new Location(building, ""+14, ""+256, 50, true);
 		Section testSection = new Section(testCourse, count++, testInstructor, testLocation, "MWF", 2, 4);
 		testSection.setEnrolled(50);
 		schedule.setOneSection(testSection);
@@ -73,15 +74,16 @@ public class ScheduleTest {
 		boolean hasLab = false;
 		boolean isLab = false;
 		int count = 0;
+		String building = "Frank E. Pilling";
 		models.data.databases.Course testCourse = new models.data.databases.Course("CSC", 101, 4, "title", false, 0, null, false);
 		models.data.databases.Instructor testInstructor = new models.data.databases.Instructor("Gene", "Fisher", "gfisher", 15, true);
-		Location testLocation = new Location(""+14, ""+256, 50, true);
+		Location testLocation = new Location(building, ""+14, ""+256, 50, true);
 		Section testSection = new Section(testCourse, count++, testInstructor, testLocation, "MWF", 2, 4);
 		testSection.setEnrolled(50);
 		sections.add(testSection);
 		models.data.databases.Course testCourse2 = new models.data.databases.Course("CSC", 101, 4, "title", false, 0, null, false);
 		models.data.databases.Instructor testInstructor2 = new models.data.databases.Instructor("Gene", "Fisher", "gfisher", 15, true);
-		Location testLocation2 = new Location(""+14, ""+256, 50, true);
+		Location testLocation2 = new Location(building, ""+14, ""+256, 50, true);
 		Section testSection2 = new Section(testCourse, count++, testInstructor, testLocation, "MWF", 2, 4);
 		testSection2.setEnrolled(50);
 		sections.add(testSection2);
@@ -100,15 +102,16 @@ public class ScheduleTest {
 		boolean hasLab = false;
 		boolean isLab = false;
 		int count = 0;
+		String building = "Frank E. Pilling";
 		models.data.databases.Course testCourse = new models.data.databases.Course("CSC", 101, 4, "title", false, 0, null, false);
 		models.data.databases.Instructor testInstructor = new models.data.databases.Instructor("Gene", "Fisher", "gfisher", 15, true);
-		Location testLocation = new Location(""+14, ""+256, 50, true);
+		Location testLocation = new Location(building, ""+14, ""+256, 50, true);
 		Section testSection = new Section(testCourse, count++, testInstructor, testLocation, "MWF", 2, 4);
 		testSection.setEnrolled(50);
 		sections.add(testSection);
 		models.data.databases.Course testCourse2 = new models.data.databases.Course("CSC", 102, 4, "title", false, 0, null, false);
 		models.data.databases.Instructor testInstructor2 = new models.data.databases.Instructor("Gene", "Fisher", "gfisher", 15, true);
-		Location testLocation2 = new Location(""+14, ""+256, 50, true);
+		Location testLocation2 = new Location(building, ""+14, ""+256, 50, true);
 		Section testSection2 = new Section(testCourse, count++, testInstructor, testLocation, "MWF", 2, 4);
 		testSection2.setEnrolled(50);
 		sections.add(testSection2);

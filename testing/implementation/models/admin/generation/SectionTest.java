@@ -30,6 +30,7 @@ public class SectionTest {
 		int startTime = 2;
 		int endTime = 4;
 		String days = "MWF";
+		String building = "Frank E. Pilling";
 		String buildingNum = "" + 14;
 		String roomNum = "" + 256;
 		int roomCap = 50;
@@ -37,7 +38,7 @@ public class SectionTest {
 		
 		models.data.databases.Course tempCourse = new models.data.databases.Course("CSC", 101, 4, "title", true, 1, Course.LabProximity.DIRECTLY_AFTER, true);
 		models.data.databases.Instructor tempInstructor = new models.data.databases.Instructor("Gene", "Fisher", "gfisher", 15, true);
-		Location tempLocation = new Location(buildingNum, roomNum, roomCap, roomHasEquip);
+		Location tempLocation = new Location(building, buildingNum, roomNum, roomCap, roomHasEquip);
 		Section testSection = new Section(tempCourse, sectionNum, tempInstructor, tempLocation, days, startTime, endTime);
 		testSection.setEnrolled(50);
 		
@@ -50,6 +51,7 @@ public class SectionTest {
 		int startTime = 2;
 		int endTime = 4;
 		String days = "MWF";
+		String building = "Frank E. Pilling";
 		String buildingNum = "" + 14;
 		String roomNum = "" + 256;
 		int roomCap = 50;
@@ -58,7 +60,7 @@ public class SectionTest {
 		models.data.databases.Course tempCourse = new models.data.databases.Course("CSC", 101, 4, "title", true, 1, Course.LabProximity.DIRECTLY_AFTER, true);
 		models.data.databases.Course tempCourse2 = new models.data.databases.Course("CSC", 102, 4, "title", true, 1, Course.LabProximity.DIRECTLY_AFTER, true);
 		models.data.databases.Instructor tempInstructor = new models.data.databases.Instructor("Gene", "Fisher", "gfisher", 15, true);
-		Location tempLocation = new Location(buildingNum, roomNum, roomCap, roomHasEquip);
+		Location tempLocation = new Location(building, buildingNum, roomNum, roomCap, roomHasEquip);
 		Section testSection = new Section(tempCourse, sectionNum, tempInstructor, tempLocation, days, startTime, endTime);
 		testSection.setCourse(tempCourse2);
 		testSection.setEnrolled(50);
@@ -73,6 +75,7 @@ public class SectionTest {
 		int startTime = 2;
 		int endTime = 4;
 		String days = "MWF";
+		String building = "Frank E. Pilling";
 		String buildingNum = "" + 14;
 		String roomNum = "" + 256;
 		int roomCap = 50;
@@ -80,7 +83,7 @@ public class SectionTest {
 		
 		models.data.databases.Course tempCourse = new models.data.databases.Course("CSC", 101, 4, "title", true, 1, Course.LabProximity.DIRECTLY_AFTER, true);
 		models.data.databases.Instructor tempInstructor = new models.data.databases.Instructor("Gene", "Fisher", "gfisher", 15, true);
-		Location tempLocation = new Location(buildingNum, roomNum, roomCap, roomHasEquip);
+		Location tempLocation = new Location(building, buildingNum, roomNum, roomCap, roomHasEquip);
 		Section testSection = new Section(tempCourse, sectionNum, tempInstructor, tempLocation, days, startTime, endTime);
 		testSection.setEnrolled(50);
 		
@@ -93,6 +96,7 @@ public class SectionTest {
 		int startTime = 2;
 		int endTime = 4;
 		String days = "MWF";
+		String building = "Frank E. Pilling";
 		String buildingNum = "" + 14;
 		String roomNum = "" + 256;
 		int roomCap = 50;
@@ -100,7 +104,7 @@ public class SectionTest {
 		
 		models.data.databases.Course tempCourse = new models.data.databases.Course("CSC", 101, 4, "title", true, 1, Course.LabProximity.DIRECTLY_AFTER, true);
 		models.data.databases.Instructor tempInstructor = new models.data.databases.Instructor("Gene", "Fisher", "gfisher", 15, true);
-		Location tempLocation = new Location(buildingNum, roomNum, roomCap, roomHasEquip);
+		Location tempLocation = new Location(building, buildingNum, roomNum, roomCap, roomHasEquip);
 		Section testSection = new Section(tempCourse, sectionNum, tempInstructor, tempLocation, days, startTime, endTime);
 		testSection.setEnrolled(50);
 		
@@ -113,6 +117,7 @@ public class SectionTest {
 		int startTime = 2;
 		int endTime = 4;
 		String days = "MWF";
+		String building = "Frank E. Pilling";
 		String buildingNum = "" + 14;
 		String roomNum = "" + 256;
 		int roomCap = 50;
@@ -120,7 +125,7 @@ public class SectionTest {
 		
 		models.data.databases.Course tempCourse = new models.data.databases.Course("CSC", 101, 4, "title", true, 1, Course.LabProximity.DIRECTLY_AFTER, true);
 		models.data.databases.Instructor tempInstructor = new models.data.databases.Instructor("Gene", "Fisher", "gfisher", 15, true);
-		Location tempLocation = new Location(buildingNum, roomNum, roomCap, roomHasEquip);
+		Location tempLocation = new Location(building, buildingNum, roomNum, roomCap, roomHasEquip);
 		Section testSection = new Section(tempCourse, sectionNum, tempInstructor, tempLocation, days, startTime, endTime);
 		testSection.setEnrolled(50);
 		testSection.setSectionNum(5);
@@ -134,6 +139,7 @@ public class SectionTest {
 		int startTime = 2;
 		int endTime = 4;
 		String days = "MWF";
+		String building = "Frank E. Pilling";
 		String buildingNum = "" + 14;
 		String roomNum = "" + 256;
 		int roomCap = 50;
@@ -141,7 +147,7 @@ public class SectionTest {
 		
 		models.data.databases.Course tempCourse = new models.data.databases.Course("CSC", 101, 4, "title", true, 1, Course.LabProximity.DIRECTLY_AFTER, true);
 		models.data.databases.Instructor tempInstructor = new models.data.databases.Instructor("Gene", "Fisher", "gfisher", 15, true);
-		Location tempLocation = new Location(buildingNum, roomNum, roomCap, roomHasEquip);
+		Location tempLocation = new Location(building, buildingNum, roomNum, roomCap, roomHasEquip);
 		Section testSection = new Section(tempCourse, sectionNum, tempInstructor, tempLocation, days, startTime, endTime);
 		testSection.setEnrolled(50);
 		
@@ -154,15 +160,15 @@ public class SectionTest {
 		int startTime = 2;
 		int endTime = 4;
 		String days = "MWF";
+		String building = "Frank E. Pilling";
 		String buildingNum = "" + 14;
 		String roomNum = "" + 256;
 		int roomCap = 50;
 		boolean roomHasEquip = true;
-		
 		models.data.databases.Course tempCourse = new models.data.databases.Course("CSC", 101, 4, "title", true, 1, Course.LabProximity.DIRECTLY_AFTER, true);
 		models.data.databases.Instructor tempInstructor = new models.data.databases.Instructor("Gene", "Fisher", "gfisher", 15, true);
 		models.data.databases.Instructor mrPresident = new models.data.databases.Instructor("Barak", "Obama", "bobama", 15, true);
-		Location tempLocation = new Location(buildingNum, roomNum, roomCap, roomHasEquip);
+		Location tempLocation = new Location(building, buildingNum, roomNum, roomCap, roomHasEquip);
 		Section testSection = new Section(tempCourse, sectionNum, tempInstructor, tempLocation, days, startTime, endTime);
 		testSection.setEnrolled(50);
 		testSection.setInstructor(mrPresident);
@@ -175,6 +181,7 @@ public class SectionTest {
 		int startTime = 2;
 		int endTime = 4;
 		String days = "MWF";
+		String building = "Frank E. Pilling";
 		String buildingNum = "" + 14;
 		String roomNum = "" + 256;
 		int roomCap = 50;
@@ -182,8 +189,8 @@ public class SectionTest {
 		
 		models.data.databases.Course tempCourse = new models.data.databases.Course("CSC", 101, 4, "title", true, 1, Course.LabProximity.DIRECTLY_AFTER, true);
 		models.data.databases.Instructor tempInstructor = new models.data.databases.Instructor("Gene", "Fisher", "gfisher", 15, true);
-		Location tempLocation = new Location(buildingNum, roomNum, roomCap, roomHasEquip);
-		Location tempLocation2 = new Location(buildingNum + 1, roomNum + 1, roomCap - 1, !roomHasEquip);
+		Location tempLocation = new Location(building, buildingNum, roomNum, roomCap, roomHasEquip);
+		Location tempLocation2 = new Location(building, buildingNum + 1, roomNum + 1, roomCap - 1, !roomHasEquip);
 		Section testSection = new Section(tempCourse, sectionNum, tempInstructor, tempLocation, days, startTime, endTime);
 		testSection.setEnrolled(50);
 		testSection.setLocation(tempLocation2);
@@ -197,6 +204,7 @@ public class SectionTest {
 		int startTime = 2;
 		int endTime = 4;
 		String days = "MWF";
+		String building = "Frank E. Pilling";
 		String buildingNum = "" + 14;
 		String roomNum = "" + 256;
 		int roomCap = 50;
@@ -204,7 +212,7 @@ public class SectionTest {
 		
 		models.data.databases.Course tempCourse = new models.data.databases.Course("CSC", 101, 4, "title", true, 1, Course.LabProximity.DIRECTLY_AFTER, true);
 		models.data.databases.Instructor tempInstructor = new models.data.databases.Instructor("Gene", "Fisher", "gfisher", 15, true);
-		Location tempLocation = new Location(buildingNum, roomNum, roomCap, roomHasEquip);
+		Location tempLocation = new Location(building, buildingNum, roomNum, roomCap, roomHasEquip);
 		Section testSection = new Section(tempCourse, sectionNum, tempInstructor, tempLocation, days, startTime, endTime);
 		testSection.setEnrolled(50);
 		testSection.setLinkedSectionNum(42);
@@ -218,6 +226,7 @@ public class SectionTest {
 		int startTime = 2;
 		int endTime = 4;
 		String days = "MWF";
+		String building = "Frank E. Pilling";
 		String buildingNum = "" + 14;
 		String roomNum = "" + 256;
 		int roomCap = 50;
@@ -225,7 +234,7 @@ public class SectionTest {
 		
 		models.data.databases.Course tempCourse = new models.data.databases.Course("CSC", 101, 4, "title", true, 1, Course.LabProximity.DIRECTLY_AFTER, true);
 		models.data.databases.Instructor tempInstructor = new models.data.databases.Instructor("Gene", "Fisher", "gfisher", 15, true);
-		Location tempLocation = new Location(buildingNum, roomNum, roomCap, roomHasEquip);
+		Location tempLocation = new Location(building, buildingNum, roomNum, roomCap, roomHasEquip);
 		Section testSection = new Section(tempCourse, sectionNum, tempInstructor, tempLocation, days, startTime, endTime);
 		testSection.setEnrolled(50);
 		testSection.setDays("TR");
@@ -239,6 +248,7 @@ public class SectionTest {
 		int startTime = 2;
 		int endTime = 4;
 		String days = "MWF";
+		String building = "Frank E. Pilling";
 		String buildingNum = "" + 14;
 		String roomNum = "" + 256;
 		int roomCap = 50;
@@ -246,7 +256,7 @@ public class SectionTest {
 		
 		models.data.databases.Course tempCourse = new models.data.databases.Course("CSC", 101, 4, "title", true, 1, Course.LabProximity.DIRECTLY_AFTER, true);
 		models.data.databases.Instructor tempInstructor = new models.data.databases.Instructor("Gene", "Fisher", "gfisher", 15, true);
-		Location tempLocation = new Location(buildingNum, roomNum, roomCap, roomHasEquip);
+		Location tempLocation = new Location(building, buildingNum, roomNum, roomCap, roomHasEquip);
 		Section testSection = new Section(tempCourse, sectionNum, tempInstructor, tempLocation, days, startTime, endTime);
 		testSection.setEnrolled(50);
 		testSection.setStartTime(6);
@@ -260,6 +270,7 @@ public class SectionTest {
 		int startTime = 2;
 		int endTime = 4;
 		String days = "MWF";
+		String building = "Frank E. Pilling";
 		String buildingNum = "" + 14;
 		String roomNum = "" + 256;
 		int roomCap = 50;
@@ -267,7 +278,7 @@ public class SectionTest {
 		
 		models.data.databases.Course tempCourse = new models.data.databases.Course("CSC", 101, 4, "title", true, 1, Course.LabProximity.DIRECTLY_AFTER, true);
 		models.data.databases.Instructor tempInstructor = new models.data.databases.Instructor("Gene", "Fisher", "gfisher", 15, true);
-		Location tempLocation = new Location(buildingNum, roomNum, roomCap, roomHasEquip);
+		Location tempLocation = new Location(building, buildingNum, roomNum, roomCap, roomHasEquip);
 		Section testSection = new Section(tempCourse, sectionNum, tempInstructor, tempLocation, days, startTime, endTime);
 		testSection.setEnrolled(50);
 		testSection.setEndTime(8);
@@ -281,6 +292,7 @@ public class SectionTest {
 		int startTime = 2;
 		int endTime = 4;
 		String days = "MWF";
+		String building = "Frank E. Pilling";
 		String buildingNum = "" + 14;
 		String roomNum = "" + 256;
 		int roomCap = 50;
@@ -288,7 +300,7 @@ public class SectionTest {
 		
 		models.data.databases.Course tempCourse = new models.data.databases.Course("CSC", 101, 4, "title", true, 1, Course.LabProximity.DIRECTLY_AFTER, true);
 		models.data.databases.Instructor tempInstructor = new models.data.databases.Instructor("Gene", "Fisher", "gfisher", 15, true);
-		Location tempLocation = new Location(buildingNum, roomNum, roomCap, roomHasEquip);
+		Location tempLocation = new Location(building, buildingNum, roomNum, roomCap, roomHasEquip);
 		Section testSection = new Section(tempCourse, sectionNum, tempInstructor, tempLocation, days, startTime, endTime);
 		testSection.setEnrolled(50);
 		testSection.getTime();

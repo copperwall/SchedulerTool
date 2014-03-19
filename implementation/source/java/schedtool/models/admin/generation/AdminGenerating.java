@@ -1,7 +1,10 @@
 package models.admin.generation;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Vector;
 
+import controllers.admin.analytics.pickinessComparator;
 import javafx.scene.layout.AnchorPane;
 import models.data.databases.*;
 /**
@@ -10,94 +13,114 @@ import models.data.databases.*;
  * @version 1
  */
 public class AdminGenerating {
-	/**
-	 * Main algorithm behind the generation.
-	 * @return a schedule.
-	 */
+	
 	private Schedule generatedSchedule;
-	public AdminGenerating()
+	
+	public void generate()
 	{
-		generatedSchedule = new Schedule();
-	}
-	
-	private class Course {
-	   String prefix; 
-	   String num;
-	   
-	   public Course(String prefix, String num) {
-	      this.prefix = prefix;
-	      this.num = num;
-	   }
-	}
-	
-	private class Instructor {
-	   String first;
-	   String last;
-	   
-	   public Instructor(String first, String last) {
-	      this.first = first;
-	      this.last = last;
-	   }
-	}
-	
-	public void generate() {
-		String[] days ={"MWF","TR","MTRF","MTWR","MW","MF","WF"};
-		
-		ArrayList<Instructor> instructors = new ArrayList<Instructor>();
-		ArrayList<Course> courses = new ArrayList<Course>();
-		courses.add(new Course("CPE", "101"));
-		courses.add(new Course("CPE", "102"));
-		courses.add(new Course("CPE", "103"));
-		courses.add(new Course("CSC", "141"));
-		courses.add(new Course("CSC", "225"));
-		courses.add(new Course("CPE", "315"));
-		courses.add(new Course("CPE", "349"));
-		courses.add(new Course("CPE", "307"));
-		courses.add(new Course("CPE", "308"));
-		courses.add(new Course("CPE", "309"));
-		courses.add(new Course("CPE", "453"));
-
-		instructors.add(new Instructor("Paul", "Hatalsky"));
-		instructors.add(new Instructor("Clint", "Staley"));
-		instructors.add(new Instructor("John", "Seng"));
-		instructors.add(new Instructor("Phillip", "Nico"));
-		instructors.add(new Instructor("Julie", "Workman"));
-		instructors.add(new Instructor("Timothy", "Kearns"));
-		instructors.add(new Instructor("Hasmik", "Gharibyan"));
-		instructors.add(new Instructor("John", "Dalby"));
-		instructors.add(new Instructor("Kurt", "Mammen"));
-		instructors.add(new Instructor("Ignatios", "Vakalis"));
-		instructors.add(new Instructor("John", "Clements"));
-		instructors.add(new Instructor("David", "Janzen"));
-		instructors.add(new Instructor("Clark", "Turner"));
-		instructors.add(new Instructor("Gene", "Fisher"));
-		instructors.add(new Instructor("William", "Buckalew"));
-		instructors.add(new Instructor("Christopher", "Lupo"));
-		instructors.add(new Instructor("Alexander", "Dekhtyar"));
-		instructors.add(new Instructor("Foaad", "Khosmood"));
-
-		int numToAddToTable = 150;
-		for(int i = 0; i < numToAddToTable; i++)
+		generatedSchedule.clear();
+		//generatedSchedule
+		System.out.println("AdminGenerating.GENERATING!!!??????????");
+		InstructorDB instructordb = new InstructorDB();
+		Vector<Instructor> instructors = removeInactiveInstructors(instructordb.getAllInstructors());
+		Collections.sort(instructors, new pickinessComparator());
+		for(Instructor instructor: instructors)
 		{
-			boolean hasLab = Math.random() < 0.5;
-			boolean isLab = Math.random() < 0.5;
-			int courseRand = (int)(Math.random() * courses.size());
-			models.data.databases.Course testCourse = new models.data.databases.Course(courses.get(courseRand).prefix, Integer.valueOf(courses.get(courseRand).num), 4, "", false, 0, null, false);
-			if(hasLab)
-				testCourse.setLabProx(models.data.databases.Course.LabProximity.values()[(int)(Math.random()*models.data.databases.Course.LabProximity.values().length)]);
-			Instructor instructor = instructors.get((int)(Math.random() * instructors.size()));
-			models.data.databases.Instructor testInstructor = new models.data.databases.Instructor();
-			testInstructor.firstName = instructor.first;
-			testInstructor.lastName = instructor.last;
-			testInstructor.username = "gfisher";
-			Location testLocation = new Location(""+(int)(Math.random() * 100), ""+(int)(Math.random() * 100), ""+(int)(Math.random() * 200), (int)(Math.random() * 50), true);
-			Section testSection = new Section(testCourse, (int)(Math.random()*150) + 1, testInstructor, testLocation, days[(int)(Math.random()*days.length)],(int) (Math.random() * 11) + 1, (int) (Math.random() * 11) + 1);
-			testSection.setEnrolled((int)(Math.random()*150));
-			if(isLab)
-				testSection.setLinkedSectionNum((int)(Math.random()*20));
-			generatedSchedule.setOneSection(testSection);
+			Course course = getTopAvailableCourseThatNeedsSections(instructor);
+			int hours = getCourseLength(course);
+			ArrayList<Day> timePrefs = instructor.getTimePrefs();
+			int startTime = startTime(timePrefs);
+			Location location = getLocationAtTime(startTime, startTime + 1);
+			Section section = new Section(course,
+					generatedSchedule.getSectionCount(course), instructor, location, "MWF", startTime, startTime + 1);
+			generatedSchedule.setOneSection(section);
+			
 		}
-		System.out.println("AdminGenerating.GENERATING!!!");
+	}
+		
+	public Location getLocationAtTime(int startTime, int endTime)
+	{
+		LocationDB locationdb = new LocationDB();
+		Vector<Location> allLocs = locationdb.getAllLocations();
+		Location location = null;
+		Vector<Section> sections = generatedSchedule.getAllSections();
+		for(Section section : sections)
+		{
+			if(overlap(startTime, endTime, section.getStartTime()) || overlap(startTime, endTime, section.getEndTime())
+					|| overlap(section.getStartTime(), section.getEndTime(), startTime) || overlap(section.getStartTime(), section.getEndTime(), endTime))
+			{
+				allLocs.remove(section.getLocation());
+			}
+		}
+		if(allLocs.size() > 0)
+		{
+			location = allLocs.get(0);
+		}
+		return location;
+	}
+	
+	public boolean overlap(int startTime, int endTime, int checkTime)
+	{
+		return checkTime > startTime && checkTime < endTime;
+	}
+	
+	public int startTime(ArrayList<Day> timePrefs)
+	{
+		ArrayList<Boolean> monday = timePrefs.get(0).getAvailability();
+		ArrayList<Boolean> wednesday = timePrefs.get(2).getAvailability();
+		ArrayList<Boolean> friday = timePrefs.get(4).getAvailability();
+		for(int i = 0; i < monday.size(); i++)
+		{
+			if(monday.get(i) && wednesday.get(i) && friday.get(i))
+			{
+				return i;
+			}
+		}
+		return -1;
+	}
+	
+	public int getCourseLength(Course course)
+	{
+		int toReturn = -1;
+		int units = course.getUnits();
+		if(course.getHasLab())
+		{
+			toReturn = units - 1;
+		}
+		else
+		{
+			toReturn = units;
+		}
+		toReturn = 3;
+		return toReturn;
+	}
+	
+	public Course getTopAvailableCourseThatNeedsSections(Instructor instructor)
+	{
+		List<CoursePreference> prefsList = instructor.getAllClassPrefs();
+		Course toReturn = null;
+		Vector<AvailableCoursesRow> availCourses = AdminAvailableCourses.getAvailableCourses();
+		for(CoursePreference coursePref : prefsList)
+		{
+			int courseIndexInAvailCourses = availCourses.indexOf(coursePref.course);
+			if(courseIndexInAvailCourses >= 0 && availCourses.get(courseIndexInAvailCourses).getSections() < generatedSchedule.getSectionCount(coursePref.course))
+			{
+				return coursePref.course;
+			}
+		}
+		return null;
+	}
+	
+	public Vector<Instructor> removeInactiveInstructors(Vector<Instructor> instructors)
+	{
+		for(int i = 0; i < instructors.size(); i++)
+		{
+			if(!instructors.get(i).getAct())
+			{
+				instructors.remove(i);
+			}
+		}
+		return instructors;
 	}
 	
 	public Schedule getSchedule() {

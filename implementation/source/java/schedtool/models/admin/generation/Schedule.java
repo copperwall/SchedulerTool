@@ -99,4 +99,21 @@ public class Schedule extends Observable{
 	   }
 	   return returnSection;
    }
+
+public Integer getSectionCount(Course course) {
+	int sectionCount = 0;
+	   for(Section section : sections)
+	   {
+		   if(section.getCourse().equals(course))
+		   {
+			   sectionCount++;
+		   }
+	   }
+	   return sectionCount;
+}
+
+public void clear() {
+	sections.clear();
+	sec.clear();
+}
 }
