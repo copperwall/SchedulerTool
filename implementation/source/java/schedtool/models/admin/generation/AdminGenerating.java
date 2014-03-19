@@ -14,7 +14,7 @@ import models.data.databases.*;
  */
 public class AdminGenerating {
 	
-	private Schedule generatedSchedule;
+	private Schedule generatedSchedule = new Schedule();
 	
 	public void generate()
 	{
