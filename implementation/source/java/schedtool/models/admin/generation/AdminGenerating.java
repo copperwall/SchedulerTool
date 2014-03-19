@@ -1,7 +1,10 @@
 package models.admin.generation;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Vector;
 
+import controllers.admin.analytics.pickinessComparator;
 import javafx.scene.layout.AnchorPane;
 import models.data.databases.*;
 /**
@@ -10,71 +13,11 @@ import models.data.databases.*;
  * @version 1
  */
 public class AdminGenerating {
-	/**
-	 * Main algorithm behind the generation.
-	 * @return a schedule.
-	 */
+	
 	private Schedule generatedSchedule;
-	public AdminGenerating()
-	{
-		generatedSchedule = new Schedule();
-	}
-	
-	private class Course {
-	   String prefix; 
-	   String num;
-	   
-	   public Course(String prefix, String num) {
-	      this.prefix = prefix;
-	      this.num = num;
-	   }
-	}
-	
-	private class Instructor {
-	   String first;
-	   String last;
-	   
-	   public Instructor(String first, String last) {
-	      this.first = first;
-	      this.last = last;
-	   }
-	}
-	
+
 	public void generate() {
 		String[] days ={"MWF","TR","MTRF","MTWR","MW","MF","WF"};
-		
-		ArrayList<Instructor> instructors = new ArrayList<Instructor>();
-		ArrayList<Course> courses = new ArrayList<Course>();
-		courses.add(new Course("CPE", "101"));
-		courses.add(new Course("CPE", "102"));
-		courses.add(new Course("CPE", "103"));
-		courses.add(new Course("CSC", "141"));
-		courses.add(new Course("CSC", "225"));
-		courses.add(new Course("CPE", "315"));
-		courses.add(new Course("CPE", "349"));
-		courses.add(new Course("CPE", "307"));
-		courses.add(new Course("CPE", "308"));
-		courses.add(new Course("CPE", "309"));
-		courses.add(new Course("CPE", "453"));
-
-		instructors.add(new Instructor("Paul", "Hatalsky"));
-		instructors.add(new Instructor("Clint", "Staley"));
-		instructors.add(new Instructor("John", "Seng"));
-		instructors.add(new Instructor("Phillip", "Nico"));
-		instructors.add(new Instructor("Julie", "Workman"));
-		instructors.add(new Instructor("Timothy", "Kearns"));
-		instructors.add(new Instructor("Hasmik", "Gharibyan"));
-		instructors.add(new Instructor("John", "Dalby"));
-		instructors.add(new Instructor("Kurt", "Mammen"));
-		instructors.add(new Instructor("Ignatios", "Vakalis"));
-		instructors.add(new Instructor("John", "Clements"));
-		instructors.add(new Instructor("David", "Janzen"));
-		instructors.add(new Instructor("Clark", "Turner"));
-		instructors.add(new Instructor("Gene", "Fisher"));
-		instructors.add(new Instructor("William", "Buckalew"));
-		instructors.add(new Instructor("Christopher", "Lupo"));
-		instructors.add(new Instructor("Alexander", "Dekhtyar"));
-		instructors.add(new Instructor("Foaad", "Khosmood"));
 
 		int numToAddToTable = 150;
 		for(int i = 0; i < numToAddToTable; i++)
@@ -98,6 +41,62 @@ public class AdminGenerating {
 			generatedSchedule.setOneSection(testSection);
 		}
 		System.out.println("AdminGenerating.GENERATING!!!");
+	}
+	
+	public void generating2()
+	{
+		//generatedSchedule
+		InstructorDB instructordb = new InstructorDB();
+		Vector<Instructor> instructors = removeInactiveInstructors(instructordb.getAllInstructors());
+		Collections.sort(instructors, new pickinessComparator());
+		for(Instructor instructor: instructors)
+		{
+			Course course = getTopAvailableCourseThatNeedsSections(instructor);
+			int hours = getCourseLength(course);
+		}
+	}
+	
+	public int getCourseLength(Course course)
+	{
+		int toReturn = -1;
+		int units = course.getUnits();
+		if(course.getHasLab())
+		{
+			toReturn = units - 1;
+		}
+		else
+		{
+			toReturn = units;
+		}
+		return toReturn;
+	}
+	
+	public Course getTopAvailableCourseThatNeedsSections(Instructor instructor)
+	{
+		List<CoursePreference> prefsList = instructor.getAllClassPrefs();
+		Course toReturn = null;
+		Vector<AvailableCoursesRow> availCourses = AdminAvailableCourses.getAvailableCourses();
+		for(CoursePreference coursePref : prefsList)
+		{
+			int courseIndexInAvailCourses = availCourses.indexOf(coursePref.course);
+			if(courseIndexInAvailCourses >= 0 && availCourses.get(courseIndexInAvailCourses).getSections() < generatedSchedule.getSectionCount(coursePref.course))
+			{
+				return coursePref.course;
+			}
+		}
+		return null;
+	}
+	
+	public Vector<Instructor> removeInactiveInstructors(Vector<Instructor> instructors)
+	{
+		for(int i = 0; i < instructors.size(); i++)
+		{
+			if(!instructors.get(i).getAct())
+			{
+				instructors.remove(i);
+			}
+		}
+		return instructors;
 	}
 	
 	public Schedule getSchedule() {
