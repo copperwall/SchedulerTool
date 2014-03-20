@@ -452,4 +452,10 @@ public class Course {
    public boolean matchCourse(int courseNum, String dept) {
       return this.courseNum.get() == courseNum && this.prefix.get().equals(dept);
    }
+   
+   public boolean equals()
+   {
+	   return true;
+   }
+   }
 }

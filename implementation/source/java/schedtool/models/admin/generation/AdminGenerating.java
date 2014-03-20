@@ -34,7 +34,6 @@ public class AdminGenerating {
 			Section section = new Section(course,
 					generatedSchedule.getSectionCount(course), instructor, location, "MWF", startTime, startTime + 1);
 			generatedSchedule.setOneSection(section);
-			
 		}
 	}
 		
