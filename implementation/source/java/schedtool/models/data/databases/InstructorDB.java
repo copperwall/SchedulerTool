@@ -170,7 +170,7 @@ public class InstructorDB extends Observable {
             pstmt.setString(3, instructor.lastName);
             pstmt.setString(4, instructor.username + "@calpoly.edu");
             pstmt.setInt(5, instructor.getWtu());
-            pstmt.setInt(6, instructor.getAct() ? 1 : 0);
+            pstmt.setBoolean(6, instructor.getAct());
             pstmt.setInt(7, 1);
             pstmt.setDate(8, new Date(0));
             pstmt.setDate(9, new Date(new java.util.Date().getTime()));
@@ -304,6 +304,8 @@ public class InstructorDB extends Observable {
             userId = rs.getInt("id");
             stmtFindCP.setInt(1, userId);
             rs = stmtFindCP.executeQuery();
+            removeFromSchedule(userId);
+            removeTermLocks(userId);
             // deletes course preferences
             while (rs.next())
             {
@@ -343,6 +345,65 @@ public class InstructorDB extends Observable {
                     .println("InstructorDB Delete: Could not connect to database.\n\t"
                             + exc.getMessage());
         }
+    }
+    
+    /**
+     * Removes the given instructor id from the schedule
+     * @param userId instructor's id in the database
+     */
+    private void removeFromSchedule(int userId) throws SQLException
+    {
+        // connection to database
+        Connection con = DriverManager.getConnection(
+                "jdbc:mysql://polyschedules.db."
+                        + "9302206.hostedresource.com:3306/polyschedules",
+                "polyschedules", "a1RightCorner!");
+        // find user id
+        String queryEditSections = "UPDATE schedules_section  SET instructor_id = null"
+                + " WHERE instructor_id = ?";
+        PreparedStatement stmtEditSections = con.prepareStatement(queryEditSections);
+        
+        stmtEditSections.setInt(1, userId);
+        stmtEditSections.execute();
+    }
+    
+    /**
+     * Remove an instructor's term locks
+     * @param userId the id of the instructor in the database
+     */
+    private void removeTermLocks(int userId) throws SQLException
+    {
+        // connection to database
+        Connection con = DriverManager.getConnection(
+                "jdbc:mysql://polyschedules.db."
+                        + "9302206.hostedresource.com:3306/polyschedules",
+                "polyschedules", "a1RightCorner!");
+        // find user id
+        String queryFindId = "SELECT termpreferencelock_id  FROM core_polyschedulesuser_preference_locks WHERE polyschedulesuser_id = ?";
+        // delete query
+        String queryDelete = "DELETE FROM preferences_timepreferencelock WHERE id = ?";
+        // delete cross table entries
+        String queryDeleteCross = "DELETE FROM core_polyschedulesuser_preference_locks WHERE polyschedulesuser_id = ?";
+        PreparedStatement stmtFindId = con.prepareStatement(queryFindId);
+        PreparedStatement stmtDelete = con.prepareStatement(queryDelete);
+        PreparedStatement stmtDeleteCross = con.prepareStatement(queryDeleteCross);
+        
+        ResultSet rsFindId;
+        
+        int prefLockId;
+        
+        stmtFindId.setInt(1, userId);
+        rsFindId = stmtFindId.executeQuery();
+        
+        while (rsFindId.next())
+        {
+            prefLockId = rsFindId.getInt("termpreferencelock_id");
+            stmtDelete.setInt(1, prefLockId);
+            stmtDelete.execute();
+        }
+
+        stmtDeleteCross.setInt(1, userId);
+        stmtDeleteCross.execute();
     }
 
     /**

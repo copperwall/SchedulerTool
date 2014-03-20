@@ -71,6 +71,7 @@ public class InstructorDBTest {
 		//testDB.addInstructor(testAdd);
 		
 		assertEquals("gfisher", testDB.getInstructor("gfisher").getUser());
+		testDB.getInstructor("nonexistent");
 	}
 	
 	/**
@@ -120,6 +121,8 @@ public class InstructorDBTest {
 		Instructor testAdd = new Instructor("Test", "Instructor", "tinstruct", 10, true);
 		Vector<Instructor> allInstructors = new Vector<Instructor>();
 		testDB.deleteInstructor(new Instructor("Test", "Instructor", "tinstruct", 10, true));
+
+        testDB.deleteInstructor(new Instructor("Test", "Instructor", "tinstruct1", 10, true));
 		
 		allInstructors = testDB.getAllInstructors();
 		for(Instructor instructor : allInstructors) {
@@ -147,6 +150,9 @@ public class InstructorDBTest {
 		
 		testAdd = new Instructor("Test", "Instructor", "tinstruct", 8, false);
 		testDB.editInstructor(testAdd);
+		
+		testAdd = new Instructor("Test", "Instructor", "tinstruct1", 8, false);
+        testDB.editInstructor(testAdd);
 		
 		testAdd = testDB.getInstructor("tinstruct");
 		assertEquals(8, testAdd.getWtu());
