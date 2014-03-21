@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Acceptance Testing | Vote for Courses</title>
+</head>
+<table align=center border=1 cellpadding=4>
+    <thead>
+        <td><strong>Case No.</strong></td>
+        <td><strong>User Inputs and Commands</strong></td>
+        <td><strong>Expected Output</strong></td>
+        <td><strong>Remarks</strong></td>
+        <td><strong>Results</strong></td>
+    
+    <tr>
+        <td>1</td>
+        <td>Navigate to: http://schedules.kavanaughdevelopment.com/login/<br />
+            Enter Username: "akavanau"<br />
+            Enter Password: "password"<br />
+            Click "Log In"
+            After main view appears, Click "Vote for Courses"<br />
+        </td>
+        <td>Student Voting View appears. If the lock date for voting has already passed, form is grayed out.</td>
+        <td>Student Voting View</td>
+        <td>Pass or Fail</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Perform case 1, switching to the current term if necessary.<br />
+            Select "CPE 101"<br />
+            Click "Update Votes"</td>
+        <td>CPE 101 gets added as a vote.</td>
+        <td>Vote for course.</td>
+        <td>Pass or Fail</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Perform case 2.<br />
+            Check "Delete" next to the "CPE 101" vote.<br />
+            Click "Update Votes"</td>
+        <td>CPE 101 gets removed as a vote.</td>
+        <td>Remove vote.</td>
+        <td>Pass or Fail</td>
+    </tr>
+</table>
+<body>
+</body>
+</html>
