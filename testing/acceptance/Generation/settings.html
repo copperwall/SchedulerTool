@@ -1,0 +1,54 @@
+<table align=center border=1 cellpadding=4>
+  <tr>
+    <td valign=top><strong>Case No.</strong>
+    <td valign=top><strong>User Inputs and Commands</strong>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <td valign=top><strong>Expected Output</strong>
+    <td valign=top><strong>Remarks</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <td valign=top><strong>Results</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <tr>
+  <td valign=top>1</td>
+    <td valign=top>
+Click Settings, General Settings<br /></td>
+    <td valign=top>
+Type "305, 309" into Constraint textbox.</td>
+    <td valign=top>
+No output, "305 and 309 should not overlap" added into Constraint table</td>
+    <td valign=top>
+Pass or fail</td>
+    </tr>
+    <tr>
+  <td valign=top>2</td>
+    <td valign=top>
+Click Settings, General Settings<br /></td>
+    <td valign=top>
+Type "305, 305" into Constraint textbox.</td>
+    <td valign=top>
+Exception thrown, nothing added to Constraint table</td>
+    <td valign=top>
+Pass or fail</td>
+    </tr>
+    <tr>
+  <td valign=top>3</td>
+    <td valign=top>
+Click Settings, General Settings<br /></td>
+    <td valign=top>
+Type "305, 307, 309" into Constraint textbox.</td>
+    <td valign=top>
+No output, "305, 307, and 309 should not overlap" added into Constraint table</td>
+    <td valign=top>
+Pass or fail</td>
+    </tr>
+    <tr>
+  <td valign=top>4</td>
+    <td valign=top>
+Click Settings, General Settings<br /></td>
+    <td valign=top>
+Type "305" into Constraint textbox.</td>
+    <td valign=top>
+Exception thrown, no data added to Constraint table</td>
+    <td valign=top>
+Pass or fail</td>
+    </tr>
+</table>
