@@ -112,7 +112,9 @@ public class CourseDBAddController {
      */
     @FXML
     void onHasLab(ActionEvent event) {
-      labLengthText.setEditable(hasLabBox.isSelected());
+    	labLengthText.setVisible(hasLabBox.isSelected());
+    	labProxCombo.setVisible(hasLabBox.isSelected());
+        labEquipBox.setVisible(hasLabBox.isSelected());
     }
 
     /**
@@ -166,8 +168,10 @@ public class CourseDBAddController {
         assert titleText != null : "fx:id=\"titleText\" was not injected: check your FXML file 'CourseDBAddView.fxml'.";
         assert unitsText != null : "fx:id=\"unitsText\" was not injected: check your FXML file 'CourseDBAddView.fxml'.";
 
-       labLengthText.setEditable(hasLabBox.isSelected());
        labProxCombo.getItems().clear();
        labProxCombo.getItems().addAll(Course.LabProximity.values());
+       labLengthText.setVisible(hasLabBox.isSelected());
+       labProxCombo.setVisible(hasLabBox.isSelected());
+       labEquipBox.setVisible(hasLabBox.isSelected());
     }
 }
