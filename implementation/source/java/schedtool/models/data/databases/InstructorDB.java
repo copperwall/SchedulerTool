@@ -117,16 +117,18 @@ public class InstructorDB extends Observable {
                     + " AND schedules_week.id=preferences_timepreference.availability_id"
                     + ") WHERE username = '" + username + "'";
             rs = stmt.executeQuery(query);
-            rs.next();
-            ArrayList<Day> timeprefs = new ArrayList<Day>();
-                timeprefs.add(new Day(rs.getString("monday")));
-                timeprefs.add(new Day(rs.getString("tuesday")));
-                timeprefs.add(new Day(rs.getString("wednesday")));
-                timeprefs.add(new Day(rs.getString("thursday")));
-                timeprefs.add(new Day(rs.getString("friday")));
-                timeprefs.add(new Day(rs.getString("saturday")));
-                timeprefs.add(new Day(rs.getString("sunday")));
-            result.timePrefs = timeprefs;
+            if (rs.next()) 
+            {
+                ArrayList<Day> timeprefs = new ArrayList<Day>();
+                    timeprefs.add(new Day(rs.getString("monday")));
+                    timeprefs.add(new Day(rs.getString("tuesday")));
+                    timeprefs.add(new Day(rs.getString("wednesday")));
+                    timeprefs.add(new Day(rs.getString("thursday")));
+                    timeprefs.add(new Day(rs.getString("friday")));
+                    timeprefs.add(new Day(rs.getString("saturday")));
+                    timeprefs.add(new Day(rs.getString("sunday")));
+                result.timePrefs = timeprefs;
+            }
         }
         catch (SQLException exc) {
             System.err
