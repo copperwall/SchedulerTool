@@ -1,18 +1,32 @@
 package models.admin.analytics;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Vector;
+
+import models.admin.generation.Schedule;
+import models.admin.generation.Section;
+import models.data.databases.Course;
+import models.data.databases.CoursePreference;
+import models.data.databases.Day;
+import models.data.databases.Instructor;
+import models.data.databases.InstructorDB;
 
 /**
  * Loads data for the admin analytics view.
  * 
  * @author Alex Kavanaugh
- * 
+ * @author Katie Keim
  */
 public class AdminAnalytics
 {
     private HashMap<String, ArrayList<Integer>> overallAnalytics;
     private ArrayList<AnalyticsRow> individualAnalytics;
+    private InstructorDB instructorDB;
+    private ArrayList<Integer> allScores;
+    private Vector<Section> sections;
 
     /**
      * The default constructor. All analytics data is static at this point, so
@@ -20,6 +34,8 @@ public class AdminAnalytics
      */
     public AdminAnalytics()
     {
+    	instructorDB = new InstructorDB();
+    	allScores = new ArrayList<Integer>();
         this.overallAnalytics = new HashMap<String, ArrayList<Integer>>();
         this.individualAnalytics = new ArrayList<AnalyticsRow>(30);
         
@@ -34,10 +50,15 @@ public class AdminAnalytics
      */
     public void calculate()
     {
+    	Vector<Instructor> instructors = instructorDB.getAllInstructors();
+    	Schedule schedule = AdminGenerating.getSchedule();
+    	sections = schedule.getAllSections();
+        
+        for (Instructor instructor : instructors) {
+           calculateIndividual(instructor);
+        }
+        
         calculateOverall();
-
-        // TODO: Iterate over all current instructors, pass in his/her id
-        calculateIndividual(0);
     }
     
     /**
@@ -87,14 +108,44 @@ public class AdminAnalytics
         ArrayList<Integer> median = new ArrayList<Integer>(1);
         ArrayList<Integer> mode = new ArrayList<Integer>();
         ArrayList<Integer> stdDev = new ArrayList<Integer>(1);
+        
+        int avg = 0;
+        int med = 90;
+        int mod = 90;
+        int dev = 0;
+        
+        int[] modeArray = new int[100];
+        
+        for (int i = 0; i < 100; i++) {
+        	modeArray[i] = 0;
+        }
+        
+        for (Integer score : allScores) {
+        	avg += score;
+        	modeArray[score]++;
+        }
+        
+        for (int i = 0; i < 100; i++) {
+        	if (modeArray[i] > mod) {
+        		mod = modeArray[i];
+        	}
+        }
+        
+        avg = avg / allScores.size();
+        
+        Collections.sort(allScores);
+        med = allScores.get(allScores.size() / 2);
+        
+        for (Integer score : allScores) {
+        	dev += score - avg;
+        }
+        dev = (int)Math.floor(Math.sqrt(dev / allScores.size()));
 
         // TODO: Perform the actual calculations here
-        average.add(81);
-        median.add(82);
-        mode.add(76);
-        mode.add(80);
-        mode.add(87);
-        stdDev.add(10);
+        average.add(avg);
+        median.add(med);
+        mode.add(mod);
+        stdDev.add(dev);
 
         this.overallAnalytics.put("Average", average);
         this.overallAnalytics.put("Median", median);
@@ -111,26 +162,43 @@ public class AdminAnalytics
      * 
      * @
      */
-    private void calculateIndividual(int userId)
+    private void calculateIndividual(Instructor instructor)
     {
-        // TODO: actually pull instructor stuff
-        this.individualAnalytics.add(new AnalyticsRow("Paul Hatalsky", 80));
-        this.individualAnalytics.add(new AnalyticsRow("Clint Staley", 76));
-        this.individualAnalytics.add(new AnalyticsRow("John Seng", 90));
-        this.individualAnalytics.add(new AnalyticsRow("Phillip Nico", 82));
-        this.individualAnalytics.add(new AnalyticsRow("Julie Workman", 93));
-        this.individualAnalytics.add(new AnalyticsRow("Timothy Kearns", 67));
-        this.individualAnalytics.add(new AnalyticsRow("Hasmik Gharibyan", 80));
-        this.individualAnalytics.add(new AnalyticsRow("John Dalby", 87));
-        this.individualAnalytics.add(new AnalyticsRow("Kurt Mammen", 92));
-        this.individualAnalytics.add(new AnalyticsRow("Ignatios Vakalis", 79));
-        this.individualAnalytics.add(new AnalyticsRow("John Clements", 58));
-        this.individualAnalytics.add(new AnalyticsRow("David Janzen", 96));
-        this.individualAnalytics.add(new AnalyticsRow("Clark Turner", 65));
-        this.individualAnalytics.add(new AnalyticsRow("Gene Fisher", 87));
-        this.individualAnalytics.add(new AnalyticsRow("William Buckalew", 76));
-        this.individualAnalytics.add(new AnalyticsRow("Christopher Lupo", 84));
-        this.individualAnalytics.add(new AnalyticsRow("Alexander Dekhtyar", 88));
-        this.individualAnalytics.add(new AnalyticsRow("Foaad Khosmood", 84));
+    	int score = 0;
+    	Instructor courseInstructor;
+    	Course course;
+    	
+    	int prefNum = 0;
+    	int numCourses = 0;
+    	
+    	int timeNum = 0;
+    	
+    	List<CoursePreference> coursePrefs = instructor.getAllClassPrefs();	
+    	ArrayList<Day> timePrefs = instructor.getTimePrefs(); 
+    	
+    	for (Section section : sections) {
+    		courseInstructor = section.getInstructor();
+    		
+    		if (courseInstructor.equals(instructor)) {
+    		   numCourses++;
+    		   course = section.getCourse();
+    		   
+    		   for (CoursePreference pref : coursePrefs) {
+    			   if (pref.course.equals(course)) {
+    				   prefNum += pref.preference;
+    			   }
+    		   }
+    		}
+    	}
+    	
+    	if (numCourses > 0) {
+    		prefNum /= numCourses;
+    		timeNum /= numCourses;
+    	}
+    	
+    	score = 100 * (prefNum + timeNum) / 2;
+    	
+        this.individualAnalytics.add(new AnalyticsRow(instructor.getName(), score));
+        allScores.add(score);
     }
 }
