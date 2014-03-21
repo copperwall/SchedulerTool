@@ -72,7 +72,12 @@
                 <PropertyValueFactory property="units" />
               </cellValueFactory>
             </TableColumn>
-            <TableColumn editable="false" minWidth="0.0" text="Has Lab?">
+			<TableColumn editable="false" minWidth="0.0" text="Needs Equipment">
+               <cellValueFactory>
+                <PropertyValueFactory property="hasEquipment" />
+              </cellValueFactory>
+            </TableColumn>
+            <TableColumn editable="false" minWidth="0.0" text="Has Lab">
                <cellValueFactory>
                 <PropertyValueFactory property="hasLab" />
               </cellValueFactory>
@@ -85,6 +90,11 @@
             <TableColumn editable="false" minWidth="0.0" text="Lab Proximity">
                <cellValueFactory>
                 <PropertyValueFactory property="labProx" />
+              </cellValueFactory>
+            </TableColumn>
+			<TableColumn editable="false" minWidth="0.0" text="Lab Needs Equipment">
+               <cellValueFactory>
+                <PropertyValueFactory property="labHasEquipment" />
               </cellValueFactory>
             </TableColumn>
           </columns>
