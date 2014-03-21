@@ -53,6 +53,18 @@ public class CourseDBEditController {
      */
     @FXML
     private CheckBox hasLabBox;
+    
+    /**
+     * The needs equipment check box.
+     */
+    @FXML
+    private CheckBox equipBox;
+    
+    /**
+     * The lab needs equipment check box.
+     */
+    @FXML
+    private CheckBox labEquipBox;
 
     /**
      * The lab length text field.
@@ -123,10 +135,10 @@ public class CourseDBEditController {
         if (!invalidInput) {
            if (hasLabBox.isSelected()) {
         	  System.out.println("EDITTING A COURSE");
-              model.editCourse(this.course, prefixText.getText(), Integer.valueOf(courseNoText.getText()), Integer.valueOf(unitsText.getText()), titleText.getText(), false, Integer.valueOf(labLengthText.getText()), labProxCombo.getValue(), false);
+              model.editCourse(this.course, prefixText.getText(), Integer.valueOf(courseNoText.getText()), Integer.valueOf(unitsText.getText()), titleText.getText(), equipBox.isSelected(), Integer.valueOf(labLengthText.getText()), labProxCombo.getValue(), labEquipBox.isSelected());
            }
            else {
-              model.editCourse(this.course, prefixText.getText(), Integer.valueOf(courseNoText.getText()), Integer.valueOf(unitsText.getText()), titleText.getText(), false, 0, null, false);
+              model.editCourse(this.course, prefixText.getText(), Integer.valueOf(courseNoText.getText()), Integer.valueOf(unitsText.getText()), titleText.getText(), equipBox.isSelected(), 0, null, false);
            }
            cancel(event);
         }
@@ -152,13 +164,16 @@ public class CourseDBEditController {
         titleText.setText(course.getTitle());
         unitsText.setText("" + course.getUnits());
         hasLabBox.setSelected(course.getHasLab());
+        equipBox.setSelected(course.getHasEquipment());
         
         if (hasLabBox.isSelected())
         {
      	   labLengthText.setText("" + course.getLabLength());
      	   labProxCombo.setValue(course.getLabProx());
-     	   
-     	   labLengthText.setEditable(hasLabBox.isSelected());
+     	   labEquipBox.setSelected(course.getLabHasEquipment());
+     	   labProxCombo.setVisible(hasLabBox.isSelected());
+     	   labLengthText.setVisible(hasLabBox.isSelected());
+     	   labEquipBox.setVisible(hasLabBox.isSelected());
         }
     }
 
@@ -177,8 +192,10 @@ public class CourseDBEditController {
 
        courseNoText.setEditable(false);
        prefixText.setEditable(false);
-       labLengthText.setEditable(hasLabBox.isSelected());
+       labLengthText.setVisible(hasLabBox.isSelected());
        labProxCombo.getItems().clear();
        labProxCombo.getItems().addAll(Course.LabProximity.values());
+       labProxCombo.setVisible(hasLabBox.isSelected());
+       labEquipBox.setVisible(hasLabBox.isSelected());
     }
 }
