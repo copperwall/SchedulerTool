@@ -186,7 +186,7 @@ public class AdminAnalytics
     		   
     		   for (CoursePreference pref : coursePrefs) {
     			   if (pref.course.equals(course)) {
-    				   prefNum += pref.preference;
+    				   prefNum += pref.preference / 5;
     			   }
     		   }
     		}
