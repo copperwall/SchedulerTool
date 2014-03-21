@@ -5,7 +5,6 @@ import java.util.Observable;
 import java.lang.NumberFormatException;
 import java.lang.RuntimeException;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -39,23 +38,6 @@ public class LocationDB extends Observable {
       ensures  \result instanceof Location
     @*/
    public Location getLocation(int id) {
-      try {
-         // Get Connection
-         Connection con = DriverManager.getConnection(
-            "jdbc:mysql://polyschedules.db."
-               + "9302206.hostedresource.com:3306/polyschedules",
-            "polyschedules", "a1RightCorner!");
-         // Just need to do shit now
-         PreparedStatement pstmt = con.prepareStatement("INSERT INTO schedules_location"
-        		 + "(`building`, `building_number`, `room_number`, `has_equipment`, `capacity`"
-        		 + ") VALUES ( ");
-      }
-      catch (SQLException e) {
-         System.err.println("LocationDB Get: Could not connect to database.\n\t"
-            + e.getMessage());
-      }
-
-      // Not from DB, temporary
       return locations.get(id);
    }
 
@@ -82,9 +64,6 @@ public class LocationDB extends Observable {
       /* Resulting boolean */
       boolean equipment_check = validateEquipment(equipment);
 
-      Location location = new Location(building_check, building_number_check, room_check, capacity_check,
-       equipment_check);
-
       try {
          // Get Connection
     	  Connection con = DriverManager.getConnection("jdbc:mysql://polyschedules.db."
@@ -107,7 +86,7 @@ public class LocationDB extends Observable {
          
       }
       catch (SQLException e) {
-         System.err.println("LocationDB Add: Could not connect to database.\n\t"
+         System.err.println("LocationDB Add:\n"
             + e.getMessage());
       }
             
@@ -145,7 +124,7 @@ public class LocationDB extends Observable {
          stmt.executeUpdate(query);
       }
       catch (SQLException e) {
-         System.err.println("LocationDB Edit: Could not connect to database.\n\t"
+         System.err.println("LocationDB Edit:\n"
             + e.getMessage());
       }
       
@@ -181,7 +160,7 @@ public class LocationDB extends Observable {
          stmt.executeUpdate(query);
       }
       catch (SQLException e) {
-         System.err.println("LocationDB Delete: Could not connect to database.\n\t"
+         System.err.println("LocationDB Delete:\n"
             + e.getMessage());
       }
       
@@ -223,7 +202,7 @@ public class LocationDB extends Observable {
 		   }
 	   }
 	   catch (SQLException e) {
-	         System.err.println("LocationDB Add: Could not get location from database.\n\t" + e.getMessage());
+	         System.err.println("LocationDB Add:\n" + e.getMessage());
 	   }
 	   
       return locations;

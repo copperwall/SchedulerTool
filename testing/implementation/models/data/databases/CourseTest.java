@@ -18,6 +18,10 @@ import org.junit.Test;
  *     Phase 4: Unit test getting the course title
  <p><li>
  *     Phase 5: Unit test getting the course units
+ <p><li>
+ *     Phase 6: Unit test getting if a course needs equipment
+ <p><li>
+ *     Phase 7: Unit test getting if a course has a lab
  </ul>
  * @author Katie Keim
  */
@@ -34,8 +38,8 @@ public class CourseTest {
      *  Case    Input                    Output             Remarks
      * ====================================================================
      *   1      {"CPE", 309, 4,          Proper init done    Construct a Course
-     *   "Software Engineering II", 1, 
-     *   Course.LabProximity.DIRECTLY_AFTER}                               
+     *   "Software Engineering II", 1, false, 
+     *   Course.LabProximity.DIRECTLY_AFTER, false}                               
     </pre>
 	 */
 	@Test
@@ -52,8 +56,8 @@ public class CourseTest {
      *  Case    Input                    Output             Remarks
      * ====================================================================
      *   1      {"CPE", 309, 4,           "CPE"           Getting a course prefix
-     *   "Software Engineering II", 1, 
-     *   Course.LabProximity.DIRECTLY_AFTER}
+     *   "Software Engineering II", 1, false, 
+     *   Course.LabProximity.DIRECTLY_AFTER, false}
      </pre>
 	 */
 	@Test
@@ -69,8 +73,8 @@ public class CourseTest {
      *  Case    Input                    Output             Remarks
      * ====================================================================
      *   1 {""CPE", 309, 4,                309             Get Course Number
-     *   "Software Engineering II", 1, 
-     *   Course.LabProximity.DIRECTLY_AFTER}
+     *   "Software Engineering II", false, 1, 
+     *   Course.LabProximity.DIRECTLY_AFTER, false}
      </pre>
 	 */
 	@Test
@@ -86,8 +90,8 @@ public class CourseTest {
      *  Case    Input                    Output             Remarks
      * ====================================================================
      *   1 {"CPE", 309, 4,         "Software Engineering II"   Getting a course title
-     *   "Software Engineering II", 1, 
-     *   Course.LabProximity.DIRECTLY_AFTER}
+     *   "Software Engineering II", false, 1, 
+     *   Course.LabProximity.DIRECTLY_AFTER, false}
      </pre>
 	 */
 	@Test
@@ -103,13 +107,47 @@ public class CourseTest {
      *  Case    Input                    Output               Remarks
      * ======================================================================
      *   1      {"CPE", 309, 4,           4                Getting a course's units
-     *   "Software Engineering II", 1, 
-     *   Course.LabProximity.DIRECTLY_AFTER}
+     *   "Software Engineering II", false, 1, 
+     *   Course.LabProximity.DIRECTLY_AFTER, false}
      </pre>
 	 */
 	@Test
 	public void testGetUnits() {
 		Course test = new Course("CPE", 309, 4, "Software Engineering II", false, 1, Course.LabProximity.DIRECTLY_AFTER, false);
 		assertEquals(test.getUnits(), 4);
+	}
+	
+	/**
+	 * Unit test getting if a course needs equipment.
+	 <pre>
+	 *  Test
+     *  Case    Input                    Output               Remarks
+     * ======================================================================
+     *   1      {"CPE", 309, 4,           true            Getting if a course
+     *   "Software Engineering II",true, 1,                needs equipment
+     *   Course.LabProximity.DIRECTLY_AFTER, false}
+     </pre>
+	 */
+	@Test
+	public void testGetEquipment() {
+		Course test = new Course("CPE", 309, 4, "Software Engineering II", true, 1, Course.LabProximity.DIRECTLY_AFTER, false);
+		assertTrue(test.getHasEquipment());
+	}
+	
+	/**
+	 * Unit test getting if a course has a lab.
+	 <pre>
+	 *  Test
+     *  Case    Input                    Output               Remarks
+     * ======================================================================
+     *   1      {"CPE", 309, 4,           true            Getting if a course
+     *   "Software Engineering II", 1,                      has a lab.
+     *   Course.LabProximity.DIRECTLY_AFTER}
+     </pre>
+	 */
+	@Test
+	public void testGetLab() {
+		Course test = new Course("CPE", 309, 4, "Software Engineering II", false, 1, Course.LabProximity.DIRECTLY_AFTER, true);
+		assertTrue(test.getHasLab());
 	}
 }
