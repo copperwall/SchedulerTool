@@ -50,6 +50,18 @@ public class CourseDBAddController {
      */
     @FXML
     private CheckBox hasLabBox;
+    
+    /**
+     * The needs equipment check box.
+     */
+    @FXML
+    private CheckBox equipBox;
+    
+    /**
+     * The lab needs equipment check box.
+     */
+    @FXML
+    private CheckBox labEquipBox;
 
     /**
      * The lab length text field.
@@ -121,10 +133,10 @@ public class CourseDBAddController {
 
       if (!invalidInput) {
          if (hasLabBox.isSelected()) {
-        	course = new Course(prefixText.getText(), Integer.valueOf(courseNoText.getText()), Integer.valueOf(unitsText.getText()), titleText.getText(), false, Integer.valueOf(labLengthText.getText()), labProxCombo.getValue(), false);
+        	course = new Course(prefixText.getText(), Integer.valueOf(courseNoText.getText()), Integer.valueOf(unitsText.getText()), titleText.getText(), equipBox.isSelected(), Integer.valueOf(labLengthText.getText()), labProxCombo.getValue(), labEquipBox.isSelected());
          }
          else {
-        	 course = new Course(prefixText.getText(), Integer.valueOf(courseNoText.getText()), Integer.valueOf(unitsText.getText()), titleText.getText(), false, 0, null, false);
+        	 course = new Course(prefixText.getText(), Integer.valueOf(courseNoText.getText()), Integer.valueOf(unitsText.getText()), titleText.getText(), equipBox.isSelected(), 0, null, false);
          }
          
          model.addCourse(course);
