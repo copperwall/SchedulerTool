@@ -240,6 +240,9 @@ public class AvailableCoursesRow {
     public boolean equals(Object obj)
     {
     	AvailableCoursesRow other = (AvailableCoursesRow)obj;
-    	return this.prefix.equals(other.prefix) && this.courseNumber.equals(other.courseNumber);
+    	
+    	if (null != obj)
+    		return this.prefix.equals(other.prefix) && this.courseNumber.equals(other.courseNumber);
+    	return false;
     }
 }

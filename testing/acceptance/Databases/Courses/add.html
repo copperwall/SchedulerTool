@@ -10,92 +10,109 @@
   <tr>
   <td valign=top>1
     <td valign=top>
-Click Add<br />
-First Name: "Test"<br />
-Last Name: "Instructor"<br />
-Cal Poly User ID: "tinstruct"<br />
-WTU: "8"<br />
-Active is unchecked<br />
-Click Submit<br />
+Go to the Course Database page by clicking Databases and then Course <br/>
+Click Add<br/>
+Enter the following data in the specified fields.
+Title: Test Course<br/>
+Prefix: TST<br/>
+Course No.: 101<br/>
+Units: 1<br/>
+Has Lab is unchecked<br/>
+Needs Equipment is unchecked<br/>
+Click Submit<br/>
     <td valign=top>
-New instructor at the bottom of the list of instructors with the name "Test Instructor",
-the User ID "tinstruct", maximum WTU of 8, and not active.
+New course at the bottom of the list of courses with the name "Test Course",
+the prefix "TST", the course number 101, 1 unit, no equipment needed and no lab.
     <td valign=top>
-Regular adding
+Regular adding without a lab or equipment.
     <td valign=top>
-Pass or fail
+Pass/Fail
     <tr>
     <td valign=top>2
     <td valign=top>
-Click Add<br />
-First Name: "Test"<br />
-Last Name: "Instructor"<br />
-Cal Poly User ID: "tinstruct"<br />
-WTU: "8"<br />
-Active is unchecked<br />
-Click Submit<br />
-Click Add<br />
-First Name: "Test"<br />
-Last Name: "Instructor"<br />
-Cal Poly User ID: "tinstruct"<br />
-WTU: "8"<br />
-Active is unchecked<br />
-Click Submit<br />
+Go to the Course Database page by clicking Databases and then Course <br/>
+Click Add<br/>
+Enter the following data in the specified fields.
+Title: Test Course 2<br/>
+Prefix: TST<br/>
+Course No.: 102<br/>
+Units: 1<br/>
+Has Lab is checked<br/>
+Needs Equipment is checked<br/>
+Lab Length: 1<br/>
+Select SAME_DAY under Lab Proximity<br/>
+Lab Needs Equipment is checked<br/>
+Click Submit<br/>
     <td valign=top>
-One new instructor at the bottom of the list of instructors with the name "Test Instructor",
-the User ID "tinstruct", maximum WTU of 8, and not active. Message in System.err that an
-instructor already exists with that User ID.
+New course at the bottom of the list of courses with the name "Test Course 2",
+the prefix "TST", the course number 102, 1 unit, equipment needed is true, has lab
+is true, lab length is 1, lab proximity is SAME_DAY, lab needs equipment is true.
     <td valign=top>
-Adding a non-unique entry
+Regular adding with a lab and equipment.
     <td valign=top>
-Pass or fail
-    <tr>
+Pass/Fail
+<tr>
     <td valign=top>3
     <td valign=top>
-Click Add<br />
-First Name: "Test"<br />
-Last Name: "Instructor"<br />
-Cal Poly User ID: "tinstruct2"<br />
-WTU: "8"<br />
-Active is checked<br />
-Click Submit<br />
+Go to the Course Database page by clicking Databases and then Course <br/>
+Click Add<br/>
+Enter the following data in the specified fields.
+Title: Test Course 2<br/>
+Prefix: TST<br/>
+Course No.: 102<br/>
+Units: 1<br/>
+Check the Has Lab box<br/>
+Uncheck the Has Lab box<br/>
     <td valign=top>
-One new instructor at the bottom of the list of instructors with the name "Test Instructor",
-the User ID "tinstruct", maximum WTU of 8, and active is true.
+The information fields for the lab should appear when the Has Lab box is checked and then disappear when the Has Lab box is unchecked.
     <td valign=top>
-Testing the checkbox functionality
+Checking the showing/hiding of the lab information fields.
     <td valign=top>
-Pass or fail
-    <tr>
+Pass/Fail
+<tr>
     <td valign=top>4
     <td valign=top>
-Click Add<br />
-First Name: "Test"<br />
-Last Name: "Instructor"<br />
-Cal Poly User ID: "tinstruct2"<br />
-WTU: "hello"<br />
-Active is checked<br />
-Click Submit<br />
+Go to the Course Database page by clicking Databases and then Course <br/>
+Click Add<br/>
+Enter the following data in the specified fields.
+Title: Test Course 3<br/>
+Prefix: TST<br/>
+Course No.: 103<br/>
+Units: 1<br/>
+Has Lab is checked<br/>
+Needs Equipment is checked<br/>
+Lab Length: 1<br/>
+Select SAME_DAY under Lab Proximity<br/>
+Lab Needs Equipment is checked<br/>
+Click Submit<br/>
+Click Add<br/>
+Enter the following data in the specified fields.
+Title: Test Course 3<br/>
+Prefix: TST<br/>
+Course No.: 103<br/>
+Units: 1<br/>
+Has Lab is checked<br/>
+Needs Equipment is checked<br/>
+Lab Length: 1<br/>
+Select SAME_DAY under Lab Proximity<br/>
+Lab Needs Equipment is checked<br/>
+Click Submit<br/>
     <td valign=top>
-Invalid WTU message displayed next to WTU field, window remains open.
+The program should throw an exception. Duplicate entries are not allowed.
     <td valign=top>
-Invalid WTU testing
+Adding a duplicate entry.
     <td valign=top>
-Pass or fail
+Pass/Fail
     <tr>
     <td valign=top>5
     <td valign=top>
+Go to the Course Database page by clicking Databases and then Course <br/>
 Click Add<br />
-First Name: "Test"<br />
-Last Name: "Instructor"<br />
-Cal Poly User ID: "tinstruct2"<br />
-WTU: "hello"<br />
-Active is checked<br />
 Click Cancel<br />
     <td valign=top>
-Add window closes, instructor list appears and is the same as before clicking the add button.
+Add window closes, course list appears and is the same as before clicking the add button.
     <td valign=top>
 Cancel button on add dialog.
     <td valign=top>
-Pass or fail
+Pass/Fail
 </table>
