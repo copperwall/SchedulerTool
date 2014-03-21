@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Vector;
 
+import models.admin.generation.AdminGenerating;
 import models.admin.generation.Schedule;
 import models.admin.generation.Section;
 import models.data.databases.Course;
