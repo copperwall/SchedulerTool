@@ -58,7 +58,7 @@
     </HBox>
     <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.rowIndex="2">
       <children>
-        <Label text="Label">
+        <Label text="Building Number">
           <HBox.margin>
             <Insets right="10.0" fx:id="x1" />
           </HBox.margin>
