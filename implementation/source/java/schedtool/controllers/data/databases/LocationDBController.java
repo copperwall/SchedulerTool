@@ -14,8 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.control.TableView;
-import javafx.scene.layout.Pane;
-import javafx.fxml.JavaFXBuilderFactory;
+
 /* Import Models */
 import models.data.databases.LocationDB;
 import models.data.databases.Location;
