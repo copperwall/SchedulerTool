@@ -111,8 +111,12 @@ public class Section {
 	
 	public String getTime() {
 		String time = "AM";
-		if(Math.random() < 0.5)
+		if(endTime >= 12)
 			time = "PM";
+		if(startTime > 12)
+			startTime = startTime % 12;
+		if(endTime > 12)
+			endTime = endTime % 12;
 		return startTime + "-" + endTime + time;
 	}   
 }   

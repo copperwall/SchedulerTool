@@ -15,7 +15,7 @@ import models.data.databases.*;
 public class AdminGenerating {
 	
 	private static Schedule generatedSchedule = new Schedule();
-	
+	private static int count = -2;
 	public void generate()
 	{
 		generatedSchedule.clear();
@@ -23,17 +23,28 @@ public class AdminGenerating {
 		System.out.println("AdminGenerating.GENERATING!!!??????????");
 		InstructorDB instructordb = new InstructorDB();
 		Vector<Instructor> instructors = removeInactiveInstructors(instructordb.getAllInstructors());
+		Vector<AvailableCoursesRow> availCourses = AdminAvailableCourses.getAvailableCourses();
 		Collections.sort(instructors, new pickinessComparator());
-		for(Instructor instructor: instructors)
+		int sectionNum = 1;
+		for(AvailableCoursesRow courseRow : availCourses)
 		{
-			Course course = getTopAvailableCourseThatNeedsSections(instructor);
-			int hours = getCourseLength(course);
-			ArrayList<Day> timePrefs = instructor.getTimePrefs();
-			int startTime = startTime(timePrefs);
-			Location location = getLocationAtTime(startTime, startTime + 1);
-			Section section = new Section(course,
-					generatedSchedule.getSectionCount(course), instructor, location, "MWF", startTime, startTime + 1);
-			generatedSchedule.setOneSection(section);
+			for(Instructor instructor: instructors)
+			{
+				Course course = getTopAvailableCourseThatNeedsSections(instructor);
+				int hours = getCourseLength(course);
+				ArrayList<Day> timePrefs = instructor.getTimePrefs();
+				int startTime = startTime(timePrefs);
+				Location location = getLocationAtTime(startTime, startTime + 1);
+				Section section = new Section(course,
+						generatedSchedule.getSectionCount(course), instructor, location, "MWF", startTime, startTime + 1);
+				section.sectionNum = sectionNum++;
+				Section labSection = new Section(course,
+						generatedSchedule.getSectionCount(course), instructor, location, "MWF", startTime + 1, startTime + 2);
+				labSection.sectionNum = sectionNum++;
+				labSection.setLinkedSectionNum(section.sectionNum);
+				generatedSchedule.setOneSection(section);
+				generatedSchedule.setOneSection(labSection);
+			}
 		}
 	}
 		
@@ -65,7 +76,8 @@ public class AdminGenerating {
 	
 	public int startTime(ArrayList<Day> timePrefs)
 	{
-		ArrayList<Boolean> monday = timePrefs.get(0).getAvailability();
+		count += 2;
+		/*ArrayList<Boolean> monday = timePrefs.get(0).getAvailability();
 		ArrayList<Boolean> wednesday = timePrefs.get(2).getAvailability();
 		ArrayList<Boolean> friday = timePrefs.get(4).getAvailability();
 		for(int i = 0; i < monday.size(); i++)
@@ -74,8 +86,8 @@ public class AdminGenerating {
 			{
 				return i;
 			}
-		}
-		return -1;
+		}*/
+		return 8 + (count % 12);
 	}
 	
 	public int getCourseLength(Course course)
@@ -99,6 +111,7 @@ public class AdminGenerating {
 		List<CoursePreference> prefsList = instructor.getAllClassPrefs();
 		Course toReturn = null;
 		Vector<AvailableCoursesRow> availCourses = AdminAvailableCourses.getAvailableCourses();
+		Collections.sort(prefsList, new preferenceComparator());
 		for(CoursePreference coursePref : prefsList)
 		{
 			
