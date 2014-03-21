@@ -49,6 +49,10 @@ public class InstructorDBEditController implements Initializable {
     @FXML
     private TextField lastName;
     
+    /** Error field on GUI */
+    @FXML
+    private Label error;
+    
     /**
      * Initializes the controller class.
      */
@@ -62,14 +66,18 @@ public class InstructorDBEditController implements Initializable {
      */
     @FXML
     private void edit(ActionEvent event) {
-    	/* Creates a new instructor with the properties we need */
-        instructorDB.editInstructor(new Instructor(firstName.getText(), lastName.getText(), 
-        			userID.getText(), Integer.parseInt(wtu.getText()), active.isSelected()));
-        /* Close the dialog */
-        Button src = (Button)event.getSource();
-        Stage srcStage = (Stage)src.getScene().getWindow();
-        
-        srcStage.close();
+        try {
+        	/* Creates a new instructor with the properties we need */
+            instructorDB.editInstructor(new Instructor(firstName.getText(), lastName.getText(), 
+            			userID.getText(), Integer.parseInt(wtu.getText()), active.isSelected()));
+            /* Close the dialog */
+            Button src = (Button)event.getSource();
+            Stage srcStage = (Stage)src.getScene().getWindow();
+            
+            srcStage.close();
+        } catch (NumberFormatException exc) {
+            error.setText("Invalid WTU.");
+        }
     }
 
     /**

@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Acceptance Testing | Modify Preferences</title>
+</head>
+<table align=center border=1 cellpadding=4>
+    <thead>
+        <td><strong>Case No.</strong></td>
+        <td><strong>User Inputs and Commands</strong></td>
+        <td><strong>Expected Output</strong></td>
+        <td><strong>Remarks</strong></td>
+        <td><strong>Results</strong></td>
+    
+    <tr>
+        <td>1</td>
+        <td>Navigate to: http://schedules.kavanaughdevelopment.com/login/<br />
+            Enter Username: "gfisher"<br />
+            Enter Password: "password"<br />
+            Click "Log In"
+            After main view appears, Click "Manage Preferences"<br />
+        </td>
+        <td>Instructor Preferences View appears. If the lock date for preferences has already passed or an admin has locked preferences, form is grayed out.</td>
+        <td>Instructor Preferences View</td>
+        <td>Pass or Fail</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Perform case 1, switching to the current term if necessary.<br />
+            Change the course preference for "CPE 101" from "Not Qualified" to "Prefer" (5th radio input)</td>
+        <td>Instructor preference for course CPE 101 is changed.</td>
+        <td>Course Preference</td>
+        <td>Pass or Fail</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Perform case 1.<br />
+            Click on every cell in column "Friday" in the Time Preference table.</td>
+        <td>Instructor time preferences are modified. All time slots on Friday are marked as available.</td>
+        <td>Time Preference</td>
+        <td>Pass or Fail</td>
+    </tr>
+</table>
+<body>
+</body>
+</html>

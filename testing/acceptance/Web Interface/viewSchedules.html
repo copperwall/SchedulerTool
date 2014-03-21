@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Acceptance Testing | View Schedules</title>
+</head>
+<table align=center border=1 cellpadding=4>
+    <thead>
+        <td><strong>Case No.</strong></td>
+        <td><strong>User Inputs and Commands</strong></td>
+        <td><strong>Expected Output</strong></td>
+        <td><strong>Remarks</strong></td>
+        <td><strong>Results</strong></td>
+    </thead>
+    <tr>
+        <td>1</td>
+        <td>Navigate to: http://schedules.kavanaughdevelopment.com/</td>
+        <td>Main Schedule appears.</td>
+        <td>Base Schedule</td>
+        <td>Pass or Fail</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Navigate to: http://schedules.kavanaughdevelopment.com/<br />
+        Change the term dropdown to "Spring 2014"</td>
+        <td>If generated, the main schedule for spring 2014 appears, else an empty table.</td>
+        <td>Base Schedule, possibly not generated.</td>
+        <td>Pass or Fail</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>Navigate to: http://schedules.kavanaughdevelopment.com/<br />
+        Click on one of the "CPE 102"s in the course column<br /><br />OR<br /><br />
+        Navigate to: http://schedules.kavanaughdevelopment.com/course/CPE/102/</td>
+        <td>Schedule for course CPE 102 appears.</td>
+        <td>Course Schedule View</td>
+        <td>Pass or Fail</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>Navigate to: http://schedules.kavanaughdevelopment.com/<br />
+        Click on one of the "Kurt Mammen"s in the instructor column<br /><br />OR<br /><br />
+        Navigate to: http://schedules.kavanaughdevelopment.com/instructor/kmammen/</td>
+        <td>Schedule for instructor Kurt Mammen appears.</td>
+        <td>Instructor Schedule View</td>
+        <td>Pass or Fail</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>Navigate to: http://schedules.kavanaughdevelopment.com/<br />
+        Click on one of the "Frank E. Pilling Building (14) 250"s in the location column<br /><br />OR<br /><br />
+        Navigate to: http://schedules.kavanaughdevelopment.com/location/14/250/</td>
+        <td>Schedule for location Frank E. Pilling Building (14) 250 appears.</td>
+        <td>Location Schedule View</td>
+        <td>Pass or Fail</td>
+    </tr>
+</table>
+<body>
+</body>
+</html>

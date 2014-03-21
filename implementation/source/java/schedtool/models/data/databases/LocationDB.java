@@ -46,6 +46,9 @@ public class LocationDB extends Observable {
                + "9302206.hostedresource.com:3306/polyschedules",
             "polyschedules", "a1RightCorner!");
          // Just need to do shit now
+         PreparedStatement pstmt = con.prepareStatement("INSERT INTO schedules_location"
+        		 + "(`building`, `building_number`, `room_number`, `has_equipment`, `capacity`"
+        		 + ") VALUES ( ");
       }
       catch (SQLException e) {
          System.err.println("LocationDB Get: Could not connect to database.\n\t"
@@ -76,29 +79,40 @@ public class LocationDB extends Observable {
       String room_check = validateRoom(room);
       /* Resulting integer from converting capacity string to int */
       int capacity_check = validateCapacity(capacity);
-      /* Resulting String[] after splitting equipment argument */
+      /* Resulting boolean */
       boolean equipment_check = validateEquipment(equipment);
 
       Location location = new Location(building_check, building_number_check, room_check, capacity_check,
        equipment_check);
 
-      locations.add(location);
-      
-      setChanged();
-      notifyObservers();
-
-      /*try {
+      try {
          // Get Connection
-         Connection con = DriverManager.getConnection(
-            "jdbc:mysql://polyschedules.db."
-               + "9302206.hostedresource.com:3306/polyschedules",
-            "polyschedules", "a1RightCorner!");
+    	  Connection con = DriverManager.getConnection("jdbc:mysql://polyschedules.db."
+    			     + "9302206.hostedresource.com:3306/polyschedules", "polyschedules", "a1RightCorner!");
          // Just need to do shit now
+    	  
+    	 System.out.println("Do we get here?");
+         PreparedStatement pstmt = con.prepareStatement("INSERT INTO schedules_location "
+                 + "(`building`, `building_number`, `room_number`, `has_equipment`, `capacity`) "
+                 + "VALUES( "
+                 + "?, ?, ?, ?, ?)");
+         
+         pstmt.setString(1, building_check);
+         pstmt.setString(2, building_number_check);
+         pstmt.setString(3, room_check);
+         pstmt.setInt(4, (equipment_check ? 1 : 0));
+         pstmt.setInt(5, capacity_check);
+         pstmt.addBatch();
+         pstmt.executeBatch();
+         
       }
       catch (SQLException e) {
          System.err.println("LocationDB Add: Could not connect to database.\n\t"
             + e.getMessage());
-      }*/
+      }
+            
+      setChanged();
+      notifyObservers();
    }
 
    /**
@@ -112,24 +126,31 @@ public class LocationDB extends Observable {
       ensures  locations.contains(new_location) && !locations.contains(old);
     @*/
    public void editLocation(Location old, Location new_location) {
-      // Do I still need this?
-      locations.set(locations.indexOf(old), new_location);
-
-      setChanged();
-      notifyObservers();
-      
-      /*try {
+      try {
          // Get Connection
          Connection con = DriverManager.getConnection(
             "jdbc:mysql://polyschedules.db."
                + "9302206.hostedresource.com:3306/polyschedules",
             "polyschedules", "a1RightCorner!");
          // Just need to do shit now
+         
+         String query = "UPDATE schedules_location SET building = '"
+        		 + new_location.getBuilding() + "', building_number = '"
+        		 + new_location.getBuildingNumber() + "', room_number = '"
+        		 + new_location.getRoom() + "', capacity = " + new_location.getCapacity()
+        		 + ", has_equipment = " + (new_location.getEquipment() ? 1 : 0)
+        		 + " WHERE id = " + findLocationQuery(old);
+         
+         Statement stmt = con.createStatement();
+         stmt.executeUpdate(query);
       }
       catch (SQLException e) {
          System.err.println("LocationDB Edit: Could not connect to database.\n\t"
             + e.getMessage());
-      }*/
+      }
+      
+      setChanged();
+      notifyObservers();
    }
 
    /**
@@ -143,23 +164,29 @@ public class LocationDB extends Observable {
       ensures  locations.contains(location) == false;
     @*/
    public void deleteLocation(Location location) {
-      locations.remove(location);
-
-      setChanged();
-      notifyObservers();
       
-      /*try {
+      
+      try {
          // Get Connection
          Connection con = DriverManager.getConnection(
             "jdbc:mysql://polyschedules.db."
                + "9302206.hostedresource.com:3306/polyschedules",
             "polyschedules", "a1RightCorner!");
          // Just need to do shit now
+         int locationId = findLocationQuery(location);
+         
+         String query = "DELETE FROM schedules_location WHERE id = " + locationId;
+         
+         Statement stmt = con.createStatement();
+         stmt.executeUpdate(query);
       }
       catch (SQLException e) {
          System.err.println("LocationDB Delete: Could not connect to database.\n\t"
             + e.getMessage());
-      }*/
+      }
+      
+      setChanged();
+      notifyObservers();
    }
 
    /**
@@ -172,6 +199,33 @@ public class LocationDB extends Observable {
       ensures \result.equals(locations);
     @*/
    public Vector<Location> getAllLocations() {
+	   Location location;
+	   locations = new Vector<Location>();
+	   
+	   try {
+		   Connection con = DriverManager.getConnection("jdbc:mysql://polyschedules.db."
+		     + "9302206.hostedresource.com:3306/polyschedules", "polyschedules", "a1RightCorner!");
+		   
+		   Statement stmt = con.createStatement();
+		   
+		   String query = "SELECT * FROM schedules_location ORDER BY building_number";
+		   ResultSet rs = stmt.executeQuery(query);
+		   
+		   while (rs.next()) {
+			   String building = rs.getString("building");
+			   String building_number = rs.getString("building_number");
+			   String room = rs.getString("room_number");
+			   Boolean equipment = rs.getInt("has_equipment") == 1;
+			   int capacity = rs.getInt("capacity");
+			   
+			   location = new Location(building, building_number, room, capacity, equipment);
+			   locations.add(location);
+		   }
+	   }
+	   catch (SQLException e) {
+	         System.err.println("LocationDB Add: Could not get location from database.\n\t" + e.getMessage());
+	   }
+	   
       return locations;
    }
 
@@ -256,5 +310,30 @@ public class LocationDB extends Observable {
     @*/
    private boolean validateEquipment(boolean equipment) {
       return equipment;
+   }
+   
+   private int findLocationQuery(Location location) {
+	   try {
+		   Connection con = DriverManager.getConnection(
+                   "jdbc:mysql://polyschedules.db."
+                           + "9302206.hostedresource.com:3306/polyschedules",
+                   "polyschedules", "a1RightCorner!");
+		   
+		   Statement stmt = con.createStatement();
+		   String query = "SELECT DISTINCT id FROM schedules_location WHERE building = '"
+		    + location.getBuilding() + "' AND building_number = '" + location.getBuildingNumber()
+		    + "' AND room_number = '" + location.getRoom() + "' AND capacity = "
+		    + location.getCapacity() + " AND has_equipment = " + (location.getEquipment() ? 1 : 0);
+		   
+		   ResultSet rs = stmt.executeQuery(query);
+		   if (rs.next())
+			   return rs.getInt("id");
+		   return -1;
+	   }
+	   catch (SQLException e) {
+		   System.err.println("FindLocationQuery: " + e.getMessage());
+	   }
+	   
+	   return -1;
    }
 }
