@@ -14,7 +14,7 @@ import models.data.databases.*;
  */
 public class AdminGenerating {
 	
-	private Schedule generatedSchedule = new Schedule();
+	private static Schedule generatedSchedule = new Schedule();
 	
 	public void generate()
 	{
@@ -34,7 +34,6 @@ public class AdminGenerating {
 			Section section = new Section(course,
 					generatedSchedule.getSectionCount(course), instructor, location, "MWF", startTime, startTime + 1);
 			generatedSchedule.setOneSection(section);
-			
 		}
 	}
 		
@@ -102,11 +101,12 @@ public class AdminGenerating {
 		Vector<AvailableCoursesRow> availCourses = AdminAvailableCourses.getAvailableCourses();
 		for(CoursePreference coursePref : prefsList)
 		{
-			int courseIndexInAvailCourses = availCourses.indexOf(coursePref.course);
-			if(courseIndexInAvailCourses >= 0 && availCourses.get(courseIndexInAvailCourses).getSections() < generatedSchedule.getSectionCount(coursePref.course))
-			{
+			
+			//int courseIndexInAvailCourses = availCourses.indexOf(new AvailableCoursesRow(coursePref.course));
+			//if(courseIndexInAvailCourses >= 0 && availCourses.get(courseIndexInAvailCourses).getSections() < generatedSchedule.getSectionCount(coursePref.course))
+			//{
 				return coursePref.course;
-			}
+			//}
 		}
 		return null;
 	}
@@ -123,7 +123,7 @@ public class AdminGenerating {
 		return instructors;
 	}
 	
-	public Schedule getSchedule() {
+	public static Schedule getSchedule() {
 		return generatedSchedule;
 	}
 }

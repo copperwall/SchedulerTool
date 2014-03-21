@@ -30,8 +30,16 @@ public class MainTableRow
         this.courseNumber = new SimpleIntegerProperty(course.getCourseNum());
         this.sectionNumber = new SimpleIntegerProperty(section.getSectionNum());
         this.intructorName = new SimpleStringProperty(section.getInstructor().lastName + ", " + section.getInstructor().firstName);
-        this.buildingNumber = new SimpleStringProperty(loc.getBuilding());
-        this.roomNumber = new SimpleStringProperty(loc.getRoom());
+        if(loc != null)
+        {
+        	this.buildingNumber = new SimpleStringProperty(loc.getBuilding());
+        	this.roomNumber = new SimpleStringProperty(loc.getRoom());
+        }
+        else
+        {
+        	this.buildingNumber = new SimpleStringProperty("TDB");
+        	this.roomNumber = new SimpleStringProperty("TDB");
+        }
         this.days = new SimpleStringProperty(section.getDays());
         this.time = new SimpleStringProperty(section.getTime());
         if(section.getLinkedSectionNum() != 0)
