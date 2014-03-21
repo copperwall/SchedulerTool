@@ -1,5 +1,6 @@
 package models.admin.generation;
 
+import models.data.databases.Course;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
@@ -47,6 +48,14 @@ public class AvailableCoursesRow {
         this.courseTitle = new SimpleStringProperty(courseTitle);
         this.sections = new SimpleIntegerProperty(sections);
         this.suggested = new SimpleIntegerProperty(suggested);
+    }
+    
+    public AvailableCoursesRow(Course course) {
+        this.prefix = new SimpleStringProperty(course.getPrefix());
+        this.courseNumber = new SimpleIntegerProperty(course.getCourseNum());
+        this.courseTitle = new SimpleStringProperty(course.getTitle());
+        this.sections = new SimpleIntegerProperty(0);
+        this.suggested = new SimpleIntegerProperty(0);
     }
 
     /**
@@ -226,5 +235,11 @@ public class AvailableCoursesRow {
      */
     public void loadSuggested() {
         this.sections.set(this.suggested.get());
+    }
+    
+    public boolean equals(Object obj)
+    {
+    	AvailableCoursesRow other = (AvailableCoursesRow)obj;
+    	return this.prefix.equals(other.prefix) && this.courseNumber.equals(other.courseNumber);
     }
 }
