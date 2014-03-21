@@ -43,7 +43,8 @@ public class LocationDBEditController implements Initializable {
 
     private Location location;
 
-    void edit(ActionEvent event) {
+    @FXML
+    void submit(ActionEvent event) {
        Location generated = genLocation();
 
        locationDB.editLocation(location, generated);
@@ -62,12 +63,7 @@ public class LocationDBEditController implements Initializable {
 
        srcStage.close();
     }
-
-    @FXML
-    void submit(ActionEvent event) {
-    	// TODO Adds new row to grid view
-    }
-
+   
     public void passLocation(Location target) {
        location = target;
 
