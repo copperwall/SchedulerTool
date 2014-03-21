@@ -138,7 +138,7 @@ public class AdminAnalytics
         med = allScores.get(allScores.size() / 2);
         
         for (Integer score : allScores) {
-        	dev += score - avg;
+        	dev += Math.pow(score - avg, 2);
         }
         dev = (int)Math.floor(Math.sqrt(dev / allScores.size()));
 
