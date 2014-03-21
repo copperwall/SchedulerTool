@@ -201,7 +201,7 @@ public class LocationDBTest {
 
       assertTrue(locations.size() == 0);
 
-      db.addLocation("14", "234", "41", true);
+      db.addLocation("14", "234", "41", "30", true);
 
       locations = db.getAllLocations();
 
@@ -236,7 +236,7 @@ public class LocationDBTest {
       location = db.getLocation(0);
 
       assertTrue(location.getBuilding().equals("Frank E. Pilling Building"));
-      assertTrue(location.getBuildingName().equals("15"));
+      assertTrue(location.getBuildingNumber().equals("15"));
       assertTrue(location.getRoom().equals("2344"));
       assertTrue(location.getCapacity() == 40);
       assertFalse(location.getEquipment());

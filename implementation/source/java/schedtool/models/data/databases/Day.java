@@ -13,7 +13,6 @@ public class Day {
    
    public Day(String longtext) {
       this.text = longtext;
-      System.out.println("text: " + longtext);
        hourAvailability = new ArrayList<Boolean>();
        if (longtext != null) {
            for (int i = 0; i < 24; i++) {
