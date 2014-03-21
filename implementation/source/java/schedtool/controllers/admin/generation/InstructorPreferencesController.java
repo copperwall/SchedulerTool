@@ -118,6 +118,8 @@ public class InstructorPreferencesController {
       
       
       ArrayList<Day> timePrefs = instructor.getTimePrefs();
+      for (Day d : timePrefs)
+         System.out.println(instructor.lastName + ": " + d.text);
       ObservableList<Node> children = timePreferencesTable.getChildren();
       if (timePrefs == null || timePrefs.size() == 0) {
          for (int column = 0; column < 5; column++) {
